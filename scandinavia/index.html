@@ -910,16 +910,11 @@
     <p class="map-subtitle">Three countries, one arc — by train, plane, foot, and overnight ferry</p>
 
     <div class="route-map-container">
-      <svg class="route-map-svg" viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg">
-        <!-- Background grid -->
+      <svg class="route-map-svg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
             <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
           </pattern>
-          <filter id="glow-oslo">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-          </filter>
           <marker id="arrowhead-fly" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
             <polygon points="0 0, 8 3, 0 6" fill="#F4A261" opacity="0.7"/>
           </marker>
@@ -928,117 +923,96 @@
           </marker>
         </defs>
 
-        <rect width="860" height="420" fill="url(#grid)"/>
+        <rect width="900" height="480" fill="url(#grid)"/>
 
         <!-- Country regions (subtle shading) -->
-        <ellipse cx="185" cy="200" rx="130" ry="160" fill="rgba(45,106,79,0.06)" />
-        <ellipse cx="500" cy="210" rx="110" ry="140" fill="rgba(244,162,97,0.05)" />
-        <ellipse cx="670" cy="210" rx="90" ry="130" fill="rgba(69,123,157,0.07)" />
+        <ellipse cx="160" cy="230" rx="140" ry="180" fill="rgba(45,106,79,0.05)" />
+        <ellipse cx="490" cy="230" rx="130" ry="170" fill="rgba(244,162,97,0.04)" />
+        <ellipse cx="720" cy="230" rx="110" ry="160" fill="rgba(69,123,157,0.05)" />
 
         <!-- Country labels -->
-        <text x="185" y="38" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="3">NORWAY</text>
-        <text x="500" y="38" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="3">SWEDEN</text>
-        <text x="670" y="38" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="3">FINLAND</text>
+        <text x="160" y="52" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="4">NORWAY</text>
+        <text x="490" y="52" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="4">SWEDEN</text>
+        <text x="720" y="52" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-family="Inter" font-size="11" font-weight="600" letter-spacing="4">FINLAND</text>
 
         <!-- Bergen Railway path (train) -->
         <path class="route-path-main"
-          d="M 230 175 C 218 180, 208 185, 200 195 C 192 205, 186 215, 175 225 C 164 235, 152 240, 145 248"
+          d="M 220 150 C 200 170, 175 200, 145 240 C 130 260, 120 275, 110 290"
           stroke="#2D6A4F" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
 
-        <!-- Train icon between Oslo and Bergen -->
-        <text x="182" y="207" fill="#2D6A4F" font-size="14" opacity="0.8" transform="rotate(-38, 182, 207)">🚂</text>
+        <!-- Train emoji -->
+        <text x="155" y="210" fill="#2D6A4F" font-size="13" opacity="0.7">🚂</text>
 
-        <!-- Bergen area paths to fjords -->
-        <path d="M 130 260 Q 108 290, 92 310 Q 80 328, 95 340"
-          stroke="#1B4F72" stroke-width="1.5" fill="none" stroke-dasharray="5,3" opacity="0.5"/>
+        <!-- Bergen to Fjords (dashed spur) -->
+        <path d="M 100 300 Q 80 340, 75 370"
+          stroke="#1B4F72" stroke-width="1.5" fill="none" stroke-dasharray="5,3" opacity="0.4"/>
 
         <!-- Flight Bergen to Stockholm -->
         <path class="route-path-flight"
-          d="M 145 248 C 200 230, 310 220, 420 215 C 460 213, 480 213, 490 213"
-          stroke="#F4A261" stroke-width="2" fill="none" stroke-dasharray="8,4" stroke-linecap="round" marker-end="url(#arrowhead-fly)" opacity="0.85"/>
+          d="M 110 290 C 180 265, 300 245, 470 230"
+          stroke="#F4A261" stroke-width="2" fill="none" stroke-dasharray="8,4" stroke-linecap="round" marker-end="url(#arrowhead-fly)" opacity="0.8"/>
 
         <!-- Flight label -->
-        <text x="318" y="208" text-anchor="middle" fill="#F4A261" font-family="Inter" font-size="10" opacity="0.7">✈ 1.5 hrs</text>
+        <text x="290" y="240" text-anchor="middle" fill="#F4A261" font-family="Inter" font-size="9.5" opacity="0.65">✈ 1.5 hrs</text>
 
         <!-- Stockholm to Helsinki ferry -->
         <path class="route-path-ferry"
-          d="M 510 213 C 540 215, 560 220, 580 228 C 600 236, 618 240, 635 237 C 648 235, 658 230, 668 228"
-          stroke="#457B9D" stroke-width="2.5" fill="none" stroke-dasharray="10,5" stroke-linecap="round" marker-end="url(#arrowhead-ferry)" opacity="0.9"/>
+          d="M 500 230 C 550 240, 610 260, 700 250"
+          stroke="#457B9D" stroke-width="2.5" fill="none" stroke-dasharray="10,5" stroke-linecap="round" marker-end="url(#arrowhead-ferry)" opacity="0.85"/>
 
         <!-- Ferry label -->
-        <text x="590" y="255" text-anchor="middle" fill="#457B9D" font-family="Inter" font-size="10" opacity="0.8">⛴ 17 hrs overnight</text>
+        <text x="600" y="275" text-anchor="middle" fill="#457B9D" font-family="Inter" font-size="9.5" opacity="0.7">⛴ 17 hrs overnight</text>
 
-        <!-- Return flight Helsinki to JFK (subtle) -->
-        <path d="M 690 220 Q 760 200, 830 185"
-          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
-        <text x="800" y="178" fill="rgba(255,255,255,0.25)" font-family="Inter" font-size="9" text-anchor="middle">→ JFK</text>
+        <!-- Return flight Helsinki to JFK -->
+        <path d="M 730 242 Q 800 220, 870 200"
+          stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
+        <text x="855" y="195" fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="9" text-anchor="end">→ JFK</text>
 
-        <!-- CITY DOTS GROUP -->
+        <!-- CITY DOTS -->
         <g>
-          <!-- Oslo -->
           <g class="city-dot">
-            <circle cx="230" cy="175" r="10" fill="#2D6A4F" opacity="0.25"/>
-            <circle cx="230" cy="175" r="6" fill="#2D6A4F"/>
-            <circle cx="230" cy="175" r="3" fill="#fff" opacity="0.9"/>
+            <circle cx="220" cy="150" r="10" fill="#2D6A4F" opacity="0.2"/>
+            <circle cx="220" cy="150" r="6" fill="#2D6A4F"/>
+            <circle cx="220" cy="150" r="3" fill="#fff" opacity="0.9"/>
           </g>
-
-          <!-- Bergen -->
           <g class="city-dot">
-            <circle cx="145" cy="248" r="10" fill="#1B4F72" opacity="0.25"/>
-            <circle cx="145" cy="248" r="6" fill="#1B4F72"/>
-            <circle cx="145" cy="248" r="3" fill="#fff" opacity="0.9"/>
+            <circle cx="110" cy="290" r="10" fill="#1B4F72" opacity="0.2"/>
+            <circle cx="110" cy="290" r="6" fill="#1B4F72"/>
+            <circle cx="110" cy="290" r="3" fill="#fff" opacity="0.9"/>
           </g>
-
-          <!-- Fjord marker -->
           <g class="city-dot">
-            <circle cx="95" cy="310" r="7" fill="#1B4F72" opacity="0.2"/>
-            <circle cx="95" cy="310" r="4" fill="#1B4F72" opacity="0.7"/>
-            <circle cx="95" cy="310" r="2" fill="#aaccee" opacity="0.8"/>
+            <circle cx="75" cy="370" r="6" fill="#1B4F72" opacity="0.15"/>
+            <circle cx="75" cy="370" r="3.5" fill="#1B4F72" opacity="0.6"/>
           </g>
-
-          <!-- Stockholm -->
           <g class="city-dot">
-            <circle cx="500" cy="213" r="10" fill="#F4A261" opacity="0.25"/>
-            <circle cx="500" cy="213" r="6" fill="#F4A261"/>
-            <circle cx="500" cy="213" r="3" fill="#fff" opacity="0.9"/>
+            <circle cx="480" cy="230" r="10" fill="#F4A261" opacity="0.2"/>
+            <circle cx="480" cy="230" r="6" fill="#F4A261"/>
+            <circle cx="480" cy="230" r="3" fill="#fff" opacity="0.9"/>
           </g>
-
-          <!-- Helsinki -->
           <g class="city-dot">
-            <circle cx="668" cy="228" r="10" fill="#457B9D" opacity="0.25"/>
-            <circle cx="668" cy="228" r="6" fill="#457B9D"/>
-            <circle cx="668" cy="228" r="3" fill="#fff" opacity="0.9"/>
+            <circle cx="710" cy="248" r="10" fill="#457B9D" opacity="0.2"/>
+            <circle cx="710" cy="248" r="6" fill="#457B9D"/>
+            <circle cx="710" cy="248" r="3" fill="#fff" opacity="0.9"/>
           </g>
         </g>
 
-        <!-- CITY LABELS -->
-        <text x="230" y="158" text-anchor="middle" fill="#6abf8e" font-family="'Playfair Display', serif" font-size="13" font-weight="bold">Oslo</text>
-        <text x="230" y="148" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="9">Jun 27 · 1 night</text>
+        <!-- CITY LABELS — well spaced above dots -->
+        <text x="220" y="125" text-anchor="middle" fill="#6abf8e" font-family="'Playfair Display', serif" font-size="14" font-weight="bold">Oslo</text>
+        <text x="220" y="137" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="8.5">1 night</text>
 
-        <text x="112" y="238" text-anchor="middle" fill="#5590b8" font-family="'Playfair Display', serif" font-size="13" font-weight="bold">Bergen</text>
-        <text x="112" y="228" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="9">Jun 28–30 · 3 nights</text>
+        <text x="110" y="320" text-anchor="middle" fill="#5590b8" font-family="'Playfair Display', serif" font-size="14" font-weight="bold">Bergen</text>
+        <text x="110" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="8.5">3 nights</text>
 
-        <text x="88" y="300" text-anchor="middle" fill="#5590b8" font-family="Inter" font-size="10" opacity="0.7">Fjords</text>
-        <text x="95" y="358" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="Inter" font-size="8.5">Nærøyfjord · Hardangerfjord</text>
+        <text x="75" y="395" text-anchor="middle" fill="#5590b8" font-family="Inter" font-size="9" opacity="0.6">Fjords</text>
 
-        <text x="500" y="196" text-anchor="middle" fill="#F4A261" font-family="'Playfair Display', serif" font-size="13" font-weight="bold">Stockholm</text>
-        <text x="500" y="186" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="9">Jul 1–3 · 3 nights</text>
+        <text x="480" y="210" text-anchor="middle" fill="#F4A261" font-family="'Playfair Display', serif" font-size="14" font-weight="bold">Stockholm</text>
+        <text x="480" y="222" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="8.5">3 nights</text>
 
-        <text x="668" y="213" text-anchor="middle" fill="#7aafc4" font-family="'Playfair Display', serif" font-size="13" font-weight="bold">Helsinki</text>
-        <text x="668" y="203" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="9">Jul 5–7 · 2 nights</text>
+        <text x="710" y="228" text-anchor="middle" fill="#7aafc4" font-family="'Playfair Display', serif" font-size="14" font-weight="bold">Helsinki</text>
+        <text x="710" y="240" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="Inter" font-size="8.5">2 nights</text>
 
-        <!-- Bergen Railway label -->
-        <text x="198" y="242" fill="rgba(45,106,79,0.8)" font-family="Inter" font-size="9" font-style="italic" transform="rotate(-38, 198, 242)">Bergen Railway 6.5 hrs</text>
-
-        <!-- Archipelago label -->
-        <text x="575" y="205" text-anchor="middle" fill="rgba(244,162,97,0.4)" font-family="Inter" font-size="8.5" font-style="italic">archipelago</text>
-        <text x="620" y="277" text-anchor="middle" fill="rgba(69,123,157,0.5)" font-family="Inter" font-size="8.5" font-style="italic">Baltic Sea</text>
-
-        <!-- Ferry dot path decoration -->
-        <circle cx="540" cy="220" r="2" fill="#457B9D" opacity="0.4"/>
-        <circle cx="565" cy="226" r="2" fill="#457B9D" opacity="0.4"/>
-        <circle cx="600" cy="235" r="2" fill="#457B9D" opacity="0.4"/>
-        <circle cx="630" cy="238" r="2" fill="#457B9D" opacity="0.4"/>
+        <!-- Subtle context labels -->
+        <text x="600" y="295" text-anchor="middle" fill="rgba(69,123,157,0.35)" font-family="Inter" font-size="8.5" font-style="italic">Baltic Sea</text>
       </svg>
 
       <div class="map-legend">
