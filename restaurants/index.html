@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Guide — Nordic Arc | Summer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,9,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 3rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.12) saturate(0.6);
+    transform: scale(1.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .hero-stat .label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.2rem;
+  }
+
+  /* CONTENT */
+  .content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* CITY SECTION HEADER */
+  .city-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .city-header .city-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .city-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .city-header .city-meta {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-left: auto;
+    text-align: right;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-title .icon { font-size: 1.2rem; }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* RESTAURANT CARDS */
+  .restaurant-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .rest-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .rest-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .rest-card.featured {
+    border-left: 3px solid var(--gold);
+  }
+
+  .rest-card.closed-notice {
+    border-left: 3px solid #e07070;
+    background: linear-gradient(135deg, rgba(224,112,112,0.04), var(--card-bg));
+  }
+
+  .rest-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .rest-card-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .rest-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .badge-michelin {
+    background: rgba(220,38,38,0.15);
+    color: #ef4444;
+    border: 1px solid rgba(220,38,38,0.25);
+  }
+
+  .badge-michelin-3 {
+    background: rgba(220,38,38,0.2);
+    color: #ef4444;
+    border: 1px solid rgba(220,38,38,0.35);
+  }
+
+  .badge-michelin-2 {
+    background: rgba(220,38,38,0.17);
+    color: #ef4444;
+    border: 1px solid rgba(220,38,38,0.3);
+  }
+
+  .badge-green-star {
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.25);
+  }
+
+  .badge-nyc {
+    background: rgba(255,195,18,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(255,195,18,0.25);
+  }
+
+  .badge-new {
+    background: rgba(168,85,247,0.12);
+    color: #a855f7;
+    border: 1px solid rgba(168,85,247,0.25);
+  }
+
+  .badge-closed {
+    background: rgba(224,112,112,0.15);
+    color: #e07070;
+    border: 1px solid rgba(224,112,112,0.3);
+  }
+
+  .badge-island {
+    background: rgba(56,189,248,0.12);
+    color: #38bdf8;
+    border: 1px solid rgba(56,189,248,0.25);
+  }
+
+  .rest-meta {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .rest-description {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .rest-description strong { color: var(--text); }
+
+  .rest-must-try {
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .rest-must-try h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .rest-must-try p {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .rest-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .rest-footer .address { flex: 1; min-width: 200px; }
+
+  .rest-footer .booking-link {
+    color: var(--sthlm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .rest-footer .booking-link:hover { color: var(--text); }
+
+  .urgency-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .urgency-critical {
+    background: rgba(224,112,112,0.12);
+    color: #e07070;
+    border: 1px solid rgba(224,112,112,0.2);
+  }
+
+  .urgency-high {
+    background: rgba(255,195,18,0.1);
+    color: var(--gold);
+    border: 1px solid rgba(255,195,18,0.2);
+  }
+
+  .urgency-medium {
+    background: rgba(106,191,142,0.1);
+    color: #6abf8e;
+    border: 1px solid rgba(106,191,142,0.2);
+  }
+
+  .urgency-walk-in {
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+
+  /* CLOSURE ALERT */
+  .closure-alert {
+    background: rgba(224,112,112,0.08);
+    border: 1px solid rgba(224,112,112,0.2);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .closure-alert h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #e07070;
+    margin-bottom: 0.4rem;
+  }
+
+  .closure-alert p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .closure-alert a {
+    color: #e07070;
+    text-decoration: underline;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .callout p, .callout ul {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .callout ul { list-style: none; padding: 0; }
+  .callout ul li { padding: 0.2rem 0 0.2rem 1rem; position: relative; }
+  .callout ul li::before { content: ''; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+  /* BREAKFAST TABLE */
+  .breakfast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .breakfast-table th {
+    text-align: left;
+    padding: 0.75rem 0.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .breakfast-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .breakfast-table td:first-child {
+    color: var(--text);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .breakfast-table tr:last-child td { border-bottom: none; }
+  .breakfast-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .breakfast-table .city-tag {
+    display: inline-block;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* FIKA GRID */
+  .fika-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .fika-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .fika-card:hover { transform: translateY(-2px); }
+
+  .fika-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .fika-card .est {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .fika-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .fika-card .fika-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  /* RESERVATION MATRIX */
+  .res-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .res-table th {
+    text-align: left;
+    padding: 0.75rem 0.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .res-table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .res-table td:first-child { color: var(--text); font-weight: 600; }
+  .res-table tr:last-child td { border-bottom: none; }
+  .res-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* NYC LIST */
+  .nyc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .nyc-item {
+    background: rgba(255,195,18,0.04);
+    border: 1px solid rgba(255,195,18,0.1);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .nyc-item .nyc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.5;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  .nyc-item .nyc-text h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .nyc-item .nyc-text p {
+    font-size: 0.76rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* PRICE GRID */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .price-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+
+  .price-card .p-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .price-card .p-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .price-card .p-detail {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  /* COMPACT CARDS for casual spots */
+  .compact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .compact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.3rem;
+    transition: transform 0.3s;
+  }
+
+  .compact-card:hover { transform: translateY(-2px); }
+
+  .compact-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .compact-card .cc-cuisine {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .compact-card p {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .compact-card .cc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* FERRY SECTION */
+  .ferry-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .ferry-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.3rem;
+    text-align: center;
+  }
+
+  .ferry-card .f-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+
+  .ferry-card h3 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .ferry-card p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .ferry-card.recommended {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(255,195,18,0.04), var(--card-bg));
+  }
+
+  /* FOOTER */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+
+  .site-footer a {
+    color: var(--sthlm);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+
+  .footer-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  /* SUBSECTION */
+  .subsection-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .city-header { flex-direction: column; gap: 0.5rem; }
+    .city-header .city-meta { margin-left: 0; text-align: left; }
+    .rest-card-header { flex-direction: column; }
+    .breakfast-table { font-size: 0.72rem; }
+    .breakfast-table th, .breakfast-table td { padding: 0.5rem 0.4rem; }
+    .hero-stats { gap: 1rem; }
+    .nyc-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .compact-grid { grid-template-columns: 1fr; }
+    .fika-grid { grid-template-columns: 1fr; }
+    .ferry-options { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/" class="active">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Summer 2026</p>
+    <h1>Restaurant Guide</h1>
+    <p class="tagline">Street food to Michelin stars across four capitals</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">7</div>
+        <div class="label">Michelin Stars</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">4</div>
+        <div class="label">Cities</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">12</div>
+        <div class="label">Breakfasts</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">13</div>
+        <div class="label">Can't-Get-in-NYC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ============================================================ -->
+  <!-- OSLO -->
+  <!-- ============================================================ -->
+  <div class="section" id="oslo">
+    <div class="city-header">
+      <span class="city-dot" style="background: var(--oslo);"></span>
+      <h2 style="color: var(--oslo);">Oslo</h2>
+      <div class="city-meta">1 Night &middot; Arrival Day &middot; June 27</div>
+    </div>
+
+    <!-- Maaemo -->
+    <div class="restaurant-grid">
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Maaemo</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin-3">3 Michelin Stars</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Creative New Nordic</span>
+          <span class="meta-pill">~$500/person</span>
+          <span class="meta-pill">~20 Courses</span>
+          <span class="meta-pill">Chef: Esben Holmboe Bang</span>
+        </div>
+        <p class="rest-description">
+          Oslo's only 3-star restaurant. <strong>All produce is biodynamic, organic, or wild</strong> -- a pure exploration of Norwegian terroir. The experience begins in a cozy lounge before moving to a dramatic, high-ceilinged dining room with a theatrically lit open kitchen. The non-alcoholic juice pairing is genuinely exceptional -- some guests prefer it to the wine. A ~20-course surprise seasonal tasting menu that pushes the boundaries of Nordic cuisine.
+        </p>
+        <div class="rest-must-try">
+          <h4>Feasibility Note</h4>
+          <p>First seating is 17:00. If arriving Oslo by early afternoon after a transatlantic flight, this is ambitious with jet lag. Consider this a "if we're feeling up for it" option. The experience runs 3-4 hours.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Dronning Eufemias gate 23, Oslo 0194</span>
+          <span class="urgency-tag urgency-critical">Book April 1 at noon CET</span>
+          <a href="https://www.exploretock.com/maaemo" class="booking-link" target="_blank">Book on Tock &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Kontrast -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Restaurant Kontrast</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin-2">2 Michelin Stars</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">New Nordic</span>
+          <span class="meta-pill">$$$$</span>
+          <span class="meta-pill">Chef: Mikael Svensson</span>
+        </div>
+        <p class="rest-description">
+          Located in the Vulkan neighborhood near Mathallen. Chef Mikael Svensson partners with local artisanal producers using <strong>exceptional fermentation techniques</strong>. A strong alternative to Maaemo if you want Michelin-level dining in a slightly less formal setting. Upgraded to 2 stars in 2024.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Vulkan area, near Mathallen, Oslo</span>
+          <span class="urgency-tag urgency-high">Book 4-6 weeks ahead</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="subsection-label">Casual &amp; Street Food</p>
+    <div class="compact-grid">
+      <div class="compact-card">
+        <h3>Mathallen Oslo</h3>
+        <div class="cc-cuisine">Food Hall &middot; Vulkan</div>
+        <p>Restored 1902 industrial hall along the Akerselva River. <strong>Gravlaks, brunost on waffles, moose, skillingsboller pastries.</strong> Not open early enough for 6:30 AM breakfast (opens 10:00), but perfect as a second breakfast or provisions stop.</p>
+        <div class="cc-footer">
+          <span>Vulkan 5, Oslo</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Theatercafeen</h3>
+        <div class="cc-cuisine">Classic Norwegian &middot; Hotel Continental</div>
+        <p>Often cited as Oslo's single best smorbroed destination. Chef Stig Drageide gives the open-face sandwich a modern facelift. Grand Viennese-style cafe setting in the Hotel Continental.</p>
+        <div class="cc-footer">
+          <span>Stortingsgata 24-26, Oslo</span>
+          <span>$$-$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>W.B. Samson</h3>
+        <div class="cc-cuisine">Bakery + Sandwiches</div>
+        <p>An Oslo institution. Excellent pastries and sandwiches. Their cinnamon bun is considered <strong>"one of the best in Scandinavia."</strong> Multiple locations. Grab provisions before the Bergen Railway departure.</p>
+        <div class="cc-footer">
+          <span>Multiple locations</span>
+          <span>$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Kaffistova</h3>
+        <div class="cc-cuisine">Traditional Norwegian Comfort Food</div>
+        <p>If you ask locals where to eat traditional food, Kaffistova tops many lists. <strong>Meatballs in brown sauce = Norwegian soul food.</strong> Serving comfort food for generations.</p>
+        <div class="cc-footer">
+          <span>Central Oslo</span>
+          <span>$-$$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BERGEN -->
+  <!-- ============================================================ -->
+  <div class="section" id="bergen">
+    <div class="city-header">
+      <span class="city-dot" style="background: var(--bergen);"></span>
+      <h2 style="color: #5590b8;">Bergen</h2>
+      <div class="city-meta">3 Nights &middot; Days 3-5 &middot; June 29 - July 1</div>
+    </div>
+
+    <div class="callout">
+      <h4>Bergen's Michelin Boom</h4>
+      <p>Bergen now has three Michelin-starred restaurants as of 2025 -- Lysverket (retained), plus two NEW stars: Gaptrast and Omakase by Sergey Pak. Combined with private-island dining at Cornelius and 800-year-old fish market traditions, Bergen is the culinary heavyweight of this trip.</p>
+    </div>
+
+    <div class="restaurant-grid">
+      <!-- Lysverket -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Lysverket</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Modern Norwegian</span>
+          <span class="meta-pill">~$180-230/person</span>
+          <span class="meta-pill">10 Courses</span>
+          <span class="meta-pill">Chef: Christopher Haatuft</span>
+        </div>
+        <p class="rest-description">
+          Located inside the <strong>KODE 4 art museum</strong> -- a stunning 1938 former power company HQ. Chef Christopher Haatuft was featured in NYT as "redefining Nordic cuisine." The 10-course tasting menu always includes handpicked scallops landed by the chef's close friend. He also runs MatTak, growing vegetables on Bergen rooftops. Wine, non-alcoholic, and bottle pairings available.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Rasmus Meyers alle 9, 5015 Bergen</span>
+          <span class="urgency-tag urgency-high">Book 4-6 weeks ahead</span>
+          <a href="https://www.lysverket.no/" class="booking-link" target="_blank">lysverket.no &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Gaptrast -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Gaptrast</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-new">New 2025</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Modern Nordic / Charcoal Fire</span>
+          <span class="meta-pill">$$$$</span>
+          <span class="meta-pill">Surprise Menu</span>
+          <span class="meta-pill">Chef: Kristian Bretten Vangen</span>
+        </div>
+        <p class="rest-description">
+          Earned a Michelin star within its <strong>FIRST YEAR of opening</strong> (opened 2024, starred 2025). The evening begins with local cider and a tour of dry-aged ingredients, then moves to a moody lounge for meticulously prepared snacks, then into the main restaurant with dark lighting focused on an <strong>open kitchen with a charcoal fire ablaze</strong>. Incredibly original creations -- think duck with winter apples and vin jaune. Wine list features classics plus exclusive local apple cider.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Central Bergen</span>
+          <span class="urgency-tag urgency-high">Book ASAP -- Bergen's hottest</span>
+        </div>
+      </div>
+
+      <!-- Omakase by Sergey Pak -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Omakase by Sergey Pak</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-new">New 2025</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Edomae Omakase</span>
+          <span class="meta-pill">$$$$</span>
+          <span class="meta-pill">Only 10 Seats</span>
+          <span class="meta-pill">World Sushi Champion</span>
+        </div>
+        <p class="rest-description">
+          A former world sushi champion serves omakase to <strong>just 10 guests</strong> at a time. Sergey Pak blends high-quality Norwegian ingredients (Bergen's incredible seafood) with impeccable Japanese Edomae techniques. His brother Vladimir also won the World Sushi Championship and holds a Michelin star. The <strong>20-course version</strong> (Friday-Sunday 8pm seating) is the full experience. Norwegian seafood prepared with Japanese mastery -- unlike any omakase in NYC.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Skostredet Hotel, Bergen</span>
+          <span class="urgency-tag urgency-critical">10 seats -- book immediately</span>
+        </div>
+      </div>
+
+      <!-- Cornelius -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Cornelius Seafood Restaurant</h3>
+          <div class="rest-badges">
+            <span class="badge badge-island">Private Island</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Ultra-Fresh Seafood</span>
+          <span class="meta-pill">~$137 incl. boat</span>
+          <span class="meta-pill">25-min boat from Bryggen</span>
+        </div>
+        <p class="rest-description">
+          One of Norway's finest seafood restaurants, literally <strong>on a private island</strong>. Board the restaurant's own boat from Bryggen for a 25-minute ride through the archipelago. <strong>"Meteorological menus"</strong> change daily based on what the sea delivers. Summer means dining on the quay with doors open. The boat ride IS part of the experience.
+        </p>
+        <div class="rest-must-try">
+          <h4>The Experience</h4>
+          <p>Depart 18:00 from Dreggekaien quay, shed #8, opposite Radisson Blu Royal Hotel. Return 22:30. Email confirmation = your boat ticket.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Holmen island, west of Bjoroy</span>
+          <span class="urgency-tag urgency-medium">Book 1-2 weeks ahead</span>
+          <a href="https://corneliusrestaurant.no/en/" class="booking-link" target="_blank">corneliusrestaurant.no &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Enhjorningen -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Enhjorningen (The Unicorn)</h3>
+          <div class="rest-badges">
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Traditional Norwegian Seafood</span>
+          <span class="meta-pill">$$$</span>
+          <span class="meta-pill">UNESCO Bryggen, est. 1300s</span>
+        </div>
+        <p class="rest-description">
+          Housed in one of Bergen's <strong>OLDEST buildings, dating back to the 1300s</strong>. Original wood floors from the 1700s, coral-colored walls, antique furniture. Located right in the UNESCO World Heritage Bryggen wharf buildings.
+        </p>
+        <div class="rest-must-try">
+          <h4>Must-Try</h4>
+          <p><strong>Whale carpaccio</strong> (impossible in NYC!), brown cheese ice cream, wolf fish, and bacalau. The whale meat is uniquely Norwegian and legally unavailable in the United States.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Enhjorningsgarden 29, Bergen (UNESCO Bryggen)</span>
+          <span class="urgency-tag urgency-medium">Book 1-2 weeks ahead</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bergen Fish Market -->
+    <p class="subsection-label">Markets &amp; Casual</p>
+    <div class="compact-grid">
+      <div class="compact-card">
+        <h3>Bergen Fish Market (Fisketorget)</h3>
+        <div class="cc-cuisine">Harborside Market &middot; 800+ Years</div>
+        <p><strong>Fish soup, prawn sandwiches, king crab legs, whale meat, reindeer sausage, smoked salmon.</strong> Indoor Mathallen open 09:00-21:30. Fish Me stall for prepared food. Perfect for breakfast from 09:00. The definitive Bergen morning experience.</p>
+        <div class="cc-footer">
+          <span>Harbor front, adjacent to UNESCO Bryggen</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Colonialen Fetevare</h3>
+        <div class="cc-cuisine">Bakery &middot; Deli &middot; Cafe</div>
+        <p>Bright shop packed with fine cheeses, cured meats, olive oils. <strong>Fresh bakery goods daily, including signature sourdough.</strong> Best sandwiches, salads, and sharing platters in Bergen. Ideal breakfast or provisions stop.</p>
+        <div class="cc-footer">
+          <span>Central Bergen</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Colonialen Sann</h3>
+        <div class="cc-cuisine">Casual Fine Dining &middot; Rooftop &middot; New 2025</div>
+        <p>Bergen's hottest new opening from the Colonialen group. Set 4-course menu with quality local ingredients. <strong>Rooftop terrace with views of the city mountains.</strong> Herbs and vegetables grown on the roof garden.</p>
+        <div class="cc-footer">
+          <span>Top of Sundt building, Bergen</span>
+          <span>$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Pingvinen</h3>
+        <div class="cc-cuisine">Traditional Norwegian Gastropub</div>
+        <p>Bergen institution for traditional Norwegian food and beer. Rick Steves-recommended. <strong>Tip: Try Frk. Schmidt downstairs</strong> -- same menu, quieter, less crowded. Enter via the alley behind.</p>
+        <div class="cc-footer">
+          <span>Central Bergen</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in usually</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Colonialen Jest</h3>
+        <div class="cc-cuisine">Wine Bar &middot; New 2024</div>
+        <p>Coffee + pizza by day, wine bar + bar food by night. Perfect meeting point right in Bergen's center, close to Bryggen and Floibanen funicular. Great for a late afternoon snack or pre-dinner drink.</p>
+        <div class="cc-footer">
+          <span>Vagsallmenningen, Bergen</span>
+          <span>$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Colonialen Restaurant</h3>
+        <div class="cc-cuisine">Fine Dining &middot; Tasting Menu</div>
+        <p>The flagship fine dining arm of the Colonialen empire. 6 or 10-course tasting menu. Tuesday through Saturday evenings. A polished Bergen dining experience.</p>
+        <div class="cc-footer">
+          <span>Kong Oscars gate 44, 5017 Bergen</span>
+          <span>$$$-$$$$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- IRIS AT THE SALMON EYE -->
+  <!-- ============================================================ -->
+  <div class="section" id="iris">
+    <div class="city-header">
+      <span class="city-dot" style="background: linear-gradient(135deg, var(--bergen), var(--oslo));"></span>
+      <h2>Iris at The Salmon Eye</h2>
+      <div class="city-meta">Hardangerfjord &middot; Day Trip from Bergen</div>
+    </div>
+
+    <div class="closure-alert">
+      <h4>Closure Notice -- January 2026</h4>
+      <p>Iris at The Salmon Eye <strong>closed in January 2026</strong>. The restaurant had earned 1 Michelin Star in 2024, was named a TIME Magazine "World's Greatest Place," and served a groundbreaking 18-course menu to just 24 guests per day inside a floating steel sculpture in the Hardangerfjord. The concept may relaunch in a new form. <strong>Monitor <a href="https://www.thesalmoneye.com" target="_blank">thesalmoneye.com</a></strong> and <a href="https://www.restaurantiris.no/" target="_blank">restaurantiris.no</a> for any 2026 announcements. If it reopens, it would be the single most unique dining experience on this trip.</p>
+    </div>
+
+    <div class="rest-card closed-notice">
+      <div class="rest-card-header">
+        <h3>Iris at The Salmon Eye</h3>
+        <div class="rest-badges">
+          <span class="badge badge-closed">Closed Jan 2026</span>
+          <span class="badge badge-michelin">Was 1 Michelin Star</span>
+          <span class="badge badge-nyc">Nowhere Else on Earth</span>
+        </div>
+      </div>
+      <div class="rest-meta">
+        <span class="meta-pill">18-Course Tasting</span>
+        <span class="meta-pill">Was ~$430/person</span>
+        <span class="meta-pill">24 Guests Max</span>
+        <span class="meta-pill">Chef: Anika Madsen</span>
+      </div>
+      <p class="rest-description">
+        <strong>What it was:</strong> A floating restaurant inside a mirrored steel sculpture clad in 9,250 fish-scale-shaped plates, anchored in the Hardangerfjord. Guests boarded an electric boat from Rosendal, stopped at Chef Anika Madsen's boathouse for snacks, then entered the 4-level structure for an underwater gallery experience, an 18-course tasting menu with fjord views, and a rooftop course grilled over open flame. The menu told the story of ocean sustainability using lumpsucker fish, carbon-neutral salmon, invasive sea urchin, and carbon-sequestering seaweed. The 6-hour experience was unreplicable anywhere on Earth.
+      </p>
+      <div class="rest-must-try">
+        <h4>What to Do Instead</h4>
+        <p>If Iris does not reopen, use the Bergen day for the <strong>Cornelius private island dinner</strong> (similar boat-to-restaurant concept) or the <strong>Hardangerfjord scenic drive</strong> to Rosendal with lunch at a local fjord restaurant. The Salmon Eye structure itself may still be viewable from the water.</p>
+      </div>
+      <div class="rest-footer">
+        <span class="address">Salmon Eye, Hardangerfjord (boat from Rosendal)</span>
+        <a href="https://www.thesalmoneye.com" class="booking-link" target="_blank">Monitor thesalmoneye.com &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- STOCKHOLM -->
+  <!-- ============================================================ -->
+  <div class="section" id="stockholm">
+    <div class="city-header">
+      <span class="city-dot" style="background: var(--sthlm);"></span>
+      <h2 style="color: var(--sthlm);">Stockholm</h2>
+      <div class="city-meta">3 Nights &middot; Days 6-8 &middot; July 2-4</div>
+    </div>
+
+    <div class="restaurant-grid">
+      <!-- Frantzen -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Frantzen</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin-3">3 Michelin Stars</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Nordic + Japanese</span>
+          <span class="meta-pill">~$530/person</span>
+          <span class="meta-pill">~10 Courses</span>
+          <span class="meta-pill">23 Seats Only</span>
+          <span class="meta-pill">Chef: Bjorn Frantzen</span>
+        </div>
+        <p class="rest-description">
+          Sweden's <strong>ONLY 3-star restaurant</strong>. Chef Bjorn Frantzen is the only chef in the world helming THREE separate 3-Michelin-star restaurants (Stockholm, Singapore, Dubai). The experience spans <strong>3 floors of a Gamla Stan townhouse</strong>: lobby, dining room, and loft lounge. Ranked #6 World's 50 Best (2021), #1 La Liste (2023). Modern and creative with classic techniques including open fire. Both alcoholic and non-alcoholic pairings available.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Lilla Nygatan 21, Gamla Stan, Stockholm</span>
+          <span class="urgency-tag urgency-critical">Book May 1 at 10:00 AM sharp</span>
+          <a href="https://www.restaurantfrantzen.com/" class="booking-link" target="_blank">restaurantfrantzen.com &rarr;</a>
+        </div>
+      </div>
+
+      <!-- AIRA -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>AIRA</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin-2">2 Michelin Stars</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">New Nordic + Global</span>
+          <span class="meta-pill">~$240-340/person</span>
+          <span class="meta-pill">7 Courses</span>
+          <span class="meta-pill">Chefs: Tommy Myllymaki + Pi Le</span>
+        </div>
+        <p class="rest-description">
+          Stunning modern architecture by Jonas Bohlin (won "Best Swedish Interior Design" 2020). Located in <strong>Stockholm's Royal Park by the water</strong>. Vietnamese-Swedish chef Pi Le and Tommy Myllymaki (MasterChef Sweden judge) serve Nordic ingredients with global inspiration. The team is openly aiming for a third Michelin star. Multiple wine pairing tiers available.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Biskopsvagen 9, 115 21 Stockholm</span>
+          <span class="urgency-tag urgency-high">Book 4-6 weeks ahead</span>
+          <a href="https://aira.se/" class="booking-link" target="_blank">aira.se &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Ekstedt -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Ekstedt</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">All Fire Cooking</span>
+          <span class="meta-pill">~$240/person</span>
+          <span class="meta-pill">8 Courses</span>
+          <span class="meta-pill">Chef: Niklas Ekstedt</span>
+        </div>
+        <p class="rest-description">
+          <strong>ZERO ELECTRICITY used in cooking.</strong> Everything -- birchwood, smoke, soot, ash, fire -- from 6 different fiery ovens. Inspired by Chef Ekstedt's childhood in the Arctic forests of Jamtland and 18th-century Swedish cookbooks from before electricity. Visit begins with a kitchen tour and signature oyster snack cooked in a cone over flames. Each of the 8 courses is treated with fire, wood, or smoke.
+        </p>
+        <div class="rest-must-try">
+          <h4>Standout Dishes</h4>
+          <p>Birch-fired broad beans with yogurt and sturgeon caviar. Seaweed-fired langoustine with celeriac. Juniper-smoked reindeer saddle with beetroot and fig leaf.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Humlegardsgatan 17, 114 46 Stockholm</span>
+          <span class="urgency-tag urgency-high">Releases 6 weeks out at midnight</span>
+          <a href="https://ekstedt.nu/" class="booking-link" target="_blank">ekstedt.nu &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Ergo -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Restaurant Ergo</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-new">New 2024</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">French Gastronomy</span>
+          <span class="meta-pill">$$$$</span>
+          <span class="meta-pill">Chef: Petter Johansson</span>
+        </div>
+        <p class="rest-description">
+          Opened spring 2024, already bagged a Michelin star. <strong>French-rooted with a warm and relaxed atmosphere.</strong> A strong addition to Stockholm's fine dining scene, filling the gap left by the closures of Oaxen Krog, Gastrologik, and Agrikultur. Modern, precise, but never stuffy.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Central Stockholm</span>
+          <span class="urgency-tag urgency-high">Book 3-4 weeks ahead</span>
+        </div>
+      </div>
+
+      <!-- Pelikan -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Pelikan</h3>
+          <div class="rest-badges">
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Traditional Swedish Beer Hall</span>
+          <span class="meta-pill">$40-60/person</span>
+          <span class="meta-pill">Est. 1733</span>
+          <span class="meta-pill">Cultural Heritage</span>
+        </div>
+        <p class="rest-description">
+          An <strong>Art Nouveau classified cultural heritage beer hall</strong> with towering arched windows, high vaulted ceilings, and long communal tables. One of the few restaurants where aquavit is served with food year-round. The food is what Swedes USED to cook at home -- traditional husmanskost elevated. Drawings by regular artist "Slas" hang on the walls.
+        </p>
+        <div class="rest-must-try">
+          <h4>Must-Order</h4>
+          <p><strong>Kottbullar (Swedish meatballs)</strong> -- hand-rolled, consistently named the best in Stockholm. Multiple herring preparations. Grosshandlarmiddag ("Wholesaler's Dinner") for historical recipes. Pair with aquavit + Carnegiebryggeriet craft beer.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Blekingegatan 40, Sodermalm, Stockholm</span>
+          <span class="urgency-tag urgency-medium">Book 1-2 weeks ahead</span>
+          <a href="https://pelikan.se/en" class="booking-link" target="_blank">pelikan.se &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Rosendals -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Rosendals Tradgard</h3>
+          <div class="rest-badges">
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Biodynamic Garden Cafe</span>
+          <span class="meta-pill">$-$$</span>
+          <span class="meta-pill">Djurgarden Island</span>
+          <span class="meta-pill">Non-Profit</span>
+        </div>
+        <p class="rest-description">
+          A non-profit biodynamic garden and greenhouse cafe on Djurgarden. Vegetables grown on-site, bread from their own <strong>16-ton woodfired oven</strong> (Stockholm's largest). Over 100 rose species, a vineyard producing biodynamic wine, apple orchards. All bread is sourdough. Opens 11:00 -- pair with an early Djurgarden walk and Fabrique coffee first.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Djurgarden island, Stockholm</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in &middot; Arrive early</span>
+          <a href="https://www.rosendalstradgard.se/" class="booking-link" target="_blank">rosendalstradgard.se &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- New & Notable Stockholm -->
+    <p class="subsection-label">New &amp; Notable 2024-2025</p>
+    <div class="compact-grid">
+      <div class="compact-card">
+        <h3>Sperling & Co</h3>
+        <div class="cc-cuisine">Fire-Driven Menu &middot; New 2024-2025</div>
+        <p>From the group behind Ekstedt. Chef Michael Andersson (Chef of the Year 2024). <strong>Fire-driven menu, Old World wines.</strong> Two-floor space in ash wood, leather, and visual drama at Stureplan.</p>
+        <div class="cc-footer">
+          <span>Stureplan, Stockholm</span>
+          <span>$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Toujours</h3>
+        <div class="cc-cuisine">Classic French Bistro &middot; AIRA Team</div>
+        <p>Run by the AIRA team (Tommy Myllymaki, Pi Le). Short, classic French menu. <strong>Truffle, caviar, oysters, champagne.</strong> Inside the iconic NK department store.</p>
+        <div class="cc-footer">
+          <span>NK Department Store, Stockholm</span>
+          <span>$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Tosto</h3>
+        <div class="cc-cuisine">Italian &middot; New 2025</div>
+        <p>Chef Max Duhs builds on Italian tradition. <strong>Aged meats, house charcuterie, hand-rolled pasta daily.</strong> 60 seats, big bar, community table. A creative Italian at Sturegatan 6.</p>
+        <div class="cc-footer">
+          <span>Sturegatan 6, Stockholm</span>
+          <span>$$-$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Bistro Zissou</h3>
+        <div class="cc-cuisine">French-Inspired Bistro</div>
+        <p>Intimate space with Parisian charm. Menu: 3 starters, 3 mains, 3 desserts. Quiet confidence, perfect for a relaxed dinner without the tasting-menu marathon.</p>
+        <div class="cc-footer">
+          <span>Central Stockholm</span>
+          <span>$$-$$$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FIKA CULTURE -->
+  <!-- ============================================================ -->
+  <div class="section" id="fika">
+    <div class="city-header">
+      <span class="city-dot" style="background: var(--sthlm);"></span>
+      <h2 style="color: var(--sthlm);">Stockholm Fika Guide</h2>
+      <div class="city-meta">The Swedish Art of Coffee &amp; Pastry</div>
+    </div>
+
+    <div class="callout">
+      <h4>What is Fika?</h4>
+      <p>Fika is NOT "coffee break." It is a Swedish cultural institution -- a deliberate pause to connect with others over coffee and something sweet. Most Swedes do fika at least twice daily. Order a coffee, select a pastry (<strong>kanelbulle</strong> -- cardamom-scented cinnamon bun -- is the classic), sit down, and talk. Never fika alone if you can help it. The conversation IS the point.</p>
+    </div>
+
+    <div class="fika-grid">
+      <div class="fika-card">
+        <h3>Vete-Katten</h3>
+        <div class="est">Since 1928 &middot; Kungsgatan 55 &middot; 9 locations</div>
+        <p>THE iconic Stockholm fika institution. Stepping in feels like the 1920s -- a labyrinth of rooms with chandeliers and vintage decor. Founded by Ester Nordhammar (the name means "the wheat cat"). <strong>Famous for kanelbullar, princess cakes, and cardamom rolls.</strong> Always packed with locals.</p>
+        <div class="fika-meta">
+          <span class="meta-pill">Mon-Fri 7:30-19:30</span>
+          <span class="meta-pill">4.4/5 (7,069 reviews)</span>
+          <span class="meta-pill">$</span>
+        </div>
+      </div>
+      <div class="fika-card">
+        <h3>Cafe Saturnus</h3>
+        <div class="est">Eriksbergsgatan 6, Ostermalm</div>
+        <p>Known for <strong>OVERSIZED cinnamon buns that have become legendary</strong>. French-inspired decor with soft lighting. Upscale Ostermalm near Humlegarden Park. Also excellent for weekday breakfast (from 8am) -- omelettes, open sandwiches, salads.</p>
+        <div class="fika-meta">
+          <span class="meta-pill">Giant Kanelbullar</span>
+          <span class="meta-pill">French-Inspired</span>
+          <span class="meta-pill">$-$$</span>
+        </div>
+      </div>
+      <div class="fika-card">
+        <h3>Fabrique</h3>
+        <div class="est">~19 locations &middot; Royal Warrant Holder (2024)</div>
+        <p>Artisanal stone oven bakery. <strong>Purveyor to the Royal Court of Sweden.</strong> Their sourdough is legendary. Cinnamon buns, cardamom buns, saffron buns, croissants. Gamla Stan location opens 7:30 AM weekdays. <strong>Items sell out fast -- come before 10:30.</strong></p>
+        <div class="fika-meta">
+          <span class="meta-pill">Mon-Fri 7:00-19:00</span>
+          <span class="meta-pill">Royal Warrant</span>
+          <span class="meta-pill">$</span>
+        </div>
+      </div>
+      <div class="fika-card">
+        <h3>Cafe Pascal</h3>
+        <div class="est">4 locations + Roastery &middot; Award-Winning</div>
+        <p>Won Gulddraken for best cafe in Stockholm (2019). <strong>Chemex pour-overs, expertly crafted espressos.</strong> Breakfast: open sandwiches, croissants, Swedish buns, chia pudding. Industrial-chic vibes.</p>
+        <div class="fika-meta">
+          <span class="meta-pill">Mon-Thu 7:00-19:00</span>
+          <span class="meta-pill">Specialty Coffee</span>
+          <span class="meta-pill">$-$$</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>The Star Pastry: Kanelbulle</h4>
+      <p>Cardamom-scented cinnamon brioche sprinkled with pearl sugar. Popularized in the 1920s. Sweden has a national Kanelbullens Dag (Cinnamon Bun Day) on October 4. For the BEST version in Stockholm, the consensus is Vete-Katten for tradition and Cafe Saturnus for the most theatrical size.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FERRY -->
+  <!-- ============================================================ -->
+  <div class="section" id="ferry">
+    <div class="city-header">
+      <span class="city-dot" style="background: linear-gradient(135deg, var(--sthlm), var(--hel));"></span>
+      <h2>Ferry Dining</h2>
+      <div class="city-meta">Viking Line &middot; Stockholm to Helsinki &middot; Overnight</div>
+    </div>
+
+    <div class="callout">
+      <h4>The Ferry IS the Experience</h4>
+      <p>Departing ~16:30, arriving ~10:30 next morning. 17 hours through Stockholm and Finnish archipelagos. <strong>June = 11:30 PM sunsets visible from the deck.</strong> The smorgasbord dinner + sunrise breakfast pairing is the move. Book a window table for the sunset -- absolutely worth the small extra charge.</p>
+    </div>
+
+    <div class="ferry-options">
+      <div class="ferry-card recommended">
+        <div class="f-icon">&#127860;</div>
+        <h3>Smorgasbord Buffet</h3>
+        <p><strong>THE signature experience.</strong> Full Scandinavian smorgasbord -- curated Nordic delicacies, NOT a typical cruise buffet. <strong>ALL-INCLUSIVE:</strong> wine, beer, soft drinks, coffee, tea. Book in advance (sells out). Add a window table for the 11:30 PM sunset.</p>
+      </div>
+      <div class="ferry-card">
+        <div class="f-icon">&#127869;</div>
+        <h3>A La Carte Restaurant</h3>
+        <p>More intimate, curated gourmet menu. Reservations recommended. A calmer alternative if the buffet energy feels like too much.</p>
+      </div>
+      <div class="ferry-card">
+        <div class="f-icon">&#9749;</div>
+        <h3>Premium Breakfast</h3>
+        <p>Included with Seaside Premium cabin. Cold meats, cheeses, fresh pastries, American-style pancakes, hot dishes to order. <strong>Book the Seaside Premium cabin for this.</strong></p>
+      </div>
+      <div class="ferry-card">
+        <div class="f-icon">&#127864;</div>
+        <h3>Bar &amp; Dancing</h3>
+        <p>Nightly trivia, live bands, karaoke, light food. The quintessentially Scandinavian ferry party experience. Embrace it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- HELSINKI -->
+  <!-- ============================================================ -->
+  <div class="section" id="helsinki">
+    <div class="city-header">
+      <span class="city-dot" style="background: var(--hel);"></span>
+      <h2 style="color: #7aafc4;">Helsinki</h2>
+      <div class="city-meta">2 Nights &middot; Days 10-11 &middot; July 6-7</div>
+    </div>
+
+    <div class="restaurant-grid">
+      <!-- Finnjavel -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Finnjavel Salonki</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Modern Finnish</span>
+          <span class="meta-pill">EUR 52 early / more for full</span>
+          <span class="meta-pill">10 Tables</span>
+          <span class="meta-pill">Chef: Tommi Tuominen</span>
+        </div>
+        <p class="rest-description">
+          The name means <strong>"Damn Finn"</strong> in Swedish -- a tongue-in-cheek nod to old stereotypes. A homage to Finnish cuisine: countryside and city Finns who cook, bake, hunt, and forage. Two concepts: <strong>Salonki</strong> (fine dining, 10 tables, every piece of cutlery made by Finnish craftspeople) and <strong>Sali</strong> (casual, elegant Finnish home cooking). Takes inspiration from Finnish school lunches, hangover cures, home cooking, and candy bars -- then elevates them to art. Vendace roe, pike, reindeer, malt pudding (mammi).
+        </p>
+        <div class="rest-must-try">
+          <h4>Best Service Award</h4>
+          <p>Won Best Service in Nordic Countries (2021). The early Fri-Sat seating (15:00-18:00) offers a 3-course menu at EUR 52 -- exceptional value for Michelin dining.</p>
+        </div>
+        <div class="rest-footer">
+          <span class="address">Kunsthalle Helsinki, Nervanderinkatu 3</span>
+          <span class="urgency-tag urgency-medium">Book 2-4 weeks ahead</span>
+          <a href="https://finnjavel.fi/en/" class="booking-link" target="_blank">finnjavel.fi &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Gron -->
+      <div class="rest-card featured">
+        <div class="rest-card-header">
+          <h3>Gron</h3>
+          <div class="rest-badges">
+            <span class="badge badge-michelin">1 Michelin Star</span>
+            <span class="badge badge-green-star">Green Star</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Plant-Focused Nordic</span>
+          <span class="meta-pill">EUR 168/person</span>
+          <span class="meta-pill">Only 7 Tables</span>
+          <span class="meta-pill">Chefs: Toni Kostian + Johan Kurkela</span>
+        </div>
+        <p class="rest-description">
+          "Gron" means "green" in Swedish. <strong>The plant-based menu is every bit as ambitious as any meat-based one</strong> -- groundbreaking for vegetarians, but omnivores love it equally. Seasonal vegetables, wild herbs, responsibly sourced produce. The chefs forage across Finland. Open kitchen where chefs serve and explain each course. Many critics believe it deserves a second star. The Michelin Green Star recognizes their exemplary sustainability practices.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Albertinkatu 36, Helsinki</span>
+          <span class="urgency-tag urgency-high">Only 7 tables -- book early</span>
+          <a href="https://www.restaurantgron.com/" class="booking-link" target="_blank">restaurantgron.com &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Savoy -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Savoy</h3>
+          <div class="rest-badges">
+            <span class="badge badge-nyc">Can't Get in NYC</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Finnish-French</span>
+          <span class="meta-pill">~EUR 100/person lunch</span>
+          <span class="meta-pill">Est. 1937</span>
+          <span class="meta-pill">Chef: Helena Puolakka</span>
+        </div>
+        <p class="rest-description">
+          Interior designed by <strong>Aino and Alvar Aalto in 1937</strong>. The famous Savoy Vase (Aalto Vase) was originally designed for this restaurant. Recently renovated by Ilse Crawford in cooperation with the Alvar Aalto Foundation. 8th-floor views over Esplanade Park and Helsinki Cathedral. One of Finland's largest wine cellars. The design heritage alone makes it unmissable.
+        </p>
+        <div class="rest-footer">
+          <span class="address">8th floor, Etelaesplanadi 14, Helsinki</span>
+          <span class="urgency-tag urgency-medium">Book 1-2 weeks ahead</span>
+          <a href="https://savoyhelsinki.fi/en" class="booking-link" target="_blank">savoyhelsinki.fi &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Loyly -->
+      <div class="rest-card">
+        <div class="rest-card-header">
+          <h3>Loyly</h3>
+          <div class="rest-badges">
+            <span class="badge badge-island">Sauna + Restaurant</span>
+          </div>
+        </div>
+        <div class="rest-meta">
+          <span class="meta-pill">Modern Finnish</span>
+          <span class="meta-pill">$$-$$$</span>
+          <span class="meta-pill">Sauna EUR 26/2hr</span>
+          <span class="meta-pill">TIME 100 Greatest Places</span>
+        </div>
+        <p class="rest-description">
+          Award-winning architecture. Four saunas including a <strong>glass-walled "sauna with a view" onto the Baltic Sea</strong>. The restaurant has an expansive terrace with Baltic views. <strong>Honest assessment:</strong> architecture and sauna are exceptional, but food reviews are mixed and it gets crowded in summer. Consider using Loyly purely for the sauna and dining elsewhere.
+        </p>
+        <div class="rest-footer">
+          <span class="address">Hernesaarenranta 4, Helsinki</span>
+          <span class="urgency-tag urgency-medium">Book sauna in advance</span>
+          <a href="https://www.loylyhelsinki.fi/en" class="booking-link" target="_blank">loylyhelsinki.fi &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Helsinki Markets -->
+    <p class="subsection-label">Markets &amp; Street Food</p>
+    <div class="compact-grid">
+      <div class="compact-card">
+        <h3>Kauppatori (Market Square)</h3>
+        <div class="cc-cuisine">Harborside Outdoor Market</div>
+        <p><strong>Fresh fried vendace (muikku)</strong> -- tiny fish fried whole in paper cones. Salmon soup, Karelian pies, fresh berries (July = peak!), reindeer sausage, coffee and pulla. Departure point for Suomenlinna ferry.</p>
+        <div class="cc-footer">
+          <span>Harbor front, central Helsinki</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Vanha Kauppahalli (Old Market Hall)</h3>
+        <div class="cc-cuisine">Indoor Market &middot; Since 1889</div>
+        <p><strong>#1 must-try: Salmon soup at Soppakeittio</strong> (they only serve soup). Also: bear meat on bread (impossible in NYC!), reindeer soup, smoked salmon sandwiches, Karelian pies, L'Artisan Cafe croissants. ~EUR 10-15/meal.</p>
+        <div class="cc-footer">
+          <span>Etelaranta, adjacent to Kauppatori</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Hakaniemi Market Hall</h3>
+        <div class="cc-cuisine">Most Authentic &middot; 70 Shops &middot; Since 1914</div>
+        <p>Helsinki's most traditional market -- <strong>where locals shop, not tourists.</strong> Reopened 2023 after renovation. Ekstrom's salmon soup + champagne, Cafe Katiska for fish pies, Nami for authentic Karelian pies, Panicuocoli for bio sourdough.</p>
+        <div class="cc-footer">
+          <span>Hakaniemi, Helsinki</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Cafe Regatta</h3>
+        <div class="cc-cuisine">Tiny Red Cottage &middot; Since 1887</div>
+        <p>A tiny red-and-green painted log cabin by the sea. One of Helsinki's rare surviving 19th-century wooden buildings. <strong>Buy sausages inside, GRILL them yourself on the outdoor fire.</strong> Korvapuusti, blueberry pie, Karelian pies. Opens 8 AM. 2 min from Sibelius Monument.</p>
+        <div class="cc-footer">
+          <span>Merikannontie 8, Toolo, Helsinki</span>
+          <span class="urgency-tag urgency-walk-in">Walk-in</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Helsinki New & Notable -->
+    <p class="subsection-label">New &amp; Notable 2024-2025</p>
+    <div class="compact-grid">
+      <div class="compact-card">
+        <h3>The Room by Kozeen Shiwan</h3>
+        <div class="cc-cuisine">Middle Eastern-Nordic Fusion &middot; 14 Seats</div>
+        <p>Immersive, mysterious atmosphere. <strong>8-course tasting blending Middle Eastern flavors with Nordic techniques.</strong> Biodynamic wine pairings. Single table for 14 guests.</p>
+        <div class="cc-footer">
+          <span>Helsinki</span>
+          <span>$$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Demo (Relocated 2024)</h3>
+        <div class="cc-cuisine">1 Michelin Star &middot; 360-Degree Views</div>
+        <p>Michelin star since 2007. Moved to spectacular new top-floor space with panoramic city views. Chef Tommi Tuominen offers three tasting menus at different price points.</p>
+        <div class="cc-footer">
+          <span>Top floor, Ruoholahti, Helsinki</span>
+          <span>$$$$</span>
+        </div>
+      </div>
+      <div class="compact-card">
+        <h3>Boreal</h3>
+        <div class="cc-cuisine">Fermentation-Forward Nordic</div>
+        <p>Chef Pasha Deminin <strong>ferments summer/autumn vegetables for year-round use.</strong> Fish from northern waters, organic farm meats. 7-course menu: EUR 95. Relaxed despite the precision.</p>
+        <div class="cc-footer">
+          <span>Helsinki</span>
+          <span>$$$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BREAKFAST ROUTE -->
+  <!-- ============================================================ -->
+  <div class="section" id="breakfast">
+    <div class="section-title"><span class="icon">&#9749;</span> 12-Day Breakfast Route</div>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1.2rem;">Every full day gets a named breakfast. Early starts welcome -- these are designed for a couple that loves getting up early.</p>
+
+    <div style="overflow-x: auto;">
+    <table class="breakfast-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>City</th>
+          <th>Breakfast</th>
+          <th>Time</th>
+          <th>What to Eat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Day 1<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jun 27</span></td>
+          <td><span class="city-tag" style="background:rgba(45,106,79,0.15);color:var(--oslo);">Oslo</span></td>
+          <td><strong>The Thief hotel breakfast</strong></td>
+          <td>7:00</td>
+          <td>Hotel breakfast after arrival. Keep it simple -- recover from the flight</td>
+        </tr>
+        <tr>
+          <td>Day 2<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jun 28</span></td>
+          <td><span class="city-tag" style="background:rgba(45,106,79,0.15);color:var(--oslo);">Oslo&rarr;Bergen</span></td>
+          <td><strong>Mathallen / W.B. Samson provisions</strong></td>
+          <td>7:00</td>
+          <td>Smoked fish, brunost, sourdough, pastries. Buy day before -- Bergen Railway departs early</td>
+        </tr>
+        <tr>
+          <td>Day 3<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jun 29</span></td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td><strong>Bergen Fish Market</strong></td>
+          <td>7:30</td>
+          <td>Fish soup, open prawn sandwiches, smoked salmon. Alt: Colonialen Fetevare first, then fish market</td>
+        </tr>
+        <tr>
+          <td>Day 4<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jun 30</span></td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td><strong>Colonialen Fetevare</strong></td>
+          <td>7:00</td>
+          <td>Fresh sourdough bread, pastries, excellent coffee. Bergen's best morning bakery</td>
+        </tr>
+        <tr>
+          <td>Day 5<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 1</span></td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td><strong>Opus XVI hotel breakfast</strong></td>
+          <td>7:00</td>
+          <td>"Best hotel breakfast in Norway" -- a la carte, not buffet. Sunday = sometimes a violinist!</td>
+        </tr>
+        <tr>
+          <td>Day 6<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 2</span></td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td><strong>Fabrique + Rosendals Tradgard</strong></td>
+          <td>7:30</td>
+          <td>Early coffee + pastry from Fabrique (opens 7:00). Then walk Djurgarden for Rosendals at 11:00</td>
+        </tr>
+        <tr>
+          <td>Day 7<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 3</span></td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td><strong>Cafe Saturnus</strong></td>
+          <td>8:00</td>
+          <td>Famous GIANT kanelbullar, French-style omelette, open sandwiches. Go early to beat crowds</td>
+        </tr>
+        <tr>
+          <td>Day 8<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 4</span></td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td><strong>Fabrique (Gamla Stan)</strong></td>
+          <td>7:30</td>
+          <td>Sourdough bread, cinnamon bun, cardamom bun. Royal warrant bakery. Items sell out -- arrive early</td>
+        </tr>
+        <tr>
+          <td>Day 9<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 5</span></td>
+          <td><span class="city-tag" style="background:linear-gradient(90deg,rgba(244,162,97,0.15),rgba(69,123,157,0.15));color:var(--text-mid);">Ferry</span></td>
+          <td><strong>Viking Line Premium Breakfast</strong></td>
+          <td>8:00</td>
+          <td>Premium a la carte: pastries, cold meats, cheeses, hot dishes. Arrives Helsinki ~10:30</td>
+        </tr>
+        <tr>
+          <td>Day 10<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 6</span></td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td><strong>Kauppatori + Vanha Kauppahalli</strong></td>
+          <td>7:30</td>
+          <td>Two-part: outdoor fried vendace + Karelian pies, then indoor salmon soup at Soppakeittio</td>
+        </tr>
+        <tr>
+          <td>Day 11<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 7</span></td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td><strong>Cafe Regatta</strong></td>
+          <td>8:00</td>
+          <td>Korvapuusti, blueberry pie, open-fire sausage grilling. Walk to Sibelius Monument after</td>
+        </tr>
+        <tr>
+          <td>Day 12<br><span style="font-weight:400;font-size:0.7rem;color:var(--text-dim);">Jul 8</span></td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td><strong>Hakaniemi Market Hall</strong></td>
+          <td>9:00</td>
+          <td>Farewell breakfast. Ekstrom's salmon soup + champagne, Karelian pies, bio sourdough. The local way</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CAN'T GET IN NYC -->
+  <!-- ============================================================ -->
+  <div class="section" id="nyc">
+    <div class="section-title"><span class="icon" style="color:var(--gold);">&#9733;</span> Can't-Get-in-NYC Experiences</div>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1.2rem;">These meals are impossible to replicate in New York City. Every one is a reason to take this trip.</p>
+
+    <div class="nyc-grid">
+      <div class="nyc-item">
+        <div class="nyc-num">1</div>
+        <div class="nyc-text">
+          <h4>Ekstedt -- All-Fire Cooking</h4>
+          <p>Every dish cooked over birchwood fire, zero electricity. NYC fire-cooking restaurants don't come close.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">2</div>
+        <div class="nyc-text">
+          <h4>Cornelius -- Private Island Seafood</h4>
+          <p>Board a boat from Bryggen to a private island in the archipelago. Meteorological menus from the sea.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">3</div>
+        <div class="nyc-text">
+          <h4>Whale Meat at Enhjorningen / Fish Market</h4>
+          <p>Illegal in the US. Whale carpaccio is uniquely Norwegian.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">4</div>
+        <div class="nyc-text">
+          <h4>Reindeer Everything</h4>
+          <p>Sausage, stew, dried, tartare -- across all three countries. Not farmed in the US.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">5</div>
+        <div class="nyc-text">
+          <h4>Bear Meat at Vanha Kauppahalli</h4>
+          <p>Bear salami on bread in Helsinki's oldest market hall. Unavailable in NYC.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">6</div>
+        <div class="nyc-text">
+          <h4>Cafe Regatta -- Fire Grilling by the Baltic</h4>
+          <p>Grill your own sausage over an open fire at a 19th-century fishing cottage by the sea.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">7</div>
+        <div class="nyc-text">
+          <h4>Viking Line Smorgasbord</h4>
+          <p>True Scandinavian smorgasbord at sea between two capitals with midnight sun.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">8</div>
+        <div class="nyc-text">
+          <h4>Pelikan's Grosshandlarmiddag</h4>
+          <p>Historical "Wholesaler's Dinner" in a classified 1904 beer hall, paired with aquavit.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">9</div>
+        <div class="nyc-text">
+          <h4>Rosendals Tradgard</h4>
+          <p>Biodynamic garden-to-table in a royal park greenhouse. Bread from a 16-ton woodfired oven.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">10</div>
+        <div class="nyc-text">
+          <h4>Bergen Fish Market Morning Soup</h4>
+          <p>Harborside fish soup from stalls that have been selling fresh catch for 800+ years.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">11</div>
+        <div class="nyc-text">
+          <h4>Finnjavel -- "Damn Finn" Cuisine</h4>
+          <p>Finnish school lunch and hangover cure elevated to Michelin-star art.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">12</div>
+        <div class="nyc-text">
+          <h4>Fried Vendace at Kauppatori</h4>
+          <p>Tiny freshwater fish fried whole in paper cones at Helsinki's harbor market.</p>
+        </div>
+      </div>
+      <div class="nyc-item">
+        <div class="nyc-num">13</div>
+        <div class="nyc-text">
+          <h4>Omakase by Sergey Pak</h4>
+          <p>World Sushi Champion blending Norwegian seafood with Edomae technique for 10 guests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- RESERVATION PRIORITY MATRIX -->
+  <!-- ============================================================ -->
+  <div class="section" id="reservations">
+    <div class="section-title"><span class="icon">&#128203;</span> Reservation Priority Matrix</div>
+
+    <p class="subsection-label" style="margin-top:0;">Book Immediately (2+ Months Out)</p>
+    <div style="overflow-x: auto;">
+    <table class="res-table">
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>City</th>
+          <th>Why Urgent</th>
+          <th>When to Book</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frantzen</td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td>23 seats, 3 Michelin stars. Sells out in seconds.</td>
+          <td><span class="urgency-tag urgency-critical">May 1, 10:00 AM</span></td>
+        </tr>
+        <tr>
+          <td>Maaemo</td>
+          <td><span class="city-tag" style="background:rgba(45,106,79,0.15);color:var(--oslo);">Oslo</span></td>
+          <td>3 Michelin stars, limited seats</td>
+          <td><span class="urgency-tag urgency-critical">April 1, noon CET</span></td>
+        </tr>
+        <tr>
+          <td>Omakase by Sergey Pak</td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td>Only 10 seats in the world</td>
+          <td><span class="urgency-tag urgency-critical">Moment reservations open</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p class="subsection-label">Book 4-6 Weeks Ahead</p>
+    <div style="overflow-x: auto;">
+    <table class="res-table">
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>City</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ekstedt</td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td>Releases 6 weeks out at midnight</td>
+        </tr>
+        <tr>
+          <td>Gaptrast</td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td>Bergen's hottest new restaurant</td>
+        </tr>
+        <tr>
+          <td>AIRA</td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td>2 Michelin stars, popular</td>
+        </tr>
+        <tr>
+          <td>Gron</td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td>Only 7 tables</td>
+        </tr>
+        <tr>
+          <td>Lysverket</td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td>Consistently in demand for summer</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p class="subsection-label">Book 1-2 Weeks Ahead</p>
+    <div style="overflow-x: auto;">
+    <table class="res-table">
+      <thead>
+        <tr>
+          <th>Restaurant</th>
+          <th>City</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Finnjavel Salonki</td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td>Popular but 10 tables gives some flexibility</td>
+        </tr>
+        <tr>
+          <td>Cornelius</td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td>Need boat reservation</td>
+        </tr>
+        <tr>
+          <td>Enhjorningen</td>
+          <td><span class="city-tag" style="background:rgba(27,79,114,0.15);color:#5590b8;">Bergen</span></td>
+          <td>Walk-ins frequently turned away</td>
+        </tr>
+        <tr>
+          <td>Pelikan</td>
+          <td><span class="city-tag" style="background:rgba(244,162,97,0.15);color:var(--sthlm);">Stockholm</span></td>
+          <td>Especially weekends</td>
+        </tr>
+        <tr>
+          <td>Savoy</td>
+          <td><span class="city-tag" style="background:rgba(69,123,157,0.15);color:var(--hel);">Helsinki</span></td>
+          <td>For a refined lunch</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PRICE REFERENCE -->
+  <!-- ============================================================ -->
+  <div class="section" id="prices">
+    <div class="section-title"><span class="icon">&#128176;</span> Price Reference</div>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1.2rem;">Approximate per person, food only. Wine/non-alcoholic pairings are additional.</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="p-name">Frantzen</div>
+        <div class="p-price">$530</div>
+        <div class="p-detail">SEK 5,500 &middot; Stockholm</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Maaemo</div>
+        <div class="p-price">$500</div>
+        <div class="p-detail">NOK 5,500 &middot; Oslo</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">AIRA</div>
+        <div class="p-price">$240-340</div>
+        <div class="p-detail">SEK 2,500-3,500 &middot; Stockholm</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Ekstedt</div>
+        <div class="p-price">$240</div>
+        <div class="p-detail">~SEK 2,500 &middot; Stockholm</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Lysverket</div>
+        <div class="p-price">$180-230</div>
+        <div class="p-detail">NOK 2,000-2,500 &middot; Bergen</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Gron</div>
+        <div class="p-price">$180</div>
+        <div class="p-detail">EUR 168 &middot; Helsinki</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Cornelius</div>
+        <div class="p-price">$137</div>
+        <div class="p-detail">NOK 1,495 incl. boat &middot; Bergen</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Savoy (lunch)</div>
+        <div class="p-price">$108</div>
+        <div class="p-detail">~EUR 100 &middot; Helsinki</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Finnjavel (early)</div>
+        <div class="p-price">$56</div>
+        <div class="p-detail">EUR 52 (3-course) &middot; Helsinki</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Pelikan</div>
+        <div class="p-price">$40-60</div>
+        <div class="p-detail">SEK 400-600 &middot; Stockholm</div>
+      </div>
+      <div class="price-card">
+        <div class="p-name">Cafe Regatta</div>
+        <div class="p-price">$5-11</div>
+        <div class="p-detail">EUR 5-10 &middot; Helsinki</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p style="font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;margin-bottom:0.3rem;">Nordic Arc</p>
+  <p>Restaurant Guide &middot; Oslo &rarr; Bergen &rarr; Stockholm &rarr; Helsinki</p>
+  <div class="footer-links">
+    <a href="../">Hub</a>
+    <a href="../itinerary/">Itinerary</a>
+    <a href="../hotels/">Hotels</a>
+    <a href="../experiences/">Experiences</a>
+    <a href="../fjords/">Fjords</a>
+    <a href="../sauna/">Sauna</a>
+    <a href="../practical/">Practical</a>
+  </div>
+  <p style="margin-top: 1rem; color: rgba(255,255,255,0.2);">June 27 - July 8, 2026 &middot; Research compiled March 2026</p>
+</footer>
+
+</body>
+</html>

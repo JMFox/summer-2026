@@ -871,15 +871,40 @@
   .hotel-hel .hotel-nights-badge { background: var(--hel-color); color: #fff; }
   .hotel-ferry .hotel-nights-badge { background: #555; color: #fff; }
 
+  /* ═══ NAV ═══ */
+  .top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,9,10,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1rem; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  @media (max-width: 480px) { .nav-links { display: none; } }
 </style>
 </head>
 <body>
+
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/" class="active">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
 
 <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Summer 2026 &nbsp;·&nbsp; Trip Four</p>
+    <p class="hero-eyebrow">Summer 2026 &nbsp;·&nbsp; The Trip</p>
     <h1>Nordic Arc</h1>
     <p class="tagline">Oslo &nbsp;→&nbsp; Bergen &nbsp;→&nbsp; Fjords &nbsp;→&nbsp; Stockholm &nbsp;→&nbsp; Helsinki</p>
 
@@ -1878,8 +1903,15 @@
 <footer class="footer">
   <div class="footer-route">Oslo → Bergen → Fjords → Stockholm → Helsinki</div>
   <p>June 27 – July 8, 2026 &nbsp;·&nbsp; 12 Nights &nbsp;·&nbsp; Norway · Sweden · Finland</p>
-  <p style="margin-top: 0.5rem;">SAS nonstop JFK→OSL &nbsp;·&nbsp; Bergen Railway &nbsp;·&nbsp; Viking Line overnight ferry &nbsp;·&nbsp; Finnair nonstop HEL→JFK</p>
-  <p style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--text-dim);">Book early: Ett Hem (12 rooms), Iris at The Salmon Eye (16 seats), Ekstedt, Lysverket. Flåmsbana in advance at vy.no.</p>
+  <p style="margin-top: 0.8rem;">
+    <a href="../" style="color: #F4A261; text-decoration: none;">← Back to trip hub</a> &nbsp;·&nbsp;
+    <a href="../restaurants/" style="color: #F4A261; text-decoration: none;">Restaurants</a> &nbsp;·&nbsp;
+    <a href="../hotels/" style="color: #F4A261; text-decoration: none;">Hotels</a> &nbsp;·&nbsp;
+    <a href="../experiences/" style="color: #F4A261; text-decoration: none;">Experiences</a> &nbsp;·&nbsp;
+    <a href="../fjords/" style="color: #F4A261; text-decoration: none;">Fjords</a> &nbsp;·&nbsp;
+    <a href="../sauna/" style="color: #F4A261; text-decoration: none;">Sauna</a> &nbsp;·&nbsp;
+    <a href="../practical/" style="color: #F4A261; text-decoration: none;">Practical</a>
+  </p>
 </footer>
 
 </body>

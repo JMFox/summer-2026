@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norwegian Fjords — Nordic Arc | Summer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --bergen-light: #2a6fa0;
+    --bergen-glow: rgba(27,79,114,0.25);
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --card-bg-hover: #161819;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --border-light: rgba(255,255,255,0.1);
+    --gold: #ffc312;
+    --red-alert: #e07070;
+    --green: #6abf8e;
+    --nature: #3D8B37;
+    --water: #4fc3f7;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ NAV ═══ */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,9,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.18) saturate(0.7);
+    transform: scale(1.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(8,9,10,0.3) 0%, transparent 30%, transparent 60%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, #fff 30%, var(--water) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--water);
+    line-height: 1;
+  }
+
+  .hero-stat .label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.3rem;
+  }
+
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* ═══ SECTION ═══ */
+  .section { margin-bottom: 5rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-title .icon { font-size: 1.4rem; }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    line-height: 1.7;
+  }
+
+  /* ═══ FJORD COMPARISON CARDS ═══ */
+  .fjord-trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .fjord-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+  }
+
+  .fjord-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-light);
+  }
+
+  .fjord-card.crown::before {
+    content: 'UNESCO WORLD HERITAGE';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 3;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: #000;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+  }
+
+  .fjord-card.recommended::after {
+    content: 'MUST DO';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--green);
+    color: #000;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+  }
+
+  .fjord-card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .fjord-card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--card-bg) 100%);
+  }
+
+  .fjord-card-body {
+    padding: 1.2rem 1.5rem 1.5rem;
+  }
+
+  .fjord-card-body .fjord-nickname {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bergen-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .fjord-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+  }
+
+  .fjord-card-body .fjord-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .fjord-stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .fjord-stat {
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .fjord-stat .stat-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .fjord-stat .stat-value {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 0.1rem;
+  }
+
+  .fjord-highlights {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .fjord-highlights h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .fjord-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .fjord-highlights ul li {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .fjord-highlights ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--bergen-light);
+  }
+
+  /* ═══ COMPARISON TABLE ═══ */
+  .comparison-table-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .comparison-table-header {
+    padding: 1.2rem 1.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+
+  .comparison-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+  }
+
+  .comparison-table th:first-child { padding-left: 1.5rem; }
+
+  .comparison-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .comparison-table td:first-child {
+    color: var(--text);
+    font-weight: 600;
+    padding-left: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table tr:hover td { background: rgba(255,255,255,0.015); }
+
+  .verdict-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .verdict-must { background: rgba(106,191,142,0.15); color: var(--green); }
+  .verdict-skip { background: rgba(119,119,119,0.15); color: var(--text-dim); }
+
+  /* ═══ FLAMSBANA SECTION ═══ */
+  .flam-hero {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .flam-hero-image {
+    height: 280px;
+    background: url('https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?w=1400&q=80') center/cover no-repeat;
+    position: relative;
+  }
+
+  .flam-hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--card-bg) 100%);
+  }
+
+  .flam-hero-body {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .flam-hero-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .flam-hero-body .flam-tagline {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .flam-quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .flam-quick-stat {
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    text-align: center;
+  }
+
+  .flam-quick-stat .fqs-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--water);
+  }
+
+  .flam-quick-stat .fqs-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+
+  /* ═══ INFO CARDS (general) ═══ */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .info-card:hover { transform: translateY(-2px); }
+
+  .info-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .info-card p, .info-card ul {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card ul li {
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .info-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--bergen-light);
+  }
+
+  /* ═══ PRICING TABLE ═══ */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 1rem;
+  }
+
+  .pricing-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+  }
+
+  .pricing-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .pricing-table td:first-child { color: var(--text); font-weight: 600; }
+  .pricing-table td:last-child { color: var(--water); font-weight: 600; }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ═══ TIMELINE ═══ */
+  .nutshell-timeline {
+    margin-top: 1.5rem;
+    position: relative;
+  }
+
+  .nutshell-step {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 0;
+    padding: 1.2rem 0 1.2rem 1rem;
+    border-left: 2px solid var(--bergen);
+    position: relative;
+  }
+
+  .nutshell-step:last-child { border-left-color: transparent; }
+
+  .nutshell-step::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 1.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bergen-light);
+    border: 2px solid var(--bg);
+  }
+
+  .nutshell-step .step-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--bergen);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .nutshell-step .step-body h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .nutshell-step .step-body p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .nutshell-step .step-body .step-meta {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ═══ KAYAK OPERATOR CARDS ═══ */
+  .kayak-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kayak-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .kayak-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-light);
+  }
+
+  .kayak-card.top-pick {
+    border-color: rgba(106,191,142,0.3);
+  }
+
+  .kayak-card.top-pick::before {
+    content: 'TOP PICK';
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--green);
+    color: #000;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .kayak-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .kayak-card .kayak-location {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bergen-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .kayak-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+  }
+
+  .kayak-card .kayak-price {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--water);
+    margin-bottom: 0.4rem;
+  }
+
+  .kayak-card .kayak-link {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .kayak-card .kayak-link a {
+    color: var(--bergen-light);
+    text-decoration: none;
+  }
+
+  .kayak-card .kayak-link a:hover { text-decoration: underline; }
+
+  /* ═══ SALMON EYE SECTION ═══ */
+  .salmon-eye-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(224,112,112,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .salmon-eye-image {
+    height: 250px;
+    background:
+      linear-gradient(to bottom, transparent 50%, var(--card-bg) 100%),
+      url('https://images.unsplash.com/photo-1601134467661-3d775b999c8b?w=1400&q=80') center/cover no-repeat;
+    position: relative;
+  }
+
+  .salmon-eye-closed-badge {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    z-index: 2;
+    background: var(--red-alert);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+  }
+
+  .salmon-eye-body {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .salmon-eye-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+
+  .salmon-eye-body .se-subtitle {
+    font-size: 0.82rem;
+    color: var(--red-alert);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .salmon-eye-body .se-description {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+
+  .se-what-it-was {
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .se-what-it-was h4 {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.6rem;
+  }
+
+  .se-what-it-was ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .se-what-it-was ul li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .se-what-it-was ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  .se-monitor-box {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+  }
+
+  .se-monitor-box h4 {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .se-monitor-box p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .se-monitor-box a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .se-monitor-box a:hover { text-decoration: underline; }
+
+  /* ═══ WEATHER SECTION ═══ */
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .weather-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .weather-card .wc-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .weather-card .wc-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--water);
+  }
+
+  .weather-card .wc-detail {
+    font-size: 0.76rem;
+    color: var(--text-mid);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* ═══ LAYERING SYSTEM ═══ */
+  .layer-system {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .layer-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .layer-card .layer-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(27,79,114,0.3);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .layer-card h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .layer-card p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ═══ PHOTO TIPS ═══ */
+  .photo-times-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .photo-time-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .photo-time-card .ptc-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--sthlm);
+    margin-bottom: 0.3rem;
+  }
+
+  .photo-time-card .ptc-conditions {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .photo-time-card p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ═══ CALLOUT ═══ */
+  .callout {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .callout p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .callout.callout-blue {
+    background: rgba(27,79,114,0.1);
+    border: 1px solid rgba(27,79,114,0.25);
+  }
+
+  .callout.callout-blue h4 { color: var(--water); }
+
+  .callout.callout-green {
+    background: rgba(61,139,55,0.08);
+    border: 1px solid rgba(61,139,55,0.2);
+  }
+
+  .callout.callout-green h4 { color: var(--green); }
+
+  .callout.callout-red {
+    background: rgba(224,112,112,0.06);
+    border: 1px solid rgba(224,112,112,0.15);
+  }
+
+  .callout.callout-red h4 { color: var(--red-alert); }
+
+  /* ═══ KJOSFOSSEN FEATURE ═══ */
+  .kjosfossen-feature {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .kjosfossen-text h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .kjosfossen-text .kjos-subtitle {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bergen-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .kjosfossen-text p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  .kjosfossen-visual {
+    border-radius: 14px;
+    overflow: hidden;
+    height: 240px;
+    background: url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80') center/cover no-repeat;
+    position: relative;
+  }
+
+  .kjosfossen-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(27,79,114,0.2) 0%, transparent 60%);
+  }
+
+  /* ═══ CYCLING FEATURE ═══ */
+  .cycling-feature {
+    background: var(--card-bg);
+    border: 1px solid rgba(61,139,55,0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .cycling-feature h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+
+  .cycling-feature .cycling-subtitle {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+
+  .cycling-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .cycling-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .cycling-step::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: -0.5rem;
+    width: calc(100% - 2rem);
+    height: 1px;
+    background: var(--border-light);
+  }
+
+  .cycling-step:last-child::after { display: none; }
+
+  .cycling-step .cs-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--nature);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .cycling-step .cs-text {
+    font-size: 0.72rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .cycling-feature .cycling-note {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ═══ PACKING GRID ═══ */
+  .packing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .packing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .packing-card h3 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .packing-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .packing-card ul li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 0.25rem 0;
+    padding-left: 1.3rem;
+    position: relative;
+  }
+
+  .packing-card ul li::before {
+    content: '\2610';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+  }
+
+  /* ═══ VIEWPOINTS ═══ */
+  .viewpoint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .viewpoint-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .viewpoint-card .vp-location {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sthlm);
+    margin-bottom: 0.3rem;
+  }
+
+  .viewpoint-card h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .viewpoint-card p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+
+  .site-footer a {
+    color: var(--bergen-light);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover { text-decoration: underline; }
+
+  .footer-links {
+    margin-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 900px) {
+    .fjord-trio { grid-template-columns: 1fr; }
+    .kjosfossen-feature { grid-template-columns: 1fr; }
+    .cycling-steps { grid-template-columns: repeat(3, 1fr); }
+    .cycling-step::after { display: none; }
+    .layer-system { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .hero-stats { gap: 1.5rem; }
+    .comparison-table { font-size: 0.72rem; }
+    .comparison-table th, .comparison-table td { padding: 0.5rem 0.6rem; }
+    .photo-times-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .hero { min-height: 60vh; }
+    .hero-stat .number { font-size: 1.6rem; }
+    .cycling-steps { grid-template-columns: 1fr; }
+    .photo-times-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/" class="active">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Bergen &amp; Western Norway &nbsp;·&nbsp; Late June 2026</p>
+    <h1>Norwegian Fjords</h1>
+    <p class="tagline">Where mountains fall into the sea</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">1,308m</div>
+        <div class="label">Deepest Point</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">250m</div>
+        <div class="label">Narrowest Width</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">19hrs</div>
+        <div class="label">Daily Sunlight</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">4:10</div>
+        <div class="label">AM Sunrise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 1: THE THREE GREAT FJORDS          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#9968;</span> The Three Great Fjords</h2>
+    <p class="section-subtitle">Western Norway's fjord system is the most dramatic landscape in Europe. Three fjords define the Bergen region, each with a completely different character. Two are absolute must-dos.</p>
+
+    <div class="fjord-trio">
+
+      <!-- NAEROYFJORD -->
+      <div class="fjord-card crown recommended">
+        <div class="fjord-card-image" style="background-image: url('https://images.unsplash.com/photo-1520769669658-f07657f5a307?w=800&q=80');"></div>
+        <div class="fjord-card-body">
+          <div class="fjord-nickname">The Crown Jewel</div>
+          <h3>N&aelig;r&oslash;yfjord</h3>
+          <p class="fjord-desc">Norway's narrowest navigable fjord. Sheer crystalline walls rise 1,400m straight from the water. National Geographic rated this the planet's #1 natural heritage site. This is the poster on every wall, the dream made real.</p>
+          <div class="fjord-stats-row">
+            <div class="fjord-stat">
+              <div class="stat-label">Length</div>
+              <div class="stat-value">17 km</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Narrowest</div>
+              <div class="stat-value">250 m</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Depth</div>
+              <div class="stat-value">500 m</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Walls</div>
+              <div class="stat-value">1,660 m</div>
+            </div>
+          </div>
+          <div class="fjord-highlights">
+            <h4>Experiences</h4>
+            <ul>
+              <li>Electric catamaran cruise (Fl&aring;m &harr; Gudvangen, 2 hrs)</li>
+              <li>Kayaking between 250m walls -- the ultimate</li>
+              <li>RIB safari for adrenaline</li>
+              <li>Njardarheimr Viking Village at Gudvangen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- HARDANGERFJORD -->
+      <div class="fjord-card recommended">
+        <div class="fjord-card-image" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800&q=80');"></div>
+        <div class="fjord-card-body">
+          <div class="fjord-nickname">The Queen of the Fjords</div>
+          <h3>Hardangerfjord</h3>
+          <p class="fjord-desc">Norway's second-longest fjord (179 km) and fourth longest in the world. Where fjords meet orchards. Late June means cherry season is beginning, and V&oslash;ringsfossen is roaring with snowmelt. Softer, greener, pastoral.</p>
+          <div class="fjord-stats-row">
+            <div class="fjord-stat">
+              <div class="stat-label">Length</div>
+              <div class="stat-value">179 km</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Depth</div>
+              <div class="stat-value">800+ m</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Drive from Bergen</div>
+              <div class="stat-value">1h 15m</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Character</div>
+              <div class="stat-value">Orchards</div>
+            </div>
+          </div>
+          <div class="fjord-highlights">
+            <h4>Experiences</h4>
+            <ul>
+              <li>V&oslash;ringsfossen -- 182m waterfall with new bridge</li>
+              <li>Steinsdalsfossen -- walk BEHIND the waterfall</li>
+              <li>Ulvik fruit &amp; cider route tastings</li>
+              <li>Baroniet Rosendal -- Scandinavia's smallest castle</li>
+              <li>Folgefonna glacier walks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOGNEFJORD -->
+      <div class="fjord-card">
+        <div class="fjord-card-image" style="background-image: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80');"></div>
+        <div class="fjord-card-body">
+          <div class="fjord-nickname">The King of the Fjords</div>
+          <h3>Sognefjord</h3>
+          <p class="fjord-desc">The longest (205 km) and deepest (1,308 m) fjord in Norway, second in the world only to Greenland. N&aelig;r&oslash;yfjord is actually a branch of Sognefjord. Impressively vast but its narrow arms are the stars.</p>
+          <div class="fjord-stats-row">
+            <div class="fjord-stat">
+              <div class="stat-label">Length</div>
+              <div class="stat-value">205 km</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Depth</div>
+              <div class="stat-value">1,308 m</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Deep &gt;1000m</div>
+              <div class="stat-value">~100 km</div>
+            </div>
+            <div class="fjord-stat">
+              <div class="stat-label">Branches</div>
+              <div class="stat-value">5+ major</div>
+            </div>
+          </div>
+          <div class="fjord-highlights">
+            <h4>Notable Sites (via branches)</h4>
+            <ul>
+              <li>Urnes Stave Church (UNESCO) -- Norway's oldest</li>
+              <li>Borgund Stave Church -- most intact medieval</li>
+              <li>Jostedalsbreen -- Europe's largest glacier</li>
+              <li>Balestrand -- art nouveau village</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="comparison-table-wrap">
+      <div class="comparison-table-header">
+        <h3>Side-by-Side Comparison</h3>
+      </div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>N&aelig;r&oslash;yfjord</th>
+            <th>Hardangerfjord</th>
+            <th>Sognefjord</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Character</td>
+            <td>Narrow, dramatic, raw</td>
+            <td>Broad, pastoral, orchards</td>
+            <td>Vast, deep, varied</td>
+          </tr>
+          <tr>
+            <td>UNESCO</td>
+            <td style="color: var(--gold);">Yes (2005)</td>
+            <td>No</td>
+            <td>No (branch is)</td>
+          </tr>
+          <tr>
+            <td>"Wow" Factor</td>
+            <td style="color: var(--water);">Extreme -- sheer walls 250m wide</td>
+            <td>Softer beauty -- waterfalls + orchards</td>
+            <td>Impressive scale, less dramatic</td>
+          </tr>
+          <tr>
+            <td>Best For</td>
+            <td>Boat cruise, kayaking</td>
+            <td>Road trip, food &amp; cider, waterfalls</td>
+            <td>Stave churches, glacier access</td>
+          </tr>
+          <tr>
+            <td>From Bergen</td>
+            <td>Full day (via Voss/Fl&aring;m)</td>
+            <td>1-3 hours by car</td>
+            <td>Via N&aelig;r&oslash;yfjord cruise</td>
+          </tr>
+          <tr>
+            <td>Can't-Get-in-NYC</td>
+            <td style="color: var(--gold);">Paddling between 250m walls</td>
+            <td>Walk behind a waterfall, orchard tastings</td>
+            <td>Viking village at Gudvangen</td>
+          </tr>
+          <tr>
+            <td>Our Verdict</td>
+            <td><span class="verdict-tag verdict-must">MUST DO</span></td>
+            <td><span class="verdict-tag verdict-must">MUST DO</span></td>
+            <td><span class="verdict-tag verdict-skip">SKIP separately</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout callout-blue">
+      <h4>The Smart Play</h4>
+      <p>Do NOT visit Sognefjord as a separate trip. The N&aelig;r&oslash;yfjord cruise (via Norway in a Nutshell or independent booking) gives you the best of the Sognefjord system. N&aelig;r&oslash;yfjord IS a branch of Sognefjord -- you're already there. Spend your second fjord day on Hardangerfjord instead, which offers a completely different experience.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 2: FLAMSBANA RAILWAY               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#128646;</span> Fl&aring;msbana Railway</h2>
+    <p class="section-subtitle">One of the world's most scenic railway lines. 20 km. 20 tunnels. 863 meters of descent. One 180-degree turn inside a mountain. And a mythological dancer in a waterfall.</p>
+
+    <div class="flam-hero">
+      <div class="flam-hero-image" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1400&q=80');"></div>
+      <div class="flam-hero-body">
+        <h3>The Steepest Standard-Gauge Railway on Earth</h3>
+        <p class="flam-tagline">From the high mountain plateau at Myrdal (867m) down to the fjord at Fl&aring;m (2m above sea level), this 55-minute journey packs more dramatic scenery per kilometer than almost any other rail experience in the world.</p>
+
+        <div class="flam-quick-stats">
+          <div class="flam-quick-stat">
+            <div class="fqs-value">20 km</div>
+            <div class="fqs-label">Distance</div>
+          </div>
+          <div class="flam-quick-stat">
+            <div class="fqs-value">863 m</div>
+            <div class="fqs-label">Elevation Drop</div>
+          </div>
+          <div class="flam-quick-stat">
+            <div class="fqs-value">5.5%</div>
+            <div class="fqs-label">Max Gradient</div>
+          </div>
+          <div class="flam-quick-stat">
+            <div class="fqs-value">20</div>
+            <div class="fqs-label">Tunnels</div>
+          </div>
+          <div class="flam-quick-stat">
+            <div class="fqs-value">~55 min</div>
+            <div class="fqs-label">Travel Time</div>
+          </div>
+          <div class="flam-quick-stat">
+            <div class="fqs-value">10/day</div>
+            <div class="fqs-label">Summer Departures</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Pricing (Summer 2025/26)</h3>
+        <table class="pricing-table">
+          <tr><td>Adult one-way</td><td>510 NOK</td><td>~$48</td></tr>
+          <tr><td>Adult return</td><td>730 NOK</td><td>~$69</td></tr>
+          <tr><td>Child (6-17)</td><td>50% off</td><td></td></tr>
+          <tr><td>Bicycle transport</td><td>280 NOK</td><td></td></tr>
+        </table>
+      </div>
+      <div class="info-card">
+        <h3>Booking &amp; Logistics</h3>
+        <ul>
+          <li><strong>Book at:</strong> norwaysbest.com, vy.no, or flamsbana.no</li>
+          <li>Advance booking strongly recommended for summer</li>
+          <li>No seat reservations -- arrive 30+ min early</li>
+          <li><strong>Best seats:</strong> Right side going Fl&aring;m &rarr; Myrdal</li>
+          <li>Earliest departure: 07:20 (Mon-Fri, quietest)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Kjosfossen Feature -->
+    <div class="kjosfossen-feature">
+      <div class="kjosfossen-text">
+        <div class="kjos-subtitle">The Magical Stop</div>
+        <h4>Kjosfossen Waterfall &amp; the Huldra</h4>
+        <p>The train halts for 5 minutes beside a 225-meter waterfall. During summer, dancers from the Norwegian Ballet School appear in the spray as the <em>Huldra</em> -- a seductive forest creature from Scandinavian folklore. She moves through water and rocks for 3 minutes, without a word, then vanishes. Many travelers call it the single most magical moment of their entire trip to Norway.</p>
+        <p style="margin-top: 0.8rem;">The performance happens on <strong>every scheduled summer departure</strong> (June 1 -- August 31), going both up and down. Be ready with your camera when the train slows -- it happens fast.</p>
+      </div>
+      <div class="kjosfossen-visual"></div>
+    </div>
+
+    <!-- Cycling Alternative -->
+    <div class="cycling-feature">
+      <div class="cycling-subtitle">The Active Alternative</div>
+      <h4>Rallarvegen Downhill Cycle: Myrdal &rarr; Fl&aring;m</h4>
+
+      <div class="cycling-steps">
+        <div class="cycling-step">
+          <div class="cs-num">1</div>
+          <div class="cs-text">Take Fl&aring;msbana<br/><strong>UP</strong> to Myrdal</div>
+        </div>
+        <div class="cycling-step">
+          <div class="cs-num">2</div>
+          <div class="cs-text">Walk 3.5 km down<br/>to <strong>K&aring;rdal</strong></div>
+        </div>
+        <div class="cycling-step">
+          <div class="cs-num">3</div>
+          <div class="cs-text">Pick up<br/><strong>rental bike</strong></div>
+        </div>
+        <div class="cycling-step">
+          <div class="cs-num">4</div>
+          <div class="cs-text">Ride <strong>17 km</strong><br/>mostly downhill</div>
+        </div>
+        <div class="cycling-step">
+          <div class="cs-num">5</div>
+          <div class="cs-text">Return bike<br/>in <strong>Fl&aring;m</strong> by 18:30</div>
+        </div>
+      </div>
+
+      <p class="cycling-note">"A really nice bike ride that many enjoyed much more than the train ride down." -- The cycling option is more immersive: you control your own pace, stop anywhere for photos, and experience the valley with wind in your face rather than through glass. Allow 2-4 hours including stops. Season: mid-June to September.</p>
+
+      <div class="callout callout-green" style="margin-top: 1.2rem;">
+        <h4>Our Recommendation for This Couple</h4>
+        <p>Take the Fl&aring;msbana UP in the morning (07:20 or 08:20 departure). See the Huldra at Kjosfossen. Walk down to K&aring;rdal. Cycle back to Fl&aring;m. This gives you the magical train ascent AND the physical adventure of the downhill ride. Arrive Fl&aring;m by lunchtime. Afternoon: N&aelig;r&oslash;yfjord cruise. Perfect day.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 3: NORWAY IN A NUTSHELL            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#127968;</span> Norway in a Nutshell</h2>
+    <p class="section-subtitle">A self-guided package combining Norway's most iconic transport legs into one circular journey. Not a guided tour -- you travel independently with pre-booked tickets. Operated by Fjord Tours (Norway's Leading Tour Operator 2025).</p>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 1.2rem;">The Classic Bergen Roundtrip</h3>
+
+    <div class="nutshell-timeline">
+      <div class="nutshell-step">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <h4>Bergen &rarr; Voss</h4>
+          <p>Bergen Railway train through the western Norwegian landscape. Rolling hills, lakes, pastoral farms.</p>
+          <div class="step-meta">~1 hr 15 min &nbsp;|&nbsp; Book on vy.no</div>
+        </div>
+      </div>
+      <div class="nutshell-step">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <h4>Voss &rarr; Gudvangen</h4>
+          <p>Scenic bus descending through the narrow N&aelig;r&oslash;y Valley. Hairpin turns, waterfalls, mountain farms. Dramatic approach to the fjord.</p>
+          <div class="step-meta">~1 hr &nbsp;|&nbsp; 115 NOK (cash on bus)</div>
+        </div>
+      </div>
+      <div class="nutshell-step">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <h4>Gudvangen &rarr; Fl&aring;m &nbsp; <span style="color: var(--gold); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;">THE HIGHLIGHT</span></h4>
+          <p>The N&aelig;r&oslash;yfjord cruise. Two hours on a silent electric catamaran between 250-meter walls, with waterfalls cascading from hanging valleys and goat farms clinging to impossible slopes.</p>
+          <div class="step-meta">~2 hrs &nbsp;|&nbsp; 450 NOK one-way &nbsp;|&nbsp; thefjords.no</div>
+        </div>
+      </div>
+      <div class="nutshell-step">
+        <div class="step-number">4</div>
+        <div class="step-body">
+          <h4>Fl&aring;m &rarr; Myrdal</h4>
+          <p>The Fl&aring;msbana railway. 863-meter ascent through 20 tunnels. Kjosfossen waterfall stop with the Huldra performance. One of the steepest standard-gauge railways in the world.</p>
+          <div class="step-meta">~55 min &nbsp;|&nbsp; 510 NOK one-way &nbsp;|&nbsp; norwaysbest.com</div>
+        </div>
+      </div>
+      <div class="nutshell-step">
+        <div class="step-number">5</div>
+        <div class="step-body">
+          <h4>Myrdal &rarr; Bergen</h4>
+          <p>Bergen Railway back across the high mountain plateau. Hardangervidda wilderness at 1,222m. A spectacular finale as you descend back to the coast.</p>
+          <div class="step-meta">~2 hr 30 min &nbsp;|&nbsp; Book on vy.no</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid" style="margin-top: 1.5rem;">
+      <div class="info-card">
+        <h3>Pricing Comparison</h3>
+        <table class="pricing-table">
+          <tr><td>Full package (Fjord Tours)</td><td></td><td>2,500-3,000+ NOK</td></tr>
+          <tr><td>DIY (book each leg)</td><td></td><td>~2,000-2,350 NOK</td></tr>
+          <tr><td>DIY savings per person</td><td></td><td>~400-700 NOK (~20%)</td></tr>
+        </table>
+        <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.8rem;">Advertised "from 1,595 NOK" is misleading -- that's only the short Fl&aring;m-to-Fl&aring;m route.</p>
+      </div>
+      <div class="info-card">
+        <h3>How to Book</h3>
+        <ul>
+          <li><strong>Package:</strong> fjordtours.com -- already selling July 2026</li>
+          <li><strong>DIY trains:</strong> vy.no (available ~90 days before)</li>
+          <li><strong>DIY fjord cruise:</strong> thefjords.no</li>
+          <li><strong>Journey planner:</strong> entur.no</li>
+          <li>All modes have onboard luggage storage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-red">
+      <h4>Do NOT Do This in One Day</h4>
+      <p>The full loop in a single day is rushed and exhausting. Instead, spend a night in Fl&aring;m and break it into 2 days. Day 1: Bergen &rarr; Voss &rarr; Gudvangen &rarr; Fl&aring;m (cruise through N&aelig;r&oslash;yfjord). Day 2: Fl&aring;msbana up + cycle back down, then afternoon N&aelig;r&oslash;yfjord cruise or kayaking. Alternatively, skip the package entirely and book each leg yourself for 20% savings and maximum flexibility.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 4: FJORD KAYAKING                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#128675;</span> Fjord Kayaking</h2>
+    <p class="section-subtitle">Paddling through a UNESCO fjord between 250-meter walls, with waterfalls cascading next to you and zero engine noise. This is the single most "Can't Get In NYC" activity on the Bergen portion of the trip.</p>
+
+    <div class="kayak-grid">
+
+      <div class="kayak-card top-pick">
+        <h3>Nordic Ventures</h3>
+        <div class="kayak-location">Gudvangen &middot; N&aelig;r&oslash;yfjord</div>
+        <p>Operating since 1998. The original UNESCO fjord kayak outfitter. Standard day tours include a full outdoor BBQ lunch. Private options available for early-morning departures. "Feels more like friends paddling together than a guided tour."</p>
+        <div class="kayak-price">895 NOK / Standard Day &nbsp;|&nbsp; 1,095 NOK / Long Day</div>
+        <div class="kayak-link"><a href="https://nordicventures.com/" target="_blank">nordicventures.com</a></div>
+      </div>
+
+      <div class="kayak-card">
+        <h3>Njord Kayak Centre</h3>
+        <div class="kayak-location">Fl&aring;m &middot; Aurlandsfjord</div>
+        <p>Right on the beach in Fl&aring;m, short walk from the railway station. Guided tours, rentals, and multi-day expeditions. Max 12 per guide. "Rhythm was just right for fit active people but without prior kayaking experience."</p>
+        <div class="kayak-price">Half-day &amp; full-day tours available</div>
+        <div class="kayak-link"><a href="https://www.seakayaknorway.com/" target="_blank">seakayaknorway.com</a></div>
+      </div>
+
+      <div class="kayak-card">
+        <h3>Outdoor Norway</h3>
+        <div class="kayak-location">Voss &middot; N&aelig;r&oslash;yfjord &amp; Hardangerfjord</div>
+        <p>Based in Voss with transport to the fjord. Also offers Hardangerfjord kayaking into the Granvin arm -- less crowded, away from tourist boats. "Not very physically demanding, so city people will also enjoy it."</p>
+        <div class="kayak-price">~1,600 NOK / Hardangerfjord (~$153)</div>
+        <div class="kayak-link"><a href="https://www.outdoornorway.com/" target="_blank">outdoornorway.com</a></div>
+      </div>
+
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Water Temperature (Late June)</h3>
+        <table class="pricing-table">
+          <tr><td>Fjord surface</td><td></td><td>10-14&deg;C (50-57&deg;F)</td></tr>
+          <tr><td>Coastal/Bergen</td><td></td><td>11-12&deg;C (52-54&deg;F)</td></tr>
+        </table>
+        <p style="margin-top: 0.8rem; font-size: 0.78rem; color: var(--red-alert); font-weight: 600;">This water is COLD. Full thermal protection required. All reputable operators provide wetsuits, neoprene booties, spray skirts, and PFDs.</p>
+      </div>
+      <div class="info-card">
+        <h3>What Operators Provide</h3>
+        <ul>
+          <li>Stable tandem or single sea kayaks</li>
+          <li>Paddles, spray skirts, bilge pumps</li>
+          <li>PFDs / life jackets</li>
+          <li>Wetsuits (sleeveless "Long John" style)</li>
+          <li>Neoprene booties</li>
+          <li>Waterproof phone cases</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>What You Should Bring</h3>
+        <ul>
+          <li>Merino wool or synthetic base layer (NEVER cotton)</li>
+          <li>Fleece mid-layer for under/over wetsuit</li>
+          <li>Sunglasses with retaining strap</li>
+          <li>Sunscreen SPF 30+ (water reflects UV)</li>
+          <li>Complete change of dry clothes for after</li>
+          <li>Small waterproof dry bag for valuables</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <h4>Early Morning = Magic (Ask for a Private Start)</h4>
+      <p>Most operators depart at 9-10 AM. But the fjord is mirror-still before mid-morning wind picks up. Early morning light creates perfect reflections, almost no boat traffic, and you'll have the fjord to yourselves. Nordic Ventures offers flexible private options -- contact them about a 7:00 AM departure for the couple. This is a photographer's dream and absolutely worth the early wake-up.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 5: IRIS AT THE SALMON EYE          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#128031;</span> Iris at The Salmon Eye</h2>
+
+    <div class="salmon-eye-card">
+      <div class="salmon-eye-image" style="background-image: linear-gradient(to bottom, transparent 50%, #111214 100%), url('https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=1400&q=80');">
+        <div class="salmon-eye-closed-badge">TEMPORARILY CLOSED -- JAN 2026</div>
+      </div>
+      <div class="salmon-eye-body">
+        <h3>Iris at The Salmon Eye</h3>
+        <div class="se-subtitle">Michelin-starred floating restaurant -- closed since January 2026. Monitor for possible relaunch.</div>
+
+        <p class="se-description">Restaurant Iris received its first Michelin star in June 2024 and was named one of TIME Magazine's 100 Best Places in the world. Despite the accolades, operations were running at a loss. In January 2026, owner Sondre Eide (Eide Fjordbruk, a salmon farming family) announced the closure and laid off 13 employees. The family is pivoting to a venture called Watermoon, described as "commercially mature with significant global potential." Their statement: "For the Eide family, it is not 'enough' with Michelin. Our ambition is to ensure real global change so that the world's population eats more sustainable food from the sea."</p>
+
+        <div class="se-what-it-was">
+          <h4>What The Experience Was</h4>
+          <ul>
+            <li>World's largest floating art installation -- 1,000 sq m, 15m tall, covered in 9,250 stainless steel fish-scale plates</li>
+            <li>Floating in the Hardangerfjord near Rosendal, accessible only by electric boat</li>
+            <li>5-6 hour expedition: boathouse welcome, underwater exhibition, 18-course tasting menu, rooftop open-flame course</li>
+            <li>Maximum 24 guests per day, 16 seats in the restaurant</li>
+            <li>Chef Anika Madsen (Danish). Menu 3,200-4,700 NOK per person</li>
+            <li>Washington Post: "18 courses, no murder: A floating restaurant right out of 'The Menu'"</li>
+          </ul>
+        </div>
+
+        <div class="se-monitor-box">
+          <h4>What to Do Now</h4>
+          <p>Monitor <a href="https://www.restaurantiris.no/" target="_blank">restaurantiris.no</a> and <a href="https://www.thesalmoneye.com/" target="_blank">thesalmoneye.com</a> for any summer 2026 reopening announcement. The <strong>Salmon Eye visitor center IS still open</strong> (349 NOK adults, 2-hour guided aquaculture tour via electric boat from Rosendal). If Iris does not reopen, Bergen now has three Michelin-starred alternatives: Lysverket, Gaptrast, and Omakase by Sergey Pak (all newly starred 2025).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 6: WEATHER & CLOTHING              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#127780;</span> Weather &amp; Clothing</h2>
+    <p class="section-subtitle">Bergen is one of Europe's rainiest cities, but late June is its best season. 19 hours of daylight, mild temperatures, and weather that can change four times in an afternoon.</p>
+
+    <div class="weather-grid">
+      <div class="weather-card">
+        <div class="wc-label">Air High</div>
+        <div class="wc-value">14-16&deg;C</div>
+        <div class="wc-detail">57-61&deg;F average<br/>Good days reach 20&deg;C</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-label">Air Low</div>
+        <div class="wc-value">8-10&deg;C</div>
+        <div class="wc-detail">46-50&deg;F at night<br/>Never truly cold</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-label">Water Temp</div>
+        <div class="wc-value">12&deg;C</div>
+        <div class="wc-detail">54&deg;F -- cold shock risk<br/>Wetsuit required for kayaking</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-label">Rain Chance</div>
+        <div class="wc-value">41%</div>
+        <div class="wc-detail">~7 rainy days in last 10<br/>Usually brief showers</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-label">Daylight</div>
+        <div class="wc-value">19 hrs</div>
+        <div class="wc-detail">Sunrise 4:10 AM<br/>Sunset 11:11 PM</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-label">True Darkness</div>
+        <div class="wc-value">None</div>
+        <div class="wc-detail">"White nights" May-Aug<br/>Civil twilight all night</div>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; margin-top: 2rem;">The Norwegian 3-Layer System</h3>
+
+    <div class="layer-system">
+      <div class="layer-card">
+        <div class="layer-number">1</div>
+        <h4>Inner Layer</h4>
+        <p>Transport moisture AWAY from skin. Thin merino wool underwear or synthetic sports shirt. Never cotton -- it absorbs water and loses all insulating properties.</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-number">2</div>
+        <h4>Mid Layer</h4>
+        <p>Insulate and retain heat. Wool sweater, fleece, or lightweight down vest. This is your warmth engine for boat decks and morning kayaking.</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-number">3</div>
+        <h4>Outer Layer</h4>
+        <p>Block wind and rain. Waterproof, breathable shell jacket. Gore-Tex or similar. Bergen's rain is horizontal. A hood is essential, not optional.</p>
+      </div>
+    </div>
+
+    <div class="packing-grid" style="margin-top: 1.5rem;">
+      <div class="packing-card">
+        <h3>Fjord Boat Tours</h3>
+        <ul>
+          <li>Waterproof hooded windbreaker (ESSENTIAL)</li>
+          <li>Merino wool sweater or fleece</li>
+          <li>Long-sleeve thermal base layer</li>
+          <li>Long pants (not jeans -- cold when wet)</li>
+          <li>Grippy walking shoes</li>
+          <li>Warm hat or beanie</li>
+          <li>Sunglasses + sunscreen SPF 30+</li>
+          <li>Compact umbrella + scarf</li>
+        </ul>
+      </div>
+      <div class="packing-card">
+        <h3>Kayaking (Extra Gear)</h3>
+        <ul>
+          <li>Moisture-wicking base layer (wool/synthetic)</li>
+          <li>Fleece mid-layer for under splash jacket</li>
+          <li>Complete change of dry clothes for after</li>
+          <li>Waterproof phone case or dry bag</li>
+          <li>Wetsuit provided by operator</li>
+          <li>Neoprene booties provided</li>
+          <li>NEVER wear cotton -- it kills warmth</li>
+        </ul>
+      </div>
+      <div class="packing-card">
+        <h3>You Do NOT Need</h3>
+        <ul>
+          <li>A heavy down parka</li>
+          <li>Oversized winter jackets</li>
+          <li>Ski gear of any kind</li>
+          <li>Thermal underwear (mid-layer is enough)</li>
+          <li>Bulky boots (comfortable walking shoes suffice)</li>
+        </ul>
+        <p style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.6rem;">Summer in western Norway is cool and damp, not cold. Think Seattle in April, not Minnesota in January.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>The 19-Hour Daylight Advantage</h4>
+      <p>For a couple who loves getting up early, this is extraordinary. Dawn light begins before 4:00 AM. The extended golden hour from 8:30-11:30 PM is magical for photography. It never gets truly dark -- just a soft civil twilight that merges one day into the next. You can hike at midnight. You will need a sleep mask.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 7: PHOTOGRAPHY TIPS                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#128247;</span> Photography Guide</h2>
+    <p class="section-subtitle">At 60.4&deg;N latitude in late June, the light behaves unlike anywhere else. A 3+ hour golden hour in the evening, another in the early morning, and no harsh midday shadows. This is a photographer's paradise.</p>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem;">Best Times for Fjord Photography</h3>
+
+    <div class="photo-times-grid">
+      <div class="photo-time-card">
+        <div class="ptc-time">4:00 - 6:00 AM</div>
+        <div class="ptc-conditions">Soft Dawn</div>
+        <p>Mirror-still water. Misty fjords. Total solitude. The best conditions for reflection shots.</p>
+      </div>
+      <div class="photo-time-card">
+        <div class="ptc-time">8:00 - 10:00 AM</div>
+        <div class="ptc-conditions">Morning Light</div>
+        <p>Calm water, low-angle warmth. Ideal for kayak photos and waterfall detail.</p>
+      </div>
+      <div class="photo-time-card">
+        <div class="ptc-time">12:00 - 2:00 PM</div>
+        <div class="ptc-conditions">Both Walls Lit</div>
+        <p>Higher sun illuminates both fjord walls simultaneously. Best for cruise photos on N&aelig;r&oslash;yfjord.</p>
+      </div>
+      <div class="photo-time-card">
+        <div class="ptc-time">8:30 - 11:30 PM</div>
+        <div class="ptc-conditions">Extended Golden Hour</div>
+        <p>3+ hours of warm, dramatic light. Low sun, long shadows. The magic window for landscapes.</p>
+      </div>
+      <div class="photo-time-card">
+        <div class="ptc-time">11:00 PM - 1:00 AM</div>
+        <div class="ptc-conditions">White Night Twilight</div>
+        <p>Soft blue-pink light. Long exposures for atmospheric "midnight sun" images.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; margin-top: 2rem;">Key Viewpoints</h3>
+
+    <div class="viewpoint-grid">
+      <div class="viewpoint-card">
+        <div class="vp-location">Bergen</div>
+        <h4>Fl&oslash;yen Funicular</h4>
+        <p>Classic Bergen panorama from 320m. The city, the harbor, the seven mountains.</p>
+      </div>
+      <div class="viewpoint-card">
+        <div class="vp-location">Bergen</div>
+        <h4>Nordnes Peninsula Tip</h4>
+        <p>Quiet park with unimpeded views of Byfjorden. Perfect sunset spot.</p>
+      </div>
+      <div class="viewpoint-card">
+        <div class="vp-location">N&aelig;r&oslash;yfjord</div>
+        <h4>Boat Deck (Bow)</h4>
+        <p>Stand at the bow for wall-to-wall immersion. The narrowest point (~250m) is the money shot.</p>
+      </div>
+      <div class="viewpoint-card">
+        <div class="vp-location">Fl&aring;m</div>
+        <h4>Stegastein Viewpoint</h4>
+        <p>30m platform extending over Aurlandsfjord. 650m above the water. Vertigo-inducing.</p>
+      </div>
+      <div class="viewpoint-card">
+        <div class="vp-location">Hardangerfjord</div>
+        <h4>V&oslash;ringsfossen Bridge</h4>
+        <p>New 47m-span bridge over the 182m waterfall. The waterfall + valley in one frame.</p>
+      </div>
+      <div class="viewpoint-card">
+        <div class="vp-location">Hardangerfjord</div>
+        <h4>Steinsdalsfossen</h4>
+        <p>Walk behind the waterfall for a dramatic through-the-curtain perspective.</p>
+      </div>
+    </div>
+
+    <div class="info-grid" style="margin-top: 1.5rem;">
+      <div class="info-card">
+        <h3>Waterfall Tips</h3>
+        <ul>
+          <li><strong>Fast shutter (1/500+):</strong> Freezes droplets. Use for the Huldra at Kjosfossen</li>
+          <li><strong>Slow shutter (1/4-2s):</strong> Creates silky flow. Requires tripod</li>
+          <li><strong>Polarizing filter:</strong> Reduces glare on wet rocks. Deepens sky</li>
+          <li><strong>Spray protection:</strong> Carry a plastic bag for your camera body near falls</li>
+          <li><strong>Lens fog:</strong> Moving from warm cabin to cold spray fogs lenses. Acclimatize first</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Norwegian Photographer Wisdom</h3>
+        <ul>
+          <li><strong>Plan around light, not locations.</strong> A mediocre spot in extraordinary light beats a famous spot in flat grey</li>
+          <li><strong>Include people for scale.</strong> A kayaker in the fjord conveys the immensity</li>
+          <li><strong>Shoot reflections early.</strong> Fjords are mirror-calm before mid-morning wind</li>
+          <li><strong>Bergen weather changes fast.</strong> Rain/sun transitions create rainbow opportunities</li>
+          <li><strong>Midnight silhouettes.</strong> Position subjects against the low late-evening sun</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <h4>The Kjosfossen Challenge</h4>
+      <p>The Huldra performance lasts ~3 minutes. The train stops, she appears in the spray, and everyone surges to the railing. Use burst mode, fast shutter speed, and be ready BEFORE the train comes to a full stop. No time for tripod setup. This is a grab-the-moment shot. Have your camera in hand, settings pre-configured, zoom at medium range.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 8: BUDGET ESTIMATE                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#128176;</span> Budget Estimate</h2>
+    <p class="section-subtitle">The fjords deliver absurd value relative to their visual impact. A 3-day fjord adventure for two costs less than a single dinner at a New York tasting menu.</p>
+
+    <div class="info-card" style="margin-bottom: 1.5rem;">
+      <h3>Estimated Costs (Per Couple, 3 Days)</h3>
+      <table class="pricing-table">
+        <thead>
+          <tr><th>Item</th><th></th><th>Approx. Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fl&aring;msbana one-way x 2</td><td></td><td>1,020 NOK (~$97)</td></tr>
+          <tr><td>N&aelig;r&oslash;yfjord cruise x 2</td><td></td><td>900 NOK (~$85)</td></tr>
+          <tr><td>Fjord kayaking half-day x 2</td><td></td><td>1,790 NOK (~$170)</td></tr>
+          <tr><td>Car rental (3 days)</td><td></td><td>3,000-5,000 NOK</td></tr>
+          <tr><td>Fretheim Hotel (1 night)</td><td></td><td>2,500-4,000 NOK</td></tr>
+          <tr><td>Meals (3 days)</td><td></td><td>3,000-5,000 NOK</td></tr>
+          <tr><td>Misc (tolls, fuel, bike rental)</td><td></td><td>1,000-2,000 NOK</td></tr>
+          <tr style="border-top: 2px solid var(--border);"><td style="color: var(--water) !important; font-size: 0.9rem;">Total (3-day fjord adventure)</td><td></td><td style="font-size: 0.95rem;">~$1,200-1,900 USD</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <p style="font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem;">Norwegian Fjords Guide</p>
+  <p>Nordic Arc &nbsp;&middot;&nbsp; Summer 2026</p>
+  <div class="footer-links">
+    <a href="../">&larr; Trip Hub</a>
+    <a href="../itinerary/">Itinerary</a>
+    <a href="../restaurants/">Restaurants</a>
+    <a href="../hotels/">Hotels</a>
+    <a href="../experiences/">Experiences</a>
+    <a href="../sauna/">Sauna</a>
+    <a href="../practical/">Practical Guide</a>
+  </div>
+  <p style="margin-top: 0.8rem; color: rgba(255,255,255,0.2);">Oslo &rarr; Bergen &rarr; Stockholm &rarr; Helsinki &nbsp;&middot;&nbsp; June 27 &ndash; July 8, 2026</p>
+</footer>
+
+</body>
+</html>

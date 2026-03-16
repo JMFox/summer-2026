@@ -3,148 +3,975 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Summer 2026 — Trip Options</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Nordic Arc — Oslo → Bergen → Stockholm → Helsinki | Summer 2026</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#08090a;color:#f0f0f0;font-family:'Inter',sans-serif;min-height:100vh;padding:0}
-.hero{text-align:center;padding:80px 24px 40px;max-width:700px;margin:0 auto}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
-.hero .sub{color:#999;font-size:clamp(0.85rem,2.5vw,1.05rem);line-height:1.6;margin-bottom:8px}
-.hero .date{color:#666;font-size:0.85rem;margin-bottom:40px}
-.grid{max-width:700px;margin:0 auto;padding:0 20px 60px;display:flex;flex-direction:column;gap:16px}
-.card{background:#111214;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease;display:flex;align-items:stretch}
-.card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
-.card-color{width:6px;flex-shrink:0;border-radius:16px 0 0 16px}
-.card-body{padding:24px 28px;flex:1}
-.card-num{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:6px}
-.card-title{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,3.5vw,1.5rem);font-weight:700;margin-bottom:8px}
-.card-route{font-size:0.82rem;color:#999;margin-bottom:12px;line-height:1.5}
-.card-meta{display:flex;flex-wrap:wrap;gap:8px}
-.pill{background:rgba(255,255,255,0.06);border-radius:20px;padding:4px 12px;font-size:0.72rem;color:#aaa;white-space:nowrap}
-.pill-nyc{background:rgba(255,195,18,0.12);color:#ffc312}
-.links-row{display:flex;gap:10px;margin-top:14px}
-.link-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:background 0.2s}
-.link-btn.primary{background:rgba(255,255,255,0.08);color:#f0f0f0}
-.link-btn.primary:hover{background:rgba(255,255,255,0.14)}
-.link-btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#999}
-.link-btn.secondary:hover{background:rgba(255,255,255,0.04);color:#ccc}
-.footer{text-align:center;padding:20px 24px 40px;color:#444;font-size:0.75rem}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ AURORA / PARTICLES ═══ */
+  .aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .aurora-band {
+    position: absolute;
+    width: 200%;
+    height: 60%;
+    top: -20%;
+    left: -50%;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.04;
+    animation: auroraShift 20s ease-in-out infinite alternate;
+  }
+  .aurora-band:nth-child(1) { background: var(--bergen); animation-delay: 0s; }
+  .aurora-band:nth-child(2) { background: var(--oslo); top: 30%; animation-delay: -7s; animation-duration: 25s; }
+  .aurora-band:nth-child(3) { background: var(--hel); top: 60%; animation-delay: -14s; animation-duration: 30s; }
+
+  @keyframes auroraShift {
+    0% { transform: translateX(-10%) rotate(-2deg); }
+    100% { transform: translateX(10%) rotate(2deg); }
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.12) saturate(0.6);
+    transform: scale(1.05);
+    animation: heroZoom 40s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.18); }
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(8,9,10,0.3) 0%,
+      transparent 30%,
+      transparent 60%,
+      var(--bg) 100%
+    );
+  }
+
+  /* Animated scan line for cinematic effect */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(244,162,97,0.3), transparent);
+    animation: scanLine 8s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes scanLine {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 960px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 1.6rem;
+    animation: fadeIn 1s ease 0.2s forwards;
+    opacity: 0;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, #fff 0%, #bbb 40%, #fff 60%, #ddd 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite, fadeIn 1.2s ease 0.4s forwards;
+    opacity: 0;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero .tagline {
+    font-size: clamp(0.85rem, 2vw, 1.15rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Route pills with glow */
+  .route-visual {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 0 3rem;
+  }
+
+  .route-city {
+    padding: 0.65rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: pillPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+    transform: scale(0.5);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    cursor: default;
+  }
+
+  .route-city::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 52px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .route-city::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    border-radius: 50px;
+  }
+
+  .route-city.oslo { background: var(--oslo); box-shadow: 0 4px 25px rgba(45,106,79,0.35); animation-delay: 0.8s; }
+  .route-city.bergen { background: var(--bergen); box-shadow: 0 4px 25px rgba(27,79,114,0.35); animation-delay: 1.1s; }
+  .route-city.sthlm { background: var(--sthlm-dark); box-shadow: 0 4px 25px rgba(244,162,97,0.3); animation-delay: 1.4s; }
+  .route-city.hel { background: var(--hel); box-shadow: 0 4px 25px rgba(69,123,157,0.35); animation-delay: 1.7s; }
+
+  .route-nights {
+    display: block;
+    font-size: 0.58rem;
+    font-weight: 500;
+    opacity: 0.75;
+    margin-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  @keyframes pillPop {
+    from { opacity: 0; transform: scale(0.5) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .route-arrow {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.15);
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+  }
+  .route-arrow:nth-of-type(1) { animation-delay: 0.95s; }
+  .route-arrow:nth-of-type(2) { animation-delay: 1.25s; }
+  .route-arrow:nth-of-type(3) { animation-delay: 1.55s; }
+
+  .hero-dates {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.35rem;
+    animation: fadeIn 1s ease 2s forwards;
+    opacity: 0;
+  }
+
+  .hero-flights {
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+    animation: fadeIn 1s ease 2.2s forwards;
+    opacity: 0;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 1s ease 3s forwards;
+    opacity: 0;
+  }
+
+  .scroll-cue span {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .scroll-cue .arrow {
+    width: 14px;
+    height: 14px;
+    border-right: 1.5px solid rgba(255,255,255,0.2);
+    border-bottom: 1.5px solid rgba(255,255,255,0.2);
+    transform: rotate(45deg);
+    animation: scrollBounce 2.5s infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.15; }
+    50% { transform: rotate(45deg) translate(5px,5px); opacity: 0.5; }
+  }
+
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem 6rem; position: relative; z-index: 1; }
+
+  /* ═══ STATS BAR — Animated counters ═══ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 4rem 0 5rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.8rem 0.8rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color, var(--oslo)), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .stat-card:nth-child(1) .stat-num { color: var(--oslo); }
+  .stat-card:nth-child(1) { --accent-color: var(--oslo); }
+  .stat-card:nth-child(2) .stat-num { color: var(--bergen); }
+  .stat-card:nth-child(2) { --accent-color: var(--bergen); }
+  .stat-card:nth-child(3) .stat-num { color: var(--sthlm); }
+  .stat-card:nth-child(3) { --accent-color: var(--sthlm); }
+  .stat-card:nth-child(4) .stat-num { color: var(--hel); }
+  .stat-card:nth-child(4) { --accent-color: var(--hel); }
+  .stat-card:nth-child(5) .stat-num { color: var(--oslo); }
+  .stat-card:nth-child(5) { --accent-color: var(--oslo); }
+  .stat-card:nth-child(6) .stat-num { color: var(--gold); }
+  .stat-card:nth-child(6) { --accent-color: var(--gold); }
+
+  .stat-label {
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* ═══ SECTION HEADER ═══ */
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-header p {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+  }
+
+  /* ═══ MIDNIGHT SUN BANNER ═══ */
+  .highlight-banner {
+    background: linear-gradient(135deg, rgba(27,79,114,0.25) 0%, rgba(45,106,79,0.15) 50%, rgba(244,162,97,0.1) 100%);
+    border: 1px solid rgba(27,79,114,0.3);
+    border-radius: 24px;
+    padding: 3rem;
+    text-align: center;
+    margin: 2rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .highlight-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(244,162,97,0.06) 0%, transparent 50%);
+    animation: bannerGlow 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes bannerGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(5%, 5%); }
+  }
+
+  .highlight-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    position: relative;
+  }
+
+  .highlight-banner p {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .sun-times {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .sun-time { text-align: center; }
+
+  .sun-time .city-name {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.2rem;
+  }
+
+  .sun-time .times {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--sthlm);
+  }
+
+  /* ═══ PAGE CARDS GRID ═══ */
+  .pages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .page-card {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.4), 0 0 40px rgba(244,162,97,0.05);
+  }
+
+  .page-card-img {
+    height: 210px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-card-img-inner {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 10s ease;
+  }
+
+  .page-card:hover .page-card-img-inner {
+    transform: scale(1.08);
+  }
+
+  .page-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.05) 100%);
+    z-index: 1;
+  }
+
+  .page-card-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.2rem;
+    z-index: 2;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    transition: transform 0.4s;
+  }
+
+  .page-card:hover .page-card-icon { transform: scale(1.15) rotate(-5deg); }
+
+  .page-card-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 1.3rem;
+    z-index: 2;
+  }
+
+  .page-card-label h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .page-card-label .subtitle {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .page-card-body {
+    padding: 1.5rem 1.5rem 1.7rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-card-body p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .page-card-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  .page-tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .page-tag-oslo { background: rgba(45,106,79,0.18); color: #6abf8e; }
+  .page-tag-bergen { background: rgba(27,79,114,0.18); color: #5590b8; }
+  .page-tag-sthlm { background: rgba(244,162,97,0.18); color: #F4A261; }
+  .page-tag-hel { background: rgba(69,123,157,0.18); color: #7aafc4; }
+  .page-tag-all { background: rgba(255,195,18,0.12); color: var(--gold); }
+
+  .page-card-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 1rem;
+    color: var(--sthlm);
+    transition: gap 0.3s, letter-spacing 0.3s;
+  }
+
+  .page-card:hover .page-card-cta { gap: 0.8rem; letter-spacing: 0.08em; }
+
+  /* ═══ HOTELS STRIP ═══ */
+  .hotels-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .hotel-mini {
+    text-align: center;
+    padding: 1.4rem 0.7rem;
+    background: var(--card-bg);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hotel-mini:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+
+  .hotel-mini .emoji { font-size: 1.8rem; margin-bottom: 0.6rem; }
+
+  .hotel-mini h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .hotel-mini .hotel-meta {
+    font-size: 0.63rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ═══ CLOSING QUOTE ═══ */
+  .closing-quote {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .closing-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+    position: relative;
+    padding: 0 2rem;
+  }
+
+  .closing-quote blockquote::before {
+    content: '"';
+    font-size: 5rem;
+    color: var(--sthlm);
+    opacity: 0.3;
+    position: absolute;
+    top: -1.5rem;
+    left: -0.5rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .closing-quote .attribution {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .site-footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-footer .footer-route {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .site-footer a {
+    color: var(--sthlm);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .site-footer a:hover { color: #fff; }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 900px) {
+    .hotels-strip { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .pages-grid { grid-template-columns: 1fr; }
+    .hotels-strip { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .route-visual { gap: 0.3rem; }
+    .route-city { padding: 0.45rem 0.9rem; font-size: 0.72rem; }
+    .sun-times { flex-direction: column; gap: 0.8rem; }
+    .highlight-banner { padding: 2rem 1.5rem; }
+    .closing-quote blockquote { font-size: 1.2rem; }
+    .hero h1 { font-size: clamp(3rem, 12vw, 6rem); }
+  }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <h1>Summer 2026</h1>
-  <p class="sub">Five trips we're considering. Each one is a 2-week itinerary departing JFK June 26. Tap any trip to see the full day-by-day plan with restaurants, hotels, and experiences.</p>
-  <p class="date">All itineraries designed for two. NYC-based, food-first, luxury-but-unique.</p>
+<!-- ═══ AURORA BACKGROUND ═══ -->
+<div class="aurora">
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
 </div>
 
-<div class="grid">
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Summer 2026 &nbsp;·&nbsp; The Trip</p>
+    <h1>Nordic Arc</h1>
+    <p class="tagline">Norway &nbsp;·&nbsp; Sweden &nbsp;·&nbsp; Finland</p>
 
-  <!-- Trip 1 -->
-  <div class="card" style="cursor:default">
-    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#2A9D8F,#D4A017)"></div>
-    <div class="card-body">
-      <div class="card-num">Trip 1 — 13 Nights</div>
-      <div class="card-title">Hong Kong + Taipei + Singapore</div>
-      <div class="card-route">HK (5n) &rarr; Taipei (5n) &rarr; Singapore (3n). Rosewood, Tai O Heritage Hotel, Villa 32 hot springs, Mandai Treehouse. Nonstop flights both ways.</div>
-      <div class="card-meta">
-        <span class="pill">6 Hotels</span>
-        <span class="pill">3 Cities</span>
-        <span class="pill pill-nyc">0 NYC Repeats</span>
-        <span class="pill">HKSAR Fireworks Jun 30</span>
+    <div class="route-visual">
+      <span class="route-city oslo">Oslo<span class="route-nights">1 night</span></span>
+      <span class="route-arrow">→</span>
+      <span class="route-city bergen">Bergen & Fjords<span class="route-nights">3 nights</span></span>
+      <span class="route-arrow">→</span>
+      <span class="route-city sthlm">Stockholm<span class="route-nights">3 nights</span></span>
+      <span class="route-arrow">→</span>
+      <span class="route-city hel">Helsinki<span class="route-nights">2 nights</span></span>
+    </div>
+
+    <p class="hero-dates">June 27 – July 8, 2026 &nbsp;·&nbsp; 12 Nights &nbsp;·&nbsp; 3 Countries</p>
+    <p class="hero-flights">SAS nonstop JFK→Oslo &nbsp;·&nbsp; Bergen Railway &nbsp;·&nbsp; Tallink Silja overnight ferry &nbsp;·&nbsp; Finnair nonstop HEL→JFK</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Explore</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ═══ STATS ═══ -->
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Nights</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Countries</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Unique Stays</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Michelin Stars</div></div>
+    <div class="stat-card"><div class="stat-num">20h</div><div class="stat-label">Daylight / Day</div></div>
+    <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">NYC Repeats</div></div>
+  </div>
+
+  <!-- ═══ MIDNIGHT SUN BANNER ═══ -->
+  <div class="highlight-banner">
+    <h3>The Midnight Sun Effect</h3>
+    <p>You're traveling during the longest days of the Nordic year. The sun sets after 11 PM and rises before 4 AM. There is no true darkness. Hike at midnight, eat dinner outside at 10 PM, watch golden light paint fjord walls at 2 AM. This is not a gimmick — it is a completely different relationship with time.</p>
+    <div class="sun-times">
+      <div class="sun-time">
+        <div class="city-name">Bergen (60.4°N)</div>
+        <div class="times">4:00 AM – 11:30 PM</div>
       </div>
-      <div class="links-row">
-        <a href="asia-hk-taipei-singapore/index.html" class="link-btn primary">View Itinerary</a>
-        <a href="asia-hk-taipei-singapore/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      <div class="sun-time">
+        <div class="city-name">Stockholm (59.3°N)</div>
+        <div class="times">3:30 AM – 10:00 PM</div>
+      </div>
+      <div class="sun-time">
+        <div class="city-name">Helsinki (60.2°N)</div>
+        <div class="times">3:50 AM – 10:50 PM</div>
       </div>
     </div>
   </div>
 
-  <!-- Trip 2 -->
-  <div class="card" style="cursor:default">
-    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#3D8B37,#8B5CF6)"></div>
-    <div class="card-body">
-      <div class="card-num">Trip 2 — 13 Nights</div>
-      <div class="card-title">Hong Kong + Taiwan Nature</div>
-      <div class="card-route">HK (5n) &rarr; Taipei (2n) &rarr; Hualien (2n) &rarr; Sun Moon Lake (2n) &rarr; Alishan (1n) &rarr; Beitou (1n). Whale watching, cloud sea sunrise, East Rift Valley cycling, Villa 32 finale.</div>
-      <div class="card-meta">
-        <span class="pill">7 Hotels</span>
-        <span class="pill">5 Stops</span>
-        <span class="pill pill-nyc">43 NYC Badges</span>
-        <span class="pill">Peak Whale Season</span>
+  <!-- ═══ EXPLORE THE TRIP ═══ -->
+  <div class="section-header">
+    <h2>Explore the Trip</h2>
+    <p>Seven guides, one arc — tap into any section</p>
+  </div>
+
+  <div class="pages-grid">
+
+    <a href="itinerary/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=800&q=80');"></div>
+        <span class="page-card-icon">🗓</span>
+        <div class="page-card-label">
+          <h3>Day-by-Day Itinerary</h3>
+          <div class="subtitle">12 days, every hour planned</div>
+        </div>
       </div>
-      <div class="links-row">
-        <a href="asia-hk-taiwan-nature/index.html" class="link-btn primary">View Itinerary</a>
-        <a href="asia-hk-taiwan-nature/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      <div class="page-card-body">
+        <p>The full route: Bergen Railway across mountain plateaus, UNESCO fjords, three Michelin-starred cities, overnight Baltic ferry, Finnish sauna finale. Named breakfast every single day.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-oslo">Oslo</span>
+          <span class="page-tag page-tag-bergen">Bergen</span>
+          <span class="page-tag page-tag-sthlm">Stockholm</span>
+          <span class="page-tag page-tag-hel">Helsinki</span>
+        </div>
+        <div class="page-card-cta">Explore itinerary <span>→</span></div>
       </div>
+    </a>
+
+    <a href="restaurants/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80');"></div>
+        <span class="page-card-icon">🍽</span>
+        <div class="page-card-label">
+          <h3>Nordic Dining Guide</h3>
+          <div class="subtitle">Michelin · Street food · Fika · Markets</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>Bergen's three new Michelin stars, Ekstedt's birch-fire kitchen, Swedish fika at century-old cafés, Finnish market halls, and a 12-day breakfast route. Every meal planned, every reservation prioritized.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-all">40+ restaurants</span>
+          <span class="page-tag page-tag-bergen">7 Michelin stars total</span>
+        </div>
+        <div class="page-card-cta">Explore restaurants <span>→</span></div>
+      </div>
+    </a>
+
+    <a href="hotels/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1624237578438-b23c91989182?w=800&q=80');"></div>
+        <span class="page-card-icon">🏨</span>
+        <div class="page-card-label">
+          <h3>Where We're Staying</h3>
+          <div class="subtitle">5 stays · No cookie-cutter chains</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>An art museum hotel, a heritage bank with Grieg family roots, a 22-room residential townhouse, an overnight Baltic ferry, and a Design Hotels property with Ai Weiwei in the lobby. Every stay is the trip.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-sthlm">Ett Hem: 22 rooms</span>
+          <span class="page-tag page-tag-bergen">Opus XVI: Michelin Key</span>
+        </div>
+        <div class="page-card-cta">Explore hotels <span>→</span></div>
+      </div>
+    </a>
+
+    <a href="experiences/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80');"></div>
+        <span class="page-card-icon">✨</span>
+        <div class="page-card-label">
+          <h3>Bookable Experiences</h3>
+          <div class="subtitle">Top 5 ranked · Booking links</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>Ranked by "could you do this in New York?" factor. Fjord kayaking at dawn, archipelago island hopping, fire-cooked Michelin dinner, midnight fortress walks, and the 2,000-year sauna ritual.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-all">All impossible in NYC</span>
+        </div>
+        <div class="page-card-cta">Explore experiences <span>→</span></div>
+      </div>
+    </a>
+
+    <a href="fjords/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80');"></div>
+        <span class="page-card-icon">🏔</span>
+        <div class="page-card-label">
+          <h3>Norwegian Fjords</h3>
+          <div class="subtitle">Nærøyfjord · Hardangerfjord · Flåmsbana</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>The fjord landscape decoded: UNESCO Nærøyfjord (250m at its narrowest), the world's steepest railway with a mythological dancer, Hardangerfjord kayaking at dawn, and photography in 20 hours of light.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-bergen">UNESCO World Heritage</span>
+          <span class="page-tag page-tag-oslo">Flåmsbana Railway</span>
+        </div>
+        <div class="page-card-cta">Explore fjords <span>→</span></div>
+      </div>
+    </a>
+
+    <a href="sauna/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80');"></div>
+        <span class="page-card-icon">🧖</span>
+        <div class="page-card-label">
+          <h3>Finnish Sauna Culture</h3>
+          <div class="subtitle">2,000-year ritual · UNESCO heritage</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>The single most culturally irreplaceable experience on this trip. 3.3 million saunas for 5.5 million people. The ritual, the etiquette, smoke sauna vs. regular, and Helsinki's five best saunas from 1928 originals to modern masterpieces.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-hel">Löyly · Kotiharjun · Allas</span>
+        </div>
+        <div class="page-card-cta">Explore sauna guide <span>→</span></div>
+      </div>
+    </a>
+
+    <a href="practical/" class="page-card">
+      <div class="page-card-img">
+        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80');"></div>
+        <span class="page-card-icon">🧳</span>
+        <div class="page-card-label">
+          <h3>Practical Guide</h3>
+          <div class="subtitle">Packing · Currency · Transport · Booking</div>
+        </div>
+      </div>
+      <div class="page-card-body">
+        <p>Three currencies, Bergen Railway booking, Tallink Silja cabin selection, packing for fjord weather and Michelin dinners, booking checklist with urgency levels, and the 20-hour daylight sleep mask situation.</p>
+        <div class="page-card-tags">
+          <span class="page-tag page-tag-all">NOK · SEK · EUR</span>
+        </div>
+        <div class="page-card-cta">Explore practical guide <span>→</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ═══ HOTELS STRIP ═══ -->
+  <div class="section-header">
+    <h2>Five Nights, Five Stories</h2>
+    <p>Every stay is the trip — not just a place to sleep</p>
+  </div>
+
+  <div class="hotels-strip">
+    <div class="hotel-mini">
+      <div class="emoji">🎨</div>
+      <h4 style="color: #6abf8e;">The Thief</h4>
+      <div class="hotel-meta">Oslo · Art hotel<br/>Astrup Fearnley Museum</div>
+    </div>
+    <div class="hotel-mini">
+      <div class="emoji">🏛</div>
+      <h4 style="color: #5590b8;">Opus XVI</h4>
+      <div class="hotel-meta">Bergen · 65 rooms<br/>1876 heritage bank</div>
+    </div>
+    <div class="hotel-mini">
+      <div class="emoji">🏡</div>
+      <h4 style="color: var(--sthlm);">Ett Hem</h4>
+      <div class="hotel-meta">Stockholm · 22 rooms<br/>1912 townhouse</div>
+    </div>
+    <div class="hotel-mini">
+      <div class="emoji">⛴</div>
+      <h4 style="color: #9999cc;">Tallink Silja</h4>
+      <div class="hotel-meta">Baltic Sea · 1 night<br/>Commodore Class</div>
+    </div>
+    <div class="hotel-mini">
+      <div class="emoji">🇫🇮</div>
+      <h4 style="color: #7aafc4;">Hotel St. George</h4>
+      <div class="hotel-meta">Helsinki · Design Hotels<br/>Ai Weiwei in the lobby</div>
     </div>
   </div>
 
-  <!-- Trip 3 -->
-  <div class="card" style="cursor:default">
-    <div class="card-color" style="background:linear-gradient(180deg,#C0B283,#3D8B37,#2A7DC9,#E63946,#E9C46A)"></div>
-    <div class="card-body">
-      <div class="card-num">Trip 3 — 12 Nights &middot; Road Trip</div>
-      <div class="card-title">Slovenia</div>
-      <div class="card-route">Venice (1n) &rarr; Goriska Brda wine (1n) &rarr; Soca Valley (2n) &rarr; Bohinj (1n) &rarr; Bled (2n) &rarr; Ljubljana (2n) &rarr; Piran (2n). Hisa Franko, Vila Bled (Tito's residence), emerald Soca River.</div>
-      <div class="card-meta">
-        <span class="pill">7 Hotels</span>
-        <span class="pill">7 Stops</span>
-        <span class="pill pill-nyc">21 NYC Badges</span>
-        <span class="pill">3 Michelin Stars (Hisa Franko)</span>
-      </div>
-      <div class="links-row">
-        <a href="slovenia/index.html" class="link-btn primary">View Itinerary</a>
-        <a href="slovenia/bookable.html" class="link-btn secondary">Bookable Experiences</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Trip 4 -->
-  <div class="card" style="cursor:default">
-    <div class="card-color" style="background:linear-gradient(180deg,#2D6A4F,#1B4F72,#F4A261,#457B9D)"></div>
-    <div class="card-body">
-      <div class="card-num">Trip 4 — 12 Nights &middot; 3 Countries</div>
-      <div class="card-title">Scandinavia</div>
-      <div class="card-route">Oslo (1n) &rarr; Bergen Railway &rarr; Bergen + Fjords (3n) &rarr; Stockholm (3n) &rarr; Overnight Ferry &rarr; Helsinki (2n). Iris at The Salmon Eye, midnight sun, Finnish smoke sauna.</div>
-      <div class="card-meta">
-        <span class="pill">5 Hotels + Ferry</span>
-        <span class="pill">Norway &middot; Sweden &middot; Finland</span>
-        <span class="pill pill-nyc">10 NYC Badges</span>
-        <span class="pill">11:30 PM Sunset</span>
-      </div>
-      <div class="links-row">
-        <a href="scandinavia/index.html" class="link-btn primary">View Itinerary</a>
-        <a href="scandinavia/bookable.html" class="link-btn secondary">Bookable Experiences</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Trip 5 -->
-  <div class="card" style="cursor:default">
-    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#2D6A4F,#F4A261,#8B5CF6)"></div>
-    <div class="card-body">
-      <div class="card-num">Trip 5 — 12 Nights</div>
-      <div class="card-title">Thailand</div>
-      <div class="card-route">Bangkok (4n) &rarr; Khao Sok floating bungalow (2n) &rarr; Chiang Mai (2n) &rarr; Golden Triangle (2n). Yaowarat street food, world's oldest rainforest, khao soi, Four Seasons Tented Camp by longboat.</div>
-      <div class="card-meta">
-        <span class="pill">5 Hotels</span>
-        <span class="pill">4 Regions</span>
-        <span class="pill pill-nyc">15+ NYC Badges</span>
-        <span class="pill">Peak Mangosteen Season</span>
-      </div>
-      <div class="links-row">
-        <a href="thailand/index.html" class="link-btn primary">View Itinerary</a>
-        <a href="thailand/bookable.html" class="link-btn secondary">Bookable Experiences</a>
-      </div>
-    </div>
+  <!-- ═══ CLOSING QUOTE ═══ -->
+  <div class="closing-quote">
+    <blockquote>Every day has at least one experience that is categorically impossible to replicate in New York City. That was the rule. We didn't break it once.</blockquote>
+    <div class="attribution">— The brief for this trip</div>
   </div>
 
 </div>
 
-<div class="footer">Built with Claude &middot; March 2026</div>
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-route">Oslo → Bergen → Fjords → Stockholm → Helsinki</div>
+  <p>June 27 – July 8, 2026 &nbsp;·&nbsp; 12 Nights &nbsp;·&nbsp; 3 Countries</p>
+  <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.2);">SAS nonstop JFK→Oslo &nbsp;·&nbsp; Bergen Railway &nbsp;·&nbsp; Tallink Silja overnight ferry &nbsp;·&nbsp; Finnair nonstop HEL→JFK</p>
+</footer>
 
 </body>
 </html>

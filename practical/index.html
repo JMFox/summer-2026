@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practical Guide — Nordic Arc | Summer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ NAV ═══ */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,9,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 3rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.12) saturate(0.6);
+    transform: scale(1.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* ═══ SECTION ═══ */
+  .section {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-title .icon { font-size: 1.4rem; }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ═══ CARDS ═══ */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .info-card:hover { transform: translateY(-2px); }
+
+  .info-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .info-card p, .info-card ul {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card ul li {
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .info-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+
+  /* ═══ CURRENCY TABLE ═══ */
+  .currency-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .currency-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .currency-flag { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  .currency-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .currency-card .rate {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .currency-card .tip-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+    padding-top: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ═══ BOOKING TABLE ═══ */
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 1rem;
+  }
+
+  .booking-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .booking-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .booking-table td:first-child { color: var(--text); font-weight: 600; }
+  .booking-table tr:last-child td { border-bottom: none; }
+  .booking-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .urgency-now { color: #e07070 !important; font-weight: 700 !important; }
+  .urgency-soon { color: #ffc312 !important; font-weight: 600 !important; }
+  .urgency-later { color: #6abf8e !important; }
+
+  /* ═══ WEATHER STRIP ═══ */
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .weather-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .weather-card .city {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .weather-card .temp {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .weather-card .details {
+    font-size: 0.76rem;
+    color: var(--text-mid);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+
+  /* ═══ TRANSPORT TIMELINE ═══ */
+  .transport-timeline {
+    margin-top: 1rem;
+  }
+
+  .transport-step {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(255,255,255,0.06);
+  }
+
+  .transport-step .step-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+  }
+
+  .transport-step .step-content h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .transport-step .step-content p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .transport-step .step-content .step-meta {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ═══ PACKING LIST ═══ */
+  .packing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .packing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .packing-card h3 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .packing-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .packing-card ul li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 0.25rem 0;
+    padding-left: 1.3rem;
+    position: relative;
+  }
+
+  .packing-card ul li::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+  }
+
+  /* ═══ CALLOUT ═══ */
+  .callout {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .callout p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ═══ LANGUAGE ═══ */
+  .phrase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .phrase-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .phrase-card .lang-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .phrase-card .phrase {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .phrase-card .phrase strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+
+  .site-footer a {
+    color: var(--sthlm);
+    text-decoration: none;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .currency-grid { grid-template-columns: 1fr; }
+    .phrase-grid { grid-template-columns: 1fr; }
+    .weather-grid { grid-template-columns: 1fr 1fr; }
+    .booking-table { font-size: 0.75rem; }
+    .booking-table th, .booking-table td { padding: 0.6rem 0.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .weather-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/" class="active">Practical</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Summer 2026</p>
+    <h1>Practical Guide</h1>
+    <p class="tagline">Everything you need to know before you go</p>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ═══ WEATHER ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🌤</span> Weather in Late June</h2>
+
+    <div class="weather-grid">
+      <div class="weather-card">
+        <div class="city" style="color: #6abf8e;">Oslo</div>
+        <div class="temp" style="color: var(--oslo);">15–23°C</div>
+        <div class="details">59–73°F · Mild, pleasant<br/>Sunrise 4:00 AM · Sunset 10:43 PM<br/>Occasional rain</div>
+      </div>
+      <div class="weather-card">
+        <div class="city" style="color: #5590b8;">Bergen</div>
+        <div class="temp" style="color: var(--bergen);">12–18°C</div>
+        <div class="details">54–64°F · Cooler, rainier<br/>Sunrise 4:00 AM · Sunset 11:30 PM<br/>231 rain days/year — pack layers</div>
+      </div>
+      <div class="weather-card">
+        <div class="city" style="color: var(--sthlm);">Stockholm</div>
+        <div class="temp" style="color: var(--sthlm-dark);">15–25°C</div>
+        <div class="details">59–77°F · Warmest city<br/>Sunrise 3:30 AM · Sunset 10:00 PM<br/>Long sunny days, best season</div>
+      </div>
+      <div class="weather-card">
+        <div class="city" style="color: #7aafc4;">Helsinki</div>
+        <div class="temp" style="color: var(--hel);">14–22°C</div>
+        <div class="details">57–72°F · Baltic breeze<br/>Sunrise 3:50 AM · Sunset 10:50 PM<br/>Similar to Stockholm, slightly cooler</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>The Daylight Situation</h4>
+      <p>In late June, all four cities get 18–20 hours of direct sunlight. There is no true darkness — just a brief twilight between sunset and sunrise. You'll want an eye mask for sleeping. The upside: you can hike at midnight, eat dinner on a terrace at 10 PM, and the golden hour light lasts for hours. Your body clock will shift — embrace it.</p>
+    </div>
+  </div>
+
+  <!-- ═══ CURRENCY ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">💳</span> Currency & Tipping</h2>
+
+    <div class="currency-grid">
+      <div class="currency-card">
+        <div class="currency-flag">🇳🇴</div>
+        <h3>Norway</h3>
+        <div class="rate">Norwegian Krone (NOK)<br/>~10 NOK = $1 USD</div>
+        <div class="tip-note">Tipping not expected. Round up at restaurants if service is exceptional. Card payment universal — many places don't accept cash.</div>
+      </div>
+      <div class="currency-card">
+        <div class="currency-flag">🇸🇪</div>
+        <h3>Sweden</h3>
+        <div class="rate">Swedish Krona (SEK)<br/>~10.5 SEK = $1 USD</div>
+        <div class="tip-note">Tipping not expected. 5–10% for exceptional service. Sweden is essentially cashless — some places literally cannot accept cash.</div>
+      </div>
+      <div class="currency-card">
+        <div class="currency-flag">🇫🇮</div>
+        <h3>Finland</h3>
+        <div class="rate">Euro (EUR)<br/>~€0.92 = $1 USD</div>
+        <div class="tip-note">Tipping not expected. Card payment universal. The Euro makes pricing easier to estimate for Americans.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Key Takeaway</h4>
+      <p>Scandinavia is essentially cashless. Your US credit card with no foreign transaction fees will work everywhere. Apple Pay and contactless are universal. You do NOT need to exchange cash at the airport. The only place you might need a small amount of cash is the Kotiharjun Sauna in Helsinki (€14, some reports say cash preferred).</p>
+    </div>
+  </div>
+
+  <!-- ═══ TRANSPORT ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🚂</span> Getting Around</h2>
+
+    <div class="transport-timeline">
+      <div class="transport-step">
+        <div class="step-icon">✈️</div>
+        <div class="step-content">
+          <h4>JFK → Oslo Gardermoen (OSL)</h4>
+          <p>SAS nonstop, 7h 35m. Evening departure Jun 26, arrive morning Jun 27. Airport Express train (Flytoget) to Oslo Central Station: 19 minutes, every 10 min, ~$20.</p>
+          <div class="step-meta">Book at: flysas.com · Flytoget.no for airport train</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">🚂</div>
+        <div class="step-content">
+          <h4>Oslo → Bergen: Bergen Railway (Bergensbanen)</h4>
+          <p>World's most scenic train, 6.5 hours. Departs Oslo S 8:25 AM, arrives Bergen ~2:30 PM. Crosses Hardangervidda plateau at 1,222m. Book window seat on right side facing west.</p>
+          <div class="step-meta">Book at: vy.no · ~$40–80 advance booking · Book 4–6 weeks ahead for summer window seats</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">🚗</div>
+        <div class="step-content">
+          <h4>Bergen + Fjord Country: Rental Car (1 day)</h4>
+          <p>Rent a car for the Hardangerfjord day trip (Day 5). Bergen → Hardangerfjord → Rosendal/Salmon Eye → Bergen. ~80 km each way. Return car before flying to Stockholm.</p>
+          <div class="step-meta">Avis, Hertz, Sixt all at Bergen airport · Tolls automated via rental company</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">✈️</div>
+        <div class="step-content">
+          <h4>Bergen (BGO) → Stockholm Arlanda (ARN)</h4>
+          <p>SAS or Norwegian, ~1.5 hr flight. Multiple daily morning departures. Arlanda Express train into Stockholm city center: 18 min, ~$30.</p>
+          <div class="step-meta">Book at: flysas.com or norwegian.com · Arlanda Express: arlandaexpress.com</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">🚶</div>
+        <div class="step-content">
+          <h4>Stockholm: On Foot + Metro + Ferry</h4>
+          <p>No car needed. Gamla Stan, Östermalm, Södermalm all walkable. Metro for longer distances. Stromma ferries to archipelago islands. SL card covers metro, bus, tram, inner ferry.</p>
+          <div class="step-meta">SL Access card: sl.se · Archipelago ferries: stromma.com or waxholmsbolaget.se</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">⛴️</div>
+        <div class="step-content">
+          <h4>Stockholm → Helsinki: Overnight Ferry (Tallink Silja)</h4>
+          <p>Tallink Silja departs Värtahamnen terminal ~16:30–16:45, arrives Helsinki Olympia Terminal ~09:10–10:30. 17 hours through Stockholm & Finnish archipelagos. Book Commodore Class cabin with balcony (Deck 11, Marimekko-themed, lounge access). Recommended over Viking Line for daily departures and more elegant atmosphere.</p>
+          <div class="step-meta">Book at: tallinksilja.com · Commodore cabins sell out for summer — book 2–3 months ahead</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">🚶</div>
+        <div class="step-content">
+          <h4>Helsinki: On Foot + Tram + Ferry</h4>
+          <p>Very compact, walkable city. Tram for longer distances. HSL ferry to Suomenlinna (15 min from Market Square, every 20 min). Helsinki metro for southern districts.</p>
+          <div class="step-meta">HSL day ticket: hsl.fi · Covers tram, metro, bus, Suomenlinna ferry</div>
+        </div>
+      </div>
+      <div class="transport-step">
+        <div class="step-icon">✈️</div>
+        <div class="step-content">
+          <h4>Helsinki (HEL) → JFK: Finnair Nonstop</h4>
+          <p>Finnair nonstop, ~8h 30m. Afternoon departure Jul 8, arrive JFK same day. Helsinki-Vantaa airport: train from central station, 30 min.</p>
+          <div class="step-meta">Book at: finnair.com · Excellent business class if budget allows</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BOOKING CHECKLIST ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">📋</span> Booking Checklist</h2>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1rem;">Urgency levels based on summer 2026 demand. "BOOK NOW" means capacity is genuinely limited.</p>
+
+    <table class="booking-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>When to Book</th>
+          <th>Urgency</th>
+          <th>Where</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Flights (SAS + Finnair)</td>
+          <td>3–4 months ahead</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>flysas.com + finnair.com</td>
+        </tr>
+        <tr>
+          <td>Ett Hem, Stockholm (12 rooms)</td>
+          <td>Immediately</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>etthem.se</td>
+        </tr>
+        <tr>
+          <td>Iris at The Salmon Eye</td>
+          <td>Monitor for relaunch</td>
+          <td style="color: #e07070 !important; font-weight: 600 !important;">CLOSED JAN 2026</td>
+          <td>Concept being redeveloped. Monitor thesalmoneye.com</td>
+        </tr>
+        <tr>
+          <td>Opus XVI, Bergen (16 rooms)</td>
+          <td>2–3 months ahead</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>opusxvi.no</td>
+        </tr>
+        <tr>
+          <td>Tallink Silja Commodore Suite</td>
+          <td>2–3 months ahead</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>tallinksilja.com (recommended over Viking Line)</td>
+        </tr>
+        <tr>
+          <td>Ekstedt, Stockholm (1 Michelin star)</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>ekstedt.nu</td>
+        </tr>
+        <tr>
+          <td>Lysverket, Bergen (1 Michelin star)</td>
+          <td>3–4 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>lysverket.no</td>
+        </tr>
+        <tr>
+          <td>Bergen Railway window seat</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>vy.no</td>
+        </tr>
+        <tr>
+          <td>Flåmsbana Railway tickets</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>vy.no</td>
+        </tr>
+        <tr>
+          <td>Norway in a Nutshell package</td>
+          <td>3–4 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>norwaynutshell.com</td>
+        </tr>
+        <tr>
+          <td>Cornelius island restaurant, Bergen</td>
+          <td>3–4 weeks ahead</td>
+          <td class="urgency-soon">SOON</td>
+          <td>cornelius.no</td>
+        </tr>
+        <tr>
+          <td>The Thief, Oslo</td>
+          <td>2–4 weeks ahead</td>
+          <td class="urgency-later">When Ready</td>
+          <td>thethief.com</td>
+        </tr>
+        <tr>
+          <td>Hotel St. George, Helsinki</td>
+          <td>2–4 weeks ahead</td>
+          <td class="urgency-later">When Ready</td>
+          <td>hotelstgeorge.fi (recommended over Klaus K)</td>
+        </tr>
+        <tr>
+          <td>Löyly sauna private session</td>
+          <td>2–3 weeks ahead</td>
+          <td class="urgency-later">When Ready</td>
+          <td>loyly.net</td>
+        </tr>
+        <tr>
+          <td>Archipelago kayak tour, Stockholm</td>
+          <td>2–4 weeks ahead</td>
+          <td class="urgency-later">When Ready</td>
+          <td>kayak-stockholm.se</td>
+        </tr>
+        <tr>
+          <td>Kotiharjun Sauna, Helsinki</td>
+          <td>Walk-in only</td>
+          <td class="urgency-later">Walk-In</td>
+          <td>kotiharjunsauna.fi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══ PACKING ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🧳</span> Packing List</h2>
+
+    <div class="packing-grid">
+      <div class="packing-card">
+        <h3>🏔 Fjord & Nature Days</h3>
+        <ul>
+          <li>Waterproof shell jacket (Bergen rain is real)</li>
+          <li>Merino wool mid-layer (12°C on fjord boats)</li>
+          <li>Comfortable hiking shoes/boots</li>
+          <li>Quick-dry pants (for kayaking days)</li>
+          <li>Daypack for fjord day trips</li>
+          <li>Sunglasses (20 hrs of light = bright)</li>
+          <li>Sunscreen SPF 50 (Nordic sun is deceptive)</li>
+          <li>Water bottle</li>
+        </ul>
+      </div>
+      <div class="packing-card">
+        <h3>🍽 Michelin & City Evenings</h3>
+        <ul>
+          <li>Smart casual outfit × 2 (Ekstedt, Lysverket)</li>
+          <li>Nice shoes/clean sneakers</li>
+          <li>Light blazer or jacket (evening dining)</li>
+          <li>No ties needed — Scandi smart casual is relaxed</li>
+          <li>Dark jeans work everywhere</li>
+        </ul>
+      </div>
+      <div class="packing-card">
+        <h3>🧖 Sauna Essentials</h3>
+        <ul>
+          <li>Swimsuit (for public saunas/Löyly)</li>
+          <li>Quick-dry towel (or rent at sauna)</li>
+          <li>Flip-flops/sandals</li>
+          <li>Note: Kotiharjun is traditional — optional nudity</li>
+        </ul>
+      </div>
+      <div class="packing-card">
+        <h3>😴 Sleep & Comfort</h3>
+        <ul>
+          <li>Sleep mask (CRITICAL — no darkness in June)</li>
+          <li>Ear plugs (ferry can be noisy)</li>
+          <li>Layers for sleeping (train/ferry temps vary)</li>
+          <li>Portable charger</li>
+          <li>EU plug adapter (Type C/F — same for all 3 countries)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Pack Light, Layer Smart</h4>
+      <p>Scandinavians dress in layers, not bulky coats. A waterproof shell + merino mid-layer + t-shirt covers everything from 12°C fjord boats to 25°C Stockholm terraces. The same outfit works for both city walking and nature days. One plug adapter works in all three countries (EU Type C/F).</p>
+    </div>
+  </div>
+
+  <!-- ═══ CONNECTIVITY ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">📱</span> Connectivity</h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>📶 Best Option: eSIM</h3>
+        <p>Get a European eSIM before departure. Airalo, Holafly, or Nomad all offer EU-wide data plans. Norway is not EU but most plans include it. 10GB for 2 weeks: ~$15–25. Activate before boarding at JFK. WiFi is excellent at all hotels and cafés.</p>
+      </div>
+      <div class="info-card">
+        <h3>🔄 Alternative: T-Mobile/AT&T</h3>
+        <p>T-Mobile Magenta includes international data (slower speeds). AT&T International Day Pass: $12/day per line. Fine for basic maps/messaging. For heavy use (uploading photos, video calls), eSIM is better and cheaper.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ LANGUAGE ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🗣</span> Language</h2>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1rem;">Everyone in Scandinavia speaks excellent English. You will never be stuck. But a few words in the local language are always appreciated.</p>
+
+    <div class="phrase-grid">
+      <div class="phrase-card">
+        <div class="lang-label" style="color: #6abf8e;">Norwegian</div>
+        <div class="phrase">
+          <strong>Takk</strong> — Thank you<br/>
+          <strong>Tusen takk</strong> — Thank you very much<br/>
+          <strong>Hei</strong> — Hello<br/>
+          <strong>Skål!</strong> — Cheers!<br/>
+          <strong>Unnskyld</strong> — Excuse me
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="lang-label" style="color: var(--sthlm);">Swedish</div>
+        <div class="phrase">
+          <strong>Tack</strong> — Thank you<br/>
+          <strong>Hej</strong> — Hello<br/>
+          <strong>Skål!</strong> — Cheers!<br/>
+          <strong>Fika</strong> — Coffee break (ritual)<br/>
+          <strong>Ursäkta</strong> — Excuse me
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="lang-label" style="color: #7aafc4;">Finnish</div>
+        <div class="phrase">
+          <strong>Kiitos</strong> — Thank you<br/>
+          <strong>Moi</strong> — Hello (casual)<br/>
+          <strong>Kippis!</strong> — Cheers!<br/>
+          <strong>Löyly</strong> — Steam (sauna ritual)<br/>
+          <strong>Anteeksi</strong> — Excuse me
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>Finnish Is Different</h4>
+      <p>Norwegian and Swedish are closely related — they can mostly understand each other. Finnish is a completely unrelated language (Finno-Ugric, related to Estonian and Hungarian). It looks and sounds like nothing else in Europe. Don't even try to read signs — just enjoy the strangeness. Everyone under 60 speaks fluent English.</p>
+    </div>
+  </div>
+
+  <!-- ═══ BORDER & ENTRY ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🛂</span> Entry & Border Crossings</h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🇪🇺 Schengen Area</h3>
+        <p>All three countries are in the Schengen Area. You clear immigration once (at Oslo) and then move freely between Norway, Sweden, and Finland with no additional border controls. The overnight ferry crosses an international border — you won't even notice.</p>
+      </div>
+      <div class="info-card">
+        <h3>📋 ETIAS (Check Before Travel)</h3>
+        <p>The EU's ETIAS travel authorization system may be active by summer 2026 for US citizens. Check etias.com or the EU official site 2–3 months before departure. If active, it's a simple online application (~€7, valid 3 years). This is NOT a visa — it's a pre-travel authorization similar to the US ESTA.</p>
+      </div>
+      <div class="info-card">
+        <h3>🇳🇴 Norway Note</h3>
+        <p>Norway is NOT in the EU but IS in the Schengen Area. This means: Schengen entry rules apply (good), but Norway uses its own currency (NOK, not EUR) and is not covered by EU roaming regulations (check your eSIM includes Norway). Road tolls use the AutoPASS system — rental companies handle this automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SEASONAL FOOD ═══ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🍓</span> What's In Season</h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Peak Season (Available Everywhere)</h3>
+        <ul>
+          <li><strong>Wild strawberries</strong> (smultron) — tiny, intense, served with cream</li>
+          <li><strong>New potatoes</strong> — Scandinavian obsession, at every table</li>
+          <li><strong>Wild Atlantic salmon</strong> — peak freshness, caught that morning</li>
+          <li><strong>King crab</strong> — Norwegian Arctic, available in Bergen</li>
+          <li><strong>Reindeer</strong> — stew, dried, tartare (all three countries)</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Early Season (Just Starting)</h3>
+        <ul>
+          <li><strong>Chanterelles</strong> — early July = season start in Finland/Sweden</li>
+          <li><strong>Crayfish</strong> — Swedish season opens July 5 (just in time)</li>
+          <li><strong>Cloudberries</strong> — late July start, may catch very early ones</li>
+          <li><strong>White asparagus</strong> — end of season, last chance</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Year-Round Nordic Specialties</h3>
+        <ul>
+          <li><strong>Brown cheese (brunost)</strong> — sweet, caramel, goat's whey (Norway)</li>
+          <li><strong>Karelian pies</strong> — rice-filled rye pastries + egg butter (Finland)</li>
+          <li><strong>Gravlax</strong> — cured salmon with dill (all countries)</li>
+          <li><strong>Kanelbullar</strong> — cinnamon buns, fika essential (Sweden)</li>
+          <li><strong>Rye bread</strong> — dark, dense, different in each country</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <p>Nordic Arc — Practical Guide</p>
+  <p style="margin-top: 0.4rem;"><a href="../">← Back to trip hub</a> &nbsp;·&nbsp; <a href="../itinerary/">Itinerary</a> &nbsp;·&nbsp; <a href="../restaurants/">Restaurants</a> &nbsp;·&nbsp; <a href="../hotels/">Hotels</a></p>
+  <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.2);">Oslo → Bergen → Stockholm → Helsinki &nbsp;·&nbsp; June 27 – July 8, 2026</p>
+</footer>
+
+</body>
+</html>

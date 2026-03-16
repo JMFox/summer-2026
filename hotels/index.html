@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotels — Nordic Arc | Summer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,9,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 3rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.15) saturate(0.5);
+    transform: scale(1.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .hero .route-strip {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero .route-stop {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero .route-arrow {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .hero .total-est {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  .hero .total-est strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* CONTENT */
+  .content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+  /* INTRO STRIP */
+  .overview-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 4rem;
+  }
+
+  .overview-chip {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .overview-chip:hover {
+    transform: translateY(-3px);
+  }
+
+  .overview-chip .chip-nights {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .overview-chip .chip-hotel {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+  }
+
+  .overview-chip .chip-city {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+  }
+
+  /* HOTEL FEATURE SECTION */
+  .hotel-feature {
+    margin-bottom: 5rem;
+    position: relative;
+  }
+
+  .hotel-hero {
+    position: relative;
+    height: 420px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .hotel-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65) saturate(0.85);
+    transition: transform 0.6s;
+  }
+
+  .hotel-hero:hover img {
+    transform: scale(1.03);
+  }
+
+  .hotel-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem;
+    background: linear-gradient(to top, rgba(8,9,10,0.95) 0%, rgba(8,9,10,0.6) 50%, transparent 100%);
+  }
+
+  .hotel-city-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 0.6rem;
+  }
+
+  .hotel-hero-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+
+  .hotel-hero-overlay .hotel-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  .hotel-stay-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(8,9,10,0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.7rem 1rem;
+    text-align: center;
+  }
+
+  .hotel-stay-badge .badge-nights {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .hotel-stay-badge .badge-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* HOTEL BODY */
+  .hotel-body {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+  }
+
+  .hotel-main {}
+
+  .hotel-sidebar {}
+
+  /* HOTEL DETAILS GRID */
+  .hotel-details-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hotel-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .hotel-detail-item .detail-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .hotel-detail-item .detail-value {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  /* NARRATIVE */
+  .hotel-narrative {
+    margin-bottom: 1.5rem;
+  }
+
+  .hotel-narrative h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+  }
+
+  .hotel-narrative p {
+    font-size: 0.86rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 0.8rem;
+  }
+
+  .hotel-narrative ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0.8rem;
+  }
+
+  .hotel-narrative ul li {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .hotel-narrative ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  .hotel-narrative ul li strong {
+    color: var(--text);
+  }
+
+  /* ROOM RECOMMENDATION CARD */
+  .room-rec {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .room-rec-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .room-rec-header .rec-badge {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(255,195,18,0.12);
+    color: var(--gold);
+  }
+
+  .room-rec h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .room-rec p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .room-rec .splurge {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .room-rec .splurge strong {
+    color: var(--gold);
+  }
+
+  /* SIDEBAR CARDS */
+  .sidebar-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card h4 {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.7rem;
+  }
+
+  .sidebar-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .sidebar-card .price-range {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-card .price-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+
+  .sidebar-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar-card ul li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .sidebar-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  .sidebar-card ul li strong {
+    color: var(--text);
+  }
+
+  .book-btn {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bg);
+    padding: 0.7rem 1.5rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: 0.8rem;
+  }
+
+  .book-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+  }
+
+  /* CORRECTION CALLOUT */
+  .correction {
+    background: rgba(224,112,112,0.06);
+    border: 1px solid rgba(224,112,112,0.15);
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .correction h5 {
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e07070;
+    margin-bottom: 0.3rem;
+  }
+
+  .correction p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .callout p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* FERRY SPECIAL */
+  .ferry-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ferry-feat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .ferry-feat .feat-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+
+  .ferry-feat h5 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .ferry-feat p {
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 4rem 0;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-title .icon { font-size: 1.4rem; }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ALTERNATIVES GRID */
+  .alt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .alt-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .alt-card:hover { transform: translateY(-2px); }
+
+  .alt-card .alt-city {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .alt-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .alt-card .alt-meta {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-bottom: 0.6rem;
+  }
+
+  .alt-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .alt-card .alt-why-not {
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* BOOKING URGENCY TABLE */
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 1rem;
+  }
+
+  .booking-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .booking-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .booking-table td:first-child { color: var(--text); font-weight: 600; }
+  .booking-table tr:last-child td { border-bottom: none; }
+  .booking-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .urgency-now { color: #e07070 !important; font-weight: 700 !important; }
+  .urgency-soon { color: #ffc312 !important; font-weight: 600 !important; }
+  .urgency-later { color: #6abf8e !important; }
+
+  /* FOOTER */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+
+  .site-footer a {
+    color: var(--sthlm);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover { color: var(--text); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hotel-body {
+      grid-template-columns: 1fr;
+    }
+    .overview-strip {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .hotel-hero { height: 300px; }
+    .hotel-hero-overlay { padding: 1.5rem; }
+    .overview-strip { grid-template-columns: 1fr 1fr; }
+    .booking-table { font-size: 0.75rem; }
+    .booking-table th, .booking-table td { padding: 0.6rem 0.5rem; }
+    .hero .route-strip { gap: 0.6rem; }
+    .alt-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .overview-strip { grid-template-columns: 1fr; }
+    .hotel-hero { height: 240px; }
+    .hotel-hero-overlay h2 { font-size: 1.5rem; }
+    .ferry-feature-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/" class="active">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nordic Arc &nbsp;&middot;&nbsp; Summer 2026</p>
+    <h1>Where You'll Sleep</h1>
+    <p class="tagline">Five stays across four countries &mdash; every one impossible to replicate at home</p>
+    <div class="route-strip">
+      <span class="route-stop" style="color: var(--oslo);">The Thief</span>
+      <span class="route-arrow">&rarr;</span>
+      <span class="route-stop" style="color: var(--bergen);">Opus XVI</span>
+      <span class="route-arrow">&rarr;</span>
+      <span class="route-stop" style="color: var(--sthlm);">Ett Hem</span>
+      <span class="route-arrow">&rarr;</span>
+      <span class="route-stop" style="color: var(--text-mid);">Silja Ferry</span>
+      <span class="route-arrow">&rarr;</span>
+      <span class="route-stop" style="color: var(--hel);">St. George</span>
+    </div>
+    <p class="total-est">10 nights &nbsp;&middot;&nbsp; Est. total: <strong>$5,500 &ndash; $13,000</strong> (couple, varies by room type)</p>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- OVERVIEW STRIP -->
+  <div class="overview-strip">
+    <div class="overview-chip" style="border-top: 3px solid var(--oslo);">
+      <div class="chip-nights" style="color: var(--oslo);">1 Night</div>
+      <div class="chip-hotel">The Thief</div>
+      <div class="chip-city">Oslo &middot; Jun 27</div>
+    </div>
+    <div class="overview-chip" style="border-top: 3px solid var(--bergen);">
+      <div class="chip-nights" style="color: var(--bergen);">3 Nights</div>
+      <div class="chip-hotel">Opus XVI</div>
+      <div class="chip-city">Bergen &middot; Jun 28-30</div>
+    </div>
+    <div class="overview-chip" style="border-top: 3px solid var(--sthlm);">
+      <div class="chip-nights" style="color: var(--sthlm);">3 Nights</div>
+      <div class="chip-hotel">Ett Hem</div>
+      <div class="chip-city">Stockholm &middot; Jul 1-3</div>
+    </div>
+    <div class="overview-chip" style="border-top: 3px solid rgba(255,255,255,0.2);">
+      <div class="chip-nights" style="color: var(--text-dim);">1 Night</div>
+      <div class="chip-hotel">Silja Ferry</div>
+      <div class="chip-city">At Sea &middot; Jul 3-4</div>
+    </div>
+    <div class="overview-chip" style="border-top: 3px solid var(--hel);">
+      <div class="chip-nights" style="color: var(--hel);">2 Nights</div>
+      <div class="chip-hotel">St. George</div>
+      <div class="chip-city">Helsinki &middot; Jul 4-6</div>
+    </div>
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- HOTEL 1: THE THIEF, OSLO                     -->
+  <!-- ============================================ -->
+  <div class="hotel-feature" id="the-thief">
+    <div class="hotel-hero">
+      <img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=1400&q=80" alt="Oslo waterfront at twilight">
+      <div class="hotel-stay-badge">
+        <div class="badge-nights" style="color: var(--oslo);">1</div>
+        <div class="badge-label">Night</div>
+      </div>
+      <div class="hotel-hero-overlay">
+        <span class="hotel-city-tag" style="background: rgba(45,106,79,0.25); color: #6abf8e;">Oslo</span>
+        <h2>The Thief</h2>
+        <div class="hotel-subtitle">Art hotel on the Oslo Fjord &middot; Gateway to the Bergen Railway</div>
+      </div>
+    </div>
+
+    <div class="hotel-body">
+      <div class="hotel-main">
+        <div class="hotel-details-strip">
+          <div class="hotel-detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">Landgangen 1, Tjuvholmen, Oslo</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Rooms</span>
+            <span class="detail-value">~114 rooms &amp; suites</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Built</span>
+            <span class="detail-value">2013</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Member</span>
+            <span class="detail-value">Preferred Hotels &amp; Resorts</span>
+          </div>
+        </div>
+
+        <div class="correction">
+          <h5>Correction from earlier plans</h5>
+          <p>The Thief has approximately <strong>114 rooms</strong>, not 62 as previously listed. It is a mid-sized art hotel, not a tiny boutique. The quality and art integration remain exceptional regardless.</p>
+        </div>
+
+        <div class="hotel-narrative">
+          <h3>Why This One</h3>
+          <p>Built on Tjuvholmen &mdash; "Thief Islet," once overrun by thieves and outcasts &mdash; The Thief carries its outlaw heritage into a luxury art hotel that cost US$1 million per room to build. Every corridor and room is filled with rotating contemporary art, including original works by Sir Peter Blake (of the Beatles' Sgt. Pepper album cover). The hotel is physically connected to the Astrup Fearnley Museum of Modern Art, with free entry for all guests.</p>
+          <p>This is Oslo's only hotel with direct fjord waterfront access. The Tjuvholmen neighborhood is the city's most vibrant arts, food, and waterfront district. For one night before catching the Bergen Railway, it is the perfect launchpad &mdash; wake up to fjord views, grab a walk along the sculpture-lined waterfront, and taxi to Oslo Central Station by 8:00 AM.</p>
+          <ul>
+            <li><strong>Astrup Fearnley Museum</strong> physically connected &mdash; free for guests</li>
+            <li><strong>Sir Peter Blake originals</strong> and rotating contemporary collection</li>
+            <li><strong>THIEF Spa</strong> with Turkish hamam, sauna, and pool</li>
+            <li><strong>The Apparatjik Suite</strong> &mdash; interactive music/video art by a-ha's Magne Furuholmen</li>
+            <li><strong>2025 renovation</strong> has freshened the entire property</li>
+          </ul>
+        </div>
+
+        <div class="room-rec">
+          <div class="room-rec-header">
+            <span class="rec-badge">Recommended</span>
+          </div>
+          <h4>Deluxe Room &mdash; East-Facing Fjord Views</h4>
+          <p>For one night before the Bergen Railway departure, the fjord-facing Deluxe (~29-32 sqm) gives you the signature experience: wake up to Oslofjord views, coffee on the private balcony, golden morning light. No need to overspend on a suite you'll barely use.</p>
+          <div class="splurge"><strong>Upgrade option:</strong> Junior Suite (66 sqm) if you want separate living space and a bathtub. The Oslo Suite (94 sqm + 160 sqm rooftop terrace) with Sir Peter Blake originals and private dining room is the crown jewel, but overkill for a single night.</div>
+        </div>
+      </div>
+
+      <div class="hotel-sidebar">
+        <div class="sidebar-card">
+          <h4>Price Estimate</h4>
+          <div class="price-range" style="color: var(--oslo);">$400 &ndash; $700</div>
+          <div class="price-note">Per night for rooms &middot; Suites $900-1,500+</div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Breakfast</h4>
+          <p><strong style="color: var(--text);">Included in all room rates.</strong> Full Norwegian spread: smoked salmon, brown cheese (brunost), eggs, pastries, fresh fruit. Guests consistently rave about quality and variety. Plan for 6:30 AM start &mdash; you need to catch the Bergen Railway.</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>Morning Logistics (Jun 28)</h4>
+          <ul>
+            <li><strong>6:30 AM</strong> &mdash; Breakfast at hotel</li>
+            <li><strong>7:30 AM</strong> &mdash; Walk along Tjuvholmen waterfront past Astrup Fearnley sculptures</li>
+            <li><strong>8:00 AM</strong> &mdash; Taxi to Oslo S (~15 min) or walk via Aker Brygge (~20 min)</li>
+            <li><strong>8:25 AM</strong> &mdash; Board Bergen Railway</li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby</h4>
+          <ul>
+            <li>Astrup Fearnley Museum (connected)</li>
+            <li>Aker Brygge waterfront (2 min walk)</li>
+            <li>Tjuvholmen City Beach (2 min walk)</li>
+            <li>Nobel Peace Center (10 min walk)</li>
+            <li>Oslo Opera House (15 min walk)</li>
+          </ul>
+        </div>
+        <a href="https://thethief.com/en" target="_blank" class="book-btn" style="background: var(--oslo);">Book Direct</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- HOTEL 2: OPUS XVI, BERGEN                    -->
+  <!-- ============================================ -->
+  <div class="hotel-feature" id="opus-xvi">
+    <div class="hotel-hero">
+      <img src="https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?w=1400&q=80" alt="Bergen waterfront Bryggen area">
+      <div class="hotel-stay-badge">
+        <div class="badge-nights" style="color: var(--bergen);">3</div>
+        <div class="badge-label">Nights</div>
+      </div>
+      <div class="hotel-hero-overlay">
+        <span class="hotel-city-tag" style="background: rgba(27,79,114,0.3); color: #5590b8;">Bergen</span>
+        <h2>Opus XVI</h2>
+        <div class="hotel-subtitle">An Edvard Grieg Heritage Hotel &middot; Small Luxury Hotels of the World</div>
+      </div>
+    </div>
+
+    <div class="hotel-body">
+      <div class="hotel-main">
+        <div class="hotel-details-strip">
+          <div class="hotel-detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">Vagsallmenningen 16, Bergen</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Rooms</span>
+            <span class="detail-value">65 rooms &amp; suites</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Built</span>
+            <span class="detail-value">1876 (bank), hotel 2018</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Member</span>
+            <span class="detail-value">Small Luxury Hotels (SLH)</span>
+          </div>
+        </div>
+
+        <div class="correction">
+          <h5>Correction from earlier plans</h5>
+          <p>Opus XVI has <strong>65 rooms in an 1876 bank building</strong> (Bergens Kreditbank), not 16 rooms in an 1861 stock exchange. The 1862 stock exchange is a separate hotel across the street (Bergen Bors Hotel, 127 rooms). The two properties are connected via an underground tunnel &mdash; you can dine at Bergen Bors's Michelin-starred restaurants regardless of where you stay.</p>
+        </div>
+
+        <div class="hotel-narrative">
+          <h3>Why This One</h3>
+          <p>The only hotel in the world owned and operated by descendants of a famous composer. Edvard Grieg &mdash; Norway's most celebrated musician, born in Bergen in 1843 &mdash; is woven into every detail. The building's architect was Grieg's cousin. The hotel name comes from Grieg's Piano Concerto in A minor, Op. 16. An in-house exhibition tells his story through music, and during summer months, the hotel hosts live Grieg lunch concerts.</p>
+          <p>The 1876 bank building itself is magnificent: marble columns, stucco lustro walls, and polished granite from the original banking hall. This is not a generic luxury hotel &mdash; it is a deeply personal expression of Bergen's most important cultural figure, housed in one of its finest buildings.</p>
+          <ul>
+            <li><strong>TripAdvisor #1 hotel in Bergen</strong> (out of 53 hotels)</li>
+            <li><strong>Edvard Grieg heritage</strong> in every room and public space</li>
+            <li><strong>Summer Grieg concerts</strong> (June-August, bookable)</li>
+            <li><strong>SLH membership</strong> guarantees boutique curation</li>
+            <li>Walking distance to Bryggen, Fish Market, Floyen funicular</li>
+            <li><strong>Bergen Bors</strong> across the street for Michelin dining (Bare, 1 star) and Frescohallen (1920s murals, national treasure seafood hall)</li>
+          </ul>
+        </div>
+
+        <div class="room-rec">
+          <div class="room-rec-header">
+            <span class="rec-badge">Recommended</span>
+          </div>
+          <h4>Deluxe Room or Mini-Suite</h4>
+          <p>For three nights, room size matters. The Deluxe Room offers the best heritage features and views at a reasonable price point. The Mini-Suite adds a separate seating area and upgraded bathroom &mdash; worth it for a three-night stay. Note: rooms vary significantly in layout due to the historic building's irregular floor plan. Request a specific room type at booking.</p>
+          <div class="splurge"><strong>The splurge:</strong> Two-Story Suite with private dining room &mdash; the most extraordinary accommodation in Bergen. Two levels of 1876 bank grandeur.</div>
+        </div>
+
+        <div class="callout">
+          <h4>Don't miss &mdash; Bergen Bors dining</h4>
+          <p>The Bergen Bors Hotel across the street has two must-visit restaurants: <strong>Bare</strong> (Bergen's first Michelin star, seasonal Nordic tasting menus ~EUR 200) and <strong>Frescohallen</strong> (spectacular triple-height seafood restaurant with restored 1920s murals by Alex Revold &mdash; a national treasure). Both are open to non-guests.</p>
+        </div>
+      </div>
+
+      <div class="hotel-sidebar">
+        <div class="sidebar-card">
+          <h4>Price Estimate</h4>
+          <div class="price-range" style="color: var(--bergen);">$250 &ndash; $500</div>
+          <div class="price-note">Per night for rooms &middot; Suites $500-800+</div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Breakfast</h4>
+          <p><strong style="color: var(--text);">Included in all room rates.</strong> Norwegian buffet plus a la carte cooked-to-order dishes. Guests rave about the quality, variety, and gluten-free options. Likely the best hotel breakfast in Bergen. Typically served 7:00-10:00 AM &mdash; confirm early service (6:30 AM) with the hotel at booking.</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby Breakfast Alternatives</h4>
+          <ul>
+            <li><strong>Frescohallen</strong> at Bergen Bors &mdash; seafood breakfast in a triple-height painted hall</li>
+            <li><strong>Godt Brod</strong> &mdash; Bergen's best artisan bakery, organic sourdough and pastries</li>
+            <li><strong>Bergen Fish Market</strong> &mdash; fresh shrimp and smoked salmon at 7 AM</li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby</h4>
+          <ul>
+            <li>Bryggen UNESCO wharf (5 min walk)</li>
+            <li>Fish Market (3 min walk)</li>
+            <li>Floyen funicular (8 min walk)</li>
+            <li>Bergen Bors / Bare Michelin (across the street)</li>
+            <li>KODE art museums (10 min walk)</li>
+          </ul>
+        </div>
+        <a href="https://www.opus16.no" target="_blank" class="book-btn" style="background: var(--bergen);">Book Direct</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- HOTEL 3: ETT HEM, STOCKHOLM                  -->
+  <!-- ============================================ -->
+  <div class="hotel-feature" id="ett-hem">
+    <div class="hotel-hero">
+      <img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1400&q=80" alt="Stockholm residential street with warm light">
+      <div class="hotel-stay-badge">
+        <div class="badge-nights" style="color: var(--sthlm);">3</div>
+        <div class="badge-label">Nights</div>
+      </div>
+      <div class="hotel-hero-overlay">
+        <span class="hotel-city-tag" style="background: rgba(244,162,97,0.2); color: var(--sthlm);">Stockholm</span>
+        <h2>Ett Hem</h2>
+        <div class="hotel-subtitle">A Home &middot; Ilse Crawford &middot; Small Luxury Hotels of the World</div>
+      </div>
+    </div>
+
+    <div class="hotel-body">
+      <div class="hotel-main">
+        <div class="hotel-details-strip">
+          <div class="hotel-detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">Skogskloversvagen 2, Ostermalm, Stockholm</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Rooms</span>
+            <span class="detail-value">22 rooms + 3 apartments</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Built</span>
+            <span class="detail-value">1910 Arts &amp; Crafts, hotel 2012</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Designer</span>
+            <span class="detail-value">Ilse Crawford / Studioilse</span>
+          </div>
+        </div>
+
+        <div class="correction">
+          <h5>Correction from earlier plans</h5>
+          <p>Ett Hem now has <strong>22 rooms and 3 apartments</strong>, expanded from the original 12 rooms by acquiring two neighboring townhouses. Ilse Crawford designed all three residences. Still tiny by hotel standards &mdash; the intimate residential feel is fully preserved.</p>
+        </div>
+
+        <div class="hotel-narrative">
+          <h3>Why This One</h3>
+          <p>"Ett Hem" means "A Home" in Swedish. This may be the world's most acclaimed residential-concept hotel. There is no reception desk &mdash; you are greeted at the door. There is no restaurant &mdash; you eat in the kitchen, where chefs prepare dinner while you sit at tables nearby. You drink in the sitting room, read in the library, and nap in the garden. Home-baked cakes are available all day &mdash; help yourself, like you would in a friend's impossibly elegant Stockholm townhouse.</p>
+          <p>Interior designer Ilse Crawford &mdash; one of the most celebrated in the world &mdash; created spaces that blend contemporary and vintage: cane, wood, leather, velvet in gold, brown, and cream. Michael Anastassiades lighting. Colored-glass ornaments. Brass cabinets. Every room is individually designed with her signature warm minimalism. The garden is a hidden green oasis: summer breakfasts al fresco, evening fire pits, glass houses with festival lights.</p>
+          <ul>
+            <li><strong>The kitchen IS the restaurant</strong> &mdash; farm-fresh, seasonal, cooked in front of you</li>
+            <li><strong>The garden</strong> &mdash; fire pits, blankets, midnight sky in summer twilight</li>
+            <li><strong>The library</strong> &mdash; floor-to-ceiling books, curl up by the fireplace</li>
+            <li><strong>Susanne Kaufmann toiletries</strong> in every room</li>
+            <li><strong>Sauna, spa, and fitness center</strong> on site</li>
+            <li><strong>No two rooms alike</strong> &mdash; each one an Ilse Crawford original</li>
+          </ul>
+        </div>
+
+        <div class="room-rec">
+          <div class="room-rec-header">
+            <span class="rec-badge">Recommended</span>
+          </div>
+          <h4>Split-Level Attic Suite &mdash; 43 sqm</h4>
+          <p>The most romantic room type. Split-level layout under the eaves: downstairs has a sofa and cast-iron stove; upstairs is a wood-clad bedroom with king bed and in-room roll-top bathtub. For three nights at the world's most famous residential hotel, this is the one that gives you the full "living in a Stockholm townhouse" experience.</p>
+          <div class="splurge"><strong>The ultimate:</strong> Attic Residence (70 sqm) with freestanding tub, fireplace, original ceiling decor, and writing desk. The largest and most atmospheric suite. <strong>Junior Suite</strong> with fireplace and/or balcony is also excellent if the Attic Suite is unavailable.</div>
+        </div>
+      </div>
+
+      <div class="hotel-sidebar">
+        <div class="sidebar-card">
+          <h4>Price Estimate</h4>
+          <div class="price-range" style="color: var(--sthlm);">$600 &ndash; $1,500</div>
+          <div class="price-note">Per night &middot; Budget $2,000-4,500 total for 3 nights</div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Breakfast</h4>
+          <p><strong style="color: var(--text);">Included in all room rates.</strong> Fresh orange juice, yoghurt, fruits and berries, cheese, cold cuts, pastries, and cooked dishes. Served in the kitchen or conservatory. <strong>In summer: breakfast in the garden.</strong> The residential concept means flexible timing &mdash; confirm 7:00 AM start (may accommodate earlier requests).</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby Breakfast Alternatives</h4>
+          <ul>
+            <li><strong>Ostermalms Saluhall</strong> &mdash; Stockholm's finest food hall, freshly renovated</li>
+            <li><strong>Fabrique</strong> &mdash; Stockholm's best cinnamon buns (kanelbullar) and sourdough</li>
+            <li><strong>Gateau</strong> &mdash; classic Swedish fika cafe near Humlegarden park</li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby</h4>
+          <ul>
+            <li>Humlegarden park (5 min walk)</li>
+            <li>Ostermalms Saluhall (10 min walk)</li>
+            <li>Strandvagen waterfront (12 min walk)</li>
+            <li>Djurgarden island (20 min walk)</li>
+            <li>Gamla Stan old town (metro or 25 min walk)</li>
+          </ul>
+        </div>
+        <a href="https://www.etthem.se/" target="_blank" class="book-btn" style="background: var(--sthlm); color: #1a1a1a;">Book Direct</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- STAY 4: TALLINK SILJA FERRY                  -->
+  <!-- ============================================ -->
+  <div class="hotel-feature" id="silja-ferry">
+    <div class="hotel-hero">
+      <img src="https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=1400&q=80" alt="Ferry on Nordic waters at twilight">
+      <div class="hotel-stay-badge">
+        <div class="badge-nights">1</div>
+        <div class="badge-label">Night</div>
+      </div>
+      <div class="hotel-hero-overlay">
+        <span class="hotel-city-tag" style="background: rgba(255,255,255,0.1); color: var(--text-mid);">At Sea</span>
+        <h2>Tallink Silja Line</h2>
+        <div class="hotel-subtitle">Overnight ferry Stockholm &rarr; Helsinki &middot; The crossing IS the destination</div>
+      </div>
+    </div>
+
+    <div class="hotel-body">
+      <div class="hotel-main">
+        <div class="hotel-details-strip">
+          <div class="hotel-detail-item">
+            <span class="detail-label">Ships</span>
+            <span class="detail-value">Silja Serenade / Silja Symphony</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Route</span>
+            <span class="detail-value">Stockholm &rarr; Aland &rarr; Helsinki</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Departs</span>
+            <span class="detail-value">~16:30 from Vartahamnen</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Arrives</span>
+            <span class="detail-value">~09:30 at Olympia Terminal</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Duration</span>
+            <span class="detail-value">~16h 45min</span>
+          </div>
+        </div>
+
+        <div class="correction">
+          <h5>Updated recommendation</h5>
+          <p>We recommend <strong>Tallink Silja over Viking Line</strong>. Key reasons: Silja has <strong>daily departures</strong> (Viking only sails every other day &mdash; if Jul 3 is not a Viking day, you are stuck). Silja's famous multi-story Promenade deck is unique to their ships. Silja has a more refined atmosphere &mdash; Viking has a reputation as the "party boat." The practical page has been updated accordingly.</p>
+        </div>
+
+        <div class="hotel-narrative">
+          <h3>Why This One</h3>
+          <p>This is not just transport &mdash; this is a destination. You will sail through the Stockholm archipelago (30,000 islands) and the Finnish archipelago in perpetual summer twilight, with the sun barely dipping below the horizon. The Silja ships feature a famous multi-story indoor Promenade &mdash; a full pedestrian street with shops, bars, and restaurants running the length of the vessel. There is a massive Scandinavian smorgasbord buffet (100+ dishes), a sauna onboard, tax-free shopping, live music, and a champagne bar.</p>
+        </div>
+
+        <div class="ferry-feature-grid">
+          <div class="ferry-feat">
+            <div class="feat-icon">🛳</div>
+            <h5>Promenade Deck</h5>
+            <p>Multi-story indoor street with shops, bars, restaurants. Unique to Silja ships.</p>
+          </div>
+          <div class="ferry-feat">
+            <div class="feat-icon">🍽</div>
+            <h5>Smorgasbord Buffet</h5>
+            <p>100+ dishes. The legendary Scandinavian spread. Book separately.</p>
+          </div>
+          <div class="ferry-feat">
+            <div class="feat-icon">🧖</div>
+            <h5>Onboard Sauna</h5>
+            <p>Finnish sauna tradition continues even at sea. Available to all passengers.</p>
+          </div>
+          <div class="ferry-feat">
+            <div class="feat-icon">🛍</div>
+            <h5>Tax-Free Shopping</h5>
+            <p>Duty-free between Sweden and Finland. Design goods, spirits, chocolate.</p>
+          </div>
+          <div class="ferry-feat">
+            <div class="feat-icon">🌅</div>
+            <h5>Midnight Twilight</h5>
+            <p>The sun barely sets. Watch 30,000 islands glide past in golden light.</p>
+          </div>
+          <div class="ferry-feat">
+            <div class="feat-icon">📅</div>
+            <h5>Daily Departures</h5>
+            <p>Sails every day year-round. No need to gamble on Viking's odd/even schedule.</p>
+          </div>
+        </div>
+
+        <div class="room-rec">
+          <div class="room-rec-header">
+            <span class="rec-badge">Recommended</span>
+          </div>
+          <h4>Commodore Class with Balcony &mdash; Deck 11</h4>
+          <p>The sweet spot. Private upper-deck area toward the front of the ship with Marimekko-themed furnishings. Access to the exclusive Commodore Lounge (described as "beautiful" by guests). Some cabins feature enclosed balconies. 14 sqm &mdash; compact but well-appointed for a single night at sea.</p>
+          <div class="splurge"><strong>For ultimate luxury:</strong> Premium Suite (75 sqm) on Deck 11 if available. Or one of the Themed Premium Cabins (42-49 sqm) on Deck 9 &mdash; Spring, Summer, or Autumn themed.</div>
+        </div>
+      </div>
+
+      <div class="hotel-sidebar">
+        <div class="sidebar-card">
+          <h4>Price Estimate</h4>
+          <div class="price-range">$300 &ndash; $500</div>
+          <div class="price-note">Commodore Class per cabin &middot; Premium Suite $500-800+</div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Terminal Info</h4>
+          <p><strong style="color: var(--text);">Stockholm: Vartahamnen</strong><br/>
+          Hamnpirssvagen 10. Nearest metro: Gardet (red line, ~700m walk). Bus 1 and 76. Allow 1+ hour before departure. ~3.5 km from city center.</p>
+          <p style="margin-top: 0.6rem;"><strong style="color: var(--text);">Helsinki: Olympia Terminal</strong><br/>
+          HSL tram #3 runs directly to city center. ~2 km from central Helsinki. Easy taxi or tram ride to Hotel St. George.</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>Breakfast</h4>
+          <p>Not included in cabin rates. Multiple dining options onboard from early morning. Alternatively, save your appetite &mdash; Hotel St. George's outstanding breakfast buffet awaits on arrival in Helsinki.</p>
+        </div>
+        <a href="https://www.tallink.com/travelling/one-way/stockholm-helsinki-ferry" target="_blank" class="book-btn" style="background: #888; color: #1a1a1a;">Book at Tallink</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- HOTEL 5: HOTEL ST. GEORGE, HELSINKI           -->
+  <!-- ============================================ -->
+  <div class="hotel-feature" id="st-george">
+    <div class="hotel-hero">
+      <img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=1400&q=80" alt="Helsinki cathedral and waterfront">
+      <div class="hotel-stay-badge">
+        <div class="badge-nights" style="color: var(--hel);">2</div>
+        <div class="badge-label">Nights</div>
+      </div>
+      <div class="hotel-hero-overlay">
+        <span class="hotel-city-tag" style="background: rgba(69,123,157,0.25); color: #7aafc4;">Helsinki</span>
+        <h2>Hotel St. George</h2>
+        <div class="hotel-subtitle">Design Hotels &middot; The only permanent Ai Weiwei hotel installation in the world</div>
+      </div>
+    </div>
+
+    <div class="hotel-body">
+      <div class="hotel-main">
+        <div class="hotel-details-strip">
+          <div class="hotel-detail-item">
+            <span class="detail-label">Address</span>
+            <span class="detail-value">Yrjonkatu 13, Helsinki</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Rooms</span>
+            <span class="detail-value">148 rooms + 5 suites</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Built</span>
+            <span class="detail-value">1840 (printing house), hotel 2018</span>
+          </div>
+          <div class="hotel-detail-item">
+            <span class="detail-label">Member</span>
+            <span class="detail-value">Design Hotels (Marriott Bonvoy)</span>
+          </div>
+        </div>
+
+        <div class="correction">
+          <h5>Updated recommendation</h5>
+          <p>We recommend <strong>Hotel St. George over Klaus K</strong> for Helsinki. While Klaus K's Kalevala theme is culturally rich, St. George offers a more compelling "impossible to replicate in NYC" experience: the only permanent Ai Weiwei hotel installation worldwide, 400+ artworks, a full spa with pool (critical after a night on a ferry), and an outstanding breakfast that matches this couple's priorities.</p>
+        </div>
+
+        <div class="hotel-narrative">
+          <h3>Why This One</h3>
+          <p>Walk into the lobby and look up: suspended above you is <em>Tianwu</em>, a massive bamboo-and-silk polycephalic dragon by Ai Weiwei. It is the only Ai Weiwei artwork displayed permanently in a public hotel space anywhere in the world. That alone makes this a destination. But the hotel goes deeper &mdash; 400+ pieces of art are spread across seven floors of a former 19th-century printing house and artists' studio, transformed with Nordic elegance.</p>
+          <p>The rooms are bathed in natural light with soft mint green, pearl grey, and brown tones. Handcrafted furniture meets state-of-the-art technology. The bathrooms are extraordinary: spacious, double sinks, soaking tubs, Japanese-style bidet toilets, heated floors. After a night on the Silja ferry, the St. George Care Spa &mdash; with indoor pool, two saunas, cold plunge pool, and a Light Cognitive light wall &mdash; is exactly what you need.</p>
+          <ul>
+            <li><strong>Ai Weiwei's "Tianwu"</strong> &mdash; the only permanent hotel Ai Weiwei in the world</li>
+            <li><strong>400+ artworks</strong> across seven floors</li>
+            <li><strong>St. George Care Spa</strong> &mdash; pool, two saunas, cold plunge, light therapy wall</li>
+            <li><strong>Restaurant Boon Nam</strong> by Chef Tomi Bjorck &mdash; a love letter to Thai cuisine</li>
+            <li><strong>The Wintergarden</strong> &mdash; one of Helsinki's most atmospheric cocktail spots</li>
+            <li><strong>The Bakery</strong> &mdash; excellent coffee and pastries</li>
+            <li>Overlooks <strong>Old Church Park</strong></li>
+          </ul>
+        </div>
+
+        <div class="room-rec">
+          <div class="room-rec-header">
+            <span class="rec-badge">Recommended</span>
+          </div>
+          <h4>Deluxe Room or Junior Suite</h4>
+          <p>The Deluxe Rooms offer the best combination of natural light, art integration, and those extraordinary bathrooms (soaking tub, heated floors, double sinks). For two nights, the space is comfortable and the design is world-class. A Junior Suite adds a separate living area for unwinding after the ferry crossing.</p>
+          <div class="splurge"><strong>For a statement:</strong> One of the 5 named suites for the full art-hotel experience &mdash; each is individually curated.</div>
+        </div>
+
+        <div class="callout">
+          <h4>Post-ferry recovery plan</h4>
+          <p>You arrive from the Silja ferry at ~09:30 AM. Drop bags at St. George (early check-in request recommended), then head straight to the spa: swim, sauna, cold plunge. Follow with the outstanding breakfast buffet (fresh bread brought to table, premium quality). You will feel human again by noon.</p>
+        </div>
+      </div>
+
+      <div class="hotel-sidebar">
+        <div class="sidebar-card">
+          <h4>Price Estimate</h4>
+          <div class="price-range" style="color: var(--hel);">$314 &ndash; $600</div>
+          <div class="price-note">Per night for rooms &middot; Suites $600-1,200</div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Breakfast</h4>
+          <p><strong style="color: var(--text);">Outstanding breakfast buffet.</strong> Fresh bread brought to table, premium quality across the board. Multiple reviewers cite it as one of the best hotel breakfasts in Helsinki. Confirm early start availability for the 6:30-7:30 AM preference.</p>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby Breakfast Alternatives</h4>
+          <ul>
+            <li><strong>Cafe Regatta</strong> &mdash; tiny red cottage, cinnamon buns by the water (iconic)</li>
+            <li><strong>Ekberg</strong> &mdash; Helsinki's oldest cafe (since 1852), legendary pastries</li>
+            <li><strong>Old Market Hall (Vanha Kauppahalli)</strong> &mdash; fresh fish, Karelian pies, coffee</li>
+          </ul>
+        </div>
+        <div class="sidebar-card">
+          <h4>Nearby</h4>
+          <ul>
+            <li>Old Church Park (across the street)</li>
+            <li>Design District (surrounding area)</li>
+            <li>Esplanade Park (8 min walk)</li>
+            <li>Market Square &amp; Suomenlinna ferry (15 min walk)</li>
+            <li>Loyly sauna (20 min walk or short taxi)</li>
+          </ul>
+        </div>
+        <a href="https://www.designhotels.com/hotels/finland/helsinki/hotel-st-george/" target="_blank" class="book-btn" style="background: var(--hel);">Book via Design Hotels</a>
+      </div>
+    </div>
+  </div>
+
+
+  <hr class="section-divider">
+
+
+  <!-- ============================================ -->
+  <!-- ALTERNATIVES CONSIDERED                       -->
+  <!-- ============================================ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🏨</span> Alternatives Considered</h2>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1.5rem;">Strong runner-up hotels that were considered and rejected &mdash; any of these would be excellent backup choices if first picks sell out.</p>
+
+    <div class="alt-grid">
+      <!-- Stockholm Alternatives -->
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--sthlm);">Stockholm</div>
+        <h4>Grand Hotel Stockholm</h4>
+        <div class="alt-meta">247 rooms &middot; Since 1874 &middot; Leading Hotels of the World &middot; $400-700/night</div>
+        <p>Waterfront facing Royal Palace and Gamla Stan. Original Nobel Prize banquet venue (1901). Six restaurants including Matbaren (1 Michelin star). Nordic Spa. Booking.com couples rating: 9.8.</p>
+        <div class="alt-why-not">Why not chosen: Replicable &mdash; NYC has grand waterfront hotels. Ett Hem is one-of-a-kind.</div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--sthlm);">Stockholm</div>
+        <h4>Lydmar Hotel</h4>
+        <div class="alt-meta">46 rooms &middot; SLH Member &middot; $350-600/night</div>
+        <p>Hip, art-filled, music-curated boutique next door to the Grand Hotel. Booking.com 9.3. Every room individually designed. Live DJs, vinyl collection. Staff praised as exceptionally warm. Couples location: 9.9.</p>
+        <div class="alt-why-not">Why not chosen: Wonderful but closer to a NYC boutique hotel. Ett Hem's residential concept is in a different league. TripAdvisor wisdom: "Stay at Ett Hem. Have dinner at Lydmar."</div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--sthlm);">Stockholm</div>
+        <h4>Villa Dahlia</h4>
+        <div class="alt-meta">103 rooms &middot; Opened August 2024 &middot; Vasastan</div>
+        <p>Brand new. 1920s/30s Milanese-inspired design. By the Malmstrom family (Hotel Diplomat, Villa Dagmar). Restaurant, cocktail bar, spa, gym, boules court. Views of Tegnerlunden park.</p>
+        <div class="alt-why-not">Why not chosen: Larger and newer = less of the intimate heritage character that makes Ett Hem special.</div>
+      </div>
+
+      <!-- Helsinki Alternatives -->
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--hel);">Helsinki</div>
+        <h4>Waldorf Astoria Helsinki</h4>
+        <div class="alt-meta">116 rooms + 32 suites &middot; Reflagged Oct 2025 &middot; $280-600/night</div>
+        <p>First Waldorf Astoria in the Nordics. 1885-1930 interconnected townhouses (former officers' barracks). <strong>Select suites include private saunas, steam rooms, and jacuzzis on private terraces.</strong> Peacock Bar. Spa under glass-roof atrium. The Emir of Qatar reserved the entire hotel during his 2024 state visit.</p>
+        <div class="alt-why-not">Why not chosen: Hilton corporate chain may feel less "authentic boutique." But the private sauna suites are extraordinary &mdash; strong runner-up.</div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--hel);">Helsinki</div>
+        <h4>Klaus K Hotel</h4>
+        <div class="alt-meta">170 rooms &middot; Since 1938/2005 &middot; Preferred Hotels &middot; $200-400/night</div>
+        <p>Design drawn from the Kalevala, Finland's national epic. Four room categories named after Kalevala emotions (Passion, Mystical, Desire, Envy). Standout suite with egg-shaped bed inspired by the creation myth. Sky Terrace Rooftop Bar. Custom beds by Unikulma.</p>
+        <div class="alt-why-not">Why not chosen: 170 rooms = not boutique. Some noise issues. Less luxurious than St. George. But the Kalevala theme IS uniquely Finnish &mdash; best budget alternative.</div>
+      </div>
+
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--hel);">Helsinki</div>
+        <h4>Hotel Kamp</h4>
+        <div class="alt-meta">179 rooms &middot; Since 1887 &middot; Leading Hotels of the World &middot; $350-600/night</div>
+        <p>Helsinki's most prestigious hotel. Where Sibelius socialized with European aristocracy. Opposite Esplanade Park. Currently undergoing major 2023-2026 renovation (new wing, new entrance, all rooms refreshed).</p>
+        <div class="alt-why-not">Why not chosen: Renovation ongoing through 2026 &mdash; spa closed, possible construction impact. Classic grand hotel style is replicable in NYC (think The Plaza).</div>
+      </div>
+
+      <!-- Bergen Alternative -->
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--bergen);">Bergen</div>
+        <h4>Bergen Bors Hotel</h4>
+        <div class="alt-meta">127 rooms &middot; 1862 stock exchange &middot; Claesson Koivisto Rune design &middot; $200-500/night</div>
+        <p>Neo-Renaissance former stock exchange across the street from Opus XVI (connected by underground tunnel). Home to <strong>Bare</strong> (Michelin star), <strong>Frescohallen</strong> (spectacular 1920s mural seafood hall), and <strong>Handelskammeret Bar</strong> (best cocktails in Bergen).</p>
+        <div class="alt-why-not">Why not chosen: Opus XVI's Edvard Grieg heritage and SLH membership are more aligned with the trip profile. But dine at Bergen Bors regardless.</div>
+      </div>
+
+      <!-- Ferry Alternative -->
+      <div class="alt-card">
+        <div class="alt-city" style="color: var(--text-dim);">Ferry</div>
+        <h4>Viking Line</h4>
+        <div class="alt-meta">Stockholm &rarr; Helsinki &middot; Every other day only</div>
+        <p>More central terminals in both cities (Stadsgarden in Stockholm near Slussen; Katajanokka in Helsinki). Viking Cinderella and fleet. Some passengers prefer the atmosphere.</p>
+        <div class="alt-why-not">Why not chosen: Only sails every other day &mdash; risky on a fixed Jul 3 date. Reputation as the "party boat." Silja's Promenade deck and daily schedule win.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <hr class="section-divider">
+
+
+  <!-- ============================================ -->
+  <!-- BOOKING PRIORITY                              -->
+  <!-- ============================================ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">🔥</span> Booking Priority</h2>
+    <p style="font-size: 0.85rem; color: var(--text-mid); margin-bottom: 1rem;">Ordered by urgency. July is peak season across all four cities. Small properties sell out fast.</p>
+
+    <table class="booking-table">
+      <thead>
+        <tr>
+          <th>Hotel</th>
+          <th>Rooms</th>
+          <th>Urgency</th>
+          <th>When to Book</th>
+          <th>Book Where</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ett Hem, Stockholm</td>
+          <td>22 rooms</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>Immediately &mdash; July peak season fills fast</td>
+          <td><a href="https://www.etthem.se/" target="_blank" style="color: var(--sthlm);">etthem.se</a></td>
+        </tr>
+        <tr>
+          <td>Opus XVI, Bergen</td>
+          <td>65 rooms</td>
+          <td class="urgency-now">BOOK NOW</td>
+          <td>July is Bergen's absolute peak</td>
+          <td><a href="https://www.opus16.no" target="_blank" style="color: var(--bergen);">opus16.no</a></td>
+        </tr>
+        <tr>
+          <td>Tallink Silja Commodore Class</td>
+          <td>Limited upper-deck cabins</td>
+          <td class="urgency-soon">SOON</td>
+          <td>2-3 months ahead &mdash; best cabins sell out for summer</td>
+          <td><a href="https://www.tallink.com/travelling/one-way/stockholm-helsinki-ferry" target="_blank" style="color: var(--text-mid);">tallink.com</a></td>
+        </tr>
+        <tr>
+          <td>Hotel St. George, Helsinki</td>
+          <td>148 rooms</td>
+          <td class="urgency-soon">SOON</td>
+          <td>1-2 months ahead &mdash; summer is busy</td>
+          <td><a href="https://www.designhotels.com/hotels/finland/helsinki/hotel-st-george/" target="_blank" style="color: var(--hel);">designhotels.com</a></td>
+        </tr>
+        <tr>
+          <td>The Thief, Oslo</td>
+          <td>~114 rooms</td>
+          <td class="urgency-later">When Ready</td>
+          <td>1-2 months ahead &mdash; one night, easiest to get</td>
+          <td><a href="https://thethief.com/en" target="_blank" style="color: var(--oslo);">thethief.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout" style="margin-top: 2rem;">
+      <h4>Total estimated hotel cost</h4>
+      <p><strong style="color: var(--text);">$5,500 &ndash; $13,000</strong> for 10 nights (couple, one room). The range depends entirely on room type: Deluxe rooms at the low end, suites at the high end. Ett Hem is the biggest variable &mdash; the Split-Level Attic Suite alone could be $1,000-1,500/night in July. All hotels include breakfast except the ferry.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>Nordic Arc &mdash; Hotels Guide</p>
+  <p style="margin-top: 0.4rem;">
+    <a href="../">&larr; Back to trip hub</a> &nbsp;&middot;&nbsp;
+    <a href="../itinerary/">Itinerary</a> &nbsp;&middot;&nbsp;
+    <a href="../restaurants/">Restaurants</a> &nbsp;&middot;&nbsp;
+    <a href="../experiences/">Experiences</a> &nbsp;&middot;&nbsp;
+    <a href="../fjords/">Fjords</a> &nbsp;&middot;&nbsp;
+    <a href="../sauna/">Sauna</a> &nbsp;&middot;&nbsp;
+    <a href="../practical/">Practical</a>
+  </p>
+  <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.2);">Oslo &rarr; Bergen &rarr; Stockholm &rarr; Helsinki &nbsp;&middot;&nbsp; June 27 &ndash; July 8, 2026</p>
+</footer>
+
+</body>
+</html>

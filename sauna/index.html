@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finnish Sauna Culture — Nordic Arc | Summer 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo: #2D6A4F;
+    --bergen: #1B4F72;
+    --sthlm: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel: #457B9D;
+    --hel-glow: #5a9fc2;
+    --hel-soft: rgba(69,123,157,0.15);
+    --hel-border: rgba(69,123,157,0.25);
+    --warmth: #D4834E;
+    --warmth-soft: rgba(212,131,78,0.12);
+    --warmth-border: rgba(212,131,78,0.22);
+    --steam: rgba(255,255,255,0.06);
+    --bg: #08090a;
+    --card-bg: #111214;
+    --card-bg-warm: #131110;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+    --do-green: #4ade80;
+    --dont-red: #f87171;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ NAV ═══ */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(8,9,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      url('https://images.unsplash.com/photo-1554747268-0dde5d3f428b?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.15) saturate(0.5) sepia(0.15);
+    transform: scale(1.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8,9,10,0.2) 0%,
+      transparent 30%,
+      transparent 60%,
+      var(--bg) 100%
+    );
+  }
+
+  /* steam/heat haze overlay */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(212,131,78,0.08) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #fff 20%, #d4a47a 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--warmth);
+  }
+
+  .hero-stat .label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.1rem;
+  }
+
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* ═══ SECTION ═══ */
+  .section { margin-bottom: 4.5rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-title .icon { font-size: 1.4rem; }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-intro {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .section-intro strong { color: var(--text); }
+
+  /* ═══ CARDS ═══ */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .info-card:hover { transform: translateY(-2px); }
+
+  .info-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .info-card p, .info-card ul {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-card ul li {
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .info-card ul li::before {
+    content: '\00B7';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-weight: 700;
+  }
+
+  /* ═══ UNESCO BANNER ═══ */
+  .unesco-banner {
+    background: linear-gradient(135deg, rgba(69,123,157,0.1) 0%, rgba(212,131,78,0.08) 100%);
+    border: 1px solid var(--hel-border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .unesco-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(69,123,157,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .unesco-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hel);
+    background: rgba(69,123,157,0.12);
+    border: 1px solid rgba(69,123,157,0.2);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .unesco-banner blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    border-left: 3px solid var(--hel);
+    padding-left: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .unesco-banner p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ═══ RITUAL STEPS ═══ */
+  .ritual-timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 1.5rem;
+  }
+
+  .ritual-timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--warmth) 0%,
+      var(--hel) 50%,
+      var(--warmth) 100%
+    );
+    opacity: 0.3;
+  }
+
+  .ritual-step {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .ritual-step:hover {
+    transform: translateX(4px);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .ritual-step::before {
+    content: attr(data-step);
+    position: absolute;
+    left: -2.9rem;
+    top: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    background: var(--card-bg);
+    border: 2px solid var(--warmth);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: var(--warmth);
+  }
+
+  .ritual-step h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ritual-step h3 .step-emoji { font-size: 1.1rem; }
+
+  .ritual-step p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .ritual-step .detail {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  .ritual-step .detail strong { color: var(--text-mid); }
+
+  .ritual-step .finnish-word {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--warmth);
+    font-size: 0.9rem;
+  }
+
+  /* ═══ ETIQUETTE DO/DONT ═══ */
+  .etiquette-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .etiquette-col {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    overflow: hidden;
+  }
+
+  .etiquette-col.do-col { border-top: 3px solid var(--do-green); }
+  .etiquette-col.dont-col { border-top: 3px solid var(--dont-red); }
+
+  .etiquette-col h3 {
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .etiquette-col.do-col h3 { color: var(--do-green); }
+  .etiquette-col.dont-col h3 { color: var(--dont-red); }
+
+  .etiquette-item {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .etiquette-item:last-child { margin-bottom: 0; }
+
+  .etiquette-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 900;
+    margin-top: 0.15rem;
+  }
+
+  .do-col .etiquette-icon {
+    background: rgba(74,222,128,0.12);
+    color: var(--do-green);
+  }
+
+  .dont-col .etiquette-icon {
+    background: rgba(248,113,113,0.12);
+    color: var(--dont-red);
+  }
+
+  .etiquette-item .rule {
+    font-size: 0.84rem;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .etiquette-item .reason {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 0.15rem;
+  }
+
+  /* ═══ COMPARISON GRID ═══ */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .comparison-header {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-header.regular { background: var(--card-bg); color: var(--hel); }
+  .comparison-header.smoke {
+    background: var(--card-bg-warm);
+    color: var(--warmth);
+    border-left: 1px solid var(--border);
+  }
+
+  .comparison-row {
+    display: contents;
+  }
+
+  .comparison-cell {
+    padding: 0.9rem 1.3rem;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-cell:nth-child(even) {
+    border-left: 1px solid var(--border);
+    background: rgba(20,17,14,0.5);
+  }
+
+  .comparison-cell strong { color: var(--text); font-weight: 600; }
+
+  .comparison-label {
+    padding: 0.5rem 1.3rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    grid-column: 1 / -1;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .comparison-grid .comparison-row:last-child .comparison-cell { border-bottom: none; }
+
+  /* ═══ SAUNA VENUE CARDS ═══ */
+  .venue-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .venue-card:hover { transform: translateY(-2px); }
+
+  .venue-header {
+    padding: 1.5rem 1.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .venue-header .venue-number {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+
+  .venue-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .venue-header .venue-tagline {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  .venue-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+  }
+
+  .venue-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+
+  .tag-design {
+    color: var(--hel);
+    border-color: rgba(69,123,157,0.3);
+    background: rgba(69,123,157,0.08);
+  }
+
+  .tag-historic {
+    color: var(--warmth);
+    border-color: rgba(212,131,78,0.3);
+    background: rgba(212,131,78,0.08);
+  }
+
+  .tag-beginner {
+    color: var(--do-green);
+    border-color: rgba(74,222,128,0.3);
+    background: rgba(74,222,128,0.08);
+  }
+
+  .tag-meditative {
+    color: #c4b5fd;
+    border-color: rgba(196,181,253,0.3);
+    background: rgba(196,181,253,0.08);
+  }
+
+  .tag-free {
+    color: var(--gold);
+    border-color: rgba(255,195,18,0.3);
+    background: rgba(255,195,18,0.08);
+  }
+
+  .tag-smoke {
+    color: #fb923c;
+    border-color: rgba(251,146,60,0.3);
+    background: rgba(251,146,60,0.08);
+  }
+
+  .venue-body {
+    padding: 1.2rem 1.8rem 1.5rem;
+  }
+
+  .venue-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .venue-meta-item {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  .venue-meta-item strong {
+    color: var(--text-mid);
+    font-weight: 600;
+  }
+
+  .venue-description {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .venue-description strong { color: var(--text); }
+
+  .venue-highlight {
+    background: rgba(69,123,157,0.06);
+    border: 1px solid rgba(69,123,157,0.12);
+    border-radius: 10px;
+    padding: 0.8rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .venue-highlight strong { color: var(--hel); }
+
+  /* ═══ NYC SECTION ═══ */
+  .nyc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .nyc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nyc-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: rgba(255,195,18,0.06);
+    line-height: 1;
+  }
+
+  .nyc-card h4 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--gold);
+  }
+
+  .nyc-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .nyc-verdict {
+    background: linear-gradient(135deg, rgba(255,195,18,0.06) 0%, rgba(212,131,78,0.06) 100%);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .nyc-verdict h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .nyc-verdict p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ═══ TIPS GRID ═══ */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .tips-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .tips-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tips-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tips-card ul li {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 0.3rem 0;
+    padding-left: 1.3rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .tips-card ul li::before {
+    content: attr(data-icon);
+    position: absolute;
+    left: 0;
+    font-size: 0.75rem;
+  }
+
+  .tips-card ul li strong { color: var(--text); }
+
+  /* ═══ CALLOUT ═══ */
+  .callout {
+    background: rgba(255,195,18,0.06);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout h4 {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .callout p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .callout.warm {
+    background: var(--warmth-soft);
+    border-color: var(--warmth-border);
+  }
+
+  .callout.warm h4 { color: var(--warmth); }
+
+  .callout.hel {
+    background: var(--hel-soft);
+    border-color: var(--hel-border);
+  }
+
+  .callout.hel h4 { color: var(--hel); }
+
+  /* ═══ WARNING SIGNS ═══ */
+  .warning-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+
+  .warning-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0;
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .warning-list li .warn-icon {
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.78rem;
+  }
+
+  .site-footer a {
+    color: var(--hel);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover { color: var(--hel-glow); }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    .nav-links { gap: 0.8rem; }
+    .nav-links a { font-size: 0.65rem; }
+    .etiquette-grid { grid-template-columns: 1fr; }
+    .comparison-grid { grid-template-columns: 1fr; }
+    .comparison-header.smoke { border-left: none; border-top: 1px solid var(--border); }
+    .comparison-cell:nth-child(even) { border-left: none; }
+    .hero-stats { gap: 1.5rem; }
+    .ritual-timeline { padding-left: 2.5rem; }
+    .ritual-step::before { left: -2.4rem; width: 1.8rem; height: 1.8rem; font-size: 0.75rem; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+    .hero { min-height: 60vh; }
+    .venue-meta { grid-template-columns: 1fr; }
+    .nyc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/" class="active">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Helsinki, Finland</p>
+    <h1>Finnish Sauna Culture</h1>
+    <p class="tagline">A 2,000-year tradition &middot; UNESCO Intangible Heritage</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">3.3M</div>
+        <div class="label">Saunas in Finland</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">5.5M</div>
+        <div class="label">People in Finland</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">90%</div>
+        <div class="label">Sauna Weekly</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">2020</div>
+        <div class="label">UNESCO Inscribed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 1: WHAT IS FINNISH SAUNA CULTURE   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x2728;</span> What Is Finnish Sauna Culture</h2>
+
+    <div class="unesco-banner">
+      <span class="unesco-badge">UNESCO Intangible Cultural Heritage &middot; December 17, 2020</span>
+      <blockquote>"Traditionally, the sauna has been considered as a sacred space &mdash; a 'church of nature.' At the heart of the experience lies l&ouml;yly, the spirit or steam released by casting water onto a stack of heated stones."</blockquote>
+      <p>Finland's sauna culture was the country's <strong>first element</strong> inscribed on the UNESCO Heritage list. The decision recognized that no other nation has integrated sauna as deeply into the fabric of everyday modern life &mdash; from apartments to corporate headquarters, from the Parliament House to Finnish embassies worldwide, and even 1,400 meters underground in the Pyh&auml;salmi Mine.</p>
+    </div>
+
+    <p class="section-intro">
+      There are roughly <strong>3.3 million saunas</strong> for Finland's <strong>5.5 million people</strong> &mdash; one sauna for every 1.6 humans. Saunas outnumber cars. Nearly 90% of Finns sauna at least once a week. When establishing a new homestead, you built the sauna first &mdash; it provided warmth, cooking, cleaning, and shelter. Then you built the house around it.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Not a Spa Treatment</h3>
+        <p>Finnish sauna is not "going to the spa." It is <strong>meditation</strong> &mdash; a place of silence and mental cleansing. It is <strong>social bonding</strong> &mdash; families gather, friends connect, business is conducted. It is <strong>egalitarian</strong> &mdash; "there are no titles in the sauna." Everyone is literally and figuratively stripped bare.</p>
+      </div>
+      <div class="info-card">
+        <h3>The Sacred Space</h3>
+        <p>Through the 1950s, Finns were commonly <strong>born in saunas</strong> because they were the most hygienic space available. The sauna witnessed life's most sacred moments &mdash; birth, healing the sick, preparing the deceased for burial. Many Finns say you should behave in a sauna as you would in church.</p>
+      </div>
+      <div class="info-card">
+        <h3>L&ouml;yly &mdash; The Spirit</h3>
+        <p>The word <em>l&ouml;yly</em> (pronounced "LOW-lu") originally meant <strong>"spirit, breath, soul"</strong> in Uralic languages. Each sauna has its own l&ouml;yly &mdash; shaped by the wood, insulation, proportions, and bench height. A well-designed sauna "sings"; a poorly made one merely heats.</p>
+      </div>
+      <div class="info-card">
+        <h3>Sauna Diplomacy</h3>
+        <p>Nearly all Finnish embassies have saunas. Business deals and political negotiations have been conducted in saunas for decades. There is even a sauna in the <strong>Finnish Parliament</strong> and the <strong>presidential residence</strong>. Saturday is the traditional sauna day.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 2: THE RITUAL STEP BY STEP         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F525;</span> The Ritual &mdash; Step by Step</h2>
+    <p class="section-intro">
+      A full Finnish sauna experience is <strong>2&ndash;3 rounds</strong> of heat, cold, and rest. Total duration: <strong>1.5&ndash;3 hours</strong>. There is no rush. Time dissolves. This is the point.
+    </p>
+
+    <div class="ritual-timeline">
+
+      <div class="ritual-step" data-step="1">
+        <h3><span class="step-emoji">&#x1F6BF;</span> Preparation</h3>
+        <p>Remove all clothing (traditional) or wear a swimsuit (public/mixed settings). Remove jewelry, watches, glasses &mdash; metal gets dangerously hot. <strong>Shower thoroughly with soap</strong> &mdash; this is mandatory etiquette, not optional. Grab a towel to sit on.</p>
+        <div class="detail"><strong>Key rule:</strong> The shower is non-negotiable. You enter the sauna clean. No exceptions.</div>
+      </div>
+
+      <div class="ritual-step" data-step="2">
+        <h3><span class="step-emoji">&#x1F321;&#xFE0F;</span> Enter the Heat Room</h3>
+        <p>Temperature: <strong>80&ndash;110&deg;C (176&ndash;230&deg;F)</strong>. Choose your bench: lower benches are cooler (~70&deg;C), upper benches are hottest (~100&deg;C+). Sit or lie on your towel. Breathe slowly. Let your body acclimate.</p>
+        <div class="detail"><strong>For beginners:</strong> Start on a lower bench. Work your way up across rounds. There is no prize for endurance.</div>
+      </div>
+
+      <div class="ritual-step" data-step="3">
+        <h3><span class="step-emoji">&#x1F4A8;</span> L&ouml;yly &mdash; The Steam</h3>
+        <p>Water is thrown onto the <em>kiuas</em> (sauna stove), creating a burst of enveloping steam. <strong>Always ask other bathers before throwing:</strong> <span class="finnish-word">"Saako heitt&auml;&auml;?"</span> (May I throw?). The l&ouml;yly is not just temperature &mdash; it is atmosphere, space, and state of mind.</p>
+        <div class="detail"><strong>Etiquette:</strong> It is rude to leave immediately after someone throws l&ouml;yly. Step out before, or stay for it.</div>
+      </div>
+
+      <div class="ritual-step" data-step="4">
+        <h3><span class="step-emoji">&#x1F33F;</span> Birch Whisking <span class="finnish-word">(Vihta)</span></h3>
+        <p>A bundle of fresh birch twigs (<em>vihta</em> in western Finland, <em>vasta</em> in the east) is gently tapped or whisked on the back, legs, and arms. It stimulates circulation, releases the aromatic scent of birch leaves, and leaves skin incredibly smooth. <strong>The sensation is not painful</strong> &mdash; a gentle rhythmic tapping with soft, fragrant leaves.</p>
+        <div class="detail"><strong>Why it matters:</strong> This is one of the most distinctly Finnish elements &mdash; unique to Nordic sauna culture and virtually unknown outside Scandinavia. July = peak fresh birch season.</div>
+      </div>
+
+      <div class="ritual-step" data-step="5">
+        <h3><span class="step-emoji">&#x2744;&#xFE0F;</span> Cold Plunge</h3>
+        <p>Exit after 10&ndash;20 minutes and plunge into cold water &mdash; the Baltic Sea, a lake, or a cold shower. In Helsinki in July, the Baltic is <strong>15&ndash;21&deg;C (59&ndash;70&deg;F)</strong>. The thermal shock triggers a <strong>massive endorphin release</strong> &mdash; an intense, euphoric rush.</p>
+        <div class="detail"><strong>This is the moment that converts skeptics.</strong> The contrast between 100&deg;C heat and 17&deg;C water is electrifying. If you are not ready for full immersion, a cold shower works too.</div>
+      </div>
+
+      <div class="ritual-step" data-step="6">
+        <h3><span class="step-emoji">&#x1F9D8;</span> Rest &amp; Hydrate</h3>
+        <p>Sit outside on a bench or terrace, wrapped in a towel. Drink water, blueberry juice (<em>mustikkamehu</em> &mdash; the Finnish classic), or a cold beer. Eat <strong>grilled sausages</strong> (<em>makkara</em>) with mustard &mdash; the quintessential sauna snack. Your skin feels soft. Your muscles are liquid. Your mind is quiet.</p>
+        <div class="detail"><strong>In July Helsinki:</strong> This means sitting on a waterfront terrace in golden light at 10 PM. The sun barely sets.</div>
+      </div>
+
+      <div class="ritual-step" data-step="7">
+        <h3><span class="step-emoji">&#x1F504;</span> Repeat 2&ndash;3 Times</h3>
+        <p>Each round can intensify: sit higher, throw more l&ouml;yly, stay longer. After the final round, Finns describe a state called <span class="finnish-word">sauna peace</span> &mdash; deep total relaxation, physical and mental. Body weightless, skin glowing, mind clear.</p>
+        <div class="detail"><strong>Total experience:</strong> 1.5&ndash;3 hours depending on how deeply you settle in. Continue socializing, eat a full meal, or simply enjoy the stillness.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 3: ETIQUETTE                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F64F;</span> Etiquette Guide</h2>
+    <p class="section-intro">
+      The sauna is a calm, meditative space. These are not suggestions &mdash; they are the cultural rules of a 2,000-year tradition.
+    </p>
+
+    <div class="etiquette-grid">
+      <div class="etiquette-col do-col">
+        <h3>Do</h3>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Shower before entering</div>
+            <div class="reason">Fundamental hygiene. Non-negotiable.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Sit on your towel</div>
+            <div class="reason">Protects the bench and is more hygienic.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Ask before throwing l&ouml;yly</div>
+            <div class="reason">Others may not want more heat right now.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Speak quietly or not at all</div>
+            <div class="reason">The sauna is a calm, meditative space.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Hydrate between rounds</div>
+            <div class="reason">You lose significant water through sweat.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Listen to your body</div>
+            <div class="reason">Leave when you feel too hot. No machismo needed.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2713;</div>
+          <div>
+            <div class="rule">Try the cold plunge</div>
+            <div class="reason">You will not regret it. The endorphin rush is real.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="etiquette-col dont-col">
+        <h3>Don't</h3>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't talk loudly or shout</div>
+            <div class="reason">Disrupts the meditative atmosphere for everyone.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't use your phone</div>
+            <div class="reason">Privacy is sacred. No photos, no calls, no screens.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't stare at others</div>
+            <div class="reason">Everyone is naked. Nobody cares. Look at the ceiling.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't drink alcohol in the sauna</div>
+            <div class="reason">Dehydration risk is serious. Beer is for the rest period.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't rush</div>
+            <div class="reason">This is not a gym session with a timer.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't pour essential oils on stones</div>
+            <div class="reason">Can damage the stove. Only if specifically offered.</div>
+          </div>
+        </div>
+        <div class="etiquette-item">
+          <div class="etiquette-icon">&#x2717;</div>
+          <div>
+            <div class="rule">Don't compete</div>
+            <div class="reason">"Who can stay in longest" is foolish, not Finnish.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout hel">
+      <h4>If You Feel Awkward About Nudity</h4>
+      <p>It is completely okay to wear a swimsuit in public saunas &mdash; nobody will judge you. Start at <strong>Allas Sea Pool</strong> where swimsuits are required everywhere. Wrap a towel if that makes you comfortable. Remember: Finns have been doing this since birth. Literally. There is zero sexual connotation. It is like going to the beach in a nudity-optional culture &mdash; nobody is looking.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 4: SMOKE VS REGULAR SAUNA          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F32B;&#xFE0F;</span> Smoke Sauna vs Regular Sauna</h2>
+    <p class="section-intro">
+      The <em>savusauna</em> (smoke sauna) is the <strong>oldest and most authentic type of Finnish sauna</strong>, dating back centuries. All saunas were originally smoke saunas &mdash; the chimney was a later invention. No chimney. A massive wood fire heats stones for 4&ndash;8 hours. The fire is extinguished, smoke is vented, and you bathe in the residual heat in near-silence.
+    </p>
+
+    <div class="comparison-grid">
+      <div class="comparison-header regular">Regular Finnish Sauna</div>
+      <div class="comparison-header smoke">Smoke Sauna (Savusauna)</div>
+
+      <div class="comparison-label">Chimney</div>
+      <div class="comparison-row">
+        <div class="comparison-cell"><strong>Yes</strong> &mdash; continuous ventilation</div>
+        <div class="comparison-cell"><strong>No chimney</strong> &mdash; this is the defining feature</div>
+      </div>
+
+      <div class="comparison-label">Fire During Bathing</div>
+      <div class="comparison-row">
+        <div class="comparison-cell"><strong>Yes</strong> &mdash; wood-burning or electric</div>
+        <div class="comparison-cell"><strong>No</strong> &mdash; fire is out before bathing</div>
+      </div>
+
+      <div class="comparison-label">Heating Time</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">30&ndash;60 minutes</div>
+        <div class="comparison-cell"><strong>4&ndash;8 hours</strong></div>
+      </div>
+
+      <div class="comparison-label">Temperature</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">80&ndash;110&deg;C &mdash; direct, intense</div>
+        <div class="comparison-cell">~60&ndash;80&deg;C &mdash; <strong>feels hotter</strong> due to humidity</div>
+      </div>
+
+      <div class="comparison-label">Heat Quality</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Direct and intense &mdash; hits the surface</div>
+        <div class="comparison-cell"><strong>Soft and deep</strong> &mdash; radiating from all surfaces</div>
+      </div>
+
+      <div class="comparison-label">Sound</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Fire crackling, wood popping</div>
+        <div class="comparison-cell"><strong>Near-silence</strong> &mdash; "whispers of the stove"</div>
+      </div>
+
+      <div class="comparison-label">Interior</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Natural wood color</div>
+        <div class="comparison-cell"><strong>Pitch black</strong> &mdash; smoke stains everything over decades</div>
+      </div>
+
+      <div class="comparison-label">Aroma</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Wood, birch</div>
+        <div class="comparison-cell">Birch + <strong>deep smoky, earthy scent</strong></div>
+      </div>
+
+      <div class="comparison-label">Atmosphere</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Relaxing</div>
+        <div class="comparison-cell"><strong>Meditative, almost spiritual</strong> &mdash; like entering an ancient cave</div>
+      </div>
+
+      <div class="comparison-label">Availability</div>
+      <div class="comparison-row">
+        <div class="comparison-cell">Everywhere &mdash; every building in Finland</div>
+        <div class="comparison-cell"><strong>Rare and special</strong> &mdash; a destination experience</div>
+      </div>
+    </div>
+
+    <div class="callout warm">
+      <h4>Why Purists Call It Superior</h4>
+      <p>The heat is described as "soft but deep" &mdash; it extends to the entire body rather than hitting the surface. The silence (no fire burning) creates a profoundly meditative atmosphere. The blackened interior, dimly lit, creates a cave-like, womb-like feeling. The smoky aroma is unlike anything else &mdash; earthy, primal, ancient. <strong>L&ouml;yly Helsinki has a rare city-center smoke sauna</strong> alongside its wood-burning sauna.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 5: HELSINKI'S BEST SAUNAS           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F3DB;&#xFE0F;</span> Helsinki's Best Saunas</h2>
+    <p class="section-intro">
+      Helsinki has an extraordinary density of public saunas &mdash; from architectural landmarks to century-old neighborhood institutions. Here are the five that matter most, each offering a fundamentally different experience.
+    </p>
+
+    <!-- LOYLY -->
+    <div class="venue-card">
+      <div class="venue-header">
+        <span class="venue-number">01</span>
+        <h3 style="color: var(--hel);">L&ouml;yly</h3>
+        <div class="venue-tagline">The Design Icon &mdash; Time Magazine's "100 Greatest Places"</div>
+        <div class="venue-tags">
+          <span class="venue-tag tag-design">Design Landmark</span>
+          <span class="venue-tag tag-smoke">Smoke Sauna</span>
+          <span class="venue-tag tag-beginner">Great for First-Timers</span>
+        </div>
+      </div>
+      <div class="venue-body">
+        <div class="venue-meta">
+          <div class="venue-meta-item"><strong>Price:</strong> EUR 27 / 2hr session</div>
+          <div class="venue-meta-item"><strong>Address:</strong> Hernesaarenranta 4</div>
+          <div class="venue-meta-item"><strong>Booking:</strong> Book 1 week ahead online</div>
+          <div class="venue-meta-item"><strong>Dress:</strong> Swimsuits required (mixed)</div>
+        </div>
+        <p class="venue-description">
+          Helsinki's most internationally famous sauna. Designed by <strong>Avanto Architects</strong> (2016) &mdash; a rectangular black concrete box wrapped in a sculptural "cloak" of heat-treated pine that architect Ville Hara says will turn grey over time "until the building resembles a rock on the seashore." Founded by Finnish actor <strong>Jasper Paakkonen</strong> (Vikings, BlacKkKlansman).
+        </p>
+        <p class="venue-description">
+          Two saunas: a <strong>wood-burning sauna</strong> (22 sqm, ~20 bathers) and a rare city-center <strong>smoke sauna</strong> (18 sqm, ~20 bathers). Both offer <strong>direct Baltic Sea access</strong> &mdash; stairs lead from the terrace down to the water. The on-site restaurant has a full Scandinavian menu and Baltic-facing terrace.
+        </p>
+        <div class="venue-highlight">
+          <strong>Best for:</strong> First-time sauna visitors who want beauty, comfort, a smoke sauna, and direct sea swimming in one stunning waterfront package. Also the ideal venue for the recommended "Perfect Sauna Evening" &mdash; book the 7 PM slot, swim at golden hour, finish on the terrace as the sky turns amber.
+        </div>
+      </div>
+    </div>
+
+    <!-- KOTIHARJUN -->
+    <div class="venue-card">
+      <div class="venue-header">
+        <span class="venue-number">02</span>
+        <h3 style="color: var(--warmth);">Kotiharjun Sauna</h3>
+        <div class="venue-tagline">Helsinki's last original public wood-burning sauna &mdash; since 1928</div>
+        <div class="venue-tags">
+          <span class="venue-tag tag-historic">Est. 1928</span>
+          <span class="venue-tag tag-historic">Wood-Fired</span>
+        </div>
+      </div>
+      <div class="venue-body">
+        <div class="venue-meta">
+          <div class="venue-meta-item"><strong>Price:</strong> EUR 16&ndash;19</div>
+          <div class="venue-meta-item"><strong>Address:</strong> Harjutorinkatu 1, Kallio</div>
+          <div class="venue-meta-item"><strong>Booking:</strong> Walk-in only</div>
+          <div class="venue-meta-item"><strong>Dress:</strong> Nude (single-gender sections)</div>
+        </div>
+        <p class="venue-description">
+          Operating continuously since 1928. A <strong>massive 3-meter-high oven</strong> with 1,500 kg of stones, heated with wood. Men's sauna on the ground floor, women's on the second floor &mdash; this basic structure has remained unchanged for nearly a century. Family-run by the Holopainen family since 1991. Traditional <strong>washing ladies</strong> still available for scrubs by appointment.
+        </p>
+        <p class="venue-description">
+          Located in <strong>Kallio</strong>, Helsinki's most vibrant, bohemian neighborhood &mdash; dive bars, vintage shops, independent restaurants all within steps. After your sauna: cool off outdoors in front of the building, solving the world's problems with fellow bathers in the soft steam.
+        </p>
+        <div class="venue-highlight">
+          <strong>Best for:</strong> Anyone who wants the real, unvarnished, century-old Finnish sauna experience. No design awards, no Instagram terrace. Just heat, steam, and history. This is where locals go.
+        </div>
+      </div>
+    </div>
+
+    <!-- ALLAS -->
+    <div class="venue-card">
+      <div class="venue-header">
+        <span class="venue-number">03</span>
+        <h3 style="color: var(--do-green);">Allas Sea Pool</h3>
+        <div class="venue-tagline">Floating urban oasis &mdash; the most beginner-friendly sauna in Helsinki</div>
+        <div class="venue-tags">
+          <span class="venue-tag tag-beginner">Most Beginner-Friendly</span>
+          <span class="venue-tag tag-design">Floating Complex</span>
+        </div>
+      </div>
+      <div class="venue-body">
+        <div class="venue-meta">
+          <div class="venue-meta-item"><strong>Price:</strong> EUR 16&ndash;19 day pass</div>
+          <div class="venue-meta-item"><strong>Address:</strong> Katajanokanlaituri 2 (Market Square)</div>
+          <div class="venue-meta-item"><strong>Hours:</strong> 6 AM&ndash;10 PM (Fri-Sat to 1 AM)</div>
+          <div class="venue-meta-item"><strong>Dress:</strong> Swimsuits required</div>
+        </div>
+        <p class="venue-description">
+          Floating pool and sauna complex in Helsinki's harbor, right next to Market Square. <strong>Five saunas</strong> at different temperatures (70&ndash;90&deg;C), a heated pool (27&deg;C year-round), a natural Baltic Sea water pool, and three restaurants including a rooftop terrace with champagne garden. Swimsuits required everywhere.
+        </p>
+        <p class="venue-description">
+          <strong>Opens at 6 AM</strong> &mdash; one of the few Helsinki saunas open in the morning. Perfect for early risers who want a peaceful swim-and-sauna before sightseeing. Walking distance from Senate Square, Helsinki Central Station, and the Suomenlinna ferry terminal.
+        </p>
+        <div class="venue-highlight">
+          <strong>Best for:</strong> Your first sauna experience if you are nervous about nudity or protocol. Open, bright, modern &mdash; nothing intimidating. Combined with pool swimming, it feels like a pool day with saunas attached. Also excellent on a Friday or Saturday evening with drinks on the rooftop.
+        </div>
+      </div>
+    </div>
+
+    <!-- KULTTUURISAUNA -->
+    <div class="venue-card">
+      <div class="venue-header">
+        <span class="venue-number">04</span>
+        <h3 style="color: #c4b5fd;">Kulttuurisauna</h3>
+        <div class="venue-tagline">The architect's meditation &mdash; sauna as spiritual practice</div>
+        <div class="venue-tags">
+          <span class="venue-tag tag-meditative">Meditative</span>
+          <span class="venue-tag tag-design">Minimalist Architecture</span>
+        </div>
+      </div>
+      <div class="venue-body">
+        <div class="venue-meta">
+          <div class="venue-meta-item"><strong>Price:</strong> EUR 17 (EUR 13 student/senior)</div>
+          <div class="venue-meta-item"><strong>Address:</strong> Hakaniemenranta 17</div>
+          <div class="venue-meta-item"><strong>Booking:</strong> Pre-booking required (90 min sessions)</div>
+          <div class="venue-meta-item"><strong>Dress:</strong> Nude (separate men/women)</div>
+        </div>
+        <p class="venue-description">
+          Designed by architect <strong>Tuomas Toivonen</strong> and <strong>Nene Tsuboi</strong> (2013). Minimalist concrete and wood structure on the waterfront. Heated with ecological wood pellets. Separate saunas for men and women with direct Baltic Sea access for cold plunges. <strong>Fridays are designated quiet days</strong> &mdash; absolutely no talking in the sauna.
+        </p>
+        <p class="venue-description">
+          Light refreshments only: boiled eggs, pickles, tea, kombucha. <strong>No alcohol. No glass items.</strong> Calendar opens 2 weeks ahead. No walk-ins. No groups larger than 2.
+        </p>
+        <div class="venue-highlight">
+          <strong>Best for:</strong> Experienced sauna-goers or aesthetes who want something deeply quiet and intentional. Described as "a place of silence and intention &mdash; where steam, stillness, and minimalist design create a meditative ritual by the Baltic Sea." This is sauna as spiritual practice, not tourist activity.
+        </div>
+      </div>
+    </div>
+
+    <!-- SOMPASAUNA -->
+    <div class="venue-card">
+      <div class="venue-header">
+        <span class="venue-number">05</span>
+        <h3 style="color: var(--gold);">Sompasauna <span style="font-size:0.7em; font-weight:400; color: var(--text-dim); font-family: Inter, sans-serif;">&mdash; BONUS</span></h3>
+        <div class="venue-tagline">The free, 24/7, DIY community sauna &mdash; punk rock meets Finnish tradition</div>
+        <div class="venue-tags">
+          <span class="venue-tag tag-free">Free</span>
+          <span class="venue-tag tag-free">24/7</span>
+          <span class="venue-tag tag-historic">Community-Built</span>
+        </div>
+      </div>
+      <div class="venue-body">
+        <div class="venue-meta">
+          <div class="venue-meta-item"><strong>Price:</strong> Completely free</div>
+          <div class="venue-meta-item"><strong>Address:</strong> Kansanpuistonpolku 5, Mustikkamaa</div>
+          <div class="venue-meta-item"><strong>Hours:</strong> 24 hours a day, 7 days a week</div>
+          <div class="venue-meta-item"><strong>Dress:</strong> Mixed-gender, swimsuit optional</div>
+        </div>
+        <p class="venue-description">
+          Helsinki's most rebellious sauna. <strong>Not a business &mdash; a community project</strong> built and maintained entirely by volunteers. Wood-burning sauna on the waterfront with direct sea access. Has been demolished and rebuilt multiple times (once illegally set aflame). Always comes back. Visitors are encouraged to help: refill the wood pile, tidy up, leave it better than you found it.
+        </p>
+        <p class="venue-description">
+          No showers, no formal changing rooms, no refreshments sold. Bring your own towel, water, and a padlock for lockers. <strong>Late-night visits are magical:</strong> sauna under the stars, midnight swim in the Baltic. Early morning in July: sauna in golden dawn light at 4 AM.
+        </p>
+        <div class="venue-highlight">
+          <strong>Best for:</strong> Adventurous travelers who want the most authentic, egalitarian, and uniquely Helsinki sauna experience possible. A mix of locals, students, artists, and bold tourists. A midnight summer sauna here is something you will never forget. "An outsider architecture project, built by the people for the people."
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warm">
+      <h4>The Perfect Sauna Evening &mdash; Our Recommendation</h4>
+      <p><strong>6 PM:</strong> Light dinner at L&ouml;yly's restaurant. <strong>7 PM:</strong> Enter sauna (pre-booked 2-hour session). <strong>7:15 PM:</strong> First round in the wood-burning sauna. <strong>7:35 PM:</strong> Baltic Sea swim from the terrace stairs. Gasp. Euphoria. <strong>8 PM:</strong> Second round in the smoke sauna. Deeper heat. Birch aroma. Silence. <strong>8:20 PM:</strong> Second plunge. Longer this time. <strong>8:30 PM:</strong> Cold beer on the terrace. The sun is still high. <strong>9 PM:</strong> Emerge. Glowing. The world is soft and golden and you understand why Finns do this every single day.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 6: WHY THIS IS IMPOSSIBLE IN NYC   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F6AB;</span> Why This Is Impossible in NYC</h2>
+    <p class="section-intro">
+      New York has excellent bathing culture &mdash; Russian &amp; Turkish Baths (since 1892), Korean jjimjilbangs (Premier57, Spa Castle), and upscale "Nordic" thermal circuits (Aire, Bathhouse). But Finnish sauna is fundamentally different. Here are the nine reasons.
+    </p>
+
+    <div class="nyc-grid">
+      <div class="nyc-card" data-num="1">
+        <h4>Baltic Sea Cold Plunge</h4>
+        <p>No ocean access from any NYC sauna. A plunge pool is not the same as swimming in the open sea at 17&deg;C with seabirds and islands on the horizon.</p>
+      </div>
+      <div class="nyc-card" data-num="2">
+        <h4>Birch Whisking (Vihta)</h4>
+        <p>Virtually unknown in American bath culture. Fresh birch bundles require specific trees and seasonal harvesting. Not part of any tradition here.</p>
+      </div>
+      <div class="nyc-card" data-num="3">
+        <h4>Smoke Sauna (Savusauna)</h4>
+        <p>Zero smoke saunas exist in NYC. The 4&ndash;8 hour chimney-free heating process would violate every fire code in Manhattan.</p>
+      </div>
+      <div class="nyc-card" data-num="4">
+        <h4>Wood-Fired L&ouml;yly</h4>
+        <p>Most NYC saunas use electric heaters. Real wood-fire l&ouml;yly &mdash; with its crackling, scent, and organic steam &mdash; is fundamentally different from electric heat.</p>
+      </div>
+      <div class="nyc-card" data-num="5">
+        <h4>2,000 Years of Context</h4>
+        <p>In NYC, a sauna is a "spa treatment." In Finland, it is Tuesday. It is where you were born, where your grandmother washed the dead, where Parliament negotiates. The cultural weight is unreplicable.</p>
+      </div>
+      <div class="nyc-card" data-num="6">
+        <h4>The 11 PM Golden Light</h4>
+        <p>In July Helsinki, you emerge at 10:30 PM into golden-hour light. The sun barely sets. A waterfront terrace in lingering warmth. This does not happen at any latitude near New York.</p>
+      </div>
+      <div class="nyc-card" data-num="7">
+        <h4>Equality &amp; Nudity Culture</h4>
+        <p>Finnish nudity is entirely non-sexual and unremarkable. In NYC, communal nudity carries unavoidable cultural baggage. The relaxed, egalitarian atmosphere is near-impossible to replicate.</p>
+      </div>
+      <div class="nyc-card" data-num="8">
+        <h4>Density of Sauna Culture</h4>
+        <p>Helsinki has dozens of public saunas for 650,000 people. NYC has a handful for 8.3 million. In Finland, 90% sauna weekly. It is the air they breathe.</p>
+      </div>
+      <div class="nyc-card" data-num="9">
+        <h4>The Sacred Silence</h4>
+        <p>NYC bathhouses are social, busy, commercial. Kulttuurisauna on a Friday offers a silence so deep it feels sacred. You cannot manufacture that.</p>
+      </div>
+    </div>
+
+    <div class="nyc-verdict">
+      <h3>The One Thing That Makes It Truly Unreplicable</h3>
+      <p>The Finnish sauna is not an activity. It is a worldview. It is the belief that heat, steam, cold water, silence, and human equality &mdash; stripped of status, clothing, and pretension &mdash; constitute a form of spiritual practice. That this practice should be available to every person, in every home, every day. That it has been practiced continuously for over 2,000 years. You cannot bottle that. You cannot franchise it. You cannot build it in Williamsburg.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SECTION 7: PRACTICAL TIPS                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="section">
+    <h2 class="section-title"><span class="icon">&#x1F392;</span> First-Timer's Practical Guide</h2>
+
+    <div class="tips-grid">
+      <div class="tips-card">
+        <h3>&#x1F9F3; What to Bring</h3>
+        <ul>
+          <li data-icon="&#x1F4A7;"><strong>Towel</strong> &mdash; most saunas provide one; bring a second to sit on</li>
+          <li data-icon="&#x1FA74;"><strong>Flip-flops / slides</strong> &mdash; floors between areas can be hot</li>
+          <li data-icon="&#x1FA71;"><strong>Swimsuit</strong> &mdash; required at Allas + L&ouml;yly; pack one regardless</li>
+          <li data-icon="&#x1F4A7;"><strong>Water bottle</strong> &mdash; fill before entering; hydration is critical</li>
+          <li data-icon="&#x1F512;"><strong>Padlock</strong> &mdash; for Sompasauna's lockers (limited storage)</li>
+          <li data-icon="&#x26A0;&#xFE0F;"><strong>No jewelry / watches</strong> &mdash; metal conducts heat and will burn</li>
+        </ul>
+      </div>
+      <div class="tips-card">
+        <h3>&#x1F4A7; Hydration</h3>
+        <ul>
+          <li data-icon="&#x1F4A7;">Drink <strong>at least 500ml of water</strong> before your first round</li>
+          <li data-icon="&#x1F4A7;">Sip water between every round &mdash; never skip this</li>
+          <li data-icon="&#x1FAD0;">Finnish blueberry juice (<em>mustikkamehu</em>) is the traditional hydration</li>
+          <li data-icon="&#x1F37A;">Beer is for the rest period <strong>after</strong>, never during or before</li>
+          <li data-icon="&#x26A0;&#xFE0F;">Dehydration signs: dizziness, nausea, headache &mdash; exit immediately</li>
+        </ul>
+      </div>
+      <div class="tips-card">
+        <h3>&#x23F1;&#xFE0F; How Long in the Heat</h3>
+        <ul>
+          <li data-icon="&#x1F331;"><strong>First-timers:</strong> 5&ndash;10 minutes per round</li>
+          <li data-icon="&#x1F4AA;"><strong>Experienced:</strong> 10&ndash;20 minutes per round</li>
+          <li data-icon="&#x1F504;"><strong>Full session:</strong> 2&ndash;3 rounds, 1.5&ndash;3 hours total</li>
+          <li data-icon="&#x1F3AF;"><strong>Key rule:</strong> Leave when your body tells you to</li>
+        </ul>
+      </div>
+      <div class="tips-card">
+        <h3>&#x1F551; Best Time of Day</h3>
+        <ul>
+          <li data-icon="&#x1F307;"><strong>Evening (after 5 PM)</strong> is most traditional and popular</li>
+          <li data-icon="&#x2728;"><strong>9 PM sauna + 10 PM Baltic swim</strong> in July = full golden-hour light</li>
+          <li data-icon="&#x1F305;"><strong>Early morning (6 AM)</strong> at Allas Sea Pool &mdash; quiet, peaceful</li>
+          <li data-icon="&#x26A0;&#xFE0F;">Avoid weekend afternoons at L&ouml;yly / Allas &mdash; tourist peak hours</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h4>When to Step Out &mdash; Warning Signs</h4>
+      <p>Exit the sauna immediately if you experience: <strong>dizziness or lightheadedness</strong>, nausea, rapid heartbeat that feels uncomfortable, feeling faint or "seeing stars", or any sensation that something is "not right." Always err on the side of caution. The sauna will be there for another round. Sauna is safe for most healthy adults, but consult a doctor if you have heart conditions, very low blood pressure, or are pregnant.</p>
+    </div>
+
+    <div class="callout hel">
+      <h4>July Timing Is Perfect</h4>
+      <p>Helsinki at 60&deg;N in early July: sunset around <strong>11:00&ndash;11:30 PM</strong>, sunrise around <strong>3:30&ndash;4:00 AM</strong>. Even at midnight, the sky never fully darkens. The Baltic is <strong>15&ndash;21&deg;C</strong> &mdash; cold enough for a thrilling contrast after 100&deg;C heat, warm enough to actually swim. This is the ONLY time of year that a post-sauna Baltic swim is comfortable. Evening saunas are bathed in golden light. Midnight swims happen in twilight. It is otherworldly.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <p style="font-family: 'Playfair Display', serif; font-size: 0.95rem; margin-bottom: 0.3rem;">Nordic Arc &mdash; Finnish Sauna Culture</p>
+  <p style="color: rgba(255,255,255,0.25); margin-bottom: 0.8rem;">A 2,000-year tradition &middot; UNESCO Intangible Heritage &middot; Helsinki, July 2026</p>
+  <div class="footer-links">
+    <a href="../">Trip Hub</a>
+    <a href="../itinerary/">Itinerary</a>
+    <a href="../restaurants/">Restaurants</a>
+    <a href="../hotels/">Hotels</a>
+    <a href="../experiences/">Experiences</a>
+    <a href="../fjords/">Fjords</a>
+    <a href="../practical/">Practical</a>
+  </div>
+  <p style="margin-top: 1rem; color: rgba(255,255,255,0.15);">Oslo &rarr; Bergen &rarr; Stockholm &rarr; Helsinki &nbsp;&middot;&nbsp; June 27 &ndash; July 8, 2026</p>
+</footer>
+
+</body>
+</html>

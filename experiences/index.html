@@ -472,15 +472,41 @@
   .btn-sthlm { background: var(--sthlm-dark); color: #fff; }
   .btn-hel { background: var(--hel-color); color: #fff; }
   .btn-gold { background: var(--gold); color: #000; }
+
+  /* ═══ NAV ═══ */
+  .top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,9,10,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 2rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1rem; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  @media (max-width: 480px) { .nav-links { display: none; } }
 </style>
 </head>
 <body>
+
+<nav class="top-nav">
+  <a href="../" class="nav-brand">Nordic Arc</a>
+  <ul class="nav-links">
+    <li><a href="../itinerary/">Itinerary</a></li>
+    <li><a href="../restaurants/">Restaurants</a></li>
+    <li><a href="../hotels/">Hotels</a></li>
+    <li><a href="../experiences/" class="active">Experiences</a></li>
+    <li><a href="../fjords/">Fjords</a></li>
+    <li><a href="../sauna/">Sauna</a></li>
+    <li><a href="../practical/">Practical</a></li>
+  </ul>
+</nav>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Summer 2026 &nbsp;·&nbsp; Trip Four</p>
+    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Summer 2026 &nbsp;·&nbsp; The Trip</p>
     <h1>Bookable Experiences</h1>
     <p class="tagline">Norway · Sweden · Finland &nbsp;·&nbsp; June 27 – July 8</p>
   </div>
@@ -508,18 +534,17 @@
           &nbsp;
           <span class="nyc-badge">Impossible in NYC</span>
         </div>
-        <h3>Iris at The Salmon Eye</h3>
-        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">A 1 Michelin-starred restaurant suspended inside a floating steel sculpture anchored in the middle of the Hardangerfjord, 2 hours from Bergen. The building is designed to resemble a salmon's eye — a 1,500 kg metallic sphere that rises 5 meters above the water. You arrive by private boat. 16 seats. The menu is entirely Norwegian aquatic ingredients: wild fjord salmon, coastal herbs, sea trout, raw fjord shrimp, seaweed. The fjord walls rise 800 meters on both sides of your table. The experience — the geometry of a floating fine-dining room in one of Norway's most dramatic fjords — does not exist in any form anywhere else on Earth.</p>
-        <div class="why-special">
-          <div class="why-label">Why This Is The One</div>
-          <p>Every element is non-replicable: the floating building (there is one, in this fjord), the wild ingredients sourced from the water you're sitting on, the fjord landscape as the dining room walls, and the boat-only access. The closest analogue in NYC would be eating at a restaurant in the middle of the Hudson. That restaurant doesn't exist. This one does.</p>
+        <h3>Iris at The Salmon Eye <span style="background: #e07070; color: #fff; font-size: 0.55rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-family: Inter, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem;">CLOSED JAN 2026</span></h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">A Michelin-starred restaurant suspended inside a floating steel sculpture anchored in the middle of the Hardangerfjord, 2 hours from Bergen. The building resembles a salmon's eye — a metallic sphere rising 5 meters above the water. You arrived by private boat. 24 seats. The menu was entirely Norwegian aquatic ingredients: wild fjord salmon, coastal herbs, sea trout, raw fjord shrimp, seaweed. <strong style="color: #e07070;">Update: Iris closed in January 2026. The concept is being redeveloped — monitor thesalmoneye.com for a possible summer 2026 relaunch. The visitor center/exhibition remains open (349 NOK).</strong></p>
+        <div class="why-special" style="background: rgba(224,112,112,0.08); border-color: rgba(224,112,112,0.2);">
+          <div class="why-label" style="color: #e07070;">Status: Temporarily Closed</div>
+          <p>The restaurant closed January 2026 with staff laid off and the concept under redevelopment. If it relaunches for summer 2026, this remains the #1 most impossible-to-replicate experience. Bergen's three new Michelin-starred restaurants (Lysverket, Gaptrast, Omakase by Sergey Pak) serve as alternatives for the fine dining splurge.</p>
         </div>
         <div class="meta-row">
-          <span class="meta-pill"><span class="icon">⏱</span> 4 hrs including boat transfer</span>
+          <span class="meta-pill"><span class="icon">⚠️</span> Closed Jan 2026 — monitor for relaunch</span>
           <span class="meta-pill"><span class="icon">📍</span> Rosendal, Hardangerfjord</span>
-          <span class="meta-pill"><span class="icon">💰</span> ~$250–350 pp (Michelin tasting menu)</span>
         </div>
-        <a href="https://thesalmoneye.com/iris/" class="book-btn btn-bergen" target="_blank">Book Direct at thesalmoneye.com →</a>
+        <a href="https://thesalmoneye.com/" class="book-btn" style="background: #555; color: #fff;" target="_blank">Check thesalmoneye.com for updates →</a>
       </div>
     </div>
 
@@ -860,9 +885,9 @@
       <tbody>
         <tr>
           <td>Iris at The Salmon Eye</td>
-          <td>Immediately — 3+ months ahead</td>
-          <td class="urgency-high">BOOK NOW</td>
-          <td>16 seats. Summer 2026 dates will fill by March. Book via thesalmoneye.com</td>
+          <td>Monitor for relaunch</td>
+          <td style="color: #e07070 !important; font-weight: 600 !important;">CLOSED — CHECK SITE</td>
+          <td>Closed Jan 2026. Concept being redeveloped. Monitor thesalmoneye.com for summer 2026 dates</td>
         </tr>
         <tr>
           <td>Ekstedt, Stockholm (1 Michelin star)</td>
@@ -946,7 +971,15 @@
 <footer class="footer">
   <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 0.6rem;">Nordic Arc — Bookable Experiences</div>
   <p>Oslo · Bergen · Fjords · Stockholm · Helsinki &nbsp;·&nbsp; June 27 – July 8, 2026</p>
-  <p style="margin-top: 0.5rem;">See the full itinerary: <a href="itinerary.html">itinerary.html</a></p>
+  <p style="margin-top: 0.8rem;">
+    <a href="../" style="color: #F4A261; text-decoration: none;">← Back to trip hub</a> &nbsp;·&nbsp;
+    <a href="../itinerary/" style="color: #F4A261; text-decoration: none;">Itinerary</a> &nbsp;·&nbsp;
+    <a href="../restaurants/" style="color: #F4A261; text-decoration: none;">Restaurants</a> &nbsp;·&nbsp;
+    <a href="../hotels/" style="color: #F4A261; text-decoration: none;">Hotels</a> &nbsp;·&nbsp;
+    <a href="../fjords/" style="color: #F4A261; text-decoration: none;">Fjords</a> &nbsp;·&nbsp;
+    <a href="../sauna/" style="color: #F4A261; text-decoration: none;">Sauna</a> &nbsp;·&nbsp;
+    <a href="../practical/" style="color: #F4A261; text-decoration: none;">Practical</a>
+  </p>
 </footer>
 
 </body>
