@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slovenia Road Trip | June 27 – July 9, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --venice: #C0B283;
+    --venice-glow: rgba(192,178,131,0.3);
+    --green: #3D8B37;
+    --green-glow: rgba(61,139,55,0.3);
+    --blue: #2A7DC9;
+    --blue-glow: rgba(42,125,201,0.3);
+    --red: #E63946;
+    --red-glow: rgba(230,57,70,0.3);
+    --gold: #E9C46A;
+    --gold-dark: #D4A017;
+    --gold-glow: rgba(233,196,106,0.3);
+    --bg: #08090a;
+    --card-bg: #111214;
+    --card-hover: #161819;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══════ HERO ═══════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.13) saturate(0.7);
+    transform: scale(1.05);
+    animation: heroZoom 30s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.13); }
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 960px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.2s ease forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.8rem, 9vw, 8.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #ddd 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.35s ease forwards;
+  }
+
+  .hero .tagline {
+    font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.5s ease forwards;
+  }
+
+  .route-visual {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem 0 1.5rem;
+  }
+
+  .route-city {
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s ease forwards;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .route-city::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+    border-radius: 50px;
+  }
+
+  .route-city.venice { background: var(--venice); color: #1a1508; animation-delay: 0.7s; }
+  .route-city.brda { background: var(--green); animation-delay: 0.9s; }
+  .route-city.soca { background: var(--green); animation-delay: 1.05s; }
+  .route-city.bohinj { background: var(--blue); animation-delay: 1.2s; }
+  .route-city.bled { background: var(--blue); animation-delay: 1.35s; }
+  .route-city.lj { background: var(--red); animation-delay: 1.5s; }
+  .route-city.piran { background: var(--gold-dark); animation-delay: 1.65s; }
+
+  .route-nights {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: 500;
+    opacity: 0.75;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .route-arrow {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.2);
+    opacity: 0;
+    animation: fadeSlideUp 0.8s ease forwards;
+  }
+  .route-arrow:nth-of-type(2) { animation-delay: 0.82s; }
+  .route-arrow:nth-of-type(3) { animation-delay: 0.97s; }
+  .route-arrow:nth-of-type(4) { animation-delay: 1.12s; }
+  .route-arrow:nth-of-type(5) { animation-delay: 1.27s; }
+  .route-arrow:nth-of-type(6) { animation-delay: 1.42s; }
+  .route-arrow:nth-of-type(7) { animation-delay: 1.57s; }
+
+  .hero .dates-line {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 1.8s ease forwards;
+  }
+
+  .hero .flights-line {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    font-style: italic;
+    margin-top: 0.4rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 1.95s ease forwards;
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 2.5s ease forwards;
+  }
+
+  .scroll-cue span {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+  }
+
+  .scroll-cue .arr {
+    width: 18px; height: 18px;
+    border-right: 1.5px solid rgba(255,255,255,0.28);
+    border-bottom: 1.5px solid rgba(255,255,255,0.28);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.28; }
+    50% { transform: rotate(45deg) translate(4px,4px); opacity: 0.7; }
+  }
+
+  /* ═══════ LAYOUT ═══════ */
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ═══════ STATS ═══════ */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 4rem 0 5rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.8rem 1rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .stat-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .stat-card:nth-child(1) .stat-num { color: var(--green); }
+  .stat-card:nth-child(2) .stat-num { color: var(--green); }
+  .stat-card:nth-child(3) .stat-num { color: var(--blue); }
+  .stat-card:nth-child(4) .stat-num { color: var(--blue); }
+  .stat-card:nth-child(5) .stat-num { color: var(--red); }
+  .stat-card:nth-child(6) .stat-num { color: var(--gold); }
+
+  .stat-label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* ═══════ ROUTE MAP ═══════ */
+  .map-section {
+    margin-bottom: 5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+
+  .section-header p { color: var(--text-dim); font-size: 0.9rem; }
+
+  .route-map-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .route-map-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* SVG map path animation */
+  .animated-path {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: drawPath 4s ease forwards 0.5s;
+  }
+
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .map-dot {
+    opacity: 0;
+    animation: dotPop 0.4s ease forwards;
+  }
+  .map-dot:nth-child(1) { animation-delay: 0.4s; }
+  .map-dot:nth-child(2) { animation-delay: 0.9s; }
+  .map-dot:nth-child(3) { animation-delay: 1.4s; }
+  .map-dot:nth-child(4) { animation-delay: 1.9s; }
+  .map-dot:nth-child(5) { animation-delay: 2.4s; }
+  .map-dot:nth-child(6) { animation-delay: 2.9s; }
+  .map-dot:nth-child(7) { animation-delay: 3.4s; }
+
+  @keyframes dotPop {
+    from { opacity: 0; transform-origin: center; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ═══════ SEASON CARDS ═══════ */
+  .season-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .season-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.3s;
+  }
+
+  .season-card:hover { transform: translateY(-3px); }
+
+  .season-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .season-card h4 { font-size: 0.92rem; margin-bottom: 0.3rem; }
+  .season-card p { color: var(--text-mid); font-size: 0.8rem; line-height: 1.6; }
+
+  /* ═══════ REGION SECTIONS ═══════ */
+  .region-section { margin-bottom: 6rem; }
+
+  .region-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 340px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    cursor: default;
+  }
+
+  .region-hero-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 8s ease;
+  }
+
+  .region-hero:hover .region-hero-img { transform: scale(1.05); }
+
+  .region-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.08) 100%);
+  }
+
+  .region-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2.2rem;
+    width: 100%;
+  }
+
+  .region-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+  }
+
+  .region-hero .region-dates {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.7rem;
+  }
+
+  .region-badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ═══════ HOTEL CARDS ═══════ */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hotel-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .hotel-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); }
+
+  .hotel-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hotel-body { padding: 1.2rem; }
+
+  .hotel-nights {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .hotel-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .hotel-tagline {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-bottom: 0.6rem;
+  }
+
+  .hotel-body p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
+
+  /* ═══════ DAY CARDS ═══════ */
+  .day-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .day-card:hover { border-color: rgba(255,255,255,0.1); }
+
+  .day-header {
+    padding: 1.5rem 1.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .day-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    color: var(--text-dim);
+  }
+
+  .day-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .day-img-strip {
+    display: flex;
+    height: 130px;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  .day-img-strip img {
+    flex: 1;
+    min-width: 0;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .day-img-strip img:hover { transform: scale(1.04); }
+
+  .day-timeline { padding: 1.2rem 1.8rem 1.5rem; }
+
+  .time-block {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.3rem;
+    position: relative;
+  }
+
+  .time-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 52px;
+    top: 28px;
+    bottom: -10px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .time-stamp {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    white-space: nowrap;
+    min-width: 52px;
+    padding-top: 2px;
+  }
+
+  .time-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .time-content p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
+
+  .tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.18rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tag-food { background: rgba(230,57,70,0.15); color: #ff7b7b; }
+  .tag-nature { background: rgba(61,139,55,0.15); color: #7dd17a; }
+  .tag-culture { background: rgba(147,51,234,0.15); color: #c084fc; }
+  .tag-unique { background: rgba(233,196,106,0.15); color: #e9c46a; }
+  .tag-event { background: rgba(6,182,212,0.15); color: #67e8f9; }
+  .tag-drive { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+
+  .nyc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #ffc312;
+    color: #1a1200;
+    padding: 0.22rem 0.65rem;
+    border-radius: 50px;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  .breakfast-block { border-left: 3px solid var(--green); }
+  .snack-block { border-left: 3px solid var(--gold); }
+  .dinner-block { border-left: 3px solid var(--red); }
+
+  /* ═══════ DRIVE DIVIDER ═══════ */
+  .drive-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 3rem 0;
+    padding: 1.2rem 1.8rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .drive-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .drive-info h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .drive-info p { font-size: 0.78rem; color: var(--text-mid); }
+
+  .drive-meta {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .drive-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .drive-km { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
+
+  /* ═══════ BOOKING ALERT ═══════ */
+  .booking-alert {
+    background: linear-gradient(135deg, rgba(230,57,70,0.12), rgba(230,57,70,0.05));
+    border: 1px solid rgba(230,57,70,0.25);
+    border-radius: 16px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .booking-alert .alert-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .booking-alert h4 { font-size: 0.95rem; font-weight: 700; color: #ff7b7b; margin-bottom: 0.3rem; }
+  .booking-alert p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
+  .booking-alert ul { font-size: 0.8rem; color: var(--text-mid); line-height: 1.8; padding-left: 1.2rem; margin-top: 0.4rem; }
+
+  /* ═══════ FOOTER ═══════ */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+
+  footer .footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width: 680px) {
+    .route-visual { gap: 0.35rem; }
+    .route-city { padding: 0.5rem 0.9rem; font-size: 0.75rem; }
+    .hotels-grid { grid-template-columns: 1fr; }
+    .drive-divider { flex-wrap: wrap; }
+    .drive-meta { margin-left: 0; text-align: left; }
+    .day-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Europe's Best-Kept Secret</p>
+    <h1>Slovenia</h1>
+    <p class="tagline">Road Trip &nbsp;·&nbsp; June 27 – July 9, 2026</p>
+    <div class="route-visual">
+      <div class="route-city venice">Venice <span class="route-nights">1 night</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city brda">Goriška Brda <span class="route-nights">1 night</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city soca">Soča Valley <span class="route-nights">2 nights</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city bohinj">Bohinj <span class="route-nights">1 night</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city bled">Bled <span class="route-nights">2 nights</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city lj">Ljubljana <span class="route-nights">2 nights</span></div>
+      <span class="route-arrow">›</span>
+      <div class="route-city piran">Piran <span class="route-nights">2 nights</span></div>
+    </div>
+    <p class="dates-line">Depart JFK Jun 26 · Arrive Venice Jun 27 · 12 nights · ~750 km</p>
+    <p class="flights-line">Delta One JFK→VCE · Drive through Slovenia · Fly Vienna or Venice home</p>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="arr"></div></div>
+</section>
+
+<div class="content">
+
+  <!-- ═══════ STATS ═══════ -->
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Nights</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Stops</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Unique Hotels</div></div>
+    <div class="stat-card"><div class="stat-num">8+</div><div class="stat-label">Must-Eat</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Key Hikes</div></div>
+    <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Michelin Dinners</div></div>
+  </div>
+
+  <!-- ═══════ ROUTE MAP ═══════ -->
+  <div class="map-section">
+    <div class="section-header">
+      <h2>The Route</h2>
+      <p>Venice gateway → Julian Alps → Lakes → Capital → Adriatic coast</p>
+    </div>
+    <div class="route-map-container">
+      <svg class="route-map-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background gradient — sky to sea -->
+        <defs>
+          <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#0d1b2a;stop-opacity:1" />
+            <stop offset="55%" style="stop-color:#112240;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0a3050;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#C0B283" />
+            <stop offset="25%" style="stop-color:#3D8B37" />
+            <stop offset="60%" style="stop-color:#2A7DC9" />
+            <stop offset="80%" style="stop-color:#E63946" />
+            <stop offset="100%" style="stop-color:#E9C46A" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="900" height="460" fill="url(#bgGrad)" rx="12"/>
+
+        <!-- Mountain silhouette (Julian Alps) -->
+        <polygon points="280,260 310,200 340,230 370,180 410,220 440,195 480,240 520,215 560,250 600,280 280,280" fill="rgba(61,139,55,0.12)"/>
+        <polygon points="300,260 330,210 360,235 395,185 430,225 460,200 500,245 540,220 575,255 300,260" fill="rgba(61,139,55,0.08)"/>
+
+        <!-- Adriatic sea suggestion -->
+        <rect x="0" y="330" width="900" height="130" fill="rgba(42,125,201,0.08)" rx="0"/>
+        <text x="450" y="400" text-anchor="middle" fill="rgba(42,125,201,0.2)" font-size="11" font-family="Inter" letter-spacing="4">A D R I A T I C &nbsp; S E A</text>
+
+        <!-- Italy suggestion -->
+        <text x="60" y="430" fill="rgba(255,255,255,0.1)" font-size="10" font-family="Inter" letter-spacing="2">I T A L Y</text>
+        <text x="680" y="100" fill="rgba(255,255,255,0.1)" font-size="10" font-family="Inter" letter-spacing="2">A U S T R I A</text>
+
+        <!-- Animated route path -->
+        <!-- Venice(120,280) → Brda(220,250) → Bovec(310,210) → Bohinj(430,200) → Bled(490,210) → Ljubljana(570,260) → Piran(170,340) -->
+        <path class="animated-path"
+          d="M 120,290 C 155,275 190,258 220,252 C 255,246 278,228 310,212 C 340,198 385,196 430,202 C 465,207 475,208 492,212 C 530,220 548,242 572,262 C 590,278 480,318 380,338 C 290,354 220,348 170,342"
+          fill="none" stroke="url(#pathGrad)" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.85"/>
+
+        <!-- Dots group -->
+        <g>
+          <!-- Venice -->
+          <g class="map-dot">
+            <circle cx="120" cy="290" r="8" fill="#C0B283" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="120" cy="290" r="4" fill="#fff"/>
+            <text x="120" y="275" text-anchor="middle" fill="#C0B283" font-size="11" font-family="Inter" font-weight="700">VENICE</text>
+            <text x="120" y="310" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">1 night</text>
+          </g>
+          <!-- Goriška Brda -->
+          <g class="map-dot">
+            <circle cx="220" cy="252" r="8" fill="#3D8B37" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="220" cy="252" r="4" fill="#fff"/>
+            <text x="220" y="237" text-anchor="middle" fill="#3D8B37" font-size="10" font-family="Inter" font-weight="700">GORIŠKA BRDA</text>
+            <text x="220" y="270" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">1 night</text>
+            <text x="167" y="284" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">2h 15m ›</text>
+          </g>
+          <!-- Soča/Bovec -->
+          <g class="map-dot">
+            <circle cx="310" cy="212" r="9" fill="#3D8B37" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="310" cy="212" r="4.5" fill="#fff"/>
+            <text x="310" y="196" text-anchor="middle" fill="#3D8B37" font-size="10" font-family="Inter" font-weight="700">SOČA VALLEY</text>
+            <text x="350" y="210" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">2 nights</text>
+            <text x="258" y="237" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">1h 15m ›</text>
+          </g>
+          <!-- Bohinj -->
+          <g class="map-dot">
+            <circle cx="430" cy="202" r="8" fill="#2A7DC9" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="430" cy="202" r="4" fill="#fff"/>
+            <text x="430" y="187" text-anchor="middle" fill="#2A7DC9" font-size="10" font-family="Inter" font-weight="700">BOHINJ</text>
+            <text x="430" y="220" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">1 night</text>
+            <text x="360" y="218" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">1h 45m ›</text>
+          </g>
+          <!-- Bled -->
+          <g class="map-dot">
+            <circle cx="492" cy="212" r="8" fill="#2A7DC9" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="492" cy="212" r="4" fill="#fff"/>
+            <text x="492" y="196" text-anchor="middle" fill="#2A7DC9" font-size="10" font-family="Inter" font-weight="700">BLED</text>
+            <text x="492" y="230" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">2 nights</text>
+            <text x="450" y="226" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">30m ›</text>
+          </g>
+          <!-- Ljubljana -->
+          <g class="map-dot">
+            <circle cx="572" cy="262" r="9" fill="#E63946" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="572" cy="262" r="4.5" fill="#fff"/>
+            <text x="600" y="258" fill="#E63946" font-size="11" font-family="Inter" font-weight="700">LJUBLJANA</text>
+            <text x="600" y="278" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">2 nights</text>
+            <text x="520" y="252" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">45m ›</text>
+          </g>
+          <!-- Piran -->
+          <g class="map-dot">
+            <circle cx="170" cy="342" r="8" fill="#E9C46A" filter="url(#glow)" opacity="0.9"/>
+            <circle cx="170" cy="342" r="4" fill="#fff"/>
+            <text x="170" y="328" text-anchor="middle" fill="#E9C46A" font-size="10" font-family="Inter" font-weight="700">PIRAN</text>
+            <text x="170" y="360" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8.5" font-family="Inter">2 nights</text>
+          </g>
+        </g>
+
+        <!-- Drive time label Venice→Brda -->
+        <text x="75" y="290" fill="rgba(255,255,255,0.28)" font-size="8" font-family="Inter">› Ljubljana → Piran: 1h 45m</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ═══════ SEASONAL ═══════ -->
+  <div class="section-header">
+    <h2>Late June in Slovenia</h2>
+    <p>Why this exact timing is perfect</p>
+  </div>
+  <div class="season-grid" style="margin-bottom:5rem">
+    <div class="season-card">
+      <div class="season-icon">🍒</div>
+      <div>
+        <h4>Cherry Season — Goriška Brda</h4>
+        <p>Brda's hillside orchards are famous for their cherries. Late June is peak harvest. Buy them by the roadside, eat them still warm from the tree.</p>
+      </div>
+    </div>
+    <div class="season-card">
+      <div class="season-icon">🏔️</div>
+      <div>
+        <h4>Vršič Pass Fully Open</h4>
+        <p>The 50-hairpin mountain pass only fully clears by late June. Drive it now before the August crowds. Wildflowers in full bloom at 1,611m.</p>
+      </div>
+    </div>
+    <div class="season-card">
+      <div class="season-icon">🏊</div>
+      <div>
+        <h4>Lakes Reach Swimming Temperature</h4>
+        <p>Bohinj and Bled hit 22–24°C in July. The Soča River stays cold (14–16°C) — emerald, crystal clear to 15m depth, perfect for kayaking.</p>
+      </div>
+    </div>
+    <div class="season-card">
+      <div class="season-icon">☀️</div>
+      <div>
+        <h4>Longest Days of the Year</h4>
+        <p>Sunset at 8:50 PM. Sunrise at 5:20 AM. Over 15 hours of daylight. Evening hikes, late dinners, dawn swims — all possible.</p>
+      </div>
+    </div>
+    <div class="season-card">
+      <div class="season-icon">🍄</div>
+      <div>
+        <h4>Wild Strawberry & Early Mushroom Season</h4>
+        <p>Alpine meadows thick with wild strawberries. Mountain forests beginning their mushroom season. Ask any mountain hut cook what came in that morning.</p>
+      </div>
+    </div>
+    <div class="season-card">
+      <div class="season-icon">🦩</div>
+      <div>
+        <h4>Flamingos at Sečovlje Salt Pans</h4>
+        <p>Pink flamingos feed at the 700-year-old Adriatic salt pans all summer. This is not a zoo — they're wild, and they land here because the salt attracts the right invertebrates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ BOOKING ALERT ═══════ -->
+  <div class="booking-alert">
+    <div class="alert-icon">⚠️</div>
+    <div>
+      <h4>Book These Now — They Sell Out Months in Advance</h4>
+      <ul>
+        <li><strong>Hiša Franko dinner</strong> — The single most important reservation of the trip. Book at hisafranko.com, 2–3 months ahead minimum. Also consider booking a room.</li>
+        <li><strong>Peterc Vineyard Estate</strong> — Only 5 rooms. The Condé Nast "Best Breakfast 2026" award means it's fully on the radar now.</li>
+        <li><strong>Vila Bled</strong> — Tito's residence has only 30 rooms. Lake-view suites go first.</li>
+        <li><strong>Nebesa Chalets</strong> — 5 units total. Very popular in summer. Book immediately.</li>
+        <li><strong>Delta One JFK→VCE</strong> — Business class summer seats book out 3–4 months early.</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- end .content -->
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  VENICE                                              -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="content">
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--venice);color:#1a1508;margin-bottom:0.7rem">Gateway City</span>
+      <h2 style="color:#fff">Venice</h2>
+      <p class="region-dates">Day 1–2 &nbsp;·&nbsp; Jun 27–28 &nbsp;·&nbsp; 1 night</p>
+    </div>
+  </div>
+
+  <!-- Hotel -->
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/iLIJ9LwLMSA?w=800&q=80" alt="Venice palazzo hotel">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(192,178,131,0.15);color:var(--venice)">1 Night</span>
+        <h3>Palazzina G or Ca' Pisani</h3>
+        <p class="hotel-tagline">Design hotels in historic Venetian palazzi</p>
+        <p>Both are intimate, design-forward properties in restored Renaissance buildings. No mega-hotel chains. Walking distance from the Rialto. Ca' Pisani opened in a 16th-century palazzo with Art Deco interiors that feel genuinely surreal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Days -->
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 1 &nbsp;·&nbsp; Saturday Jun 27</div>
+        <h3>Arrive in La Serenissima</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Venice canal">
+      <img src="https://images.unsplash.com/Nkaklo6NHcY?w=600&q=80" alt="Venice gondola">
+      <img src="https://images.unsplash.com/KtlBp_YttlY?w=600&q=80" alt="Venice street">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block">
+        <span class="time-stamp">2 PM</span>
+        <div class="time-content">
+          <h4>Arrive Venice — Delta nonstop from JFK</h4>
+          <p>Delta One arrives ~10:30 AM, but by the time you clear customs and take the water taxi to your hotel, it's early afternoon. Drop bags. Breathe. No cars. The silence alone is worth the flight.</p>
+          <div class="tags"><span class="tag tag-drive">Water Taxi from Airport</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">4 PM</span>
+        <div class="time-content">
+          <h4>Cannaregio Walk + Bacari Wine Bars</h4>
+          <p>Skip San Marco entirely. Head to Cannaregio — the quieter, more local sestiere. Tiny calle (alleys), laundry on lines, bakeries, a complete absence of souvenir shops. Stop at any bacaro that pulls you in for a spritz and cicchetti.</p>
+          <div class="tags"><span class="tag tag-food">Cicchetti</span><span class="tag tag-culture">Local Venice</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">7:30 PM</span>
+        <div class="time-content">
+          <h4>Gondola at Dusk</h4>
+          <p>Yes, it's touristy. Yes, you should do it once. Book a private gondola through a backchannel, not a street tout — 30 minutes through the smaller canals as the light goes golden. The silence of these waterways at dusk is unlike anything on Earth.</p>
+          <div class="tags"><span class="tag tag-unique">Once in a Lifetime</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 PM</span>
+        <div class="time-content">
+          <h4>Dinner — Osteria alle Testiere</h4>
+          <p>Venice's best small seafood osteria. Only 22 covers. Chef Luca Deleglise has been here since 1993. Razor clams with lemon, Soranino spider crab, raw scallops. Book ahead: osterialetestiere.it</p>
+          <div class="tags"><span class="tag tag-food">Venetian Seafood</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 2 &nbsp;·&nbsp; Sunday Jun 28</div>
+        <h3>Rialto Market → Drive to Wine Country</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/hFXZ5cNfkOk?w=600&q=80" alt="Rialto market">
+      <img src="https://images.unsplash.com/w8peaE068DY?w=600&q=80" alt="Vineyard drive">
+      <img src="https://images.unsplash.com/HQE1_qjE_iw?w=600&q=80" alt="Goriška Brda hills">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">8 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Cantina do Mori, Venice</h4>
+          <p>Venice's oldest bacaro, operating since 1462. Get there when it opens. Order tramezzini (crustless triangular sandwiches, Venice's true street food) and an ombra (small glass of local wine) with your coffee. Yes, wine with breakfast. You're in Venice. Address: Calle dei Do Mori, San Polo 429.</p>
+          <div class="tags"><span class="tag tag-food">Venetian Breakfast</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9:30 AM</span>
+        <div class="time-content">
+          <h4>Rialto Market — Venice's Kitchen</h4>
+          <p>The fish market (Pescaria) and produce market run along the canal under medieval columns. Lagoon fish you cannot name, purple artichokes from Sant'Erasmo island, crab that arrived this morning. Closes by noon — do not miss it.</p>
+          <div class="tags"><span class="tag tag-food">Fish Market</span><span class="tag tag-culture">Local Life</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">12 PM</span>
+        <div class="time-content">
+          <h4>Pick Up Rental Car + Drive to Goriška Brda</h4>
+          <p>Collect your car at Venice Marco Polo airport (Hertz/Europcar, one-way to Vienna). Cross into Slovenia through the Friulian borderlands. The first vineyards appear within 20 minutes of the border. Stop at the hilltop village of Šmartno for lunch and your first glass of Rebula orange wine.</p>
+          <div class="tags"><span class="tag tag-drive">2h 15m drive</span><span class="tag tag-unique">Brda Wine Roads</span></div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">3 PM</span>
+        <div class="time-content">
+          <h4>Afternoon Snack — Šmartno Village Wine Bar</h4>
+          <p>Park at the bottom and walk up into the medieval walled village of Šmartno. Find any of the small wine bars and order the house Rebula — Slovenia's indigenous white, often made as orange wine (skin-contact). Pair with local prosciutto and Tolminc cheese. This is dinner-level food at snack prices.</p>
+          <div class="tags"><span class="tag tag-food">Orange Wine</span><span class="tag tag-unique">Slovenian Rebula</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">6 PM</span>
+        <div class="time-content">
+          <h4>Check In — Peterc Vineyard Estate</h4>
+          <p>5 rooms only. Infinity pool overlooking the vineyards. The owners will greet you personally and walk you through their estate. Private wine tasting this evening in the cellar. Condé Nast Traveler "Best Small &amp; Exclusive Property 2025" and "Best Breakfast 2026."</p>
+          <div class="tags"><span class="tag tag-unique">5-Room Boutique</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end venice section -->
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  GORIŠKA BRDA                                        -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/1Zc8SfYHJaw?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--green);margin-bottom:0.7rem">Slovenia's Tuscany</span>
+      <h2 style="color:#fff">Goriška Brda</h2>
+      <p class="region-dates">Day 3 &nbsp;·&nbsp; Jun 29 &nbsp;·&nbsp; 1 night</p>
+    </div>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80" alt="Peterc vineyard estate">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(61,139,55,0.15);color:var(--green)">1 Night</span>
+        <h3>Peterc Vineyard Estate</h3>
+        <p class="hotel-tagline">Michelin Key · Condé Nast Best Breakfast 2026 · 5 rooms</p>
+        <p>Adults-only. Infinity pool above the vineyards. Private cellar tastings of Rebula, Merlot, and Chardonnay. The morning will be one of the best breakfasts of your life — house-baked bread, estate olive oil, local cheeses, honey from their own hives.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 3 &nbsp;·&nbsp; Monday Jun 29</div>
+        <h3>Wine, Olives, and the Road to the Soča</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=600&q=80" alt="Vineyard breakfast">
+      <img src="https://images.unsplash.com/nCqucqW7DAo?w=600&q=80" alt="Wine tasting">
+      <img src="https://images.unsplash.com/dSVKFCuWDcc?w=600&q=80" alt="Soča valley road">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7:30 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Peterc Estate (Condé Nast Best Breakfast 2026)</h4>
+          <p>This is what Condé Nast gave the award for: house-baked sourdough from the wood-fired oven, estate-pressed olive oil, four local cheeses, cured meats, fruit from the orchard, honey, homemade jams. Eaten on the terrace looking over the vineyards toward the Alps.</p>
+          <div class="tags"><span class="tag tag-food">Estate Breakfast</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">10 AM</span>
+        <div class="time-content">
+          <h4>Morning Tasting — Movia Winery</h4>
+          <p>Aleš Kristančič is Slovenia's most iconoclastic winemaker — biodynamic, no sulfites, naturally fermented. His tasting room is a theatrical experience. You'll taste Rebula, Sauvignon, and the infamous Lunar (white wine made like a red, skin contact for 8 months). Book ahead: movia.si.</p>
+          <div class="tags"><span class="tag tag-food">Biodynamic Wine</span><span class="tag tag-unique">Orange Wine Pioneer</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">12 PM</span>
+        <div class="time-content">
+          <h4>Drive South — Into the Soča Valley</h4>
+          <p>1h 15m along the upper Soča. The valley narrows, the rock walls close in, and then — the river appears. That color. Emerald-turquoise, impossibly vivid. You will pull over. Everyone does the first time.</p>
+          <div class="tags"><span class="tag tag-drive">1h 15m to Kobarid</span><span class="tag tag-nature">First Soča Sighting</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">2 PM</span>
+        <div class="time-content">
+          <h4>WWI Kobarid Museum</h4>
+          <p>Hemingway was an ambulance driver here. The Battle of Caporetto (Isonzo Front) was one of the most brutal of WWI — 300,000 casualties in this narrow mountain valley. The museum is exceptional: immersive, not nationalistic, genuinely moving. Walk the 5km outdoor historical trail afterward.</p>
+          <div class="tags"><span class="tag tag-culture">WWI History</span><span class="tag tag-unique">Hemingway Country</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">4 PM</span>
+        <div class="time-content">
+          <h4>Check In — Dobra Vila Bovec or Nebesa Chalets</h4>
+          <p><strong>Dobra Vila:</strong> 12 rooms in a converted 1930s telecom relay station. Every room is individually designed — theatrical interiors, art everywhere, genuinely surreal. <strong>Nebesa Chalets:</strong> "Heaven" in Slovenian. Five wooden chalets on a remote hillside above the valley with 180-degree Julian Alps panorama. Choose based on what you want: village texture (Dobra Vila) or pure isolation (Nebesa).</p>
+          <div class="tags"><span class="tag tag-unique">Heritage Conversion</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block dinner-block">
+        <span class="time-stamp">8 PM</span>
+        <div class="time-content">
+          <h4>DINNER — Hiša Franko ★★★</h4>
+          <p>Ana Roš. Three Michelin stars. World's 50 Best Restaurants. A former farmhouse 10 km outside Kobarid. The tasting menu is 15–17 courses built entirely from the Soča Valley — Soča marble trout, Alpine deer, goat milk, foraged plants, forest fruits. No knives on the table; everything is eaten by hand. The wine list is all Slovenian and natural. EUR 250–280/person. <strong>Book 2–3 months ahead: hisafranko.com</strong></p>
+          <div class="tags"><span class="tag tag-food">3 Michelin Stars</span><span class="tag tag-unique">World's 50 Best</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  SOČA VALLEY                                         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/CJ4gk7gFql0?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--green);margin-bottom:0.7rem">Triglav National Park</span>
+      <h2 style="color:#fff">Soča Valley</h2>
+      <p class="region-dates">Days 4–5 &nbsp;·&nbsp; Jun 30 – Jul 1 &nbsp;·&nbsp; 2 nights at Bovec</p>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 4 &nbsp;·&nbsp; Tuesday Jun 30</div>
+        <h3>On the Emerald River</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=600&q=80" alt="Soča river kayak">
+      <img src="https://images.unsplash.com/S6ezYelvHfk?w=600&q=80" alt="Alpine river">
+      <img src="https://images.unsplash.com/BVPJAm2Jx8c?w=600&q=80" alt="Mountain gorge">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Local Bovec Bakery</h4>
+          <p>The village of Bovec opens early. Find the local pekarna (bakery) and get fresh bread and local Tolminc cheese. Strong coffee. The mountain air at this hour, with the peaks still in shadow, is its own kind of luxury.</p>
+          <div class="tags"><span class="tag tag-food">Mountain Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 AM</span>
+        <div class="time-content">
+          <h4>Soča River Kayaking (Half Day)</h4>
+          <p>The Soča is Grade II–III — manageable for non-experts with a guide. The color of this water is not a filter. Glacier-fed, crystal clear to 15m depth, emerald-turquoise. You will paddle through gorges, past medieval bridges, under limestone cliffs. Book with Bovec Sport Center or Soča Rafting. ~3 hours, ~€60–80/person.</p>
+          <div class="tags"><span class="tag tag-nature">Kayaking</span><span class="tag tag-unique">Soča Emerald Water</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">1 PM</span>
+        <div class="time-content">
+          <h4>Post-Kayak Lunch — Frika + Soča Trout</h4>
+          <p>Any riverside gostilna (inn) in the Bovec area. Order <em>frika</em> — the Soča Valley's shepherd dish of egg, Tolminc cheese, and potato fried in fat, served with sour cream. Then order the Soča marble trout, which is farmed sustainably in the exact river you were just paddling. Endemic species. Exists nowhere else on Earth.</p>
+          <div class="tags"><span class="tag tag-food">Soča Trout</span><span class="tag tag-unique">Frika (Local Only)</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">3:30 PM</span>
+        <div class="time-content">
+          <h4>Boka Waterfall Hike</h4>
+          <p>A 45-minute walk (each way) leads to the base of Slovenia's highest waterfall at 106m. The volume in late June, fed by snowmelt, is spectacular. The trail crosses through forest — you hear it before you see it. No crowds compared to Vintgar. Go in the late afternoon light.</p>
+          <div class="tags"><span class="tag tag-nature">Waterfall</span><span class="tag tag-unique">106m — Slovenia's Highest</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 5 &nbsp;·&nbsp; Wednesday Jul 1</div>
+        <h3>Vršič Pass — 50 Hairpins Over the Top of Slovenia</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountain pass road">
+      <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=600&q=80" alt="Alpine meadow">
+      <img src="https://images.unsplash.com/Xom383A1gt4?w=600&q=80" alt="Julian Alps">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">6:30 AM</span>
+        <div class="time-content">
+          <h4>Early Breakfast at Hotel — Then Drive</h4>
+          <p>Eat early at your hotel in Bovec. You want to drive the Vršič Pass in the morning before any tour buses start. Pack a water bottle; there are mountain huts at the top.</p>
+          <div class="tags"><span class="tag tag-food">Hotel Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">8 AM</span>
+        <div class="time-content">
+          <h4>Vršič Pass Drive — 50 Hairpins, 1,611m</h4>
+          <p>Slovenia's highest mountain pass. 50 numbered hairpin bends, built by Russian POWs during WWI (there's a small Russian Orthodox chapel at hairpin 8 — stop there). The views from the top are 360-degree Julian Alps. Triglav peak visible. Wildflowers everywhere. Stop at the summit lodge for coffee and žganci (buckwheat porridge with cracknels — the mountain hut food of Slovenia). Allow 2.5–3 hours with stops.</p>
+          <div class="tags"><span class="tag tag-nature">Alpine Drive</span><span class="tag tag-unique">1,611m Summit</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">11 AM</span>
+        <div class="time-content">
+          <h4>Summit Snack — Žganci at Tičarjev Dom Mountain Hut</h4>
+          <p>One of the oldest mountain huts on the pass, run by the Slovenian Alpine Club. Order žganci (buckwheat crumble with pork fat cracknels) and a glass of hot tea. The menu is three items. This is shepherd food unchanged for 200 years, eaten with a view of the Julian Alps. Deeply Slovenian, deeply satisfying.</p>
+          <div class="tags"><span class="tag tag-food">Žganci</span><span class="tag tag-unique">Alpine Hut</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">1 PM</span>
+        <div class="time-content">
+          <h4>Descent into Bohinj — Check In</h4>
+          <p>The north side of the pass descends into the Triglav National Park, arriving at Lake Bohinj. 1h 45m total drive from Bovec with stops. Hotel Bohinj Park (redesigned 2024) sits right on the lakefront in Ribčev Laz — the quieter, less-touristed end of the lake.</p>
+          <div class="tags"><span class="tag tag-drive">1h 45m via Vršič Pass</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">4 PM</span>
+        <div class="time-content">
+          <h4>First Swim in Lake Bohinj</h4>
+          <p>No motorboats. No island church. No tour groups. Just clean glacial alpine water, 22°C in July, with the Triglav peaks above you. Swim from the hotel's private dock or walk to the public beach area. This is the anti-Bled: more beautiful, zero hype.</p>
+          <div class="tags"><span class="tag tag-nature">Alpine Swimming</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  LAKE BOHINJ                                         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/kip3MkppvC4?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--blue);margin-bottom:0.7rem">Triglav National Park</span>
+      <h2 style="color:#fff">Lake Bohinj</h2>
+      <p class="region-dates">Day 6 &nbsp;·&nbsp; Jul 2 &nbsp;·&nbsp; 1 night</p>
+    </div>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/JrbvOdiSotk?w=800&q=80" alt="Lake Bohinj hotel">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(42,125,201,0.15);color:var(--blue)">1 Night</span>
+        <h3>Hotel Bohinj Park</h3>
+        <p class="hotel-tagline">Lakefront eco-boutique · Redesigned 2024 · Spa</p>
+        <p>Directly on the lake in Ribčev Laz. Comprehensively redesigned in 2024 with a spa and excellent restaurant serving Bohinj valley cuisine — smoked Bohinj trout, forest mushroom dishes, buckwheat pancakes. The least-touristed entry point to the Julian Alps.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 6 &nbsp;·&nbsp; Thursday Jul 2</div>
+        <h3>The Wild Lake, the Waterfall, the Alps Above</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/p3OvnYG3EfY?w=600&q=80" alt="Lake Bohinj">
+      <img src="https://images.unsplash.com/TnJoeltymlI?w=600&q=80" alt="Cable car Alps">
+      <img src="https://images.unsplash.com/631MBChRG1I?w=600&q=80" alt="Waterfall hike">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Hotel Bohinj Park</h4>
+          <p>The hotel's breakfast terrace looks directly out over the lake. Locally smoked Bohinj trout, buckwheat bread, Alpine honey, soft-boiled eggs from the farm down the road. Eat while the mist lifts off the water.</p>
+          <div class="tags"><span class="tag tag-food">Lakefront Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">8:30 AM</span>
+        <div class="time-content">
+          <h4>Vogel Cable Car — Alpine Panorama</h4>
+          <p>The cable car rises 1,000m from the lake to 1,535m. The view from the top: the entire Bohinj valley below, Triglav peak (2,863m, Slovenia's highest) in the center, the Julian Alps in every direction. Hike the alpine meadows from the top station. Wild strawberries growing by the path. €27 round trip.</p>
+          <div class="tags"><span class="tag tag-nature">Alpine Panorama</span><span class="tag tag-unique">Triglav View</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">11 AM</span>
+        <div class="time-content">
+          <h4>Snack — Mountain Hut at Vogel Summit</h4>
+          <p>The summit hut (Koča na Voglu) serves warm buckwheat dishes, cheese plates, and local cider. Eat outside with the Alps around you. This is the point where most people in the group go quiet and stop talking about their commutes.</p>
+          <div class="tags"><span class="tag tag-food">Alpine Hut</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">2 PM</span>
+        <div class="time-content">
+          <h4>Savica Waterfall Hike</h4>
+          <p>78m waterfall at the source of the Bohinj river. 20-minute hike up through forest. Deep mythological significance in Slovenian culture — France Prešeren's epic poem Baptism at the Savica is set here. The gorge at the base is extraordinary. €3 entrance fee.</p>
+          <div class="tags"><span class="tag tag-nature">Waterfall</span><span class="tag tag-culture">Slovenian Mythology</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">5 PM</span>
+        <div class="time-content">
+          <h4>Afternoon Swim + Dinner Prep Drive to Bled</h4>
+          <p>One final swim in Bohinj before tomorrow's drive. 30-minute drive to Bled tomorrow morning. Dinner tonight at the hotel — Bohinj valley cuisine, local wine, early night before a big Bled day.</p>
+          <div class="tags"><span class="tag tag-nature">Alpine Swimming</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drive-divider">
+    <div class="drive-icon">🚗</div>
+    <div class="drive-info">
+      <h4>Bohinj → Lake Bled</h4>
+      <p>The most beautiful 30-minute drive in Slovenia. Mountain road through Triglav National Park buffer zone. Meadows, church steeples, Triglav peak visible on clear days.</p>
+    </div>
+    <div class="drive-meta">
+      <div class="drive-time">30m</div>
+      <div class="drive-km">30 km</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  LAKE BLED                                           -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--blue);margin-bottom:0.7rem">Slovenia's Icon</span>
+      <h2 style="color:#fff">Lake Bled</h2>
+      <p class="region-dates">Days 7–8 &nbsp;·&nbsp; Jul 3–4 &nbsp;·&nbsp; 2 nights</p>
+    </div>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/crsPunY0bpA?w=800&q=80" alt="Vila Bled">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(42,125,201,0.15);color:var(--blue)">2 Nights</span>
+        <h3>Vila Bled</h3>
+        <p class="hotel-tagline">Tito's summer residence · 30 rooms · Private lake access</p>
+        <p>Where Khrushchev and Indira Gandhi slept. Built as Tito's presidential retreat in the 1950s — the original furnishings remain. Private beach, pletna boats, the Belvedere café with the best view on the lake, 4-course Slovenian tasting menu dinners. 30 rooms total. This is the reason you stay 2 nights here instead of a generic hotel.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 7 &nbsp;·&nbsp; Friday Jul 3</div>
+        <h3>Arrive Bled — Row to the Island, Climb to the Castle</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/ijOdFXwYF84?w=600&q=80" alt="Lake Bled island">
+      <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&q=80" alt="Bled castle">
+      <img src="https://images.unsplash.com/XGDBdSQ70O0?w=600&q=80" alt="Alpine lake">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Café Belvedere, Vila Bled</h4>
+          <p>The Belvedere terrace has what might be the best breakfast view in Slovenia: Lake Bled below you, the island church in the center, the castle on the cliff above, the Karavanke Alps behind. Get here before the tourist trail wakes up. Order eggs and the local honey.</p>
+          <div class="tags"><span class="tag tag-food">Lake View Breakfast</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 AM</span>
+        <div class="time-content">
+          <h4>Row to Blejski Otok — Ring the Wish Bell</h4>
+          <p>Rent a rowboat from Vila Bled's private dock (avoid the tourist pletna boats for now — do it tomorrow on the official wooden boats). Row across the lake yourself. Pull up to the island, walk up the 99 steps to the Church of the Assumption. Ring the wishing bell in the tower. Slovenian legend says your wish will come true. This will feel absurd. Do it anyway.</p>
+          <div class="tags"><span class="tag tag-unique">Island Church</span><span class="tag tag-culture">Slovenian Legend</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">11 AM</span>
+        <div class="time-content">
+          <h4>Bled Castle — Cliff Top Views</h4>
+          <p>The oldest castle in Slovenia, perched 130m above the lake on a sheer cliff. Walk up (20 minutes) rather than taking the shuttle. The view from the ramparts — lake, island, Alps — is the Instagram photograph every visitor has seen. In person, it makes those photographs look insufficient.</p>
+          <div class="tags"><span class="tag tag-culture">Medieval Castle</span><span class="tag tag-nature">Panoramic Views</span></div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">2 PM</span>
+        <div class="time-content">
+          <h4>Bled Cream Cake — Kremna Rezina at Café Park</h4>
+          <p>Invented here in 1953 by chef Ištvan Lukačević. Vanilla custard and whipped cream between two layers of crispy puff pastry, dusted with powdered sugar. The original recipe has not changed. There are imitators around the lake. The real one is at Café Park Bled (also at Hotel Park terrace, same building). Eat it overlooking the lake. It costs €5. It is worth the detour from New York.</p>
+          <div class="tags"><span class="tag tag-food">Kremna Rezina</span><span class="tag tag-unique">Invented Here 1953</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 8 &nbsp;·&nbsp; Saturday Jul 4</div>
+        <h3>Vintgar Gorge at Dawn, Pletna at Sunset</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/PZ_ysD-kBo4?w=600&q=80" alt="Vintgar gorge">
+      <img src="https://images.unsplash.com/t8a7Cg17W1k?w=600&q=80" alt="Gorge boardwalk">
+      <img src="https://images.unsplash.com/OZGM5--Yi1Q?w=600&q=80" alt="Lake reflection">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Vila Bled Terrace</h4>
+          <p>Another morning on the private terrace before the tour groups arrive. Today you have the gorge first. Eat quickly — you want to be at Vintgar by 8 AM before the crowds.</p>
+          <div class="tags"><span class="tag tag-food">Hotel Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">8 AM</span>
+        <div class="time-content">
+          <h4>Vintgar Gorge — Before the Crowds</h4>
+          <p>A 1.6km wooden boardwalk suspended above a canyon carved by the Radovna River. The water is turquoise-green, the walls are sheer limestone, and the boardwalk takes you through rapids, pools, and waterfalls, ending at the 13m Šum waterfall. Go early — by 10 AM this path has hundreds of people. At 8 AM, it's you and the river. 4km round trip. Opens at 8 AM, €10 entry.</p>
+          <div class="tags"><span class="tag tag-nature">Gorge Walk</span><span class="tag tag-unique">Boardwalk Canyon</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">10:30 AM</span>
+        <div class="time-content">
+          <h4>Post-Gorge Coffee — Village Café at Gorge Exit</h4>
+          <p>There's a small gostilna at the gorge exit. Sit outside with coffee and a slice of local pastry. The morning light through the trees, the sound of the river, the absence of phones for a few minutes.</p>
+          <div class="tags"><span class="tag tag-food">Village Café</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">12 PM</span>
+        <div class="time-content">
+          <h4>Kayak at Dawn on the Lake (or Afternoon)</h4>
+          <p>Vila Bled has kayaks. Take one out on the lake in the quiet midday lull before afternoon swimmers arrive. The reflection of the island church in still water. No motorboats allowed on Bled — only human-powered and electric. This silence on a European lake feels genuinely rare.</p>
+          <div class="tags"><span class="tag tag-nature">Kayaking</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">4 PM</span>
+        <div class="time-content">
+          <h4>Official Pletna Boat Ride</h4>
+          <p>The flat-bottomed wooden pletna, rowed by a boatman standing at the stern using a single oar — unchanged since the 17th century. These are family-licensed boats; the licenses are hereditary. Your boatman's grandfather probably had this job. €18/person, 1.5 hours including time on the island. Worth doing separately from yesterday's rowboat — different perspective.</p>
+          <div class="tags"><span class="tag tag-culture">Traditional Pletna Boat</span><span class="tag tag-unique">17th-Century Tradition</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drive-divider">
+    <div class="drive-icon">🚗</div>
+    <div class="drive-info">
+      <h4>Bled → Ljubljana</h4>
+      <p>Motorway (vignette required). Slovenia's capital is 55km away — an easy 45-minute drive. The city punches far above its size.</p>
+    </div>
+    <div class="drive-meta">
+      <div class="drive-time">45m</div>
+      <div class="drive-km">55 km</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  LJUBLJANA                                           -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--red);margin-bottom:0.7rem">Capital City</span>
+      <h2 style="color:#fff">Ljubljana</h2>
+      <p class="region-dates">Days 9–10 &nbsp;·&nbsp; Jul 5–6 &nbsp;·&nbsp; 2 nights</p>
+    </div>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/wO5SdkxKUHs?w=800&q=80" alt="Vander Urbani Resort">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(230,57,70,0.15);color:var(--red)">2 Nights</span>
+        <h3>Vander Urbani Resort</h3>
+        <p class="hotel-tagline">Design Hotels member · Riverfront · Rooftop pool · 16 rooms</p>
+        <p>Converted 19th-century palace on the Ljubljanica River. 16 rooms — not a single identical one. Rooftop terrace with views to Ljubljana Castle. Walking distance to the Central Market, Triple Bridge, and Old Town. The hotel staff know the city at the level of food writers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 9 &nbsp;·&nbsp; Sunday Jul 5</div>
+        <h3>Arrive Ljubljana — Market, Funicular, the Most Livable City</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=600&q=80" alt="Ljubljana old town">
+      <img src="https://images.unsplash.com/1zRL_YLFWJ0?w=600&q=80" alt="Ljubljana castle">
+      <img src="https://images.unsplash.com/UJJJqNQuv1E?w=600&q=80" alt="Ljubljana market">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7:30 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Drive from Bled, Arrive Ljubljana</h4>
+          <p>Eat at Vila Bled before checking out. Or: stop at Gostilna Mayer in Begunje (on the drive south) — a classic roadside Slovenian inn with potica and strong coffee. Either way, you arrive in Ljubljana late morning.</p>
+          <div class="tags"><span class="tag tag-food">Hotel Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">10 AM</span>
+        <div class="time-content">
+          <h4>Ljubljana Central Market — Plečnik's Masterpiece</h4>
+          <p>Architect Jože Plečnik (Slovenia's Gaudí, Le Corbusier's star student) designed the entire covered colonnaded market along the Ljubljanica River. Sunday morning has the outdoor flea market alongside the regular produce and cheese stalls. Buy Tolminc cheese, a pot of mountain honey, dried mushrooms, Karst prosciutto. Eat as you walk — it's that kind of place.</p>
+          <div class="tags"><span class="tag tag-food">Central Market</span><span class="tag tag-culture">Plečnik Architecture</span><span class="tag tag-unique">Štruklji Tasting</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">12 PM</span>
+        <div class="time-content">
+          <h4>Ljubljana Castle by Funicular</h4>
+          <p>The funicular takes 1 minute. The castle complex covers the hilltop above the Old Town. Walk the ramparts, descend to the medieval tower for a 360° city view. The city center is car-free — just the river, the outdoor cafés, the Triple Bridge, and mountains visible on clear days. 300,000 people. The most civilized scale for a capital city in Europe.</p>
+          <div class="tags"><span class="tag tag-culture">Medieval Castle</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">3 PM</span>
+        <div class="time-content">
+          <h4>Plečnik Architecture Walk</h4>
+          <p>Plečnik designed: the Triple Bridge, Central Market, National Library, Žale cemetery, the Dragon Bridge area, the colonnaded fish market. Pick up a free map at the Tourist Information Center and walk the circuit — 2 hours, entirely in the Old Town, increasingly mind-bending. This man redesigned a European capital in his spare time in the 1920s–1950s.</p>
+          <div class="tags"><span class="tag tag-culture">Architecture Walk</span><span class="tag tag-unique">Plečnik's Ljubljana</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block dinner-block">
+        <span class="time-stamp">8 PM</span>
+        <div class="time-content">
+          <h4>Dinner — Gostilna Dela or TaBar</h4>
+          <p><strong>Gostilna Dela</strong>: social enterprise restaurant employing people from difficult circumstances. Slovenian cuisine done with care and pride. Outstanding štruklji. <strong>TaBar</strong>: Bib Gourmand, small plates, local ingredients, great wine list in a cozy space. Either is an excellent — and inexpensive — dinner.</p>
+          <div class="tags"><span class="tag tag-food">Slovenian Cuisine</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 10 &nbsp;·&nbsp; Monday Jul 6</div>
+        <h3>Metelkova, Tivoli, and Dinner at the Castle</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/TRIAoEmFQo4?w=600&q=80" alt="Ljubljana river">
+      <img src="https://images.unsplash.com/ySNj3M5pnOQ?w=600&q=80" alt="Street art">
+      <img src="https://images.unsplash.com/lokKjSGUKPk?w=600&q=80" alt="European cafe">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7:30 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Old Town Café Scene, Stari Trg</h4>
+          <p>Stari Trg (Old Square) has several small cafés that open at 7 AM and serve excellent espresso alongside house pastries and local yogurt. Sit outside — the pedestrian street comes alive slowly, people walking to the market, the sound of the Ljubljanica just around the corner.</p>
+          <div class="tags"><span class="tag tag-food">Old Town Café</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 AM</span>
+        <div class="time-content">
+          <h4>Tivoli Park Morning Walk</h4>
+          <p>Ljubljana's enormous city park — designed in 1813 by Jean Blanchard for Napoleon's administration of the Illyrian Provinces. Sunday morning joggers, dog walkers, old men playing chess. Walk the main promenade. Take the path up into the Šiška hills for views. Genuinely tranquil in a European capital in summer.</p>
+          <div class="tags"><span class="tag tag-nature">City Park</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">11 AM</span>
+        <div class="time-content">
+          <h4>Metelkova City — Autonomous Arts Zone</h4>
+          <p>A former Yugoslav military barracks complex abandoned in 1991 when Slovenia declared independence. Squatters moved in, painted every surface, built a self-governing arts community. Today: street art, independent galleries, alternative bars, a hostel, a gay club, and two contemporary art museums. The anti-Venice. Nothing like this exists in NYC's equivalent neighborhoods.</p>
+          <div class="tags"><span class="tag tag-culture">Alternative Arts Zone</span><span class="tag tag-unique">Former Military Base</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">1 PM</span>
+        <div class="time-content">
+          <h4>Lunch + Štruklji Lesson — Moji Štruklji</h4>
+          <p>There is a dedicated štruklji house in Ljubljana — a restaurant that only serves rolled dumplings in every variation: buckwheat + walnut, tarragon + cottage cheese, apple + poppy seed, chive + cream. Order four and share them. This is Slovenia's most iconic dish and it has no equivalent anywhere else.</p>
+          <div class="tags"><span class="tag tag-food">Štruklji</span><span class="tag tag-unique">Slovenia's National Dish</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block dinner-block">
+        <span class="time-stamp">8 PM</span>
+        <div class="time-content">
+          <h4>Dinner — Restavracija Strelec ★ (Ljubljana Castle)</h4>
+          <p>One Michelin star. Set inside Ljubljana Castle in a medieval tower. Chef Igor Jagodic's menu is modern Slovenian: venison tartare, Kranjska klobasa reimagined, gibanica dessert deconstructed. The dining room is candlelit stone walls. This is the second fine dining meal of the trip — and at €80–100/person, it costs less than a mediocre tasting menu in Manhattan.</p>
+          <div class="tags"><span class="tag tag-food">1 Michelin Star</span><span class="tag tag-culture">Castle Dining</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drive-divider">
+    <div class="drive-icon">🚗</div>
+    <div class="drive-info">
+      <h4>Ljubljana → Škocjan Caves → Predjama Castle → Piran</h4>
+      <p>Full day drive south through the Karst. Stop at the UNESCO caves, the cliff castle, then continue to the Adriatic. Total ~175 km with stops.</p>
+    </div>
+    <div class="drive-meta">
+      <div class="drive-time">~3h</div>
+      <div class="drive-km">175 km with stops</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!--  PIRAN COAST                                         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="region-section">
+  <div class="region-hero">
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/sXj6108497E?w=1600&q=80')"></div>
+    <div class="region-hero-content">
+      <span class="region-badge" style="background:var(--gold-dark);color:#1a1200;margin-bottom:0.7rem">Adriatic Coast</span>
+      <h2 style="color:#fff">Piran</h2>
+      <p class="region-dates">Days 11–12 &nbsp;·&nbsp; Jul 7–8 &nbsp;·&nbsp; 2 nights</p>
+    </div>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <img class="hotel-img" src="https://images.unsplash.com/TqXhx1WKk3k?w=800&q=80" alt="Art Hotel Tartini Piran">
+      <div class="hotel-body">
+        <span class="hotel-nights" style="background:rgba(233,196,106,0.15);color:var(--gold)">2 Nights</span>
+        <h3>Art Hotel Tartini</h3>
+        <p class="hotel-tagline">18 rooms · Tartini Square · Venetian building · Sea views</p>
+        <p>Named for Giuseppe Tartini, Piran's most famous son (the Baroque violinist). Set in a historic Venetian building directly on the main square. 18 rooms. You can hear the sea from your window. The town is 300m from end to end on its peninsula — you are never more than a 3-minute walk from the water.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 11 &nbsp;·&nbsp; Tuesday Jul 7</div>
+        <h3>Drive South: Underground Canyons, a Castle in a Cliff, the Adriatic</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/rNoPh4MSgig?w=600&q=80" alt="Škocjan caves">
+      <img src="https://images.unsplash.com/fArBaWsIxPU?w=600&q=80" alt="Predjama castle">
+      <img src="https://images.unsplash.com/6kSzGN0Cxr8?w=600&q=80" alt="Piran coast">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Hotel Vander, Ljubljana</h4>
+          <p>Check out after breakfast. Pack light — today is a driving day with two major stops before Piran.</p>
+          <div class="tags"><span class="tag tag-food">Hotel Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 AM</span>
+        <div class="time-content">
+          <h4>Škocjan Caves — UNESCO Underground Canyon</h4>
+          <p>The most spectacular caves in Europe and one of the most extraordinary geological sites on Earth. The underground canyon of the Reka River is 100m deep and 500m wide in places. The largest underground chamber in Europe. The guided walk is 5km through an underground world — limestone formations, an underground river, and the sound of total silence broken only by your guide's voice. 12°C inside — bring a layer. Book time slot at park.skocjanske-jame.si.</p>
+          <div class="tags"><span class="tag tag-nature">UNESCO Caves</span><span class="tag tag-unique">Largest Underground Canyon in Europe</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">12 PM</span>
+        <div class="time-content">
+          <h4>Predjama Castle — Built Inside a Cliff</h4>
+          <p>A medieval castle constructed inside the mouth of a cave 123m up a sheer cliff face. Erazem of Predjama — Slovenia's own Robin Hood figure — held off a Habsburg siege here for a year, supplied by a secret tunnel through the cave system. The castle today is partly carved into the living rock and partly hanging above the void. Nothing in Europe looks quite like this.</p>
+          <div class="tags"><span class="tag tag-culture">Cliff Castle</span><span class="tag tag-unique">Built into Cave</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">2 PM</span>
+        <div class="time-content">
+          <h4>Drive Through Karst to Piran</h4>
+          <p>1 hour through the limestone Karst plateau — the exact terrain that makes the Karst prosciutto and Teran wine what they are. The Bora wind comes off this plateau onto the coast. Stop at a Karst osmizza (seasonal farm-bar, look for green branches hung over the door) for a glass of Teran and a plate of pršut before descending to the sea.</p>
+          <div class="tags"><span class="tag tag-drive">1h to Piran</span><span class="tag tag-food">Karst Pršut + Teran</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">4 PM</span>
+        <div class="time-content">
+          <h4>Arrive Piran — First Swim in the Adriatic</h4>
+          <p>Check into Art Hotel Tartini. Walk 4 minutes to the rocky swimming area at the tip of the peninsula (Punta). The Adriatic is warm, shallow, and clear. You can swim off flat limestone rocks. Piran has no sandy beach — it doesn't need one. The water is that color.</p>
+          <div class="tags"><span class="tag tag-nature">Adriatic Swimming</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block dinner-block">
+        <span class="time-stamp">8 PM</span>
+        <div class="time-content">
+          <h4>Dinner — Rizzi Restaurant, Piran</h4>
+          <p>The best restaurant in Piran. Terrace overhanging the sea. Chef uses only Adriatic fish from local fishermen — the day's catch determines the menu. Sea bream with local olive oil, pasta with cuttlefish ink, branzino grilled over a wood fire. This is Venetian-influenced Slovenian coastal cooking. Reservations recommended.</p>
+          <div class="tags"><span class="tag tag-food">Adriatic Seafood</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">
+      <div>
+        <div class="day-label">Day 12 &nbsp;·&nbsp; Wednesday Jul 8</div>
+        <h3>Flamingos at the Salt Pans, Cappuccino in Trieste</h3>
+      </div>
+    </div>
+    <div class="day-img-strip">
+      <img src="https://images.unsplash.com/0yQPd95ScSc?w=600&q=80" alt="Salt pans flamingo">
+      <img src="https://images.unsplash.com/sCAAxKPsDhM?w=600&q=80" alt="Trieste cafe">
+      <img src="https://images.unsplash.com/Q2EdCpH_UyQ?w=600&q=80" alt="Piran waterfront">
+    </div>
+    <div class="day-timeline">
+      <div class="time-block breakfast-block">
+        <span class="time-stamp">7 AM</span>
+        <div class="time-content">
+          <h4>Breakfast — Waterfront Bar, Tartini Square</h4>
+          <p>Any of the cafés on the main square opening at 7 AM. Espresso (not cappuccino — you're 30 minutes from Trieste, the espresso culture is serious here), a cornetto, and the morning light hitting the Venetian buildings across the square. The fishing boats come in at this hour.</p>
+          <div class="tags"><span class="tag tag-food">Venetian-Style Café Breakfast</span></div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">9 AM</span>
+        <div class="time-content">
+          <h4>Sečovlje Salt Pans — 700-Year-Old Harvest + Flamingos</h4>
+          <p>Slovenia's protected salt pans on the Italian border, operating continuously since the 13th century. UNESCO-listed. The salt is still harvested by hand using traditional wooden tools. The pink lake color comes from halophilic bacteria — and that same chemistry attracts flamingos, which feed here in summer. Wild flamingos. In Slovenia. On the Adriatic. Buy a bag of fleur de sel before you leave.</p>
+          <div class="tags"><span class="tag tag-nature">Wild Flamingos</span><span class="tag tag-unique">700-Year Salt Tradition</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block snack-block">
+        <span class="time-stamp">11:30 AM</span>
+        <div class="time-content">
+          <h4>Trieste Day Trip — The World's Best Coffee Culture</h4>
+          <p>30 minutes by car across the Italian border. Trieste is the home of Illy coffee. The coffee vocabulary here is unique — a "capo" is a cappuccino, a "nero" is an espresso. Sit at Caffè degli Specchi on Piazza Unità (the largest sea-facing piazza in Europe) and order a "capo in B" (cappuccino in a glass). James Joyce wrote Ulysses here. Miramare Castle on the sea is 7km north. Return by early afternoon.</p>
+          <div class="tags"><span class="tag tag-food">Trieste Coffee Culture</span><span class="tag tag-culture">Illy Headquarters City</span></div>
+          <div class="nyc-badge">✦ Can't Get in NYC</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <span class="time-stamp">3 PM</span>
+        <div class="time-content">
+          <h4>Final Piran Afternoon — Old Town + Sea Rocks</h4>
+          <p>Walk the medieval walls above the town. Find the small Venetian Gothic loggia. Swim one last time from the rocks. Buy grappa at the fishermen's bar. Eat grilled sardines at Café Teater (the local lunch spot, €10, as good as anything in Venice). This is the last afternoon of the trip. Don't rush it.</p>
+          <div class="tags"><span class="tag tag-food">Grilled Sardines</span><span class="tag tag-nature">Final Adriatic Swim</span></div>
+        </div>
+      </div>
+      <div class="time-block dinner-block">
+        <span class="time-stamp">8 PM</span>
+        <div class="time-content">
+          <h4>Farewell Dinner — Prosciutto + Local Wine at Fishermen's Bar</h4>
+          <p>Find the small bar near the fishing port (locals know it; ask your hotel). Order Karst prosciutto, Teran red wine, and let the evening stretch. The Adriatic is directly behind you. Tomorrow: Venice for the flight home, or Vienna if you're doing the full arc.</p>
+          <div class="tags"><span class="tag tag-food">Karst Prosciutto</span><span class="tag tag-unique">Local Wine Bar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end Piran section -->
+
+<!-- ════════════════════════════════════ -->
+<!--  DEPARTURE                           -->
+<!-- ════════════════════════════════════ -->
+<div class="content">
+  <div class="drive-divider" style="margin-top:4rem">
+    <div class="drive-icon">✈️</div>
+    <div class="drive-info">
+      <h4>Day 13 &nbsp;·&nbsp; Jul 9 — Departure</h4>
+      <p>Drive to Venice Marco Polo (2h 15m, 175km — return through Trieste and Italian autostrada) for Delta nonstop to JFK. Or drive to Vienna (5h) for Austrian Airlines. Both are direct flights home with no connections. One final espresso in Trieste on the way.</p>
+    </div>
+    <div class="drive-meta">
+      <div class="drive-time" style="color:var(--venice)">2h 15m</div>
+      <div class="drive-km">to Venice VCE</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-title">Slovenia Road Trip</div>
+    <p style="color:var(--text-mid);margin:0.5rem 0 1rem">June 27 – July 9, 2026 &nbsp;·&nbsp; 12 nights &nbsp;·&nbsp; ~750 km &nbsp;·&nbsp; 7 unique hotels</p>
+    <p style="color:var(--text-dim);font-size:0.75rem;max-width:600px;margin:0 auto">The most underrated country in Europe. One world-class restaurant. Five rivers you can swim in. A lake castle where Khrushchev slept. Caves the size of cathedrals. 300,000-person capital with no traffic. You will not see another American.</p>
+  </footer>
+</div>
+
+</body>
+</html>

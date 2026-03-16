@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer 2026 — Trip Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08090a;color:#f0f0f0;font-family:'Inter',sans-serif;min-height:100vh;padding:0}
+.hero{text-align:center;padding:80px 24px 40px;max-width:700px;margin:0 auto}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+.hero .sub{color:#999;font-size:clamp(0.85rem,2.5vw,1.05rem);line-height:1.6;margin-bottom:8px}
+.hero .date{color:#666;font-size:0.85rem;margin-bottom:40px}
+.grid{max-width:700px;margin:0 auto;padding:0 20px 60px;display:flex;flex-direction:column;gap:16px}
+.card{background:#111214;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease;display:flex;align-items:stretch}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.card-color{width:6px;flex-shrink:0;border-radius:16px 0 0 16px}
+.card-body{padding:24px 28px;flex:1}
+.card-num{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:6px}
+.card-title{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,3.5vw,1.5rem);font-weight:700;margin-bottom:8px}
+.card-route{font-size:0.82rem;color:#999;margin-bottom:12px;line-height:1.5}
+.card-meta{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:rgba(255,255,255,0.06);border-radius:20px;padding:4px 12px;font-size:0.72rem;color:#aaa;white-space:nowrap}
+.pill-nyc{background:rgba(255,195,18,0.12);color:#ffc312}
+.links-row{display:flex;gap:10px;margin-top:14px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:background 0.2s}
+.link-btn.primary{background:rgba(255,255,255,0.08);color:#f0f0f0}
+.link-btn.primary:hover{background:rgba(255,255,255,0.14)}
+.link-btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#999}
+.link-btn.secondary:hover{background:rgba(255,255,255,0.04);color:#ccc}
+.footer{text-align:center;padding:20px 24px 40px;color:#444;font-size:0.75rem}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Summer 2026</h1>
+  <p class="sub">Five trips we're considering. Each one is a 2-week itinerary departing JFK June 26. Tap any trip to see the full day-by-day plan with restaurants, hotels, and experiences.</p>
+  <p class="date">All itineraries designed for two. NYC-based, food-first, luxury-but-unique.</p>
+</div>
+
+<div class="grid">
+
+  <!-- Trip 1 -->
+  <div class="card" style="cursor:default">
+    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#2A9D8F,#D4A017)"></div>
+    <div class="card-body">
+      <div class="card-num">Trip 1 — 13 Nights</div>
+      <div class="card-title">Hong Kong + Taipei + Singapore</div>
+      <div class="card-route">HK (5n) &rarr; Taipei (5n) &rarr; Singapore (3n). Rosewood, Tai O Heritage Hotel, Villa 32 hot springs, Mandai Treehouse. Nonstop flights both ways.</div>
+      <div class="card-meta">
+        <span class="pill">6 Hotels</span>
+        <span class="pill">3 Cities</span>
+        <span class="pill pill-nyc">0 NYC Repeats</span>
+        <span class="pill">HKSAR Fireworks Jun 30</span>
+      </div>
+      <div class="links-row">
+        <a href="asia-hk-taipei-singapore/index.html" class="link-btn primary">View Itinerary</a>
+        <a href="asia-hk-taipei-singapore/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip 2 -->
+  <div class="card" style="cursor:default">
+    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#3D8B37,#8B5CF6)"></div>
+    <div class="card-body">
+      <div class="card-num">Trip 2 — 13 Nights</div>
+      <div class="card-title">Hong Kong + Taiwan Nature</div>
+      <div class="card-route">HK (5n) &rarr; Taipei (2n) &rarr; Hualien (2n) &rarr; Sun Moon Lake (2n) &rarr; Alishan (1n) &rarr; Beitou (1n). Whale watching, cloud sea sunrise, East Rift Valley cycling, Villa 32 finale.</div>
+      <div class="card-meta">
+        <span class="pill">7 Hotels</span>
+        <span class="pill">5 Stops</span>
+        <span class="pill pill-nyc">43 NYC Badges</span>
+        <span class="pill">Peak Whale Season</span>
+      </div>
+      <div class="links-row">
+        <a href="asia-hk-taiwan-nature/index.html" class="link-btn primary">View Itinerary</a>
+        <a href="asia-hk-taiwan-nature/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip 3 -->
+  <div class="card" style="cursor:default">
+    <div class="card-color" style="background:linear-gradient(180deg,#C0B283,#3D8B37,#2A7DC9,#E63946,#E9C46A)"></div>
+    <div class="card-body">
+      <div class="card-num">Trip 3 — 12 Nights &middot; Road Trip</div>
+      <div class="card-title">Slovenia</div>
+      <div class="card-route">Venice (1n) &rarr; Goriska Brda wine (1n) &rarr; Soca Valley (2n) &rarr; Bohinj (1n) &rarr; Bled (2n) &rarr; Ljubljana (2n) &rarr; Piran (2n). Hisa Franko, Vila Bled (Tito's residence), emerald Soca River.</div>
+      <div class="card-meta">
+        <span class="pill">7 Hotels</span>
+        <span class="pill">7 Stops</span>
+        <span class="pill pill-nyc">21 NYC Badges</span>
+        <span class="pill">3 Michelin Stars (Hisa Franko)</span>
+      </div>
+      <div class="links-row">
+        <a href="slovenia/index.html" class="link-btn primary">View Itinerary</a>
+        <a href="slovenia/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip 4 -->
+  <div class="card" style="cursor:default">
+    <div class="card-color" style="background:linear-gradient(180deg,#2D6A4F,#1B4F72,#F4A261,#457B9D)"></div>
+    <div class="card-body">
+      <div class="card-num">Trip 4 — 12 Nights &middot; 3 Countries</div>
+      <div class="card-title">Scandinavia</div>
+      <div class="card-route">Oslo (1n) &rarr; Bergen Railway &rarr; Bergen + Fjords (3n) &rarr; Stockholm (3n) &rarr; Overnight Ferry &rarr; Helsinki (2n). Iris at The Salmon Eye, midnight sun, Finnish smoke sauna.</div>
+      <div class="card-meta">
+        <span class="pill">5 Hotels + Ferry</span>
+        <span class="pill">Norway &middot; Sweden &middot; Finland</span>
+        <span class="pill pill-nyc">10 NYC Badges</span>
+        <span class="pill">11:30 PM Sunset</span>
+      </div>
+      <div class="links-row">
+        <a href="scandinavia/index.html" class="link-btn primary">View Itinerary</a>
+        <a href="scandinavia/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip 5 -->
+  <div class="card" style="cursor:default">
+    <div class="card-color" style="background:linear-gradient(180deg,#E63946,#2D6A4F,#F4A261,#8B5CF6)"></div>
+    <div class="card-body">
+      <div class="card-num">Trip 5 — 12 Nights</div>
+      <div class="card-title">Thailand</div>
+      <div class="card-route">Bangkok (4n) &rarr; Khao Sok floating bungalow (2n) &rarr; Chiang Mai (2n) &rarr; Golden Triangle (2n). Yaowarat street food, world's oldest rainforest, khao soi, Four Seasons Tented Camp by longboat.</div>
+      <div class="card-meta">
+        <span class="pill">5 Hotels</span>
+        <span class="pill">4 Regions</span>
+        <span class="pill pill-nyc">15+ NYC Badges</span>
+        <span class="pill">Peak Mangosteen Season</span>
+      </div>
+      <div class="links-row">
+        <a href="thailand/index.html" class="link-btn primary">View Itinerary</a>
+        <a href="thailand/bookable.html" class="link-btn secondary">Bookable Experiences</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Built with Claude &middot; March 2026</div>
+
+</body>
+</html>

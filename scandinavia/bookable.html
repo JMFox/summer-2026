@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordic Arc — Bookable Experiences | Scandinavia 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --oslo-color: #2D6A4F;
+    --bergen-color: #1B4F72;
+    --sthlm-color: #F4A261;
+    --sthlm-dark: #C77D38;
+    --hel-color: #457B9D;
+    --bg: #08090a;
+    --card-bg: #111214;
+    --card-hover: #161819;
+    --text: #f0f0f0;
+    --text-dim: #777;
+    --text-mid: #aaa;
+    --border: rgba(255,255,255,0.06);
+    --gold: #ffc312;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.12) saturate(0.6);
+    transform: scale(1.05);
+    animation: heroZoom 25s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.1); }
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--bg) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, #fff 0%, #ddd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .tagline {
+    font-size: clamp(0.82rem, 1.8vw, 1.1rem);
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* ═══ MAIN ═══ */
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  /* ═══ TOP 5 SECTION ═══ */
+  .top5-header {
+    text-align: center;
+    margin: 5rem 0 3rem;
+  }
+
+  .top5-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+
+  .top5-header p { color: var(--text-dim); font-size: 0.88rem; }
+
+  .top5-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .top5-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .top5-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .top5-card.rank-1 { border-color: rgba(255,195,18,0.3); }
+  .top5-card.rank-2 { border-color: rgba(192,192,192,0.2); }
+  .top5-card.rank-3 { border-color: rgba(180,130,70,0.2); }
+
+  .top5-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .top5-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 280px;
+    transition: transform 8s ease;
+  }
+
+  .top5-card:hover .top5-img img { transform: scale(1.05); }
+
+  .rank-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+  }
+
+  .rank-1 .rank-badge { background: rgba(255,195,18,0.9); color: #000; }
+  .rank-2 .rank-badge { background: rgba(210,210,210,0.85); color: #000; }
+  .rank-3 .rank-badge { background: rgba(180,130,70,0.85); color: #000; }
+  .rank-4 .rank-badge, .rank-5 .rank-badge { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+  .top5-body {
+    padding: 2rem 2rem 2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .top5-city-tag {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .top5-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .why-special {
+    background: rgba(255,195,18,0.07);
+    border: 1px solid rgba(255,195,18,0.15);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+  }
+
+  .why-special .why-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .why-special p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .meta-pill {
+    padding: 0.28rem 0.75rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .meta-pill .icon { font-size: 0.9rem; }
+
+  .book-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-top: auto;
+    width: fit-content;
+  }
+
+  .book-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .nyc-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.65rem;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  /* ═══ SECTION DIVIDERS ═══ */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 4rem 0 2rem;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ═══ EXPERIENCE CARDS (smaller) ═══ */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .exp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .exp-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .exp-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  }
+
+  .exp-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .exp-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .exp-body .exp-desc {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .exp-meta {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .exp-meta span {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    padding: 0.2rem 0.6rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .exp-book {
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .exp-book a {
+    color: var(--sthlm-color);
+    text-decoration: none;
+  }
+
+  .exp-book a:hover { text-decoration: underline; }
+
+  /* ═══ BOOKING TABLE ═══ */
+  .booking-table-section {
+    margin: 4rem 0;
+  }
+
+  .booking-table-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .booking-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .booking-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-mid);
+  }
+
+  .booking-table td:first-child { color: var(--text); font-weight: 600; }
+
+  .booking-table tr:last-child td { border-bottom: none; }
+
+  .booking-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .urgency-high { color: #e07070 !important; font-weight: 600 !important; }
+  .urgency-med { color: #ffc312 !important; font-weight: 600 !important; }
+  .urgency-low { color: #6abf8e !important; }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+  }
+
+  .footer a {
+    color: var(--sthlm-color);
+    text-decoration: none;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 900px) {
+    .top5-card {
+      grid-template-columns: 1fr;
+    }
+    .top5-img img { min-height: 220px; }
+  }
+
+  @media (max-width: 600px) {
+    .exp-grid { grid-template-columns: 1fr; }
+    .booking-table { font-size: 0.75rem; }
+    .booking-table th, .booking-table td { padding: 0.6rem 0.5rem; }
+  }
+
+  /* City color helpers */
+  .c-oslo { background: rgba(45,106,79,0.2); color: #6abf8e; }
+  .c-bergen { background: rgba(27,79,114,0.2); color: #5590b8; }
+  .c-sthlm { background: rgba(244,162,97,0.2); color: #F4A261; }
+  .c-hel { background: rgba(69,123,157,0.2); color: #7aafc4; }
+  .c-ferry { background: rgba(100,100,130,0.2); color: #9999cc; }
+
+  .btn-bergen { background: var(--bergen-color); color: #fff; }
+  .btn-sthlm { background: var(--sthlm-dark); color: #fff; }
+  .btn-hel { background: var(--hel-color); color: #fff; }
+  .btn-gold { background: var(--gold); color: #000; }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nordic Arc &nbsp;·&nbsp; Summer 2026 &nbsp;·&nbsp; Trip Four</p>
+    <h1>Bookable Experiences</h1>
+    <p class="tagline">Norway · Sweden · Finland &nbsp;·&nbsp; June 27 – July 8</p>
+  </div>
+</section>
+
+<div class="content">
+
+  <!-- ═══ TOP 5 MOST MAGICAL ═══ -->
+  <div class="top5-header">
+    <h2>Top 5 Most Magical</h2>
+    <p>Ranked by "Could you do this in New York?" factor — 1 being categorically impossible</p>
+  </div>
+
+  <div class="top5-grid">
+
+    <!-- #1 Iris at The Salmon Eye -->
+    <div class="top5-card rank-1">
+      <div class="top5-img">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80" alt="Hardangerfjord" loading="lazy"/>
+        <div class="rank-badge">1</div>
+      </div>
+      <div class="top5-body">
+        <div>
+          <span class="top5-city-tag c-bergen">Bergen / Hardangerfjord</span>
+          &nbsp;
+          <span class="nyc-badge">Impossible in NYC</span>
+        </div>
+        <h3>Iris at The Salmon Eye</h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">A 1 Michelin-starred restaurant suspended inside a floating steel sculpture anchored in the middle of the Hardangerfjord, 2 hours from Bergen. The building is designed to resemble a salmon's eye — a 1,500 kg metallic sphere that rises 5 meters above the water. You arrive by private boat. 16 seats. The menu is entirely Norwegian aquatic ingredients: wild fjord salmon, coastal herbs, sea trout, raw fjord shrimp, seaweed. The fjord walls rise 800 meters on both sides of your table. The experience — the geometry of a floating fine-dining room in one of Norway's most dramatic fjords — does not exist in any form anywhere else on Earth.</p>
+        <div class="why-special">
+          <div class="why-label">Why This Is The One</div>
+          <p>Every element is non-replicable: the floating building (there is one, in this fjord), the wild ingredients sourced from the water you're sitting on, the fjord landscape as the dining room walls, and the boat-only access. The closest analogue in NYC would be eating at a restaurant in the middle of the Hudson. That restaurant doesn't exist. This one does.</p>
+        </div>
+        <div class="meta-row">
+          <span class="meta-pill"><span class="icon">⏱</span> 4 hrs including boat transfer</span>
+          <span class="meta-pill"><span class="icon">📍</span> Rosendal, Hardangerfjord</span>
+          <span class="meta-pill"><span class="icon">💰</span> ~$250–350 pp (Michelin tasting menu)</span>
+        </div>
+        <a href="https://thesalmoneye.com/iris/" class="book-btn btn-bergen" target="_blank">Book Direct at thesalmoneye.com →</a>
+      </div>
+    </div>
+
+    <!-- #2 Nærøyfjord UNESCO Boat Tour -->
+    <div class="top5-card rank-2">
+      <div class="top5-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Nærøyfjord" loading="lazy"/>
+        <div class="rank-badge">2</div>
+      </div>
+      <div class="top5-body">
+        <div>
+          <span class="top5-city-tag c-bergen">Bergen Day Trip</span>
+          &nbsp;
+          <span class="nyc-badge">Impossible in NYC</span>
+        </div>
+        <h3>Nærøyfjord UNESCO Boat Tour + Flåmsbana Railway</h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">The Nærøyfjord is UNESCO World Heritage listed and the narrowest fjord in the world — at points only 250 meters wide, with cliff walls rising 1,700 meters straight from the water. Tiny family farms accessible only by boat cling to the cliff face, inhabited year-round. Waterfalls drop 600 meters. The fjord cruise takes 2 hours. Combined with the Flåmsbana railway — the world's steepest adhesion railway, descending 864 meters in 20 sharp bends over 20 waterfalls in 55 minutes — this is the most spectacular day in Norway.</p>
+        <div class="why-special">
+          <div class="why-label">The Flåmsbana Bonus</div>
+          <p>At the Kjosfossen waterfall stop, the train halts for 5 minutes. A Huldra — a Norwegian mythological seductress of the forest — appears on the rocks and dances to old folk music. Children stare. Adults aren't sure what they're watching. It is wonderful.</p>
+        </div>
+        <div class="meta-row">
+          <span class="meta-pill"><span class="icon">⏱</span> Full day (8 AM – 7 PM)</span>
+          <span class="meta-pill"><span class="icon">📍</span> Bergen → Voss → Myrdal → Flåm → Gudvangen</span>
+          <span class="meta-pill"><span class="icon">💰</span> ~$120–160 pp (Norway in a Nutshell package)</span>
+        </div>
+        <a href="https://www.norwaynutshell.com/" class="book-btn btn-bergen" target="_blank">Book at norwaynutshell.com →</a>
+      </div>
+    </div>
+
+    <!-- #3 Bergen Railway -->
+    <div class="top5-card rank-3">
+      <div class="top5-img">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" alt="Bergen Railway mountain crossing" loading="lazy"/>
+        <div class="rank-badge">3</div>
+      </div>
+      <div class="top5-body">
+        <div>
+          <span class="top5-city-tag c-oslo">Oslo → Bergen</span>
+          &nbsp;
+          <span class="nyc-badge">Impossible in NYC</span>
+        </div>
+        <h3>Bergen Railway — Bergensbanen</h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">Consistently voted the world's most scenic train journey. Oslo to Bergen in 6.5 hours, crossing the Hardangervidda — the largest mountain plateau in Northern Europe — at 1,222 meters altitude. In late June, the plateau still has patches of snow while lower valleys are lush green. The train crosses 300+ bridges, threads through 178 tunnels, passes steel-blue mountain lakes, ancient wooden churches, and rivers running from snowmelt. The Voss-to-Bergen descent is through a fjord valley so dramatic it looks fabricated.</p>
+        <div class="why-special">
+          <div class="why-label">Pro Move</div>
+          <p>Book a window seat on the right side heading west (Bergen-bound). The best views — lakes, plateau, fjord descent — are on the right. The train has a café car. Bring smørbrød from Oslo station. Eat while watching Norway unfold outside.</p>
+        </div>
+        <div class="meta-row">
+          <span class="meta-pill"><span class="icon">⏱</span> 6 hrs 30 min</span>
+          <span class="meta-pill"><span class="icon">🚂</span> Departs Oslo S 8:25 AM</span>
+          <span class="meta-pill"><span class="icon">💰</span> ~$40–80 (advance booking on Vy)</span>
+        </div>
+        <a href="https://www.vy.no/en" class="book-btn btn-bergen" target="_blank">Book at vy.no →</a>
+      </div>
+    </div>
+
+    <!-- #4 Finnish Smoke Sauna -->
+    <div class="top5-card rank-4">
+      <div class="top5-img">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Finnish sauna" loading="lazy"/>
+        <div class="rank-badge">4</div>
+      </div>
+      <div class="top5-body">
+        <div>
+          <span class="top5-city-tag c-hel">Helsinki, Finland</span>
+          &nbsp;
+          <span class="nyc-badge">Impossible in NYC</span>
+        </div>
+        <h3>Finnish Smoke Sauna Ritual — Löyly or Rajaportti</h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">The Finnish sauna is a 2,000-year-old ritual and the single most culturally irreplaceable experience on this trip. A smoke sauna (savusauna) burns birch logs for 6+ hours before guests enter — the room fills with a particular warmth and aroma that cannot be created any other way. The ritual: enter the hot room (80–100°C), ladle water onto hot stones (löyly), breathe the steam, get beaten gently with fresh birch branches (vihta) to open pores and release birch scent, go outside to the cold — Baltic Sea plunge or cold shower — return. Repeat 2–3 times. Drink beer. Sit in silence or talk about everything. This is Finland's national meditation.</p>
+        <div class="why-special">
+          <div class="why-label">Two Options — Choose Based on Preference</div>
+          <p>Löyly: Modern design sauna on the Baltic waterfront. Architecturally stunning, food and drinks, public sauna sessions (book in advance for busy summer dates). More accessible, less intimidating. Kotiharjun Sauna: Helsinki's last original wood-burning public sauna (1928). Locals only, no English, mixed-gender, very basic, utterly genuine. Best if you want the actual thing over the design version.</p>
+        </div>
+        <div class="meta-row">
+          <span class="meta-pill"><span class="icon">⏱</span> 2–4 hrs</span>
+          <span class="meta-pill"><span class="icon">📍</span> Helsinki waterfront (Löyly) or Kallio (Kotiharjun)</span>
+          <span class="meta-pill"><span class="icon">💰</span> €18–35 pp (Löyly entry + session)</span>
+        </div>
+        <a href="https://www.loyly.net/en/" class="book-btn btn-hel" target="_blank">Book Löyly at loyly.net →</a>
+      </div>
+    </div>
+
+    <!-- #5 Viking Line Overnight Ferry -->
+    <div class="top5-card rank-5">
+      <div class="top5-img">
+        <img src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=800&q=80" alt="Ferry Baltic archipelago" loading="lazy"/>
+        <div class="rank-badge">5</div>
+      </div>
+      <div class="top5-body">
+        <div>
+          <span class="top5-city-tag c-ferry">Stockholm → Helsinki</span>
+          &nbsp;
+          <span class="nyc-badge">Impossible in NYC</span>
+        </div>
+        <h3>Viking Line Overnight Ferry — Stockholm to Helsinki</h3>
+        <p style="font-size: 0.83rem; color: var(--text-mid); line-height: 1.65;">Not transport — destination. The Viking Line departs Stockholm at 5 PM and arrives Helsinki at 10 AM: 17 hours on the Baltic Sea. The Stockholm Archipelago departure alone — threading through 30,000 islands at 6–9 PM in white-night golden light — is worth the ticket. The ship carries 2,800 passengers, has multiple restaurants, a 5-deck Promenade indoor street with bars and shops, a sauna deck with Baltic views, a casino, live music, and a nightclub that fills with Swedes and Finns who treat the voyage as a long party. Book a top-deck sea-view suite for the quieter end of the ship. Fall asleep in open water. Wake up as Finnish granite islands appear.</p>
+        <div class="why-special">
+          <div class="why-label">What to Do On Board</div>
+          <p>Dinner at the main restaurant (a la carte, proper food). Evening: sauna deck, watch the midnight sun over the Baltic from the top deck. Try the smorgasbord breakfast (100+ dishes, herring 12 ways, Finnish rye bread, gravlax). The crossing through the Finnish archipelago arriving in Helsinki — tiny wooden islands, red cottages, sailboats — is better than anything you can replicate in New York Harbor.</p>
+        </div>
+        <div class="meta-row">
+          <span class="meta-pill"><span class="icon">⏱</span> 17 hours</span>
+          <span class="meta-pill"><span class="icon">⛴</span> Departs Stockholm 5:00 PM</span>
+          <span class="meta-pill"><span class="icon">💰</span> €100–300 per cabin (sea-view suite)</span>
+        </div>
+        <a href="https://www.vikingline.com/en/" class="book-btn btn-hel" target="_blank">Book at vikingline.com →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ NORWAY EXPERIENCES ═══ -->
+  <div class="section-header" style="--c: var(--bergen-color);">
+    <h2 style="color: #5590b8;">Norway Extras</h2>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-bergen" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Bergen</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Flåmsbana Cycling — Myrdal to Flåm Downhill</h3>
+        <p class="exp-desc">At Myrdal station, rent a bike and cycle the 20 km descent back down to Flåm — the same route the Flåmsbana railway takes, but on the old mountain road. Passes waterfalls, tunnels carved by hand in the 1920s, and 864 meters of vertical drop over 90 minutes. Return the bike at Flåm and take the ferry or train back. Exhilarating and completely unique to this mountain railway corridor.</p>
+        <div class="exp-meta">
+          <span>2–3 hrs cycling</span>
+          <span>Moderate fitness</span>
+          <span>Bike rental at Myrdal</span>
+          <span>~€30 pp</span>
+        </div>
+        <div class="exp-book">Book bike at: <a href="https://www.flamsbana.no/" target="_blank">flamsbana.no</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1548585204-87b2e66dc91b?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-bergen" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Hardangerfjord</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Fjord Kayaking at Dawn — Mirror-Water Experience</h3>
+        <p class="exp-desc">Guided kayaking in the Hardangerfjord at 7 AM before the tourist boats arrive. The fjord at dawn is mirror-flat — you paddle between cliff walls that disappear into cloud, the only sounds being water dripping from paddles and the occasional waterfall. Rosendal or Eidfjord launch points. Waterproof gear provided. In late June the water is 12–14°C — cold but kayaking keeps you warm.</p>
+        <div class="exp-meta">
+          <span>3–4 hrs</span>
+          <span>No experience needed</span>
+          <span>Early AM departure</span>
+          <span>~€70–90 pp guided</span>
+        </div>
+        <div class="exp-book">Search: <a href="https://www.getyourguide.com/hardangerfjord-l107428/" target="_blank">GetYourGuide Hardangerfjord kayaking</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-bergen" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Bergen</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Cornelius Restaurant — Seafood on a Private Island</h3>
+        <p class="exp-desc">A seafood restaurant on a private island in the Bergen Fjord, accessible only by the restaurant's own boat (15 min from Bergen harbor). No menu — you eat what was caught that day. Whole king crab, Atlantic lobster, halibut, langoustines, and whatever else the fisherman brought in. The island has a smokehouse, a dock, and views back to Bergen's seven mountains. One of the most authentically Nordic dining experiences in the country.</p>
+        <div class="exp-meta">
+          <span>3–4 hrs</span>
+          <span>Boat transfer included</span>
+          <span>Bergen harbor departure</span>
+          <span>~€100–150 pp</span>
+        </div>
+        <div class="exp-book">Book at: <a href="https://www.cornelius.no/" target="_blank">cornelius.no</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SWEDEN EXPERIENCES ═══ -->
+  <div class="section-header">
+    <h2 style="color: var(--sthlm-color);">Stockholm Extras</h2>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1530649591944-0668827c9fd7?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-sthlm" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Stockholm</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Stockholm Archipelago Kayak Day</h3>
+        <p class="exp-desc">Guided sea kayaking through the inner archipelago, departing directly from Stockholm harbor. Paddle past uninhabited skerries (small islands), through reed passages, around 17th-century fortifications. Lunch on a beach. Late June water is cool but swimmable. The city disappears within 20 minutes of paddling — you are in wilderness that begins at the city limits. Full-day tours include island picnic and sauna at a fishing cottage.</p>
+        <div class="exp-meta">
+          <span>Full day (8 hrs)</span>
+          <span>Beginner-friendly</span>
+          <span>Departs central Stockholm</span>
+          <span>~€85–120 pp</span>
+        </div>
+        <div class="exp-book">Book: <a href="https://www.viator.com/Stockholm/d963" target="_blank">Viator Stockholm kayaking</a> or <a href="https://www.kayak-stockholm.se/" target="_blank">kayak-stockholm.se</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1580745059454-99e5d1db25d8?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-sthlm" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Stockholm</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Rosendals Trädgård — Garden Breakfast Experience</h3>
+        <p class="exp-desc">Not just breakfast — a complete morning experience at a biodynamic market garden operating in Djurgården since 1992. The garden produces its own vegetables, herbs, honey (from on-site hives), bread (baked in a wood-fired oven), and preserves. You eat on communal wooden tables under ancient apple trees. The gardeners move around you. The café opens at 8 AM and by 9 AM the bread is sold out. This is the Swedish summer morning at full expression.</p>
+        <div class="exp-meta">
+          <span>1.5–2 hrs</span>
+          <span>Walk-in (no reservation)</span>
+          <span>Djurgården, Stockholm</span>
+          <span>~€15–25 pp</span>
+        </div>
+        <div class="exp-book">Address: <a href="https://www.rosendals.se/" target="_blank">Rosendalsterrassen 12, Djurgården</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1535185384036-28bbc8035f28?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-sthlm" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Stockholm</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Swedish Crayfish Party (Kräftskiva) at Grinda Island</h3>
+        <p class="exp-desc">Swedish crayfish season opens July 5 — the day you're arriving in Helsinki, but if timing allows, this is worth engineering. The kräftskiva is one of Sweden's great cultural events: fresh crayfish, napkins as bibs, schnapps, folk songs (snapsvisor), paper lanterns, and tables set up outside. The Grinda Wärdshus on the archipelago island runs organized crayfish evenings in early July. Reserve in advance. The experience — eating crayfish on a Baltic island dock in full late-evening summer light — cannot be replicated.</p>
+        <div class="exp-meta">
+          <span>Evening (4 hrs)</span>
+          <span>Ferry from Stockholm (2 hrs)</span>
+          <span>Grinda Island</span>
+          <span>~€50–80 pp (crayfish + drinks)</span>
+        </div>
+        <div class="exp-book">Book: <a href="https://www.grinda.se/" target="_blank">grinda.se</a> (reserve crayfish evening in advance)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FINLAND EXPERIENCES ═══ -->
+  <div class="section-header">
+    <h2 style="color: #7aafc4;">Helsinki Extras</h2>
+  </div>
+
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-hel" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Helsinki</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Suomenlinna Midnight Walk — UNESCO Sea Fortress</h3>
+        <p class="exp-desc">Take the last public ferry to Suomenlinna at 10 PM and walk the 18th-century fortress ramparts as the sun dips to its lowest point — which in early July is a permanent golden hour, not actual darkness. The island is nearly empty after 8 PM (most day visitors leave by 6). The coastal walks along the fortifications overlooking the Baltic in late-evening white-night light are one of the more genuinely magical experiences in Northern Europe.</p>
+        <div class="exp-meta">
+          <span>2–3 hrs evening</span>
+          <span>Ferry every 20 min from Market Square</span>
+          <span>Public ferry included in day ticket</span>
+          <span>€5 HSL ticket</span>
+        </div>
+        <div class="exp-book">Ferries: <a href="https://www.suomenlinna.fi/" target="_blank">suomenlinna.fi</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1548585204-87b2e66dc91b?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-hel" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Finland</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Nordic Wild Mushroom Foraging Tour</h3>
+        <p class="exp-desc">Early July is the beginning of chanterelle season in Finland and Sweden. Guided forest foraging walks in the forests outside Helsinki — with a Finnish mycologist who teaches you to distinguish golden chanterelles from poisonous lookalikes, how to cut properly (leaving root to regrow), and what to do with them (butter, cream, toast). The foraged mushrooms become lunch. The specific terroir of Finnish birch and pine forest cannot be found in any New York City park.</p>
+        <div class="exp-meta">
+          <span>4 hrs (morning)</span>
+          <span>Espoo forest, 30 min from Helsinki</span>
+          <span>Small group (max 8)</span>
+          <span>€65–90 pp</span>
+        </div>
+        <div class="exp-book">Search: <a href="https://www.getyourguide.com/helsinki-l16/" target="_blank">GetYourGuide Helsinki mushroom foraging</a></div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80');">
+        <div class="exp-img-overlay"></div>
+      </div>
+      <div class="exp-body">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="top5-city-tag c-hel" style="font-size: 0.65rem; padding: 0.2rem 0.7rem;">Helsinki</span>
+          <span class="nyc-badge">Not in NYC</span>
+        </div>
+        <h3>Kotiharjun Sauna — Helsinki's Last Original Wood-Burning Public Sauna</h3>
+        <p class="exp-desc">Operating since 1928, Kotiharjun is the last public sauna in Helsinki that still uses a traditional wood-burning kiuas (stove). No spa treatment, no design interior — just a functional neighborhood sauna where Kallio residents have been coming for 97 years. Mixed-gender sections, no English required, basic locker room, the real löyly steam from birch logs. Walk in with €14 and a towel. This is what Löyly is trying to recreate with architecture. This is the original.</p>
+        <div class="exp-meta">
+          <span>2–3 hrs</span>
+          <span>Walk-in, no booking</span>
+          <span>Harjutorinkatu 1, Kallio</span>
+          <span>€14 pp</span>
+        </div>
+        <div class="exp-book">Info: <a href="https://www.kotiharjunsauna.fi/" target="_blank">kotiharjunsauna.fi</a> — walk-in only</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BOOKING PRIORITY TABLE ═══ -->
+  <div class="booking-table-section">
+    <div class="section-header">
+      <h2>What to Book Now</h2>
+    </div>
+    <table class="booking-table">
+      <thead>
+        <tr>
+          <th>Experience</th>
+          <th>When to Book</th>
+          <th>Urgency</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Iris at The Salmon Eye</td>
+          <td>Immediately — 3+ months ahead</td>
+          <td class="urgency-high">BOOK NOW</td>
+          <td>16 seats. Summer 2026 dates will fill by March. Book via thesalmoneye.com</td>
+        </tr>
+        <tr>
+          <td>Ekstedt, Stockholm (1 Michelin star)</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-high">BOOK NOW</td>
+          <td>Very popular summer dates. Book via Ekstedt.nu directly</td>
+        </tr>
+        <tr>
+          <td>Ett Hem hotel, Stockholm</td>
+          <td>Immediately — 12 rooms, books out</td>
+          <td class="urgency-high">BOOK NOW</td>
+          <td>12 rooms. Summer availability extremely limited. etthem.se</td>
+        </tr>
+        <tr>
+          <td>Viking Line / Silja Line cabin</td>
+          <td>2–3 months ahead</td>
+          <td class="urgency-high">URGENT</td>
+          <td>Commodore suites and sea-view cabins sell out for summer. vikingline.com</td>
+        </tr>
+        <tr>
+          <td>Lysverket, Bergen (1 Michelin star)</td>
+          <td>3–4 weeks ahead</td>
+          <td class="urgency-med">SOON</td>
+          <td>Book via Lysverket.no. Summer evenings fill quickly</td>
+        </tr>
+        <tr>
+          <td>Flåmsbana train tickets</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-med">SOON</td>
+          <td>Book specific departure time on vy.no. Not guaranteed day-of in summer</td>
+        </tr>
+        <tr>
+          <td>Bergen Railway (Bergensbanen)</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-med">SOON</td>
+          <td>Window seats sell out. Book via vy.no, right side of train for best views</td>
+        </tr>
+        <tr>
+          <td>Löyly sauna private session</td>
+          <td>2–3 weeks ahead</td>
+          <td class="urgency-med">SOON</td>
+          <td>Public sessions can be walk-in. Private cabin bookings via loyly.net</td>
+        </tr>
+        <tr>
+          <td>Cornelius island restaurant, Bergen</td>
+          <td>3–4 weeks ahead</td>
+          <td class="urgency-med">SOON</td>
+          <td>Weekend dinner dates fill fastest. cornelius.no</td>
+        </tr>
+        <tr>
+          <td>Grinda island crayfish evening</td>
+          <td>4–6 weeks ahead</td>
+          <td class="urgency-low">When Ready</td>
+          <td>July 5+ dates only. grinda.se — book as soon as July dates are confirmed</td>
+        </tr>
+        <tr>
+          <td>Archipelago kayak tour, Stockholm</td>
+          <td>2–4 weeks ahead</td>
+          <td class="urgency-low">When Ready</td>
+          <td>Multiple operators. Morning departures preferred for calmer water</td>
+        </tr>
+        <tr>
+          <td>Mushroom foraging, Helsinki</td>
+          <td>2–3 weeks ahead</td>
+          <td class="urgency-low">When Ready</td>
+          <td>Early July is season start — check operator confirms chanterelle conditions</td>
+        </tr>
+        <tr>
+          <td>Kotiharjun Sauna, Helsinki</td>
+          <td>Walk-in</td>
+          <td class="urgency-low">Walk-In</td>
+          <td>No booking possible or needed. Open Tue–Sun. €14. Bring a towel.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 0.6rem;">Nordic Arc — Bookable Experiences</div>
+  <p>Oslo · Bergen · Fjords · Stockholm · Helsinki &nbsp;·&nbsp; June 27 – July 8, 2026</p>
+  <p style="margin-top: 0.5rem;">See the full itinerary: <a href="itinerary.html">itinerary.html</a></p>
+</footer>
+
+</body>
+</html>
