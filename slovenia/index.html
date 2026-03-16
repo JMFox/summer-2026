@@ -21,6 +21,7 @@
     --gold: #E9C46A;
     --gold-dark: #D4A017;
     --gold-glow: rgba(233,196,106,0.3);
+    --nyc-badge: #ffc312;
     --bg: #08090a;
     --card-bg: #111214;
     --card-hover: #161819;
@@ -39,7 +40,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ═══════ HERO ═══════ */
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -63,52 +64,60 @@
 
   @keyframes heroZoom {
     from { transform: scale(1.05); }
-    to { transform: scale(1.13); }
+    to { transform: scale(1.12); }
   }
 
   .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+    background: linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
   }
 
   .hero-content { position: relative; z-index: 2; max-width: 960px; }
 
   .hero-eyebrow {
     font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.35em;
+    font-weight: 700;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: var(--green);
+    color: rgba(255,255,255,0.35);
     margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 0.2s ease forwards;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3.8rem, 9vw, 8.5rem);
+    font-size: clamp(3.5rem, 9vw, 8rem);
     font-weight: 900;
     line-height: 1.0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     background: linear-gradient(135deg, #fff 0%, #ddd 50%, #fff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 0.35s ease forwards;
   }
 
   .hero .tagline {
-    font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
     font-weight: 300;
     color: rgba(255,255,255,0.45);
-    letter-spacing: 0.38em;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 0.5s ease forwards;
+  }
+
+  .hero .dates-line {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 0.4rem;
+  }
+
+  .hero .flights-line {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.38);
+    font-style: italic;
+    margin-bottom: 0.2rem;
   }
 
   .route-visual {
@@ -117,18 +126,18 @@
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 2rem 0 1.5rem;
+    margin: 2.5rem 0 1.5rem;
   }
 
   .route-city {
     padding: 0.6rem 1.4rem;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    opacity: 0;
     animation: fadeSlideUp 0.8s ease forwards;
+    opacity: 0;
     position: relative;
     overflow: hidden;
   }
@@ -137,66 +146,48 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
     border-radius: 50px;
   }
 
-  .route-city.venice { background: var(--venice); color: #1a1508; animation-delay: 0.7s; }
-  .route-city.brda { background: var(--green); animation-delay: 0.9s; }
-  .route-city.soca { background: var(--green); animation-delay: 1.05s; }
-  .route-city.bohinj { background: var(--blue); animation-delay: 1.2s; }
-  .route-city.bled { background: var(--blue); animation-delay: 1.35s; }
-  .route-city.lj { background: var(--red); animation-delay: 1.5s; }
-  .route-city.piran { background: var(--gold-dark); animation-delay: 1.65s; }
+  .route-city.venice { background: var(--venice); color: #1a1508; animation-delay: 0.4s; }
+  .route-city.brda { background: var(--green); animation-delay: 0.65s; }
+  .route-city.soca { background: var(--green); animation-delay: 0.9s; }
+  .route-city.bohinj { background: var(--blue); animation-delay: 1.15s; }
+  .route-city.bled { background: var(--blue); animation-delay: 1.4s; }
+  .route-city.lj { background: var(--red); animation-delay: 1.65s; }
+  .route-city.piran { background: var(--gold-dark); animation-delay: 1.9s; }
+
+  .route-arrow {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.22);
+    animation: fadeSlideUp 0.8s ease forwards;
+    opacity: 0;
+  }
+  .route-arrow:nth-child(2) { animation-delay: 0.53s; }
+  .route-arrow:nth-child(4) { animation-delay: 0.78s; }
+  .route-arrow:nth-child(6) { animation-delay: 1.03s; }
+  .route-arrow:nth-child(8) { animation-delay: 1.28s; }
+  .route-arrow:nth-child(10) { animation-delay: 1.53s; }
+  .route-arrow:nth-child(12) { animation-delay: 1.78s; }
 
   .route-nights {
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     font-weight: 500;
-    opacity: 0.75;
+    opacity: 0.7;
     margin-top: 2px;
     letter-spacing: 0.04em;
   }
 
-  .route-arrow {
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.2);
-    opacity: 0;
-    animation: fadeSlideUp 0.8s ease forwards;
-  }
-  .route-arrow:nth-of-type(2) { animation-delay: 0.82s; }
-  .route-arrow:nth-of-type(3) { animation-delay: 0.97s; }
-  .route-arrow:nth-of-type(4) { animation-delay: 1.12s; }
-  .route-arrow:nth-of-type(5) { animation-delay: 1.27s; }
-  .route-arrow:nth-of-type(6) { animation-delay: 1.42s; }
-  .route-arrow:nth-of-type(7) { animation-delay: 1.57s; }
-
-  .hero .dates-line {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.75);
-    margin-top: 1.5rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 1.8s ease forwards;
-  }
-
-  .hero .flights-line {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.35);
-    font-style: italic;
-    margin-top: 0.4rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 1.95s ease forwards;
-  }
-
   @keyframes fadeSlideUp {
-    from { opacity: 0; transform: translateY(22px); }
+    from { opacity: 0; transform: translateY(25px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .scroll-cue {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -204,34 +195,34 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s 2.5s ease forwards;
   }
 
   .scroll-cue span {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.25);
   }
 
-  .scroll-cue .arr {
-    width: 18px; height: 18px;
-    border-right: 1.5px solid rgba(255,255,255,0.28);
-    border-bottom: 1.5px solid rgba(255,255,255,0.28);
+  .scroll-cue .arr,
+  .scroll-cue .arrow {
+    width: 18px;
+    height: 18px;
+    border-right: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
     transform: rotate(45deg);
     animation: scrollBounce 2s infinite;
   }
 
   @keyframes scrollBounce {
-    0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.28; }
-    50% { transform: rotate(45deg) translate(4px,4px); opacity: 0.7; }
+    0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.25; }
+    50% { transform: rotate(45deg) translate(5px,5px); opacity: 0.7; }
   }
 
-  /* ═══════ LAYOUT ═══════ */
+  /* MAIN CONTENT */
   .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-  /* ═══════ STATS ═══════ */
+  /* STATS */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -248,7 +239,10 @@
     transition: transform 0.3s, border-color 0.3s;
   }
 
-  .stat-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.12);
+  }
 
   .stat-num {
     font-family: 'Playfair Display', serif;
@@ -267,29 +261,306 @@
   .stat-label {
     font-size: 0.68rem;
     color: var(--text-dim);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
     margin-top: 0.5rem;
   }
 
-  /* ═══════ ROUTE MAP ═══════ */
-  .map-section {
-    margin-bottom: 5rem;
-  }
-
+  /* SEASON CARDS */
   .section-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .section-header h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 800;
+  }
+
+  .section-header p { color: var(--text-dim); margin-top: 0.3rem; font-size: 0.9rem; }
+
+  .season-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .season-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.3s;
+  }
+
+  .season-card:hover { transform: translateY(-3px); }
+
+  .season-icon {
+    font-size: 1.9rem;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+
+  .season-card h4 { font-size: 0.93rem; margin-bottom: 0.25rem; }
+  .season-card p { color: var(--text-mid); font-size: 0.81rem; line-height: 1.6; }
+
+  /* REGION SECTIONS (equivalent to city-section in Taiwan) */
+  .region-section { margin-bottom: 6rem; }
+
+  .region-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 340px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .region-hero-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 8s ease;
+  }
+
+  .region-hero:hover .region-hero-img { transform: scale(1.05); }
+
+  .region-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .region-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem;
+    width: 100%;
+  }
+
+  .region-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
     margin-bottom: 0.3rem;
   }
 
-  .section-header p { color: var(--text-dim); font-size: 0.9rem; }
+  .region-hero .region-dates {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.58);
+    letter-spacing: 0.1em;
+  }
+
+  .region-badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+  }
+
+  /* HOTEL CARDS */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hotel-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .hotel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .hotel-img {
+    width: 100%;
+    height: 155px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hotel-body { padding: 1.1rem 1.2rem; }
+
+  .hotel-nights {
+    display: inline-block;
+    padding: 0.28rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .hotel-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .hotel-tagline {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+
+  .hotel-body p { font-size: 0.79rem; color: var(--text-mid); line-height: 1.5; }
+
+  /* DAY CARDS */
+  .day-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  .day-header {
+    padding: 1.4rem 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .day-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .day-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  .day-img-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .day-img-strip img {
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+
+  .day-img-strip img:hover { transform: scale(1.08); }
+
+  .day-timeline { padding: 0 2rem 1.5rem; }
+
+  .time-block {
+    margin-bottom: 1.25rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid rgba(255,255,255,0.06);
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .time-stamp {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    min-width: 52px;
+    padding-top: 2px;
+    white-space: nowrap;
+  }
+
+  .time-content h4 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .time-content p { color: var(--text-mid); font-size: 0.86rem; line-height: 1.7; }
+
+  /* TAGS */
+  .tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.14rem 0.52rem;
+    border-radius: 5px;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0.4rem 0.2rem 0 0;
+  }
+
+  .tag-food { background: rgba(230,57,70,0.15); color: #ff6b75; }
+  .tag-nature { background: rgba(61,139,55,0.18); color: #5dba57; }
+  .tag-culture { background: rgba(139,92,246,0.18); color: #a78bfa; }
+  .tag-unique { background: rgba(255,195,18,0.15); color: #ffc312; }
+  .tag-event { background: rgba(0,210,210,0.12); color: #00d4d4; }
+  .tag-drive { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+
+  /* NYC BADGE */
+  .nyc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--nyc-badge);
+    color: #000;
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0.4rem 0 0;
+  }
+
+  /* MEAL ACCENT BLOCKS */
+  .breakfast-block { border-left: 3px solid var(--green); }
+  .snack-block { border-left: 3px solid var(--gold); }
+  .dinner-block { border-left: 3px solid var(--red); }
+
+  /* ROUTE MAP */
+  .map-section { margin-bottom: 5rem; }
 
   .route-map-container {
     background: var(--card-bg);
@@ -305,7 +576,6 @@
     display: block;
   }
 
-  /* SVG map path animation */
   .animated-path {
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
@@ -333,305 +603,35 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* ═══════ SEASON CARDS ═══════ */
-  .season-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 5rem;
-  }
-
-  .season-card {
-    padding: 1.4rem;
-    border-radius: 16px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    transition: transform 0.3s;
-  }
-
-  .season-card:hover { transform: translateY(-3px); }
-
-  .season-icon {
-    font-size: 1.8rem;
-    flex-shrink: 0;
-    width: 46px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.04);
-  }
-
-  .season-card h4 { font-size: 0.92rem; margin-bottom: 0.3rem; }
-  .season-card p { color: var(--text-mid); font-size: 0.8rem; line-height: 1.6; }
-
-  /* ═══════ REGION SECTIONS ═══════ */
-  .region-section { margin-bottom: 6rem; }
-
-  .region-hero {
-    position: relative;
-    height: 50vh;
-    min-height: 340px;
-    border-radius: 24px;
-    overflow: hidden;
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: flex-end;
-    cursor: default;
-  }
-
-  .region-hero-img {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 8s ease;
-  }
-
-  .region-hero:hover .region-hero-img { transform: scale(1.05); }
-
-  .region-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.08) 100%);
-  }
-
-  .region-hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 2.2rem;
-    width: 100%;
-  }
-
-  .region-hero h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    font-weight: 900;
-    margin-bottom: 0.3rem;
-  }
-
-  .region-hero .region-dates {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.7rem;
-  }
-
-  .region-badge {
-    display: inline-block;
-    padding: 0.35rem 0.9rem;
-    border-radius: 50px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* ═══════ HOTEL CARDS ═══════ */
-  .hotels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .hotel-card {
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    transition: transform 0.3s, border-color 0.3s;
-  }
-
-  .hotel-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.1); }
-
-  .hotel-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .hotel-body { padding: 1.2rem; }
-
-  .hotel-nights {
-    display: inline-block;
-    padding: 0.25rem 0.7rem;
-    border-radius: 50px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.7rem;
-  }
-
-  .hotel-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .hotel-tagline {
-    font-size: 0.75rem;
-    color: var(--text-mid);
-    font-style: italic;
-    margin-bottom: 0.6rem;
-  }
-
-  .hotel-body p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
-
-  /* ═══════ DAY CARDS ═══════ */
-  .day-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .day-card:hover { border-color: rgba(255,255,255,0.1); }
-
-  .day-header {
-    padding: 1.5rem 1.8rem 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .day-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-    color: var(--text-dim);
-  }
-
-  .day-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.45rem;
-    font-weight: 800;
-    line-height: 1.25;
-  }
-
-  .day-img-strip {
-    display: flex;
-    height: 130px;
-    gap: 2px;
-    overflow: hidden;
-  }
-
-  .day-img-strip img {
-    flex: 1;
-    min-width: 0;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-
-  .day-img-strip img:hover { transform: scale(1.04); }
-
-  .day-timeline { padding: 1.2rem 1.8rem 1.5rem; }
-
-  .time-block {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.3rem;
-    position: relative;
-  }
-
-  .time-block:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 52px;
-    top: 28px;
-    bottom: -10px;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .time-stamp {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--text-dim);
-    white-space: nowrap;
-    min-width: 52px;
-    padding-top: 2px;
-  }
-
-  .time-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
-  .time-content p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
-
-  .tags {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-
-  .tag {
-    padding: 0.18rem 0.6rem;
-    border-radius: 50px;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .tag-food { background: rgba(230,57,70,0.15); color: #ff7b7b; }
-  .tag-nature { background: rgba(61,139,55,0.15); color: #7dd17a; }
-  .tag-culture { background: rgba(147,51,234,0.15); color: #c084fc; }
-  .tag-unique { background: rgba(233,196,106,0.15); color: #e9c46a; }
-  .tag-event { background: rgba(6,182,212,0.15); color: #67e8f9; }
-  .tag-drive { background: rgba(99,102,241,0.15); color: #a5b4fc; }
-
-  .nyc-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: #ffc312;
-    color: #1a1200;
-    padding: 0.22rem 0.65rem;
-    border-radius: 50px;
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-top: 0.4rem;
-  }
-
-  .breakfast-block { border-left: 3px solid var(--green); }
-  .snack-block { border-left: 3px solid var(--gold); }
-  .dinner-block { border-left: 3px solid var(--red); }
-
-  /* ═══════ DRIVE DIVIDER ═══════ */
+  /* DRIVE DIVIDER */
   .drive-divider {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin: 3rem 0;
-    padding: 1.2rem 1.8rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    margin: 0 0 4rem;
+  }
+
+  .drive-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
   }
 
   .drive-icon {
-    font-size: 1.6rem;
-    flex-shrink: 0;
+    font-size: 1.5rem;
   }
 
-  .drive-info h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .drive-info {
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.2rem 2rem;
+    min-width: 260px;
+  }
+
+  .drive-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
   .drive-info p { font-size: 0.78rem; color: var(--text-mid); }
 
   .drive-meta {
@@ -649,7 +649,7 @@
 
   .drive-km { font-size: 0.72rem; color: var(--text-dim); margin-top: 2px; }
 
-  /* ═══════ BOOKING ALERT ═══════ */
+  /* BOOKING ALERT */
   .booking-alert {
     background: linear-gradient(135deg, rgba(230,57,70,0.12), rgba(230,57,70,0.05));
     border: 1px solid rgba(230,57,70,0.25);
@@ -666,32 +666,70 @@
   .booking-alert p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
   .booking-alert ul { font-size: 0.8rem; color: var(--text-mid); line-height: 1.8; padding-left: 1.2rem; margin-top: 0.4rem; }
 
-  /* ═══════ FOOTER ═══════ */
+  /* FOOTER */
+  .site-footer,
   footer {
     text-align: center;
     padding: 4rem 2rem;
     border-top: 1px solid var(--border);
-    margin-top: 4rem;
     color: var(--text-dim);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
 
+  .site-footer .footer-route,
   footer .footer-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
   }
 
-  /* ═══════ RESPONSIVE ═══════ */
-  @media (max-width: 680px) {
-    .route-visual { gap: 0.35rem; }
-    .route-city { padding: 0.5rem 0.9rem; font-size: 0.75rem; }
+  /* Image captions */
+  .img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .img-cap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px 8px;
+    background: rgba(0,0,0,0.55);
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .day-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    height: 140px;
+  }
+  .day-images .img-wrap {
+    height: 100%;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .day-header, .day-timeline { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .day-img-strip img { height: 85px; }
     .hotels-grid { grid-template-columns: 1fr; }
     .drive-divider { flex-wrap: wrap; }
     .drive-meta { margin-left: 0; text-align: left; }
-    .day-header { flex-direction: column; }
+    .route-visual { gap: 0.35rem; }
+    .route-city { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
   }
 </style>
 </head>
@@ -923,7 +961,7 @@
 <div class="content">
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Venice, Italy</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--venice);color:#1a1508;margin-bottom:0.7rem">Gateway City</span>
       <h2 style="color:#fff">Venice</h2>
@@ -934,7 +972,7 @@
   <!-- Hotel -->
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/iLIJ9LwLMSA?w=800&q=80" alt="Venice palazzo hotel">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80" alt="Venice palazzo hotel" loading="lazy"/><span class="img-cap">Palazzina G, Venice</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(192,178,131,0.15);color:var(--venice)">1 Night</span>
         <h3>Palazzina G or Ca' Pisani</h3>
@@ -953,9 +991,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Venice canal">
-      <img src="https://images.unsplash.com/Nkaklo6NHcY?w=600&q=80" alt="Venice gondola">
-      <img src="https://images.unsplash.com/KtlBp_YttlY?w=600&q=80" alt="Venice street">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Venice canal" loading="lazy"/><span class="img-cap">Grand Canal, Venice</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=600&q=80" alt="Venice gondola" loading="lazy"/><span class="img-cap">Gondola at dusk, Venice</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Venice street" loading="lazy"/><span class="img-cap">Venetian bacaro wine bar</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block">
@@ -1002,9 +1040,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/hFXZ5cNfkOk?w=600&q=80" alt="Rialto market">
-      <img src="https://images.unsplash.com/w8peaE068DY?w=600&q=80" alt="Vineyard drive">
-      <img src="https://images.unsplash.com/HQE1_qjE_iw?w=600&q=80" alt="Goriška Brda hills">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="Rialto market" loading="lazy"/><span class="img-cap">Rialto Market, Venice</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=600&q=80" alt="Vineyard drive" loading="lazy"/><span class="img-cap">Vineyard road, Goriška Brda</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Goriška Brda hills" loading="lazy"/><span class="img-cap">Goriška Brda wine hills</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1060,7 +1098,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/1Zc8SfYHJaw?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Goriška Brda wine country, Slovenia</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--green);margin-bottom:0.7rem">Slovenia's Tuscany</span>
       <h2 style="color:#fff">Goriška Brda</h2>
@@ -1070,7 +1108,7 @@
 
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80" alt="Peterc vineyard estate">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80" alt="Peterc vineyard estate" loading="lazy"/><span class="img-cap">Peterc Vineyard Estate, Brda</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(61,139,55,0.15);color:var(--green)">1 Night</span>
         <h3>Peterc Vineyard Estate</h3>
@@ -1088,9 +1126,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=600&q=80" alt="Vineyard breakfast">
-      <img src="https://images.unsplash.com/nCqucqW7DAo?w=600&q=80" alt="Wine tasting">
-      <img src="https://images.unsplash.com/dSVKFCuWDcc?w=600&q=80" alt="Soča valley road">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=600&q=80" alt="Vineyard breakfast" loading="lazy"/><span class="img-cap">Peterc Estate breakfast, Brda</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Wine tasting" loading="lazy"/><span class="img-cap">Movia Winery tasting</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Soča valley road" loading="lazy"/><span class="img-cap">Soča River valley road</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1155,7 +1193,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/CJ4gk7gFql0?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Soča Valley, Triglav National Park</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--green);margin-bottom:0.7rem">Triglav National Park</span>
       <h2 style="color:#fff">Soča Valley</h2>
@@ -1171,9 +1209,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=600&q=80" alt="Soča river kayak">
-      <img src="https://images.unsplash.com/S6ezYelvHfk?w=600&q=80" alt="Alpine river">
-      <img src="https://images.unsplash.com/BVPJAm2Jx8c?w=600&q=80" alt="Mountain gorge">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Soča river kayak" loading="lazy"/><span class="img-cap">Kayaking the Soča River</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&q=80" alt="Alpine river" loading="lazy"/><span class="img-cap">Emerald Soča River gorge</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=600&q=80" alt="Mountain gorge" loading="lazy"/><span class="img-cap">Boka Waterfall trail</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1222,9 +1260,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountain pass road">
-      <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=600&q=80" alt="Alpine meadow">
-      <img src="https://images.unsplash.com/Xom383A1gt4?w=600&q=80" alt="Julian Alps">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Mountain pass road" loading="lazy"/><span class="img-cap">Vršič Pass, 1,611m</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Alpine meadow" loading="lazy"/><span class="img-cap">Julian Alps wildflower meadow</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&q=80" alt="Julian Alps" loading="lazy"/><span class="img-cap">Lake Bohinj from Vršič descent</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1279,7 +1317,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/kip3MkppvC4?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Lake Bohinj, Julian Alps</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--blue);margin-bottom:0.7rem">Triglav National Park</span>
       <h2 style="color:#fff">Lake Bohinj</h2>
@@ -1289,7 +1327,7 @@
 
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/JrbvOdiSotk?w=800&q=80" alt="Lake Bohinj hotel">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&q=80" alt="Lake Bohinj hotel" loading="lazy"/><span class="img-cap">Hotel Bohinj Park, lakefront</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(42,125,201,0.15);color:var(--blue)">1 Night</span>
         <h3>Hotel Bohinj Park</h3>
@@ -1307,9 +1345,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/p3OvnYG3EfY?w=600&q=80" alt="Lake Bohinj">
-      <img src="https://images.unsplash.com/TnJoeltymlI?w=600&q=80" alt="Cable car Alps">
-      <img src="https://images.unsplash.com/631MBChRG1I?w=600&q=80" alt="Waterfall hike">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&q=80" alt="Lake Bohinj" loading="lazy"/><span class="img-cap">Lake Bohinj, Triglav NP</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Cable car Alps" loading="lazy"/><span class="img-cap">Vogel cable car panorama</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=600&q=80" alt="Waterfall hike" loading="lazy"/><span class="img-cap">Savica Waterfall, 78m</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1375,7 +1413,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Lake Bled, Slovenia</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--blue);margin-bottom:0.7rem">Slovenia's Icon</span>
       <h2 style="color:#fff">Lake Bled</h2>
@@ -1385,7 +1423,7 @@
 
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/crsPunY0bpA?w=800&q=80" alt="Vila Bled">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Vila Bled" loading="lazy"/><span class="img-cap">Vila Bled, Lake Bled</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(42,125,201,0.15);color:var(--blue)">2 Nights</span>
         <h3>Vila Bled</h3>
@@ -1403,9 +1441,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/ijOdFXwYF84?w=600&q=80" alt="Lake Bled island">
-      <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&q=80" alt="Bled castle">
-      <img src="https://images.unsplash.com/XGDBdSQ70O0?w=600&q=80" alt="Alpine lake">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Lake Bled island" loading="lazy"/><span class="img-cap">Bled Island church</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Bled castle" loading="lazy"/><span class="img-cap">Bled Castle cliff top</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&q=80" alt="Alpine lake" loading="lazy"/><span class="img-cap">Lake Bled reflection</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1454,9 +1492,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/PZ_ysD-kBo4?w=600&q=80" alt="Vintgar gorge">
-      <img src="https://images.unsplash.com/t8a7Cg17W1k?w=600&q=80" alt="Gorge boardwalk">
-      <img src="https://images.unsplash.com/OZGM5--Yi1Q?w=600&q=80" alt="Lake reflection">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Vintgar gorge" loading="lazy"/><span class="img-cap">Vintgar Gorge boardwalk</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Gorge boardwalk" loading="lazy"/><span class="img-cap">Forest path to Vintgar</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Lake reflection" loading="lazy"/><span class="img-cap">Lake Bled pletna boat</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1523,7 +1561,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Ljubljana, Slovenia</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--red);margin-bottom:0.7rem">Capital City</span>
       <h2 style="color:#fff">Ljubljana</h2>
@@ -1533,7 +1571,7 @@
 
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/wO5SdkxKUHs?w=800&q=80" alt="Vander Urbani Resort">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Vander Urbani Resort" loading="lazy"/><span class="img-cap">Vander Urbani Resort, Ljubljana</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(230,57,70,0.15);color:var(--red)">2 Nights</span>
         <h3>Vander Urbani Resort</h3>
@@ -1551,9 +1589,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=600&q=80" alt="Ljubljana old town">
-      <img src="https://images.unsplash.com/1zRL_YLFWJ0?w=600&q=80" alt="Ljubljana castle">
-      <img src="https://images.unsplash.com/UJJJqNQuv1E?w=600&q=80" alt="Ljubljana market">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Ljubljana old town" loading="lazy"/><span class="img-cap">Ljubljana Old Town riverside</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Ljubljana castle" loading="lazy"/><span class="img-cap">Ljubljana Castle hilltop</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Ljubljana market" loading="lazy"/><span class="img-cap">Central Market, Plečnik colonnade</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1609,9 +1647,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/TRIAoEmFQo4?w=600&q=80" alt="Ljubljana river">
-      <img src="https://images.unsplash.com/ySNj3M5pnOQ?w=600&q=80" alt="Street art">
-      <img src="https://images.unsplash.com/lokKjSGUKPk?w=600&q=80" alt="European cafe">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Ljubljana river" loading="lazy"/><span class="img-cap">Ljubljanica River cafes</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Tivoli Park" loading="lazy"/><span class="img-cap">Tivoli Park, Ljubljana</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="European cafe" loading="lazy"/><span class="img-cap">Dinner at Restavracija Strelec</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1678,7 +1716,7 @@
 <!-- ════════════════════════════════════════════════════ -->
 <div class="region-section">
   <div class="region-hero">
-    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/sXj6108497E?w=1600&q=80')"></div>
+    <div class="region-hero-img" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600&q=80')"><span class="img-cap" style="font-size:0.65rem">Piran, Slovenian Adriatic</span></div>
     <div class="region-hero-content">
       <span class="region-badge" style="background:var(--gold-dark);color:#1a1200;margin-bottom:0.7rem">Adriatic Coast</span>
       <h2 style="color:#fff">Piran</h2>
@@ -1688,7 +1726,7 @@
 
   <div class="hotels-grid">
     <div class="hotel-card">
-      <img class="hotel-img" src="https://images.unsplash.com/TqXhx1WKk3k?w=800&q=80" alt="Art Hotel Tartini Piran">
+      <div class="img-wrap hotel-img"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Art Hotel Tartini Piran" loading="lazy"/><span class="img-cap">Art Hotel Tartini, Piran</span></div>
       <div class="hotel-body">
         <span class="hotel-nights" style="background:rgba(233,196,106,0.15);color:var(--gold)">2 Nights</span>
         <h3>Art Hotel Tartini</h3>
@@ -1706,9 +1744,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/rNoPh4MSgig?w=600&q=80" alt="Škocjan caves">
-      <img src="https://images.unsplash.com/fArBaWsIxPU?w=600&q=80" alt="Predjama castle">
-      <img src="https://images.unsplash.com/6kSzGN0Cxr8?w=600&q=80" alt="Piran coast">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80" alt="Škocjan caves" loading="lazy"/><span class="img-cap">Škocjan Caves UNESCO</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Predjama castle" loading="lazy"/><span class="img-cap">Predjama Castle in cliff</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Piran coast" loading="lazy"/><span class="img-cap">Piran, Adriatic coast</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">
@@ -1775,9 +1813,9 @@
       </div>
     </div>
     <div class="day-img-strip">
-      <img src="https://images.unsplash.com/0yQPd95ScSc?w=600&q=80" alt="Salt pans flamingo">
-      <img src="https://images.unsplash.com/sCAAxKPsDhM?w=600&q=80" alt="Trieste cafe">
-      <img src="https://images.unsplash.com/Q2EdCpH_UyQ?w=600&q=80" alt="Piran waterfront">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Salt pans flamingo" loading="lazy"/><span class="img-cap">Sečovlje Salt Pans, flamingos</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Trieste cafe" loading="lazy"/><span class="img-cap">Caffè degli Specchi, Trieste</span></div>
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Piran waterfront" loading="lazy"/><span class="img-cap">Piran waterfront at sunset</span></div>
     </div>
     <div class="day-timeline">
       <div class="time-block breakfast-block">

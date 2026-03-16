@@ -37,7 +37,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ═══════ HERO ═══════ */
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -53,8 +53,8 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1920&q=80') center/cover no-repeat;
-    filter: brightness(0.15) saturate(0.7);
+    background: url('https://images.unsplash.com/photo-1544551763-77932c773ae8?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.13) saturate(0.7);
     transform: scale(1.05);
     animation: heroZoom 30s ease-in-out infinite alternate;
   }
@@ -68,25 +68,26 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+    background: linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
   }
 
-  .hero-content { position: relative; z-index: 2; max-width: 950px; }
+  .hero-content { position: relative; z-index: 2; max-width: 960px; }
 
   .hero-eyebrow {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.35);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 7.5rem);
+    font-size: clamp(3.5rem, 9vw, 8rem);
     font-weight: 900;
     line-height: 1.0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     background: linear-gradient(135deg, #fff 0%, #ddd 50%, #fff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -94,7 +95,7 @@
   }
 
   .hero .tagline {
-    font-size: clamp(0.9rem, 2.2vw, 1.25rem);
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
     font-weight: 300;
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.35em;
@@ -103,7 +104,7 @@
   }
 
   .hero .dates-line {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     margin-bottom: 0.4rem;
@@ -111,8 +112,9 @@
 
   .hero .flights-line {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.38);
     font-style: italic;
+    margin-bottom: 0.2rem;
   }
 
   .route-visual {
@@ -150,24 +152,24 @@
   .route-city.sthlm { background: var(--sthlm-dark); animation-delay: 0.9s; }
   .route-city.hel { background: var(--hel-color); animation-delay: 1.15s; }
 
-  .route-nights {
-    display: block;
-    font-size: 0.6rem;
-    font-weight: 500;
-    opacity: 0.7;
-    margin-top: 2px;
-    letter-spacing: 0.05em;
-  }
-
   .route-arrow {
     font-size: 1.3rem;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.22);
     animation: fadeSlideUp 0.8s ease forwards;
     opacity: 0;
   }
-  .route-arrow:nth-of-type(1) { animation-delay: 0.52s; }
-  .route-arrow:nth-of-type(2) { animation-delay: 0.77s; }
-  .route-arrow:nth-of-type(3) { animation-delay: 1.02s; }
+  .route-arrow:nth-child(2) { animation-delay: 0.53s; }
+  .route-arrow:nth-child(4) { animation-delay: 0.78s; }
+  .route-arrow:nth-child(6) { animation-delay: 1.03s; }
+
+  .route-nights {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
 
   @keyframes fadeSlideUp {
     from { opacity: 0; transform: translateY(25px); }
@@ -176,7 +178,7 @@
 
   .scroll-cue {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -187,7 +189,7 @@
   }
 
   .scroll-cue span {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.25);
@@ -196,21 +198,434 @@
   .scroll-cue .arrow {
     width: 18px;
     height: 18px;
-    border-right: 1.5px solid rgba(255,255,255,0.25);
-    border-bottom: 1.5px solid rgba(255,255,255,0.25);
+    border-right: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
     transform: rotate(45deg);
     animation: scrollBounce 2s infinite;
   }
 
   @keyframes scrollBounce {
     0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.25; }
-    50% { transform: rotate(45deg) translate(4px,4px); opacity: 0.7; }
+    50% { transform: rotate(45deg) translate(5px,5px); opacity: 0.7; }
   }
 
-  /* ═══════ MAIN CONTENT ═══════ */
+  /* MAIN CONTENT */
   .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-  /* ═══════ ANIMATED ROUTE MAP ═══════ */
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 4rem 0 5rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.8rem 1rem;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .stat-card:nth-child(1) .stat-num { color: var(--oslo-color); }
+  .stat-card:nth-child(2) .stat-num { color: var(--bergen-color); }
+  .stat-card:nth-child(3) .stat-num { color: var(--sthlm-color); }
+  .stat-card:nth-child(4) .stat-num { color: var(--hel-color); }
+  .stat-card:nth-child(5) .stat-num { color: var(--oslo-color); }
+  .stat-card:nth-child(6) .stat-num { color: #ffc312; }
+
+  .stat-label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* SEASON CARDS */
+  .section-header,
+  .season-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2,
+  .season-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .section-header p,
+  .season-header p { color: var(--text-dim); margin-top: 0.3rem; font-size: 0.9rem; }
+
+  .season-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .season-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.3s;
+  }
+
+  .season-card:hover { transform: translateY(-3px); }
+
+  .season-icon {
+    font-size: 1.9rem;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+
+  .season-card h4 { font-size: 0.93rem; margin-bottom: 0.25rem; }
+  .season-card p { color: var(--text-mid); font-size: 0.81rem; line-height: 1.6; }
+
+  /* CITY SECTIONS */
+  .city-section { margin-bottom: 6rem; }
+
+  .city-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 340px;
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .city-hero-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 8s ease;
+  }
+
+  .city-hero:hover .city-hero-img { transform: scale(1.05); }
+
+  .city-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .city-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem;
+    width: 100%;
+  }
+
+  .city-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+  }
+
+  .city-hero .city-dates {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.58);
+    letter-spacing: 0.1em;
+  }
+
+  .city-hero .city-badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+  }
+
+  /* HOTEL CARDS */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hotel-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .hotel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .hotel-img {
+    height: 155px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .hotel-nights-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0.28rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .hotel-body { padding: 1.1rem 1.2rem; }
+  .hotel-body h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .hotel-body .hotel-why { font-size: 0.79rem; color: var(--text-mid); line-height: 1.5; }
+  .hotel-body .hotel-detail {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.6rem;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .hotel-body .hotel-detail span {
+    padding: 0.2rem 0.6rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+
+  /* DAY CARDS */
+  .day-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+
+  .day-card-header {
+    padding: 1.4rem 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .day-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    padding: 0.3rem 2rem 1rem;
+  }
+
+  .day-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .day-images img {
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+
+  .day-images img:hover { transform: scale(1.08); }
+
+  .day-timeline { padding: 0 2rem 1.5rem; }
+
+  .time-block {
+    margin-bottom: 1.25rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid rgba(255,255,255,0.06);
+    position: relative;
+    display: flex;
+    gap: 1.2rem;
+    padding-top: 1.1rem;
+    padding-bottom: 0;
+    border-bottom: none;
+    align-items: flex-start;
+  }
+
+  .time-block:last-child { padding-bottom: 0.5rem; }
+
+  .time-stamp {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    min-width: 58px;
+    padding-top: 2px;
+    white-space: nowrap;
+  }
+
+  .time-content { flex: 1; }
+
+  .time-content h4 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .time-content p { color: var(--text-mid); font-size: 0.86rem; line-height: 1.7; }
+
+  /* TAGS */
+  .tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.14rem 0.52rem;
+    border-radius: 5px;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0.4rem 0.2rem 0 0;
+  }
+
+  .tag-food { background: rgba(230,57,70,0.15); color: #ff6b75; }
+  .tag-nature { background: rgba(61,139,55,0.18); color: #5dba57; }
+  .tag-culture { background: rgba(139,92,246,0.18); color: #a78bfa; }
+  .tag-unique { background: rgba(255,195,18,0.15); color: #ffc312; }
+  .tag-event { background: rgba(0,210,210,0.12); color: #00d4d4; }
+  .tag-history { background: rgba(180,130,60,0.2); color: #d4a85c; }
+
+  /* NYC BADGE */
+  .nyc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #ffc312;
+    color: #000;
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0.4rem 0 0;
+    white-space: nowrap;
+  }
+
+  .breakfast-block {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid #ffc312;
+    border-radius: 0 8px 8px 0;
+    padding-left: 1.2rem;
+  }
+
+  /* TRANSPORT DIVIDERS */
+  .transport-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    margin: 0 0 4rem;
+  }
+
+  .transport-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+  }
+
+  .transport-icon {
+    font-size: 1.5rem;
+  }
+
+  .transport-info {
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.2rem 2rem;
+    min-width: 260px;
+  }
+
+  .transport-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .transport-info p { font-size: 0.78rem; color: var(--text-mid); }
+
+  .transport-meta {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .transport-meta .duration {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .transport-meta .transport-label {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ROUTE MAP */
   .map-section {
     margin: 5rem 0;
     text-align: center;
@@ -247,7 +662,6 @@
     overflow: visible;
   }
 
-  /* SVG animation */
   .route-path-main {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
@@ -309,429 +723,7 @@
     height: 2px;
   }
 
-  /* ═══════ STATS ═══════ */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
-    margin: 4rem 0 5rem;
-  }
-
-  .stat-card {
-    text-align: center;
-    padding: 1.8rem 1rem;
-    background: var(--card-bg);
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    transition: transform 0.3s, border-color 0.3s;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.12);
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .stat-card:nth-child(1) .stat-num { color: var(--oslo-color); }
-  .stat-card:nth-child(2) .stat-num { color: var(--bergen-color); }
-  .stat-card:nth-child(3) .stat-num { color: var(--sthlm-color); }
-  .stat-card:nth-child(4) .stat-num { color: var(--hel-color); }
-  .stat-card:nth-child(5) .stat-num { color: var(--oslo-color); }
-  .stat-card:nth-child(6) .stat-num { color: #ffc312; }
-
-  .stat-label {
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-  }
-
-  /* ═══════ SEASON CARDS ═══════ */
-  .season-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .season-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 800;
-  }
-
-  .season-header p { color: var(--text-dim); margin-top: 0.3rem; font-size: 0.88rem; }
-
-  .season-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 5rem;
-  }
-
-  .season-card {
-    padding: 1.5rem;
-    border-radius: 16px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    transition: transform 0.3s;
-  }
-
-  .season-card:hover { transform: translateY(-3px); }
-
-  .season-icon {
-    font-size: 1.8rem;
-    flex-shrink: 0;
-    width: 46px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-  }
-
-  .season-card h4 { font-size: 0.92rem; margin-bottom: 0.3rem; }
-  .season-card p { color: var(--text-mid); font-size: 0.8rem; line-height: 1.6; }
-
-  /* ═══════ CITY SECTIONS ═══════ */
-  .city-section { margin-bottom: 4rem; }
-
-  .city-hero {
-    position: relative;
-    height: 50vh;
-    min-height: 340px;
-    border-radius: 24px;
-    overflow: hidden;
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .city-hero-img {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 8s ease;
-  }
-
-  .city-hero:hover .city-hero-img { transform: scale(1.05); }
-
-  .city-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-  }
-
-  .city-hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 2.5rem;
-    width: 100%;
-  }
-
-  .city-hero h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    font-weight: 900;
-    margin-bottom: 0.25rem;
-  }
-
-  .city-hero .city-dates {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.1em;
-  }
-
-  .city-hero .city-badge {
-    display: inline-block;
-    margin-top: 0.5rem;
-    padding: 0.35rem 0.9rem;
-    border-radius: 50px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-
-  /* ═══════ HOTEL CARDS ═══════ */
-  .hotels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .hotel-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-
-  .hotel-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.12);
-  }
-
-  .hotel-img {
-    height: 180px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-
-  .hotel-nights-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #000;
-  }
-
-  .hotel-body { padding: 1.5rem 1.8rem; }
-  .hotel-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-  .hotel-body .hotel-why { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
-  .hotel-body .hotel-detail {
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    margin-top: 0.6rem;
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-  }
-  .hotel-body .hotel-detail span {
-    padding: 0.2rem 0.6rem;
-    background: rgba(255,255,255,0.05);
-    border-radius: 20px;
-    border: 1px solid var(--border);
-  }
-
-  /* ═══════ DAY CARDS ═══════ */
-  .day-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-    transition: border-color 0.3s;
-  }
-
-  .day-card:hover { border-color: rgba(255,255,255,0.1); }
-
-  .day-card-header {
-    padding: 1.5rem 1.8rem 1rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-
-  .day-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.3rem;
-  }
-
-  .day-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    line-height: 1.2;
-  }
-
-  .day-images {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-    height: 180px;
-    margin-bottom: 0;
-  }
-
-  .day-images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    background: #1a1a1a;
-  }
-
-  .day-timeline { padding: 0.5rem 1.8rem 1.8rem; }
-
-  .time-block {
-    display: flex;
-    gap: 1.2rem;
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--border);
-    align-items: flex-start;
-  }
-
-  .time-block:last-child { border-bottom: none; padding-bottom: 0.5rem; }
-
-  .time-stamp {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-    min-width: 58px;
-    padding-top: 2px;
-    white-space: nowrap;
-  }
-
-  .time-content { flex: 1; }
-
-  .time-content h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    line-height: 1.4;
-  }
-
-  .time-content p {
-    font-size: 0.82rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    margin-top: 0.15rem;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-  }
-
-  .tag {
-    padding: 0.18rem 0.6rem;
-    border-radius: 20px;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-  }
-
-  .tag-food { background: rgba(220,50,50,0.2); color: #e07070; }
-  .tag-nature { background: rgba(45,106,79,0.25); color: #6abf8e; }
-  .tag-culture { background: rgba(130,80,200,0.2); color: #c09de0; }
-  .tag-unique { background: rgba(255,195,18,0.15); color: #ffc312; }
-  .tag-event { background: rgba(30,180,220,0.15); color: #60ccdd; }
-  .tag-history { background: rgba(180,130,60,0.2); color: #d4a85c; }
-
-  .nyc-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: #ffc312;
-    color: #000;
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.22rem 0.65rem;
-    border-radius: 50px;
-    white-space: nowrap;
-  }
-
-  .breakfast-block {
-    background: rgba(255,255,255,0.03);
-    border-left: 3px solid #ffc312;
-    border-radius: 0 8px 8px 0;
-    padding-left: 1.2rem;
-    margin-left: -1.2rem;
-  }
-
-  /* ═══════ TRANSPORT DIVIDERS ═══════ */
-  .transport-divider {
-    margin: 2rem 0;
-    padding: 1.2rem 2rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .transport-icon {
-    font-size: 1.8rem;
-    flex-shrink: 0;
-  }
-
-  .transport-info h4 {
-    font-size: 0.92rem;
-    font-weight: 700;
-  }
-
-  .transport-info p {
-    font-size: 0.78rem;
-    color: var(--text-mid);
-    margin-top: 0.1rem;
-  }
-
-  .transport-meta {
-    margin-left: auto;
-    text-align: right;
-  }
-
-  .transport-meta .duration {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .transport-meta .transport-label {
-    font-size: 0.68rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* ═══════ SECTION HEADERS ═══════ */
-  .section-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-  }
-
-  .section-header p {
-    color: var(--text-dim);
-    font-size: 0.86rem;
-  }
-
-  /* ═══════ MIDNIGHT SUN CALLOUT ═══════ */
+  /* MIDNIGHT SUN CALLOUT */
   .midnight-sun-banner {
     background: linear-gradient(135deg, rgba(27,79,114,0.4), rgba(45,106,79,0.4));
     border: 1px solid rgba(27,79,114,0.5);
@@ -764,9 +756,7 @@
     flex-wrap: wrap;
   }
 
-  .sun-time {
-    text-align: center;
-  }
+  .sun-time { text-align: center; }
 
   .sun-time .city-name {
     font-size: 0.68rem;
@@ -782,49 +772,86 @@
     color: var(--sthlm-color);
   }
 
-  /* ═══════ FOOTER ═══════ */
-  .footer {
+  /* FOOTER */
+  .footer,
+  .site-footer {
     text-align: center;
     padding: 4rem 2rem;
-    color: var(--text-dim);
-    font-size: 0.78rem;
     border-top: 1px solid var(--border);
-    margin-top: 4rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
   }
 
-  .footer .footer-route {
+  .footer .footer-route,
+  .site-footer .footer-route {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-mid);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
     margin-bottom: 0.8rem;
     letter-spacing: 0.05em;
   }
 
-  /* ═══════ RESPONSIVE ═══════ */
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    .day-images { height: 140px; }
-    .transport-meta { margin-left: 0; text-align: left; }
+    .day-card-header, .day-timeline { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .day-images img { height: 85px; }
+    .day-images { height: auto; }
+    .hotels-grid { grid-template-columns: 1fr; }
     .transport-divider { flex-direction: column; gap: 1rem; }
-    .day-card-header { flex-direction: column; }
-    .route-visual { gap: 0.3rem; }
-    .route-city { padding: 0.5rem 1rem; font-size: 0.78rem; }
+    .transport-meta { margin-left: 0; text-align: left; }
+    .route-visual { gap: 0.35rem; }
+    .route-city { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
     .city-hero { height: 40vh; min-height: 280px; }
     .city-hero h2 { font-size: 2rem; }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-    .stat-card { padding: 1.2rem 0.8rem; }
-    .stat-num { font-size: 2rem; }
-    .season-grid { grid-template-columns: 1fr; }
     .midnight-sun-banner { padding: 1.5rem; }
     .sun-times { flex-direction: column; gap: 1rem; }
   }
 
   @media (max-width: 480px) {
-    .day-images { grid-template-columns: 1fr; height: 200px; }
+    .day-images { grid-template-columns: 1fr; height: auto; }
     .day-images img:not(:first-child) { display: none; }
     .hotels-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .map-legend { flex-direction: column; align-items: center; }
+  }
+
+  /* Image captions */
+  .img-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .img-cap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px 8px;
+    background: rgba(0,0,0,0.55);
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .day-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    height: 140px;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .day-images .img-wrap {
+    height: 100%;
   }
 
   /* Color accent lines on day cards */
@@ -1133,7 +1160,7 @@
   <!-- ═══════════════════════════════════════ OSLO ═══════════════════════════════════════ -->
   <section class="city-section">
     <div class="city-hero">
-      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=1600&q=80');"></div>
+      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1600&q=80');"><span class="img-cap" style="font-size:0.65rem">Oslo, Norway</span></div>
       <div class="city-hero-content">
         <h2 style="color: #6abf8e;">Oslo</h2>
         <div class="city-dates">Jun 27 &nbsp;·&nbsp; Arrival Day</div>
@@ -1143,7 +1170,8 @@
 
     <div class="hotels-grid">
       <div class="hotel-card hotel-oslo">
-        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80');">
+        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80');">
+          <span class="img-cap">The Thief, Tjuvholmen, Oslo</span>
           <span class="hotel-nights-badge">1 Night</span>
         </div>
         <div class="hotel-body">
@@ -1167,9 +1195,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=600&q=80" alt="Oslo Opera House" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1575414003552-2e04e4753f4c?w=600&q=80" alt="Oslo waterfront Aker Brygge" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=600&q=80" alt="Oslo cityscape" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=600&q=80" alt="Oslo Opera House" loading="lazy"/><span class="img-cap">Oslo Opera House rooftop</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1601439678498-3a64245addd9?w=600&q=80" alt="Oslo waterfront Aker Brygge" loading="lazy"/><span class="img-cap">Aker Brygge waterfront, Oslo</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Oslo cityscape" loading="lazy"/><span class="img-cap">Vigeland Sculpture Park</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block">
@@ -1240,7 +1268,7 @@
   <!-- ═══════════════════════════════════════ BERGEN & FJORDS ═══════════════════════════════════════ -->
   <section class="city-section">
     <div class="city-hero">
-      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1600&q=80');"></div>
+      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1520681279154-51b3fb4ea0f7?w=1600&q=80');"><span class="img-cap" style="font-size:0.65rem">Bergen, Norway</span></div>
       <div class="city-hero-content">
         <h2 style="color: #5590b8;">Bergen &amp; Fjords</h2>
         <div class="city-dates">Jun 28 – Jun 30 &nbsp;·&nbsp; 3 Nights &nbsp;·&nbsp; Norway</div>
@@ -1251,6 +1279,7 @@
     <div class="hotels-grid">
       <div class="hotel-card hotel-bergen">
         <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80');">
+          <span class="img-cap">Opus XVI, Bergen 1861 building</span>
           <span class="hotel-nights-badge">3 Nights</span>
         </div>
         <div class="hotel-body">
@@ -1275,9 +1304,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Bergen Railway mountain plateau" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Norwegian mountains" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?w=600&q=80" alt="Bergen Bryggen wharf" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=600&q=80" alt="Bergen Railway mountain plateau" loading="lazy"/><span class="img-cap">Hardangervidda plateau, Bergen Railway</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Norwegian mountains" loading="lazy"/><span class="img-cap">Norwegian mountain scenery</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1520681279154-51b3fb4ea0f7?w=600&q=80" alt="Bergen Bryggen wharf" loading="lazy"/><span class="img-cap">Bryggen wharf, Bergen UNESCO</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1324,9 +1353,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1559508551-44bff1de756b?w=600&q=80" alt="Bergen fish market" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1504284491667-d2c8a48f6a60?w=600&q=80" alt="Norway fjord view" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1494949360228-4e9e2024e760?w=600&q=80" alt="Bergen from Floyen mountain" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1520769669658-f07657f5a307?w=600&q=80" alt="Bergen fish market" loading="lazy"/><span class="img-cap">Bergen Fish Market (Fisketorget)</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1601439678498-3a64245addd9?w=600&q=80" alt="Norway fjord view" loading="lazy"/><span class="img-cap">View from Mount Fløyen</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Bergen from Floyen mountain" loading="lazy"/><span class="img-cap">Bergen seven mountains panorama</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1374,9 +1403,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80" alt="Nærøyfjord boat cruise" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Fjord reflections" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1432405972618-c6b0cfba8425?w=600&q=80" alt="Norwegian waterfall" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1601439678498-3a64245addd9?w=600&q=80" alt="Nærøyfjord boat cruise" loading="lazy"/><span class="img-cap">Nærøyfjord UNESCO cruise</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Fjord reflections" loading="lazy"/><span class="img-cap">Flåmsbana Railway descent</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Norwegian waterfall" loading="lazy"/><span class="img-cap">Kjosfossen waterfall, Flåm</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1424,9 +1453,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Hardangerfjord aerial" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining Salmon Eye restaurant" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=600&q=80" alt="Norwegian fjord farm" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Hardangerfjord aerial" loading="lazy"/><span class="img-cap">Hardangerfjord aerial view</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining Salmon Eye restaurant" loading="lazy"/><span class="img-cap">Iris at The Salmon Eye, Michelin</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=600&q=80" alt="Norwegian fjord farm" loading="lazy"/><span class="img-cap">Hardangerfjord orchard farms</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1481,7 +1510,7 @@
   <!-- ═══════════════════════════════════════ STOCKHOLM ═══════════════════════════════════════ -->
   <section class="city-section">
     <div class="city-hero">
-      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1572950033700-b4d276a8a48e?w=1600&q=80');"></div>
+      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1561542320-9a18cd340e98?w=1600&q=80');"><span class="img-cap" style="font-size:0.65rem">Stockholm, Sweden</span></div>
       <div class="city-hero-content">
         <h2 style="color: var(--sthlm-color);">Stockholm</h2>
         <div class="city-dates">Jul 1 – Jul 3 &nbsp;·&nbsp; 3 Nights &nbsp;·&nbsp; Sweden</div>
@@ -1491,7 +1520,8 @@
 
     <div class="hotels-grid">
       <div class="hotel-card hotel-sthlm">
-        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80');">
+        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1574181613934-4bd6e2ba4da8?w=800&q=80');">
+          <span class="img-cap">Ett Hem, Östermalm, Stockholm</span>
           <span class="hotel-nights-badge">3 Nights</span>
         </div>
         <div class="hotel-body">
@@ -1516,9 +1546,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=80" alt="Stockholm Gamla Stan old town" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1572950033700-b4d276a8a48e?w=600&q=80" alt="Stockholm canal waterfront" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1580745059454-99e5d1db25d8?w=600&q=80" alt="Stockholm cafe fika culture" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=80" alt="Stockholm Gamla Stan old town" loading="lazy"/><span class="img-cap">Gamla Stan, Stockholm</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561542320-9a18cd340e98?w=600&q=80" alt="Stockholm canal waterfront" loading="lazy"/><span class="img-cap">Stockholm waterfront canal</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1574181613934-4bd6e2ba4da8?w=600&q=80" alt="Stockholm cafe fika culture" loading="lazy"/><span class="img-cap">Swedish fika at Vete-Katten</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1566,9 +1596,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1530649591944-0668827c9fd7?w=600&q=80" alt="Stockholm archipelago islands" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=600&q=80" alt="Swedish island dock" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600&q=80" alt="Swedish red cottages by the sea" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561542320-9a18cd340e98?w=600&q=80" alt="Stockholm archipelago islands" loading="lazy"/><span class="img-cap">Stockholm Archipelago, 30,000 islands</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1574181613934-4bd6e2ba4da8?w=600&q=80" alt="Swedish island dock" loading="lazy"/><span class="img-cap">Grinda Island dock</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=80" alt="Swedish red cottages by the sea" loading="lazy"/><span class="img-cap">Swedish red cottages, Grinda</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1615,9 +1645,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1535185384036-28bbc8035f28?w=600&q=80" alt="Vasa Museum Djurgarden" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=600&q=80" alt="Stockholm sunset golden light" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Ferry at Stockholm harbor" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=80" alt="Vasa Museum Djurgarden" loading="lazy"/><span class="img-cap">Vasa Museum, Djurgården</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1574181613934-4bd6e2ba4da8?w=600&q=80" alt="Stockholm sunset golden light" loading="lazy"/><span class="img-cap">Stockholm golden hour light</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1561542320-9a18cd340e98?w=600&q=80" alt="Ferry at Stockholm harbor" loading="lazy"/><span class="img-cap">Viking Line ferry departure</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1665,9 +1695,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=80" alt="Ferry on Baltic Sea" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1502726299822-6f583f972e02?w=600&q=80" alt="Baltic archipelago sunrise" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=600&q=80" alt="Scandinavian white night sky" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Ferry on Baltic Sea" loading="lazy"/><span class="img-cap">Baltic Sea from ferry deck</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Baltic archipelago sunrise" loading="lazy"/><span class="img-cap">Finnish archipelago at dawn</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1544551763-77932c773ae8?w=600&q=80" alt="Scandinavian white night sky" loading="lazy"/><span class="img-cap">White night, Nordic summer</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1701,7 +1731,7 @@
   <!-- ═══════════════════════════════════════ HELSINKI ═══════════════════════════════════════ -->
   <section class="city-section">
     <div class="city-hero">
-      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=1600&q=80');"></div>
+      <div class="city-hero-img" style="background-image: url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=1600&q=80');"><span class="img-cap" style="font-size:0.65rem">Helsinki, Finland</span></div>
       <div class="city-hero-content">
         <h2 style="color: #7aafc4;">Helsinki</h2>
         <div class="city-dates">Jul 5 – Jul 7 &nbsp;·&nbsp; 2 Nights &nbsp;·&nbsp; Finland</div>
@@ -1711,7 +1741,8 @@
 
     <div class="hotels-grid">
       <div class="hotel-card hotel-hel">
-        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80');">
+        <div class="hotel-img" style="background-image: url('https://images.unsplash.com/photo-1529154166925-574a0236a4f4?w=800&q=80');">
+          <span class="img-cap">Klaus K, Design District, Helsinki</span>
           <span class="hotel-nights-badge">2 Nights</span>
         </div>
         <div class="hotel-body">
@@ -1735,9 +1766,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=80" alt="Helsinki harbor and cathedral" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600&q=80" alt="Finnish sauna interior" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1529154166925-574a0236a4f4?w=600&q=80" alt="Helsinki Design District" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=80" alt="Helsinki harbor and cathedral" loading="lazy"/><span class="img-cap">Helsinki Cathedral & harbor</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1529154166925-574a0236a4f4?w=600&q=80" alt="Finnish sauna interior" loading="lazy"/><span class="img-cap">Löyly public sauna, Helsinki</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=600&q=80" alt="Helsinki Design District" loading="lazy"/><span class="img-cap">Temppeliaukio Rock Church</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1785,9 +1816,9 @@
         <span class="nyc-badge">Not in NYC</span>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1504681869696-d977211a5f4c?w=600&q=80" alt="Suomenlinna sea fortress island" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=600&q=80" alt="Baltic Sea waterfront Helsinki" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=600&q=80" alt="Finnish birch forest" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=80" alt="Suomenlinna sea fortress island" loading="lazy"/><span class="img-cap">Suomenlinna sea fortress UNESCO</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1529154166925-574a0236a4f4?w=600&q=80" alt="Baltic Sea waterfront Helsinki" loading="lazy"/><span class="img-cap">Café Regatta, Helsinki shore</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=600&q=80" alt="Finnish birch forest" loading="lazy"/><span class="img-cap">Finnish birch forest sauna path</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
@@ -1842,9 +1873,9 @@
         </div>
       </div>
       <div class="day-images">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Helsinki market hall interior" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1504973960431-1c1c6e3a8a95?w=600&q=80" alt="Helsinki harbor morning light" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=600&q=80" alt="Airport departure flight" loading="lazy"/>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Helsinki market hall interior" loading="lazy"/><span class="img-cap">Hakaniemi Market Hall, 1914</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=80" alt="Helsinki harbor morning light" loading="lazy"/><span class="img-cap">Helsinki harbor, morning light</span></div>
+        <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Airport departure flight" loading="lazy"/><span class="img-cap">Finnair HEL to JFK nonstop</span></div>
       </div>
       <div class="day-timeline">
         <div class="time-block breakfast-block">
