@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haasi Mirror Houses — Activity Guide | Nordic Arc 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: #00897B; text-decoration: none; font-weight: 500; }
+  a:hover { text-decoration: underline; }
+
+  .header { text-align: center; padding: 2.5rem 1.25rem 1.5rem; background: #fff; border-bottom: 1px solid #e8e8e8; }
+  .header .back { font-size: 0.72rem; color: #999; margin-bottom: 0.5rem; }
+  .header .back a { color: #999; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 0.3rem; color: #111; }
+  .header .subtitle { font-size: 0.8rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.65; }
+  .header .dates { display: inline-block; margin-top: 0.6rem; font-size: 0.68rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; background: #00897B; color: #fff; }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 2rem; }
+
+  .section-label { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: #111; margin: 2rem 0 0.3rem; }
+  .section-label:first-child { margin-top: 0.5rem; }
+  .section-divider { width: 40px; height: 3px; background: #00897B; border-radius: 2px; margin-bottom: 1rem; }
+  .section-intro { font-size: 0.8rem; color: #666; margin-bottom: 1rem; line-height: 1.6; }
+
+  .card { background: #fff; border: 1px solid #eaeaea; border-left: 4px solid #00897B; border-radius: 8px; margin-bottom: 0.75rem; padding: 1rem 1.1rem; transition: box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .card-name { font-weight: 700; font-size: 0.88rem; color: #111; margin-bottom: 0.15rem; }
+  .card-meta { font-size: 0.68rem; color: #999; margin-bottom: 0.35rem; }
+  .card-meta .tag { display: inline-block; font-size: 0.58rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 3px; margin-right: 0.3rem; vertical-align: middle; }
+  .tag-nature { background: #e8f5e9; color: #2e7d32; }
+  .tag-food { background: #fce4ec; color: #c62828; }
+  .tag-culture { background: #f3e5f5; color: #6a1b9a; }
+  .tag-unique { background: #fff8e1; color: #e6a800; border: 1px solid #ffeeba; }
+  .tag-sauna { background: #e0f2f1; color: #00695c; }
+  .card-desc { font-size: 0.78rem; color: #555; line-height: 1.55; }
+  .card-desc strong { color: #222; }
+  .card-tip { font-size: 0.7rem; color: #00897B; font-style: italic; margin-top: 0.3rem; }
+  .card-link { margin-top: 0.4rem; }
+  .card-link a { font-size: 0.68rem; font-weight: 600; }
+
+  .day-plan { background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; }
+  .day-plan h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.6rem; color: #111; }
+  .time-block { padding: 0.4rem 0; border-bottom: 1px solid #f3f3f3; }
+  .time-block:last-child { border-bottom: none; }
+  .time-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #00897B; }
+  .time-desc { font-size: 0.78rem; color: #444; line-height: 1.55; }
+  .time-desc strong { color: #222; }
+
+  .nyc-badge { display: inline-block; font-size: 0.5rem; font-weight: 800; padding: 0.1rem 0.35rem; border-radius: 3px; background: #fff8e1; color: #e6a800; letter-spacing: 0.04em; text-transform: uppercase; vertical-align: middle; margin-left: 3px; border: 1px solid #ffeeba; }
+
+  .confirm-box { background: #fff3e0; border: 1px solid #ffe0b2; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+  .confirm-box h4 { font-size: 0.78rem; font-weight: 700; color: #e65100; margin-bottom: 0.4rem; }
+  .confirm-box ul { font-size: 0.72rem; color: #555; padding-left: 1.2rem; }
+  .confirm-box li { margin-bottom: 0.25rem; }
+
+  .footer { text-align: center; padding: 2rem 1.5rem; border-top: 1px solid #e8e8e8; color: #bbb; font-size: 0.72rem; margin-top: 2rem; background: #fff; }
+
+  @media (min-width: 600px) { .header h1 { font-size: 2.4rem; } .header { padding: 3rem 2rem 2rem; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="back"><a href="../">&larr; Back to Nordic Arc</a></div>
+  <h1>Haasi Mirror Houses</h1>
+  <div class="subtitle">Mirror house on Lake P&auml;ij&auml;nne, Lehmonk&auml;rki Resort. Arriving ~noon from Helsinki ferry, departing next morning.</div>
+  <div class="dates">Jul 6 &middot; 1 night</div>
+</div>
+
+<div class="container">
+
+  <div class="confirm-box">
+    <h4>Confirm Before You Go</h4>
+    <ul>
+      <li><strong>AISTI Sauna &amp; Spa</strong> &mdash; confirm Jul 6 hours. Phone: +358 3 7666 330</li>
+      <li><strong>Lehmonk&auml;rki Restaurant</strong> &mdash; confirm dinner service Jul 6</li>
+      <li><strong>Kayak/SUP rental</strong> &mdash; confirm availability at resort reception</li>
+      <li><strong>Ainoa Winery tasting</strong> &mdash; pre-book if doing en route</li>
+    </ul>
+  </div>
+
+  <!-- ═══ ESSENTIAL 4 ═══ -->
+  <div class="section-label">The Essential Four</div>
+  <div class="section-divider"></div>
+  <div class="section-intro">You have one afternoon + evening + one early morning. These are non-negotiable.</div>
+
+  <div class="card">
+    <div class="card-name">Pulkkilanharju Ridge <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 15&ndash;20 min drive &middot; Free</div>
+    <div class="card-desc">Glacial esker ridge slicing through Lake P&auml;ij&auml;nne &mdash; <strong>water on both sides</strong>, pine forest, warm rock. Drive it slowly, then walk the <strong>4.4 km nature trail</strong> from the Karisalmi bridge rest area. Swim off the natural shore. This is THE landscape of Finnish lakeland.</div>
+    <div class="card-tip">Best in evening light (7:30&ndash;10:30 PM). Pine trunks + blue water + smooth granite + low-angle light = peak Finland.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Smoke Sauna + Lake Plunge <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-sauna">Sauna</span> On-site &middot; ~&euro;30&ndash;50/pp &middot; <strong>Confirm hours</strong></div>
+    <div class="card-desc"><strong>AISTI Sauna &amp; Spa</strong> at Lehmonk&auml;rki: traditional Finnish saunas, a <strong>smoke sauna</strong> (savusauna &mdash; most ancient and revered form), outdoor hot tubs, infinity pool overlooking the lake. Fire is burned for hours, smoke cleared, then you enter. Cold plunge in P&auml;ij&auml;nne between rounds. Plus your <strong>private hot tub</strong> at the Mirror House after.</div>
+    <div class="card-tip">Smoke sauna is not &ldquo;spa.&rdquo; It&rsquo;s elemental. The hot-cold cycle beside a pristine lake in endless evening light is Finland&rsquo;s deepest cultural experience.</div>
+    <div class="card-link"><a href="https://lehmonkarkiresort.fi/en/haasi-mirror-houses/">lehmonkarkiresort.fi &rarr;</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">V&auml;&auml;ksy Canal + Kanavan Panimo <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> <span class="tag tag-culture">Culture</span> 10 min drive &middot; Free (canal)</div>
+    <div class="card-desc">Boats locking through between Lake Vesij&auml;rvi and Lake P&auml;ij&auml;nne. <strong>Kanavan Panimo</strong> brewery right by the canal. Look for <strong>fried vendace</strong> (muikut), smoked fish, local beer. This is the social side of Finnish lakeland summer &mdash; unhurried, real, pleasant.</div>
+    <div class="card-tip">Best as a late afternoon stop. Combine with a walk through Old V&auml;&auml;ksy village.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Early Morning Lake Swim <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> On-site &middot; Free</div>
+    <div class="card-desc"><strong>5:30 AM.</strong> Glass-still lake, full light, nobody awake. Coffee on the shore in your robe. The most Finnish moment of the trip. Water is ~18&ndash;22&deg;C in early July &mdash; bracing but swimmable. The sky barely darkened overnight.</div>
+    <div class="card-tip">This is not an activity. It&rsquo;s a state of being.</div>
+  </div>
+
+  <!-- ═══ NATURE ═══ -->
+  <div class="section-label">Nature &amp; Water</div>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-name">Sunset Kayak/SUP on P&auml;ij&auml;nne <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> On-site rental &middot; ~&euro;15&ndash;30/hr</div>
+    <div class="card-desc">Paddle out onto Finland&rsquo;s second-largest lake from your own shoreline at golden hour. Sunset is ~10:31 PM on Jul 6. The water is clean enough to drink. Reserve at Lehmonk&auml;rki reception.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Aurinkovuori Hill Viewpoint</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 15 min drive &middot; Free</div>
+    <div class="card-desc">Hilltop panorama over <strong>both</strong> Lake P&auml;ij&auml;nne and Lake Vesij&auml;rvi. Fitness stairs or gentle trail to summit. 7 km loop available through forest. Start at V&auml;&auml;ksy Sports Centre.</div>
+    <div class="card-tip">Short enough to do as a warmup before the Pulkkilanharju drive.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Kelvenne Island (P&auml;ij&auml;nne National Park)</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 1 hr by boat taxi &middot; ~&euro;40&ndash;60/pp RT &middot; <strong>Book ahead</strong></div>
+    <div class="card-desc">National park island with 9.7 km hiking trail. Sandy shores, old-growth forest, ridge hiking. Accessed by the &ldquo;Marleena&rdquo; boat taxi from Lehmonk&auml;rki. <strong>Note: likely too ambitious for your 1-night stay</strong> &mdash; better for a return visit.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">P&auml;ij&auml;tsalo Observation Tower (Sysm&auml;)</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 45 min drive &middot; Free</div>
+    <div class="card-desc">1899 observation tower with the widest open-water view on Lake P&auml;ij&auml;nne. Quieter and less visited than Pulkkilanharju. Multiple trail lengths + campfire site.</div>
+  </div>
+
+  <!-- ═══ FOOD ═══ -->
+  <div class="section-label">Food &amp; Drink</div>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-name">Lehmonk&auml;rki Lakeside Restaurant</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> On-site &middot; Mains &euro;16&ndash;28</div>
+    <div class="card-desc">The resort&rsquo;s own restaurant, lakeside. <strong>Pike-perch with white wine sauce</strong> (&euro;24), <strong>reindeer stew</strong> (&euro;27), duck breast (&euro;26). Finnish lake fish and game, cooked simply. Reindeer stew is impossible in NYC. Confirm dinner service when booking.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Roadside Summer Stands <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> Everywhere &middot; Cheap</div>
+    <div class="card-desc">If you see: <strong>mansikka</strong> = strawberries. <strong>Herne</strong> = peas. <strong>Uusi peruna</strong> = new potatoes. Stop the car. These three are basically the taste of Finnish July. Eaten warm from the roadside, by the lake, this is more &ldquo;real Finland&rdquo; than any restaurant.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Ainoa Winery (Hollola)</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> 35 min drive &middot; Pre-book tastings</div>
+    <div class="card-desc">Finnish berry wines: <strong>lingonberry sparkling, cloudberry dessert wine, blueberry red</strong>. Nothing like this exists in NYC. Great bottles to bring home. Shop + tasting room. Best as a stop on the drive to/from Helsinki.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Kinnari Farm Store &amp; Cafe (Hollola)</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> 30 min drive &middot; Check hours</div>
+    <div class="card-desc">Working grain farm with on-site mill and bakery. Their own flour, freshly baked biscuits, muesli, seasonal goods. <strong>Perfect stop en route to Helsinki next morning.</strong> Soram&auml;entie 1, Hollola.</div>
+    <div class="card-link"><a href="https://kinnarintila.fi">kinnarintila.fi &rarr;</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Hollola Medieval Church + Kunnantupa Restaurant</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> <span class="tag tag-culture">Culture</span> 30 min drive</div>
+    <div class="card-desc">Stone church from <strong>~1500 AD</strong> &mdash; one of Finland&rsquo;s oldest. Kunnantupa serves genuine Finnish home cooking next door: salmon soup, Karelian pies, game meat, berry desserts. Combines food + culture in one stop.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Lahti Market Hall (Kauppahalli)</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> 40 min drive &middot; Closed Sun</div>
+    <div class="card-desc">~100 local producers under one roof. Jams, honey, smoked fish, Karelian pies, artisan coffee, cheeses. One-stop shop for Finnish lakeland food culture. Good snack stop en route to Helsinki.</div>
+  </div>
+
+  <!-- ═══ DAY PLAN ═══ -->
+  <div class="section-label">Suggested Itinerary</div>
+  <div class="section-divider"></div>
+
+  <div class="day-plan">
+    <h3>Jul 6: Afternoon + Evening</h3>
+    <div class="time-block">
+      <div class="time-label">~10 AM</div>
+      <div class="time-desc">Ferry arrives Helsinki. Pick up rental car. Drive to Lehmonk&auml;rki (~1.5 hrs).</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">~Noon</div>
+      <div class="time-desc">Check into Mirror House. Drop bags. Sparkling wine on arrival.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">1 PM</div>
+      <div class="time-desc">Drive <strong>Pulkkilanharju Ridge</strong> scenic route (20 min). Short nature trail walk.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">3 PM</div>
+      <div class="time-desc"><strong>V&auml;&auml;ksy Canal</strong>. Watch boats lock through. <strong>Kanavan Panimo</strong> for local beer. Pulla and coffee.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">5 PM</div>
+      <div class="time-desc">Back to resort. <strong>AISTI Smoke Sauna</strong> + lake plunge + infinity pool (2 hrs). <em>If closed: Aurinkovuori hike instead.</em></div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">7:30 PM</div>
+      <div class="time-desc">Dinner at <strong>Lehmonk&auml;rki Restaurant</strong> &mdash; pike-perch or reindeer stew, lakeside.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">9:30 PM</div>
+      <div class="time-desc"><strong>Sunset kayak/SUP</strong> on Lake P&auml;ij&auml;nne. Sunset at 10:31 PM.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">~11 PM</div>
+      <div class="time-desc">Private hot tub at the Mirror House under white-night skies. Lake through the glass walls.</div>
+    </div>
+  </div>
+
+  <div class="day-plan">
+    <h3>Jul 7: Early Morning &rarr; Helsinki</h3>
+    <div class="time-block">
+      <div class="time-label">5:30 AM</div>
+      <div class="time-desc"><strong>Lake swim</strong>. Glass-still water, full light. Coffee on the shore.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">7 AM</div>
+      <div class="time-desc">Breakfast delivered to Mirror House. Last look at the lake.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">9 AM</div>
+      <div class="time-desc">Check out. Drive toward Helsinki (~1.5 hrs).</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">En Route</div>
+      <div class="time-desc">Stop at <strong>Kinnari Farm Store</strong> in Hollola for pastries + coffee (~30 min detour). Or <strong>Ainoa Winery</strong> for Finnish berry wine gifts.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">~11 AM</div>
+      <div class="time-desc">Arrive Helsinki. Drop rental car. Check into Hotel St. George.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="../">&larr; Nordic Arc</a> &middot; Haasi Mirror Houses Activity Guide &middot; Jul 6, 2026
+</div>
+
+</body>
+</html>

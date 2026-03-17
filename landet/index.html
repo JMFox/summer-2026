@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landet Stay — Activity Guide | Nordic Arc 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: #8B6914; text-decoration: none; font-weight: 500; }
+  a:hover { text-decoration: underline; }
+
+  .header { text-align: center; padding: 2.5rem 1.25rem 1.5rem; background: #fff; border-bottom: 1px solid #e8e8e8; }
+  .header .back { font-size: 0.72rem; color: #999; margin-bottom: 0.5rem; }
+  .header .back a { color: #999; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 0.3rem; color: #111; }
+  .header .subtitle { font-size: 0.8rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.65; }
+  .header .dates { display: inline-block; margin-top: 0.6rem; font-size: 0.68rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; background: #8B6914; color: #fff; }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 2rem; }
+
+  .section-label { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: #111; margin: 2rem 0 0.3rem; }
+  .section-label:first-child { margin-top: 0.5rem; }
+  .section-divider { width: 40px; height: 3px; background: #8B6914; border-radius: 2px; margin-bottom: 1rem; }
+  .section-intro { font-size: 0.8rem; color: #666; margin-bottom: 1rem; line-height: 1.6; }
+
+  .card { background: #fff; border: 1px solid #eaeaea; border-left: 4px solid #8B6914; border-radius: 8px; margin-bottom: 0.75rem; padding: 1rem 1.1rem; transition: box-shadow 0.2s; }
+  .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .card-name { font-weight: 700; font-size: 0.88rem; color: #111; margin-bottom: 0.15rem; }
+  .card-meta { font-size: 0.68rem; color: #999; margin-bottom: 0.35rem; }
+  .card-meta .tag { display: inline-block; font-size: 0.58rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 3px; margin-right: 0.3rem; vertical-align: middle; }
+  .tag-nature { background: #e8f5e9; color: #2e7d32; }
+  .tag-food { background: #fce4ec; color: #c62828; }
+  .tag-culture { background: #f3e5f5; color: #6a1b9a; }
+  .tag-unique { background: #fff8e1; color: #e6a800; border: 1px solid #ffeeba; }
+  .card-desc { font-size: 0.78rem; color: #555; line-height: 1.55; }
+  .card-desc strong { color: #222; }
+  .card-tip { font-size: 0.7rem; color: #8B6914; font-style: italic; margin-top: 0.3rem; }
+  .card-link { margin-top: 0.4rem; }
+  .card-link a { font-size: 0.68rem; font-weight: 600; }
+
+  .day-plan { background: #fff; border: 1px solid #eaeaea; border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; }
+  .day-plan h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.6rem; color: #111; }
+  .time-block { padding: 0.4rem 0; border-bottom: 1px solid #f3f3f3; }
+  .time-block:last-child { border-bottom: none; }
+  .time-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #8B6914; }
+  .time-desc { font-size: 0.78rem; color: #444; line-height: 1.55; }
+  .time-desc strong { color: #222; }
+
+  .nyc-badge { display: inline-block; font-size: 0.5rem; font-weight: 800; padding: 0.1rem 0.35rem; border-radius: 3px; background: #fff8e1; color: #e6a800; letter-spacing: 0.04em; text-transform: uppercase; vertical-align: middle; margin-left: 3px; border: 1px solid #ffeeba; }
+
+  .footer { text-align: center; padding: 2rem 1.5rem; border-top: 1px solid #e8e8e8; color: #bbb; font-size: 0.72rem; margin-top: 2rem; background: #fff; }
+
+  @media (min-width: 600px) { .header h1 { font-size: 2.4rem; } .header { padding: 3rem 2rem 2rem; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="back"><a href="../">&larr; Back to Nordic Arc</a></div>
+  <h1>Landet Stay</h1>
+  <div class="subtitle">Architect cabin in a 400-hectare nature reserve, S&ouml;rmland coast. Activities &amp; food within driving distance.</div>
+  <div class="dates">Jul 2&ndash;3 &middot; 2 nights</div>
+</div>
+
+<div class="container">
+
+  <!-- ═══ ESSENTIAL 5 ═══ -->
+  <div class="section-label">The Essential Five</div>
+  <div class="section-divider"></div>
+  <div class="section-intro">Ruthlessly prioritized. If you do nothing else, do these.</div>
+
+  <div class="card">
+    <div class="card-name">Stend&ouml;rren Nature Reserve <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 20&ndash;30 min drive &middot; Free</div>
+    <div class="card-desc">Suspension bridges connecting rocky Baltic islands. Walk past where casual visitors stop &mdash; keep going to the outer rocks. <strong>Swim off warm granite into clear water.</strong> Bring bakery coffee and pastries for breakfast on the cliffs. Best before 8 AM or at golden hour (~8&ndash;10 PM).</div>
+    <div class="card-tip">Go early or at sunset. The pine-scented silence + warm rock + cold water is peak Sweden.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Trosa &mdash; Harbor Grazing <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> 20&ndash;30 min drive</div>
+    <div class="card-desc">Tiny harbor town called &ldquo;the end of the world.&rdquo; Don&rsquo;t do one formal meal &mdash; graze. Bakery for <strong>cardamom buns at 7 AM</strong>, harbor for smoked fish, roadside strawberry stands. Come back at 9 PM for soft light and ice cream on the quay. <strong>Fina Fisken</strong> (seafood) or <strong>Trosa Sj&ouml;krog</strong> (waterfront grill) for dinner &mdash; book ahead.</div>
+    <div class="card-tip">Best consumed as a sequence of small bites, not a destination restaurant.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">James Turrell Skyspace, Ytterj&auml;rna <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-culture">Art</span> 40&ndash;50 min drive &middot; 260 SEK/pp &middot; <strong>Must book</strong></div>
+    <div class="card-desc">Scandinavia&rsquo;s first permanent Turrell installation. Book a <strong>sunset session</strong> &mdash; at this latitude in July, sunset is ~10 PM and the sky barely darkens. The world&rsquo;s northernmost Skyspace creates light effects impossible anywhere else.</div>
+    <div class="card-link"><a href="https://skyspace.se">skyspace.se &rarr;</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Kayaking in the Trosa Archipelago <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 20&ndash;30 min to Trosa &middot; ~500 SEK half-day rental</div>
+    <div class="card-desc">Morning rental, 2&ndash;4 hours. Protected water, reed beds, little red boathouses, skerries. Pack bakery breakfast. Ask for a route with birdlife and an outer-rock swim stop. Calmer and less performative than Stockholm archipelago paddling.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Farm-Stand Crawl on Back Roads <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> Everywhere &middot; Free&ndash;cheap</div>
+    <div class="card-desc">Early July = peak Swedish strawberries, new potatoes, eggs, local honey. If you see a handwritten sign for <strong>jordgubbar</strong> (strawberries) or <strong>g&aring;rdsbutik</strong> (farm shop), stop. Honor-system Swish payment. <strong>Bergs G&aring;rd</strong> near V&auml;sterljung has a proper farm shop (honey, apple juice, marmalade) &mdash; 25&ndash;35 min drive.</div>
+    <div class="card-tip">Swedish summer produce from roadside stands is quietly one of the most luxurious parts of the trip.</div>
+  </div>
+
+  <!-- ═══ NATURE ═══ -->
+  <div class="section-label">Nature &amp; Water</div>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-name">S&auml;v&ouml; Island <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> Boat from Trosa &middot; ~200 SEK RT</div>
+    <div class="card-desc">Car-free archipelago island. Meadows, birdlife, public sauna. Half-day slow island walk &mdash; bring a picnic. Check summer boat schedule from Trosa harbor.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">S&ouml;rmlandsleden Hiking Trails</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 15&ndash;60 min to trailheads &middot; Free</div>
+    <div class="card-desc">Sweden&rsquo;s longest regional trail &mdash; 1,000+ km. Pick a coastal or forest segment, 1.5&ndash;3 hrs. <strong>Bergsrundan loop</strong> near Trosa is closest. Ancient Swedish forest, granite outcrops, wild blueberry patches. 18 hours of daylight.</div>
+    <div class="card-tip">Ask Landet Stay which section near them is actually beautiful, not just convenient.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Forest Lake Swimming (Badplatser)</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 20&ndash;45 min drive &middot; Free</div>
+    <div class="card-desc">One sea swim + one inland lake swim = the full S&ouml;rmland spectrum. Dark water, warm shallows, dragonflies, pine silence. Ask Landet for their favorite nearby <strong>klippbad</strong> (rock swimming spot) or <strong>badplats</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">&Ouml;ster Malma Wildlife Park</div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> 40&ndash;50 min drive &middot; ~150 SEK</div>
+    <div class="card-desc">Manor estate with guaranteed <strong>moose, red deer, fallow deer</strong> in natural forest. Run by the Swedish Hunters&rsquo; Association. Also has canoeing and forest walks. Good &ldquo;wildlife safari lite&rdquo; if Landet&rsquo;s own reserve doesn&rsquo;t deliver sightings.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Wild Berry Foraging <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-nature">Nature</span> On the property &middot; Free</div>
+    <div class="card-desc"><strong>Allemansr&auml;tten</strong> (Right of Public Access) means you can pick freely. Early July = wild strawberries and early blueberries. Walk into the forest at dawn. The pure sensory opposite of Manhattan.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Sauna + Baltic Dip at Sunset <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-unique">Unique</span> On the property &middot; Included</div>
+    <div class="card-desc">Landet has its own sauna. Heat up, plunge into the Baltic (~18&ndash;20&deg;C in July), repeat. At 10 PM in the endless Nordic twilight. The hot-cold cycle is deeply restorative and quintessentially Swedish.</div>
+  </div>
+
+  <!-- ═══ FOOD ═══ -->
+  <div class="section-label">Food &amp; Drink</div>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-name">Bergs G&aring;rd Nature Table <span class="nyc-badge">Not in NYC</span></div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> <span class="tag tag-unique">Experience</span> 25&ndash;35 min &middot; ~600 SEK/pp &middot; <strong>Must book</strong></div>
+    <div class="card-desc">A farm where you pick up a basket of local ingredients, walk 1 km through an oak garden trail to an outdoor &ldquo;nature table&rdquo; overlooking ponds and pastures, and <strong>cook your own Swedish farm meal outdoors</strong>. Also has a farm shop with local honey and preserves.</div>
+    <div class="card-link"><a href="https://bergsgard.se">bergsgard.se &rarr;</a></div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Gripsholms V&auml;rdshus, Mariefred</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> 50&ndash;60 min drive &middot; Book ahead</div>
+    <div class="card-desc">One of Sweden&rsquo;s oldest inns, right on Lake M&auml;laren next to Gripsholm Castle. Classic Swedish cuisine, atmospheric dining room. Perfect for a special lunch combined with the castle visit.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Strawberry Self-Picking Farms</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> Various &middot; ~50 SEK/kg</div>
+    <div class="card-desc">Early July = peak Swedish strawberry season. Small, intensely sweet, sun-warm. Picking your own in a S&ouml;rmland field at golden hour is as Swedish summer as it gets. Check visitsormland.se for locations.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Loppis (Flea Markets)</div>
+    <div class="card-meta"><span class="tag tag-culture">Culture</span> Roadside &middot; Varies</div>
+    <div class="card-desc">Look for signs saying <strong>loppis</strong>, <strong>antik</strong>, or <strong>retro</strong>. Barn sales with old Swedish glass, pine furniture, enamelware, woven textiles. The best design experience in rural Sweden is often a half-chaotic summer flea market in a barn.</div>
+  </div>
+
+  <!-- ═══ CULTURE ═══ -->
+  <div class="section-label">Culture &amp; Castles</div>
+  <div class="section-divider"></div>
+
+  <div class="card">
+    <div class="card-name">Gripsholm Castle, Mariefred</div>
+    <div class="card-meta"><span class="tag tag-culture">Culture</span> 50&ndash;60 min drive &middot; 170 SEK</div>
+    <div class="card-desc">16th-century royal castle on Lake M&auml;laren. Swedish National Portrait Gallery spanning 500 years. Town of Mariefred is impossibly charming &mdash; pastel wooden houses, lakefront promenades. Heritage <strong>steam train</strong> from L&auml;ggesta in summer. Combine with fika at <strong>Annas Hembageri</strong>.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Taxinge Slott &mdash; The Cake Castle</div>
+    <div class="card-meta"><span class="tag tag-food">Food</span> <span class="tag tag-culture">Culture</span> 60&ndash;70 min drive &middot; ~60 SEK/slice</div>
+    <div class="card-desc"><strong>65 varieties of homemade cake</strong> in a manor house. Peak Swedish fika taken to its logical extreme. Beautiful castle grounds for a post-cake walk. A beloved local institution, not a tourist trap. Daily 11&ndash;18 in summer.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Tullgarn Palace Grounds</div>
+    <div class="card-meta"><span class="tag tag-culture">Culture</span> <span class="tag tag-nature">Nature</span> 20&ndash;40 min drive &middot; Free grounds</div>
+    <div class="card-desc">Royal summer residence with grounds spilling into the coast. Giant trees, grazed land, old paths, water access. Less formal than Drottningholm, more intimate. Go early for the landscape, not the interior tour.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-name">Julita Manor Gardens</div>
+    <div class="card-meta"><span class="tag tag-culture">Culture</span> <span class="tag tag-nature">Nature</span> 50&ndash;60 min drive &middot; Free (park)</div>
+    <div class="card-desc">Grand estate with one of Sweden&rsquo;s largest <strong>peony collections</strong>. Heritage gardens, kitchen garden, rose garden, orchard. Early July = peak peony and rose season. Run by Nordiska Museet.</div>
+  </div>
+
+  <!-- ═══ DAY PLANS ═══ -->
+  <div class="section-label">Suggested 2 Days</div>
+  <div class="section-divider"></div>
+
+  <div class="day-plan">
+    <h3>Day 1 (Jul 2): Arrive + Coast + Trosa</h3>
+    <div class="time-block">
+      <div class="time-label">Morning</div>
+      <div class="time-desc">Fly Bergen &rarr; Stockholm. Pick up rental car. Drive to Landet (~1 hr south).</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">~1 PM</div>
+      <div class="time-desc">Arrive. First walk through the 400-hectare reserve. Settle into the cabin.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Late Afternoon</div>
+      <div class="time-desc">Drive to <strong>Trosa</strong> (~20 min). Harbor grazing &mdash; bakery, smoked fish, strawberry stands.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Evening</div>
+      <div class="time-desc">Dinner at <strong>Fina Fisken</strong> or <strong>Trosa Sj&ouml;krog</strong> (book ahead). Ice cream on the quay at 9 PM.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">~10 PM</div>
+      <div class="time-desc">Back to cabin. <strong>Sauna + Baltic dip</strong> in golden twilight. Fire pit. Silence.</div>
+    </div>
+  </div>
+
+  <div class="day-plan">
+    <h3>Day 2 (Jul 3): Full S&ouml;rmland Day</h3>
+    <div class="time-block">
+      <div class="time-label">6:30 AM</div>
+      <div class="time-desc">Early swim off rocks near the cabin. Wild berry foraging on the property.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Morning</div>
+      <div class="time-desc"><strong>Stend&ouml;rren Nature Reserve</strong> &mdash; suspension bridges, outer rocks, coffee on the cliffs. Swim off warm granite.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Midday</div>
+      <div class="time-desc"><strong>Kayak in Trosa archipelago</strong> (2&ndash;4 hrs) OR <strong>farm-stand crawl</strong> on back roads.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Afternoon</div>
+      <div class="time-desc">Rest at cabin. Read. Nap. Explore further trails or the S&ouml;rmland coast.</div>
+    </div>
+    <div class="time-block">
+      <div class="time-label">Evening</div>
+      <div class="time-desc"><strong>James Turrell Skyspace sunset session</strong> at ~10 PM (if booked) OR fire pit + white-night stillness at the cabin.</div>
+    </div>
+  </div>
+
+  <!-- ═══ ASK LANDET ═══ -->
+  <div class="section-label">Questions to Ask Landet Stay</div>
+  <div class="section-divider"></div>
+  <div class="section-intro" style="font-size: 0.78rem; color: #444;">
+    &bull; &ldquo;What&rsquo;s your favorite nearby <strong>klippbad</strong> for an early morning swim?&rdquo;<br>
+    &bull; &ldquo;Which section of <strong>S&ouml;rmlandsleden</strong> near here is actually beautiful?&rdquo;<br>
+    &bull; &ldquo;Where would <em>you</em> go for a casual summer lunch on the coast?&rdquo;<br>
+    &bull; &ldquo;Any <strong>g&aring;rdsbutik</strong> or roadside strawberry stand you like?&rdquo;<br>
+    &bull; &ldquo;Any local <strong>loppis</strong> happening this week?&rdquo;<br>
+    &bull; &ldquo;Where would you take a friend from abroad to show them real S&ouml;rmland in 2 hours?&rdquo;
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="../">&larr; Nordic Arc</a> &middot; Landet Stay Activity Guide &middot; Jul 2&ndash;3, 2026
+</div>
+
+</body>
+</html>
