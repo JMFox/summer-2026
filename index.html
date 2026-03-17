@@ -9,129 +9,195 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
   /* ─── HEADER ─── */
   .header {
     text-align: center;
-    padding: 3.5rem 2rem 2rem;
+    padding: 2.5rem 1.25rem 1.5rem;
     background: #fff;
     border-bottom: 1px solid #e8e8e8;
   }
   .header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-weight: 900;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
     color: #111;
   }
   .header .subtitle {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: #666;
     max-width: 720px;
-    margin: 0 auto 0.3rem;
-    line-height: 1.6;
-  }
-  .header .flights {
-    font-size: 0.72rem;
-    color: #999;
-    font-style: italic;
+    margin: 0 auto;
+    line-height: 1.65;
   }
 
   /* ─── ROUTE PILLS ─── */
   .route-bar {
     background: #fff;
-    padding: 1.5rem 2rem 1.2rem;
+    padding: 1.25rem 1rem 1rem;
     border-bottom: 1px solid #e8e8e8;
+    overflow: hidden;
   }
-  .route-pills {
+  .route-scroll {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .pill {
-    padding: 0.4rem 1rem;
-    border-radius: 24px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.03em;
-    text-align: center;
-    line-height: 1.3;
-  }
-  .pill-oslo     { background: #2D6A4F; }
-  .pill-bergen   { background: #1B4F72; }
-  .pill-sthlm    { background: #C77D38; }
-  .pill-ferry    { background: #7766aa; }
-  .pill-hel      { background: #457B9D; }
-  .pill .nights  { display: block; font-size: 0.55rem; font-weight: 500; opacity: 0.85; }
-  .route-arrow   { color: #ccc; font-size: 1rem; line-height: 1; }
-  .route-stats {
-    text-align: center;
-    margin-top: 0.8rem;
-    font-size: 0.7rem;
-    color: #aaa;
-  }
-  .route-stats span { margin: 0 0.6rem; }
-  .route-stats strong { color: #666; font-weight: 600; }
-
-  /* ─── TABLE ─── */
-  .table-wrap {
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 1.5rem 1rem 2rem;
+    gap: 0.3rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    justify-content: flex-start;
+    max-width: 800px;
+    margin: 0 auto;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.74rem;
-    min-width: 1200px;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  }
-  thead th {
-    text-align: left;
-    padding: 0.65rem 0.6rem;
-    font-size: 0.56rem;
+  .route-scroll::-webkit-scrollbar { height: 4px; }
+  .route-scroll::-webkit-scrollbar-track { background: transparent; }
+  .route-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+  .pill {
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
     color: #fff;
-    background: #222;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  td {
-    padding: 0.6rem 0.6rem;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: top;
-    color: #555;
-    line-height: 1.55;
-  }
-  tr:hover td { background: #fafcff; }
-
-  .day-cell {
-    font-weight: 700;
-    color: #1a1a1a;
+    letter-spacing: 0.02em;
+    text-align: center;
+    line-height: 1.3;
     white-space: nowrap;
-    font-size: 0.72rem;
-    min-width: 72px;
+    flex-shrink: 0;
   }
-  .date-sub { display: block; font-weight: 500; font-size: 0.62rem; color: #999; }
-  .city-cell { white-space: nowrap; font-weight: 600; color: #333; }
-  .hotel-cell { font-weight: 600; color: #1a1a1a; font-size: 0.73rem; }
-  .hotel-cell .rating {
-    font-size: 0.54rem;
+  .pill-oslo   { background: #2D6A4F; }
+  .pill-bergen { background: #1B4F72; }
+  .pill-sthlm  { background: #C77D38; }
+  .pill-landet { background: #8B6914; }
+  .pill-ferry  { background: #7766aa; }
+  .pill-haasi  { background: #00897B; }
+  .pill-hel    { background: #457B9D; }
+  .pill .nights { display: block; font-size: 0.52rem; font-weight: 500; opacity: 0.85; }
+  .route-arrow { color: #ccc; font-size: 0.9rem; line-height: 1; flex-shrink: 0; }
+  .route-stats {
+    text-align: center;
+    margin-top: 0.6rem;
+    font-size: 0.68rem;
+    color: #aaa;
+    line-height: 1.8;
+  }
+  .route-stats span { margin: 0 0.4rem; }
+  .route-stats strong { color: #666; font-weight: 600; }
+
+  /* ─── TRANSIT STRIP ─── */
+  .transit-strip {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.8rem 0 0;
+  }
+  .transit-strip-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #999;
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+  .transit-legs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    justify-content: center;
+    font-size: 0.62rem;
+    color: #bbb;
+  }
+  .transit-legs span { white-space: nowrap; }
+
+  /* ─── CONTAINER ─── */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 1rem 2rem;
+  }
+
+  /* ─── CITY SECTION HEADER ─── */
+  .city-section {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .city-section-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .city-section-label {
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  /* ─── DAY CARD ─── */
+  .day-card {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-left: 4px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .day-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+
+  /* city colors for left border */
+  .border-oslo   { border-left-color: #2D6A4F; }
+  .border-bergen { border-left-color: #1B4F72; }
+  .border-sthlm  { border-left-color: #C77D38; }
+  .border-landet { border-left-color: #8B6914; }
+  .border-ferry  { border-left-color: #7766aa; }
+  .border-haasi  { border-left-color: #00897B; }
+  .border-hel    { border-left-color: #457B9D; }
+  .border-depart { border-left-color: #bbb; }
+
+  .day-card-header {
+    padding: 0.9rem 1rem 0.75rem;
+  }
+  .day-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 0.15rem;
+  }
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 0.1rem;
+  }
+  .day-hotel {
+    font-size: 0.72rem;
+    color: #888;
+    margin-bottom: 0.35rem;
+  }
+  .day-hotel .rating {
+    font-size: 0.58rem;
     background: #f0f0f0;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
@@ -139,26 +205,102 @@
     margin-left: 3px;
     font-weight: 600;
   }
-  .meal { font-weight: 600; color: #333; }
-  .meal-sub { display: block; font-size: 0.66rem; color: #999; font-weight: 400; }
-  .note { color: #999; font-size: 0.67rem; }
-  .activity-text { color: #444; }
-
-  .city-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 5px;
-    vertical-align: middle;
+  .day-summary {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.55;
   }
-  .dot-oslo    { background: #2D6A4F; }
-  .dot-bergen  { background: #1B4F72; }
-  .dot-sthlm   { background: #C77D38; }
-  .dot-ferry   { background: #7766aa; }
-  .dot-hel     { background: #457B9D; }
+  .day-transit-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    background: #f3f0ff;
+    color: #7766aa;
+    margin-top: 0.35rem;
+  }
+  .day-unique-badge {
+    display: inline-block;
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 0.12rem 0.5rem;
+    border-radius: 12px;
+    background: #fff8e1;
+    color: #c7930a;
+    margin-top: 0.35rem;
+    margin-left: 0.25rem;
+    border: 1px solid #ffeeba;
+  }
 
-  /* Badges */
+  /* ─── DETAILS / EXPAND ─── */
+  .day-card details {
+    border-top: 1px solid #f0f0f0;
+  }
+  .day-card summary {
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #d35400;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+  }
+  .day-card summary::-webkit-details-marker { display: none; }
+  .day-card summary::before {
+    content: '\25B6';
+    font-size: 0.5rem;
+    color: #d35400;
+    transition: transform 0.2s;
+  }
+  .day-card details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .day-card summary:hover { background: #fef9f5; }
+
+  .day-details {
+    padding: 0 1rem 1rem;
+  }
+  .detail-row {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    margin-bottom: 0.2rem;
+  }
+  .detail-content {
+    font-size: 0.78rem;
+    color: #444;
+    line-height: 1.6;
+  }
+  .detail-content strong { color: #222; font-weight: 600; }
+  .detail-content .meal-name {
+    font-weight: 600;
+    color: #333;
+  }
+  .detail-content .meal-sub {
+    color: #888;
+    font-size: 0.72rem;
+  }
+  .detail-content .alt-note {
+    font-size: 0.7rem;
+    color: #9575cd;
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── BADGES ─── */
   .nyc-badge {
     display: inline-block;
     font-size: 0.5rem;
@@ -173,128 +315,98 @@
     margin-left: 3px;
     border: 1px solid #ffeeba;
   }
-  .new-badge {
-    display: inline-block;
-    font-size: 0.5rem;
-    font-weight: 800;
-    padding: 0.1rem 0.35rem;
-    border-radius: 3px;
-    background: #ede7f6;
-    color: #7e57c2;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-left: 4px;
-  }
 
-  /* Section rows */
-  .section-row td {
-    padding: 0.55rem 0.6rem;
-    font-weight: 700;
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888;
-    background: #f5f5f5;
-    border-bottom: 2px solid #e0e0e0;
-  }
-
-  /* Links */
+  /* ─── BOOKABLE LINKS ─── */
   a { color: #d35400; text-decoration: none; font-weight: 500; }
   a:hover { text-decoration: underline; }
-  .book-link {
+  .bookable-links {
+    padding: 0.5rem 0 0;
+  }
+  .bookable-links a {
     display: inline-block;
-    font-size: 0.62rem;
+    font-size: 0.7rem;
     color: #d35400;
-    margin-top: 0.15rem;
     font-weight: 600;
+    margin-right: 1rem;
+    margin-bottom: 0.3rem;
+    min-height: 44px;
+    line-height: 44px;
   }
-  .book-col a {
-    display: block;
-    font-size: 0.62rem;
-    color: #d35400;
-    margin-bottom: 0.25rem;
-    font-weight: 600;
-  }
-
-  /* Departure row */
-  .depart-row td { color: #bbb; }
-  .depart-row .day-cell { color: #999; }
-
-  /* Alt option */
-  .alt-option {
-    display: block;
-    font-size: 0.62rem;
-    color: #9575cd;
-    font-style: italic;
-    margin-top: 0.3rem;
+  .bookable-links .note {
+    font-size: 0.64rem;
+    color: #bbb;
+    font-weight: 400;
   }
 
   /* ─── BOTTOM SECTIONS ─── */
   .bottom-section {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
     text-align: center;
-    margin: 3rem 0 1.5rem;
+    margin: 2.5rem 0 1rem;
     color: #111;
   }
   .section-divider {
     width: 50px;
     height: 3px;
     background: #ddd;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1.5rem;
     border-radius: 2px;
   }
 
-  /* Experiences grid */
+  /* ─── EXPERIENCE LIST ─── */
   .exp-city-label {
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: #333;
-    padding: 0.8rem 0 0.3rem;
+    padding: 0.6rem 0 0.3rem;
     border-bottom: 2px solid #eee;
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+    margin-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
   .exp-city-label:first-child { margin-top: 0; }
-  .exp-city-label .city-dot { width: 10px; height: 10px; }
-  .exp-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+  .exp-city-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
-  .exp-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    gap: 0.5rem;
-    padding: 0.55rem 0;
+  .exp-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.8rem;
+    padding: 0.5rem 0;
     border-bottom: 1px solid #f3f3f3;
-    font-size: 0.74rem;
-    align-items: center;
+    font-size: 0.76rem;
   }
-  .exp-row:last-child { border-bottom: none; }
-  .exp-name { font-weight: 600; color: #222; }
-  .exp-dur { color: #999; font-size: 0.68rem; }
-  .exp-price { color: #666; font-size: 0.68rem; font-weight: 500; }
-  .exp-link a { font-size: 0.66rem; color: #d35400; font-weight: 600; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-name { font-weight: 600; color: #222; flex: 1 1 200px; min-width: 200px; }
+  .exp-meta { color: #999; font-size: 0.68rem; flex-shrink: 0; }
+  .exp-link { flex-shrink: 0; }
+  .exp-link a { font-size: 0.68rem; color: #d35400; font-weight: 600; }
 
-  /* Hotels grid */
+  /* ─── HOTEL GRID ─── */
   .hotel-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
     margin-bottom: 2rem;
   }
   .hotel-card {
     background: #fff;
     border: 1px solid #eaeaea;
     border-radius: 10px;
-    padding: 1.3rem;
+    padding: 1.1rem 1.2rem;
     transition: box-shadow 0.2s;
   }
   .hotel-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
@@ -302,24 +414,33 @@
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-weight: 800;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.1rem;
     color: #111;
   }
   .hotel-card .h-city {
     font-size: 0.68rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .hotel-card .h-city .h-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
   .hotel-card .h-meta {
     font-size: 0.7rem;
     color: #888;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
   .hotel-card .h-why {
     font-size: 0.72rem;
     color: #555;
     line-height: 1.5;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .hotel-card .h-link a {
     font-size: 0.68rem;
@@ -327,10 +448,10 @@
     font-weight: 600;
   }
 
-  /* Footer */
+  /* ─── FOOTER ─── */
   .footer {
     text-align: center;
-    padding: 2.5rem 2rem;
+    padding: 2rem 1.5rem;
     border-top: 1px solid #e8e8e8;
     color: #bbb;
     font-size: 0.72rem;
@@ -338,14 +459,16 @@
     background: #fff;
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .header h1 { font-size: 2rem; }
-    .route-pills { gap: 0.2rem; }
-    .pill { font-size: 0.62rem; padding: 0.3rem 0.7rem; }
-    .exp-row { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
-    .hotel-grid { grid-template-columns: 1fr; }
-    .section-title { font-size: 1.3rem; }
+  /* ─── RESPONSIVE ─── */
+  @media (min-width: 600px) {
+    .header h1 { font-size: 2.5rem; }
+    .header { padding: 3rem 2rem 2rem; }
+    .route-scroll { justify-content: center; }
+    .hotel-grid { grid-template-columns: repeat(2, 1fr); }
+    .day-title { font-size: 1.15rem; }
+  }
+  @media (min-width: 900px) {
+    .hotel-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 </head>
@@ -356,456 +479,651 @@
 <!-- ═══════════════════════════════════════════════ -->
 <div class="header">
   <h1>Nordic Arc &mdash; Summer 2026</h1>
-  <div class="subtitle">Jun 26 depart JFK (SK 908) &rarr; Jun 27 arrive Oslo &rarr; Jul 9 depart Helsinki (SK 705 &rarr; SK 903 via CPH) &middot; 12 nights &middot; 5 stops &middot; 3 countries</div>
-  <div class="flights">Norway &rarr; Sweden &rarr; Finland &middot; Every day an experience impossible to replicate in New York City</div>
+  <div class="subtitle">Jun 26 depart JFK (SK 908) &rarr; Jun 27 arrive Oslo &rarr; Jul 9 depart Helsinki (SK 705 &rarr; SK 903) &middot; 12 nights &middot; 7 unique stays &middot; 3 countries</div>
 </div>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- ROUTE PILL BAR                                 -->
+<!-- ROUTE PILLS                                    -->
 <!-- ═══════════════════════════════════════════════ -->
 <div class="route-bar">
-  <div class="route-pills">
+  <div class="route-scroll">
     <span class="pill pill-oslo">Oslo<span class="nights">2 nights</span></span>
     <span class="route-arrow">&rarr;</span>
-    <span class="pill pill-bergen">Bergen + Fjords<span class="nights">3 nights</span></span>
+    <span class="pill pill-bergen">Bergen<span class="nights">3 nights</span></span>
     <span class="route-arrow">&rarr;</span>
-    <span class="pill pill-sthlm">Stockholm<span class="nights">3 nights</span></span>
+    <span class="pill pill-sthlm">Stockholm<span class="nights">2 nights</span></span>
     <span class="route-arrow">&rarr;</span>
-    <span class="pill pill-ferry">Overnight Ferry<span class="nights">1 night</span></span>
+    <span class="pill pill-landet">Landet<span class="nights">1 night</span></span>
     <span class="route-arrow">&rarr;</span>
-    <span class="pill pill-hel">Helsinki<span class="nights">3 nights</span></span>
+    <span class="pill pill-ferry">Ferry<span class="nights">1 night</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-haasi">Haasi<span class="nights">1 night</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-hel">Helsinki<span class="nights">2 nights</span></span>
   </div>
   <div class="route-stats">
     <span><strong>12</strong> nights</span>
-    <span><strong>5</strong> hotels</span>
+    <span><strong>7</strong> unique stays</span>
     <span><strong>3</strong> countries</span>
     <span><strong>5</strong> saunas</span>
-    <span><strong>2</strong> Michelin stars</span>
-    <span><strong>15</strong> bookable experiences</span>
+    <span><strong>2</strong> Michelin dinners</span>
   </div>
-  <div class="route-stats" style="margin-top: 0.6rem; font-size: 0.65rem; color: #bbb;">
-    <strong style="color:#888;">Transit legs:</strong>
-    <span>Day 1: SK 908 &rarr; Oslo ~8 AM</span>
-    <span>Day 3: Bergen Railway 8:25 AM &rarr; 2:30 PM</span>
-    <span>Day 6: Fly Bergen &rarr; Stockholm ~8 AM, arrive ~9:30 AM</span>
-    <span>Day 9: Board Silja ferry 4:30 PM</span>
-    <span>Day 10: Ferry arrives Helsinki ~10 AM</span>
-    <span>Day 13: SK 705 &rarr; SK 903 HEL &rarr; CPH &rarr; JFK</span>
+
+  <div class="transit-strip">
+    <div class="transit-strip-title">Transit Legs</div>
+    <div class="transit-legs">
+      <span>Day 1: SK 908 &rarr; Oslo ~8 AM</span>
+      <span>Day 3: Bergen Railway 8:25 AM &rarr; 2:30 PM</span>
+      <span>Day 6: Fly Bergen &rarr; Stockholm ~8 AM</span>
+      <span>Day 8: Drive Stockholm &rarr; Landet (~1 hr)</span>
+      <span>Day 9: Drive Landet &rarr; V&auml;rtahamnen, board ferry 4:30 PM</span>
+      <span>Day 10: Ferry arrives Helsinki ~10 AM, drive to Haasi (~1.5 hrs)</span>
+      <span>Day 11: Drive Haasi &rarr; Helsinki (~1.5 hrs)</span>
+      <span>Day 13: SK 705 &rarr; SK 903 HEL &rarr; CPH &rarr; JFK</span>
+    </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- DAY-BY-DAY TABLE                               -->
+<!-- DAY-BY-DAY CARDS                               -->
 <!-- ═══════════════════════════════════════════════ -->
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-  <th>Day</th>
-  <th>Date</th>
-  <th>City</th>
-  <th>Hotel</th>
-  <th>Breakfast</th>
-  <th>Morning Activity</th>
-  <th>Lunch</th>
-  <th>Afternoon / Evening Activity</th>
-  <th>Dinner</th>
-  <th>Bookable Links</th>
-</tr>
-</thead>
-<tbody>
+<div class="container">
 
-<!-- ─── OSLO ─── -->
-<tr class="section-row"><td colspan="10"><span class="city-dot dot-oslo"></span>OSLO &mdash; 2 nights</td></tr>
+  <!-- ─── OSLO ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#2D6A4F;"></div>
+    <div class="city-section-label">Oslo &mdash; 2 nights</div>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 1</td>
-  <td class="day-cell"><span class="date-sub">Sat</span>Jun 27</td>
-  <td class="city-cell"><span class="city-dot dot-oslo"></span>Oslo</td>
-  <td class="hotel-cell">The Thief <span class="rating">8.8/10</span></td>
-  <td>
-    <span class="meal">Mathallen Food Hall</span>
-    <span class="meal-sub">8 AM &middot; Maridalsveien 17. Smoked salmon on dark rye, brunost, skyr with lingonberries, cardamom buns.</span>
-  </td>
-  <td class="activity-text">
-    10 AM: <span class="meal">Sm&oslash;rbr&oslash;d at P&aring;fylt</span> (Thorvald Meyers gate 26). Open-faced sandwiches. Walk Gr&uuml;nerl&oslash;kka neighborhood.
-  </td>
-  <td class="note">Grazing from morning</td>
-  <td class="activity-text">
-    12 PM: <strong>Vigeland Sculpture Park</strong> &mdash; 200+ sculptures, free, 1.5 hrs. Walk to Aker Brygge waterfront. Check into The Thief 2:30 PM.<br/>
-    11 PM: <strong>Oslo Opera House</strong> &mdash; walk the white marble rooftop in full midnight sun golden light. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="note">Light dinner near waterfront (jet lag recovery)</span>
-  </td>
-  <td class="book-col">
-    <span class="note">Mathallen (walk-in)</span><br/>
-    <span class="note">Vigeland Park (free)</span>
-  </td>
-</tr>
+  <!-- DAY 1 -->
+  <div class="day-card border-oslo">
+    <div class="day-card-header">
+      <div class="day-label">Day 1 &middot; Sat Jun 27</div>
+      <div class="day-title">Oslo</div>
+      <div class="day-hotel">The Thief <span class="rating">8.8</span></div>
+      <div class="day-summary">Arrive Oslo. Mathallen Food Hall. Vigeland Sculpture Park. Opera House rooftop at midnight sun.</div>
+      <span class="day-transit-badge">&#9992; SAS SK 908 arrive ~8 AM</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 8 AM</div>
+          <div class="detail-content"><span class="meal-name">Mathallen Food Hall</span> (Maridalsveien 17). Smoked salmon, brunost, cardamom buns.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 10 AM</div>
+          <div class="detail-content"><strong>Sm&oslash;rbr&oslash;d at P&aring;fylt</strong> (Thorvald Meyers gate 26). Open-faced sandwiches. Walk Gr&uuml;nerl&oslash;kka neighborhood.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon</div>
+          <div class="detail-content"><strong>Vigeland Sculpture Park</strong> &mdash; 200+ sculptures, free, 1.5 hrs. Aker Brygge waterfront. Check in The Thief 2:30 PM.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening &middot; 11 PM</div>
+          <div class="detail-content"><strong>Oslo Opera House</strong> &mdash; walk the marble rooftop in full midnight sun golden light. <span class="nyc-badge">Not in NYC</span><br/><span class="meal-sub">Light dinner near waterfront (jet lag recovery).</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 2</td>
-  <td class="day-cell"><span class="date-sub">Sun</span>Jun 28</td>
-  <td class="city-cell"><span class="city-dot dot-oslo"></span>Oslo</td>
-  <td class="hotel-cell">The Thief</td>
-  <td>
-    <span class="meal">Hotel breakfast or Fuglen Coffee</span>
-    <span class="meal-sub">7 AM &middot; Universitetsgata 2. Specialty coffee pioneer.</span>
-  </td>
-  <td class="activity-text">
-    8:30 AM: <strong>Vettakollen Hike</strong> &mdash; 2-3 hr round trip from Vettakollen T-bane station. Panoramic views over Oslofjord, city, Holmenkollen. THE best viewpoint hike near Oslo. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="meal">Ekebergparken Sculpture Park</span>
-    <span class="meal-sub">12 PM &middot; Hilltop park overlooking city/fjord. Sculptures in nature. Restaurant on site.</span>
-  </td>
-  <td class="activity-text">
-    3 PM: <strong>KOK Sauna Cruise</strong> &mdash; floating sauna boat cruising the Oslofjord. Cold plunge in the fjord from the boat. <span class="nyc-badge">Not in NYC</span><br/><br/>
-    <strong>Munch Museum</strong> (opened 2022, dramatic waterfront building). Then SALT waterfront area for drinks.
-  </td>
-  <td>
-    <span class="meal">Kontrast</span>
-    <span class="meal-sub">2 Michelin stars, Vulkan area. Or light dinner before early Bergen Railway tomorrow.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://koknorge.no/en/sauna-cruise/">KOK Sauna Cruise &rarr;</a>
-    <a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">Ekebergparken &rarr;</a>
-  </td>
-</tr>
+  <!-- DAY 2 -->
+  <div class="day-card border-oslo">
+    <div class="day-card-header">
+      <div class="day-label">Day 2 &middot; Sun Jun 28</div>
+      <div class="day-title">Oslo</div>
+      <div class="day-hotel">The Thief</div>
+      <div class="day-summary">Vettakollen panoramic hike. KOK Sauna Cruise on the Oslofjord. Munch Museum.</div>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 7 AM</div>
+          <div class="detail-content"><span class="meal-name">Hotel or Fuglen Coffee</span> (Universitetsgata 2). Specialty coffee pioneer.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 8:30 AM</div>
+          <div class="detail-content"><strong>Vettakollen Hike</strong> &mdash; 2-3 hr RT from Vettakollen T-bane. Panoramic Oslofjord views. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Lunch &middot; 12 PM</div>
+          <div class="detail-content"><span class="meal-name">Ekebergparken Sculpture Park</span> &mdash; hilltop, city/fjord views, restaurant on site.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 3 PM</div>
+          <div class="detail-content"><strong>KOK Sauna Cruise</strong> &mdash; floating sauna cruising the Oslofjord. Cold plunge in the fjord. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening</div>
+          <div class="detail-content"><strong>Munch Museum</strong>. SALT waterfront. Dinner at <span class="meal-name">Kontrast</span> (2 Michelin stars) or light.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://koknorge.no/en/sauna-cruise/">KOK Sauna &rarr;</a>
+            <a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">Ekebergparken &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<!-- ─── BERGEN ─── -->
-<tr class="section-row"><td colspan="10"><span class="city-dot dot-bergen"></span>BERGEN + FJORDS &mdash; 3 nights</td></tr>
+  <!-- ─── BERGEN ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#1B4F72;"></div>
+    <div class="city-section-label">Bergen + Fjords &mdash; 3 nights</div>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 3</td>
-  <td class="day-cell"><span class="date-sub">Mon</span>Jun 29</td>
-  <td class="city-cell"><span class="city-dot dot-bergen"></span>Oslo &rarr; Bergen</td>
-  <td class="hotel-cell">Opus XVI <span class="rating">9.1/10</span></td>
-  <td>
-    <span class="meal">Oslo Central Station</span>
-    <span class="meal-sub">7:30 AM &middot; Pack sm&oslash;rbr&oslash;d from Deli de Luca for the train.</span>
-  </td>
-  <td class="activity-text">
-    8:25 AM: <strong>Bergen Railway (Bergensbanen)</strong> &mdash; 6.5 hours, world's most scenic train. Crosses Hardangervidda plateau at 1,222m. 300+ bridges. Snow in June. Sit RIGHT side facing west. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td class="note">Train cafe car / packed provisions</td>
-  <td class="activity-text">
-    Arrive Bergen 2:30 PM. Check into Opus XVI. Walk to <strong>Bryggen</strong> &mdash; 14th-century wooden UNESCO merchant houses. Golden light all evening.
-  </td>
-  <td>
-    <span class="meal">Enhjorningen</span>
-    <span class="meal-sub">7 PM &middot; Bryggen 29. Seafood in a 1300s building. Fiskesuppe, poached halibut, klippfisk.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.vy.no/en">Bergen Railway (vy.no) &rarr;</a>
-    <span class="note">Book window seat 4-6 weeks ahead</span>
-  </td>
-</tr>
+  <!-- DAY 3 -->
+  <div class="day-card border-bergen">
+    <div class="day-card-header">
+      <div class="day-label">Day 3 &middot; Mon Jun 29</div>
+      <div class="day-title">Oslo &rarr; Bergen</div>
+      <div class="day-hotel">Opus XVI <span class="rating">9.1</span></div>
+      <div class="day-summary">Bergen Railway &mdash; 6.5 hrs, world's most scenic train. Bryggen UNESCO wharf at golden hour.</div>
+      <span class="day-transit-badge">&#128646; Bergen Railway 8:25 AM &rarr; 2:30 PM</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 7:30 AM</div>
+          <div class="detail-content"><span class="meal-name">Oslo Station</span> &mdash; pack sm&oslash;rbr&oslash;d for the train.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 8:25 AM</div>
+          <div class="detail-content"><strong>Bergen Railway (Bergensbanen)</strong>. Hardangervidda plateau at 1,222m. 300+ bridges. Sit RIGHT side. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 2:30 PM</div>
+          <div class="detail-content">Arrive Bergen. Check into Opus XVI. Walk <strong>Bryggen</strong> &mdash; 14th-century wooden UNESCO merchant houses.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 7 PM</div>
+          <div class="detail-content"><span class="meal-name">Enhj&oslash;rningen</span> (Bryggen 29) &mdash; seafood in a 1300s building.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.vy.no/en">Bergen Railway (vy.no) &rarr;</a>
+            <span class="note">Book window seat 4-6 weeks ahead</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 4</td>
-  <td class="day-cell"><span class="date-sub">Tue</span>Jun 30</td>
-  <td class="city-cell"><span class="city-dot dot-bergen"></span>Bergen</td>
-  <td class="hotel-cell">Opus XVI</td>
-  <td>
-    <span class="meal">Bergen Fish Market</span>
-    <span class="meal-sub">7 AM &middot; Fisketorget, Torget 5. Outdoor harbor stalls. Fresh shrimp, king crab, fish soup, whale sashimi. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="activity-text">
-    9 AM: Second breakfast <strong>Colonialen Bakery</strong> (Kong Oscars gate 44). Sourdough, skyr, cloudberry. Then: <strong>Mount Fl&oslash;yen</strong> &mdash; funicular up, forest hike down on Trail 6 (1 hr).
-  </td>
-  <td>
-    <span class="meal">KODE Art Museums</span>
-    <span class="meal-sub">1 PM &middot; 4 buildings, KODE 4 has Munch + Norwegian contemporary. 2 hours.</span>
-  </td>
-  <td class="activity-text">
-    3:30 PM: <strong>Heit Bergen Floating Sauna</strong> (Marineholmen). 1h50 session. Floating sauna on Bergen harbor + fjord cold plunge. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="meal">Lysverket &#11088;</span>
-    <span class="meal-sub">7 PM &middot; 1 Michelin star. Rasmus Meyers all&eacute; 9, inside KODE 4. Nordic seafood with Asian inflections.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">Heit Floating Sauna &rarr;</a>
-    <a href="https://lysverket.no/">Lysverket &rarr;</a>
-  </td>
-</tr>
+  <!-- DAY 4 -->
+  <div class="day-card border-bergen">
+    <div class="day-card-header">
+      <div class="day-label">Day 4 &middot; Tue Jun 30</div>
+      <div class="day-title">Bergen</div>
+      <div class="day-hotel">Opus XVI</div>
+      <div class="day-summary">Fish Market breakfast. Fl&oslash;yen funicular + forest hike. Floating sauna. Lysverket Michelin dinner.</div>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 7 AM</div>
+          <div class="detail-content"><span class="meal-name">Fish Market (Fisketorget)</span>. Shrimp, king crab, fish soup. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 9 AM</div>
+          <div class="detail-content"><strong>Colonialen Bakery</strong>. Then <strong>Mount Fl&oslash;yen</strong> &mdash; funicular up, forest hike down Trail 6 (1 hr).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 1 PM</div>
+          <div class="detail-content"><strong>KODE Art Museums</strong> (2 hrs).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 3:30 PM</div>
+          <div class="detail-content"><strong>Heit Bergen Floating Sauna</strong> (1h50 session). Fjord cold plunge. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 7 PM</div>
+          <div class="detail-content"><span class="meal-name">Lysverket &#11088;</span> (1 Michelin star, inside KODE 4). Nordic seafood.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">Heit Sauna &rarr;</a>
+            <a href="https://lysverket.no/">Lysverket &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 5</td>
-  <td class="day-cell"><span class="date-sub">Wed</span>Jul 1</td>
-  <td class="city-cell"><span class="city-dot dot-bergen"></span>Bergen Fjords</td>
-  <td class="hotel-cell">Opus XVI</td>
-  <td>
-    <span class="meal">5:30 AM &mdash; EARLY</span>
-    <span class="meal-sub">Pack provisions from hotel. Fjord kayaking at dawn.</span>
-  </td>
-  <td class="activity-text">
-    6 AM: <strong>Fjord Kayaking at Dawn</strong> &mdash; guided paddling in mirror-flat water between cliff walls. Waterfalls. Silence. 3-4 hours. <span class="nyc-badge">Not in NYC</span><br/><br/>
-    Then: <strong>Fl&aring;msbana Railway</strong> &mdash; world's steepest, 55 min. Huldra dancer at Kjosfossen waterfall. Then: <strong>N&aelig;r&oslash;yfjord UNESCO cruise</strong> &mdash; 2 hrs, 250m wide, 1700m cliff walls.
-  </td>
-  <td>
-    <span class="meal">&AElig;gir Bryggeri</span>
-    <span class="meal-sub">12:30 PM &middot; Fl&aring;m harbor. Viking brewpub. Craft ales, lamb stew.</span>
-  </td>
-  <td class="activity-text">
-    Return to Bergen ~7 PM.
-  </td>
-  <td>
-    <span class="meal">Cornelius</span>
-    <span class="meal-sub">8 PM &middot; Seafood on a private island. Restaurant's boat from Bergen harbor (15 min). No menu &mdash; eat what was caught today. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.nordicventures.com/">Fjord Kayaking &rarr;</a>
-    <a href="https://www.norwaynutshell.com/">Norway in a Nutshell &rarr;</a>
-    <a href="https://www.cornelius.no/">Cornelius Island &rarr;</a>
-  </td>
-</tr>
+  <!-- DAY 5 -->
+  <div class="day-card border-bergen">
+    <div class="day-card-header">
+      <div class="day-label">Day 5 &middot; Wed Jul 1</div>
+      <div class="day-title">Bergen Fjords</div>
+      <div class="day-hotel">Opus XVI</div>
+      <div class="day-summary">Dawn fjord kayaking. Fl&aring;msbana Railway. N&aelig;r&oslash;yfjord UNESCO cruise. Cornelius private island dinner.</div>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 5:30 AM</div>
+          <div class="detail-content"><span class="meal-name">EARLY</span>. Pack provisions.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 6 AM</div>
+          <div class="detail-content"><strong>Fjord Kayaking at Dawn</strong> &mdash; mirror-flat water, cliff walls, waterfalls. 3-4 hrs. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Then</div>
+          <div class="detail-content"><strong>Fl&aring;msbana Railway</strong> (world's steepest, Huldra dancer) + <strong>N&aelig;r&oslash;yfjord cruise</strong> (UNESCO, 250m wide).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Lunch &middot; 12:30 PM</div>
+          <div class="detail-content"><span class="meal-name">&AElig;gir Bryggeri</span> (Fl&aring;m harbor). Viking brewpub.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening</div>
+          <div class="detail-content">Return to Bergen ~7 PM.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 8 PM</div>
+          <div class="detail-content"><span class="meal-name">Cornelius</span> &mdash; private island seafood. Boat from Bergen harbor. No menu. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.nordicventures.com/">Kayaking &rarr;</a>
+            <a href="https://www.norwaynutshell.com/">Norway in a Nutshell &rarr;</a>
+            <a href="https://www.cornelius.no/">Cornelius &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<!-- ─── STOCKHOLM ─── -->
-<tr class="section-row"><td colspan="10"><span class="city-dot dot-sthlm"></span>STOCKHOLM &mdash; 3 nights</td></tr>
+  <!-- ─── STOCKHOLM ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#C77D38;"></div>
+    <div class="city-section-label">Stockholm &mdash; 2 nights</div>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 6</td>
-  <td class="day-cell"><span class="date-sub">Thu</span>Jul 2</td>
-  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Bergen &rarr; Stockholm</td>
-  <td class="hotel-cell">Ett Hem <span class="rating">9.7/10</span></td>
-  <td>
-    <span class="note">Bergen airport or plane</span>
-  </td>
-  <td class="activity-text">
-    <strong>~8 AM flight</strong> Bergen &rarr; Stockholm Arlanda (1.5 hrs). <strong>Arlanda Express</strong> to city center (18 min, ~SEK 300). <strong>Arrive Ett Hem ~11:30 AM.</strong><br/><br/>
-    1 PM: <strong>Gamla Stan</strong> &mdash; medieval old town. Stortorget. 13th-century cobblestone alleys.
-    <span class="alt-option">(or: Fotografiska photography museum if arriving late)</span>
-  </td>
-  <td>
-    <span class="meal">Fabrique fika</span>
-    <span class="meal-sub">3 PM &middot; Storgatan 19. Royal Court purveyor. Best kanelbullar in Stockholm.</span>
-  </td>
-  <td class="activity-text">
-    4 PM: <strong>Vasa Museum</strong> (Galv&auml;rvsv&auml;gen 14) &mdash; 1628 warship, 95% intact after 333 years. Genuinely singular worldwide. 2 hours. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="meal">Ekstedt &#11088;</span>
-    <span class="meal-sub">7 PM &middot; Humleg&aring;rdsgatan 17. 1 Michelin star. Zero electricity in the kitchen. Everything over birch fire. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.vasamuseet.se/en">Vasa Museum &rarr;</a>
-    <a href="https://ekstedt.nu/">Ekstedt &rarr;</a>
-    <span class="note">Book Ekstedt 4-6 weeks ahead</span>
-  </td>
-</tr>
+  <!-- DAY 6 -->
+  <div class="day-card border-sthlm">
+    <div class="day-card-header">
+      <div class="day-label">Day 6 &middot; Thu Jul 2</div>
+      <div class="day-title">Bergen &rarr; Stockholm</div>
+      <div class="day-hotel">Ett Hem <span class="rating">9.7</span></div>
+      <div class="day-summary">Fly to Stockholm. Gamla Stan medieval old town. Vasa Museum. Ekstedt birch-fire Michelin dinner.</div>
+      <span class="day-transit-badge">&#9992; Bergen &rarr; Stockholm ~8 AM</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast</div>
+          <div class="detail-content">Bergen airport.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning</div>
+          <div class="detail-content">Fly Bergen &rarr; Stockholm (~8 AM, 1.5 hrs). Arlanda Express (18 min). Arrive <strong>Ett Hem ~11:30 AM</strong>.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 1 PM</div>
+          <div class="detail-content"><strong>Gamla Stan</strong> &mdash; 13th-century cobblestone alleys. Stortorget.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Fika &middot; 3 PM</div>
+          <div class="detail-content"><span class="meal-name">Fabrique</span> (Storgatan 19). Kanelbullar.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 4 PM</div>
+          <div class="detail-content"><strong>Vasa Museum</strong> &mdash; 1628 warship, 95% intact. 2 hrs. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 7 PM</div>
+          <div class="detail-content"><span class="meal-name">Ekstedt &#11088;</span> (1 Michelin star). Zero electricity, all birch fire. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.vasamuseet.se/en">Vasa Museum &rarr;</a>
+            <a href="https://ekstedt.nu/">Ekstedt &rarr;</a>
+            <span class="note">Book Ekstedt 4-6 weeks ahead</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 7</td>
-  <td class="day-cell"><span class="date-sub">Fri</span>Jul 3</td>
-  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Stockholm</td>
-  <td class="hotel-cell">Ett Hem</td>
-  <td>
-    <span class="meal">Rosendals Tr&auml;dg&aring;rd</span>
-    <span class="meal-sub">8 AM &middot; Rosendalsterrassen 12, Djurg&aring;rden. Biodynamic garden caf&eacute; under apple trees. Wood-fired oven bread, honey from on-site hives. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="activity-text">
-    10 AM: <strong>Fotografiska</strong> (photography museum, S&ouml;dermalm). Rooftop views.
-  </td>
-  <td>
-    <span class="meal">&Ouml;stermalms Saluhall</span>
-    <span class="meal-sub">12:30 PM &middot; Stockholm's finest food hall. Reindeer, vendace roe, gravlax.</span>
-  </td>
-  <td class="activity-text">
-    Afternoon: Return to Ett Hem. Enjoy the garden, library, greenhouse. This IS the experience.<br/><br/>
-    5 PM: <strong>Moose &amp; Wildlife Safari</strong> &mdash; 5 hr guided evening safari. Moose, deer, wild boar in forest outside Stockholm. Golden 10 PM light. <span class="nyc-badge">Not in NYC</span><br/>
-    Late return (~midnight, still daylight). Snack at Ett Hem kitchen (always open to guests).
-  </td>
-  <td>
-    <span class="note">Late return from safari &mdash; Ett Hem kitchen (always open)</span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.truenaturesweden.com/wildlife-safari">Wildlife Safari (True Nature) &rarr;</a>
-    <a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">Wildlife Safari (Green Trails) &rarr;</a>
-  </td>
-</tr>
+  <!-- DAY 7 -->
+  <div class="day-card border-sthlm">
+    <div class="day-card-header">
+      <div class="day-label">Day 7 &middot; Fri Jul 3</div>
+      <div class="day-title">Stockholm</div>
+      <div class="day-hotel">Ett Hem</div>
+      <div class="day-summary">Rosendals garden breakfast. Fotografiska. Moose &amp; Wildlife Safari at golden 10 PM light.</div>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 8 AM</div>
+          <div class="detail-content"><span class="meal-name">Rosendals Tr&auml;dg&aring;rd</span> (Djurg&aring;rden). Biodynamic garden caf&eacute; under apple trees. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 10 AM</div>
+          <div class="detail-content"><strong>Fotografiska</strong> (photography museum). Rooftop views.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Lunch &middot; 12:30 PM</div>
+          <div class="detail-content"><span class="meal-name">&Ouml;stermalms Saluhall</span> &mdash; food hall. Reindeer, vendace roe.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon</div>
+          <div class="detail-content">Ett Hem &mdash; garden, library, greenhouse. Linger.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening &middot; 5 PM</div>
+          <div class="detail-content"><strong>Moose &amp; Wildlife Safari</strong> &mdash; 5 hr guided. Moose, deer, wild boar. Golden 10 PM light. <span class="nyc-badge">Not in NYC</span><br/><span class="meal-sub">Late return (~midnight, daylight). Ett Hem kitchen.</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.truenaturesweden.com/wildlife-safari">Wildlife Safari (True Nature) &rarr;</a>
+            <a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">Wildlife Safari (Green Trails) &rarr;</a>
+          </div>
+          <div class="detail-content"><span class="alt-note">Alt: Tyresta NP sunset hike + dinner &mdash; stockholmnature.com SEK 1,250</span></div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 8</td>
-  <td class="day-cell"><span class="date-sub">Sat</span>Jul 4</td>
-  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Stockholm</td>
-  <td class="hotel-cell">Ett Hem</td>
-  <td>
-    <span class="meal">Caf&eacute; Saturnus or Ett Hem</span>
-    <span class="meal-sub">8 AM &middot; Eriksbergsgatan 6. Giant cardamom bun. Or Ett Hem garden breakfast.</span>
-  </td>
-  <td class="activity-text">
-    Slow Ett Hem morning. Enjoy the personal chef, garden, library, greenhouse. This IS the experience &mdash; linger.
-  </td>
-  <td>
-    <span class="meal">&Ouml;stermalms Saluhall</span>
-    <span class="meal-sub">Stockholm's finest food hall.</span>
-  </td>
-  <td class="activity-text">
-    2 PM: <strong>Tyresta National Park Sunset Hike + Dinner</strong> &mdash; 4.5 hrs guided. Old-growth forest, 1999 fire zone with charred skeleton trees regenerating, dark rift-valley lakes. Dinner included. 30 min from city. <span class="nyc-badge">Not in NYC</span><br/>
-    Return ~8:30 PM. Light evening.
-    <span class="alt-option">(or: Archipelago Sunset Kayak &mdash; 5 hrs through skerries, sea eagles &mdash; stockholmnature.com SEK 1,850)</span>
-  </td>
-  <td>
-    <span class="note">Dinner included in Tyresta hike</span>
-  </td>
-  <td class="book-col">
-    <a href="https://stockholmnature.com/fr/activite/randonnee-dans-le-parc-national-de-tyresta/">Tyresta NP Hike + Dinner &rarr;</a>
-    <a href="https://stockholmnature.com/">Archipelago Sunset Kayak (alt) &rarr;</a>
-  </td>
-</tr>
+  <!-- ─── LANDET STAY ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#8B6914;"></div>
+    <div class="city-section-label">Landet Stay &mdash; 1 night</div>
+  </div>
 
-<!-- ─── FERRY ─── -->
-<tr class="section-row"><td colspan="10"><span class="city-dot dot-ferry"></span>OVERNIGHT FERRY &mdash; 1 night</td></tr>
+  <!-- DAY 8 -->
+  <div class="day-card border-landet">
+    <div class="day-card-header">
+      <div class="day-label">Day 8 &middot; Sat Jul 4</div>
+      <div class="day-title">Stockholm &rarr; Landet Stay</div>
+      <div class="day-hotel">Landet Stay &mdash; architect cabin</div>
+      <div class="day-summary">Drive to architect cabin in 400-hectare nature reserve. Forest, meadows, sea views. Fireplace. Silence.</div>
+      <span class="day-transit-badge">&#128663; Stockholm &rarr; Landet (~1 hr)</span>
+      <span class="day-unique-badge">&#9733; Unique Stay</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 8 AM</div>
+          <div class="detail-content"><span class="meal-name">Caf&eacute; Saturnus</span> (Eriksbergsgatan 6). Giant cardamom bun.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning</div>
+          <div class="detail-content">Check out Ett Hem with bags. Pick up rental car (or arrange transfer).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Drive</div>
+          <div class="detail-content">Drive to <strong>Landet Stay</strong> (~1 hr south of Stockholm).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; ~1 PM</div>
+          <div class="detail-content">Arrive. 400-hectare nature reserve. Forest trails. Meadows. Sea views from your architect cabin. Fireplace. King bed. Heated floors. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening</div>
+          <div class="detail-content">Slow evening in the cabin. Starlink wifi. Nature silence.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner</div>
+          <div class="detail-content">Self-catering in cabin kitchen, or arrange in advance.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://landetstay.com/">Landet Stay &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 9</td>
-  <td class="day-cell"><span class="date-sub">Sun</span>Jul 5</td>
-  <td class="city-cell"><span class="city-dot dot-ferry"></span>Stockholm &rarr; Helsinki</td>
-  <td class="hotel-cell">Tallink Silja<br/><span class="note">Commodore Class</span></td>
-  <td>
-    <span class="meal">Ett Hem final breakfast</span>
-    <span class="meal-sub">8 AM &middot; Final breakfast in the garden.</span>
-  </td>
-  <td class="activity-text">
-    Slow morning. Strandv&auml;gen waterfront stroll. Pack.
-  </td>
-  <td class="note">Strandv&auml;gen / waterfront</td>
-  <td class="activity-text">
-    4:30 PM: <strong>Board Tallink Silja</strong> at V&auml;rtahamnen. Sail through 30,000 islands at midnight in full daylight. Sauna deck. Promenade. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="meal">Ferry sm&ouml;rg&aring;sbord</span>
-    <span class="meal-sub">100+ dish buffet at sunset over the archipelago.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.tallinksilja.com/en/">Tallink Silja Commodore &rarr;</a>
-    <span class="note">Book 2-3 months ahead for Commodore cabins</span>
-  </td>
-</tr>
+  <!-- ─── FERRY ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#7766aa;"></div>
+    <div class="city-section-label">Overnight Ferry &mdash; 1 night</div>
+  </div>
 
-<!-- ─── HELSINKI ─── -->
-<tr class="section-row"><td colspan="10"><span class="city-dot dot-hel"></span>HELSINKI &mdash; 3 nights</td></tr>
+  <!-- DAY 9 -->
+  <div class="day-card border-ferry">
+    <div class="day-card-header">
+      <div class="day-label">Day 9 &middot; Sun Jul 5</div>
+      <div class="day-title">Landet &rarr; Ferry</div>
+      <div class="day-hotel">Tallink Silja &mdash; Commodore Class</div>
+      <div class="day-summary">Morning at Landet. Drive to ferry terminal. Board Tallink Silja. 30,000 islands at midnight.</div>
+      <span class="day-transit-badge">&#128663; Landet &rarr; V&auml;rtahamnen (~1 hr) &middot; &#9875; Board 4:30 PM</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast</div>
+          <div class="detail-content">At Landet cabin.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning</div>
+          <div class="detail-content">Last walk in the nature reserve. Check out.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Drive</div>
+          <div class="detail-content">Drive to Stockholm V&auml;rtahamnen ferry terminal (~1 hr). Arrive ~noon. Drop bags. Grab lunch.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 4:30 PM</div>
+          <div class="detail-content"><strong>Board Tallink Silja</strong>. Sail through 30,000 islands at midnight in full daylight. Sauna deck. Promenade. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner</div>
+          <div class="detail-content"><span class="meal-name">Ferry sm&ouml;rg&aring;sbord</span> &mdash; 100+ dishes at sunset over archipelago.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.tallinksilja.com/en/">Tallink Silja &rarr;</a>
+            <span class="note">Already booked Jul 5</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 10</td>
-  <td class="day-cell"><span class="date-sub">Mon</span>Jul 6</td>
-  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki arrive</td>
-  <td class="hotel-cell">Hotel St. George <span class="rating">8.8/10</span></td>
-  <td>
-    <span class="meal">Ferry breakfast buffet</span>
-    <span class="meal-sub">Finnish archipelago views arriving into Helsinki.</span>
-  </td>
-  <td class="activity-text">
-    10 AM: Arrive Helsinki. Check into <strong>Hotel St. George</strong>. Spa &mdash; swim, sauna, recover.
-  </td>
-  <td>
-    <span class="meal">Kauppatori Market Square</span>
-    <span class="meal-sub">12:30 PM &middot; Etel&auml;ranta. Karelian pies with egg butter, salmon soup, fried vendace, fresh berries. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="activity-text">
-    2 PM: <strong>Design District walk</strong> (Punavuori, 8 blocks). <strong>Temppeliaukio Rock Church</strong> &mdash; blasted from granite, copper spiral ceiling, free. <span class="nyc-badge">Not in NYC</span><br/><br/>
-    4 PM: <strong>Suomenlinna Sea Fortress</strong> (UNESCO) &mdash; ferry 15 min from Market Square. Walk 1748 ramparts. Submarine museum. <span class="nyc-badge">Not in NYC</span><br/>
-    Return ~7 PM.
-    <span class="alt-option">(or: skip Suomenlinna and do Vallisaari wild island hike instead)</span>
-  </td>
-  <td>
-    <span class="meal">Grotesk</span>
-    <span class="meal-sub">Ludviginkatu 10. Nordic-French wine bar, natural wines, roasted reindeer.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://www.suomenlinna.fi/en/">Suomenlinna &rarr;</a>
-    <span class="note">Public ferry from Market Square</span><br/>
-    <span class="note">Temppeliaukio (free, walk-in)</span>
-  </td>
-</tr>
+  <!-- ─── HAASI ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#00897B;"></div>
+    <div class="city-section-label">Haasi Mirror Houses &mdash; 1 night</div>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 11</td>
-  <td class="day-cell"><span class="date-sub">Tue</span>Jul 7</td>
-  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki</td>
-  <td class="hotel-cell">Hotel St. George</td>
-  <td>
-    <span class="meal">Caf&eacute; Regatta</span>
-    <span class="meal-sub">7 AM &middot; Merikannontie 8. Tiny red cottage on the seashore. Cinnamon buns, coffee from tin pot. Arrive by 7 &mdash; crowded by 8. <span class="nyc-badge">Not in NYC</span></span>
-  </td>
-  <td class="activity-text">
-    8:30 AM: <strong>Nuuksio National Park &mdash; Guided Foraging &amp; Nature Walk</strong>. Finnish forest, lakes, boardwalk trails. Wild herb/berry foraging. Campfire lunch in the forest. 45 min from Helsinki. <span class="nyc-badge">Not in NYC</span><br/>
-    Return ~2 PM.
-  </td>
-  <td class="note">Campfire lunch in Nuuksio forest</td>
-  <td class="activity-text">
-    3 PM: <strong>L&ouml;yly Sauna</strong> &mdash; 2 hr session (&euro;27/pp). Architect-designed, smoke sauna + wood-burning + Baltic Sea plunge. THE Helsinki sauna experience. <span class="nyc-badge">Not in NYC</span>
-  </td>
-  <td>
-    <span class="meal">Finnj&auml;vel Salonki</span>
-    <span class="meal-sub">Mannerheimintie 14-20. &ldquo;Damn Finn&rdquo; modern Finnish fine dining. Reindeer from Lapland, vendace roe, forest mushrooms.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">Nuuksio Foraging &rarr;</a>
-    <a href="https://www.loylyhelsinki.fi/en/public-sauna">L&ouml;yly Sauna &rarr;</a>
-    <span class="note">Book L&ouml;yly ahead</span>
-  </td>
-</tr>
+  <!-- DAY 10 -->
+  <div class="day-card border-haasi">
+    <div class="day-card-header">
+      <div class="day-label">Day 10 &middot; Mon Jul 6</div>
+      <div class="day-title">Ferry &rarr; Haasi Mirror Houses</div>
+      <div class="day-hotel">Haasi Mirror House (Lehmonk&auml;rki)</div>
+      <div class="day-summary">Ferry arrives Helsinki. Drive to mirror house on a Finnish lake. Hot tub. Private sauna. Sunset on the water.</div>
+      <span class="day-transit-badge">&#9875; Arrive Helsinki ~10 AM &middot; &#128663; Helsinki &rarr; Haasi (~1.5 hrs)</span>
+      <span class="day-unique-badge">&#9733; Unique Stay</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast</div>
+          <div class="detail-content"><span class="meal-name">Ferry breakfast buffet</span>. Finnish archipelago views arriving.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 10 AM</div>
+          <div class="detail-content">Arrive Helsinki Olympia Terminal. Pick up rental car. Drive to Haasi (~1.5 hrs).</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Arrive &middot; ~Noon</div>
+          <div class="detail-content">Check into mirror house. Lake Lehmonk&auml;rki. Adults-only. Private hot tub. Sparkling wine. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon</div>
+          <div class="detail-content">Lake swimming. Forest walks. Private sauna (Liplatus/Kallio suites). Just... be.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Evening</div>
+          <div class="detail-content">Sunset over the lake from your glass-walled house.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner</div>
+          <div class="detail-content">Pre-ordered dinner delivered (&euro;55/pp) or Lehmonk&auml;rki restaurant.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://lehmonkarkiresort.fi/en/haasi-mirror-houses/">Haasi Mirror Houses &rarr;</a>
+            <span class="note">Book N&auml;k&ouml;ala (best views) or Liplatus (private sauna)</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr>
-  <td class="day-cell">Day 12</td>
-  <td class="day-cell"><span class="date-sub">Wed</span>Jul 8</td>
-  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki</td>
-  <td class="hotel-cell">Hotel St. George</td>
-  <td>
-    <span class="meal">Hakaniemi Market Hall</span>
-    <span class="meal-sub">7 AM &middot; H&auml;meentie 1. Helsinki's local market, 1914. Smoked fish, Karelian pies, lingonberry juice.</span>
-  </td>
-  <td class="activity-text">
-    9 AM: <strong>Helsinki Archipelago Kayaking</strong> &mdash; 2-3 hr guided paddle through Baltic islands and skerries. <span class="nyc-badge">Not in NYC</span><br/>
-    <em>OR: Private archipelago boat cruise with island picnic stop (3 hrs, from &euro;520).</em><br/>
-    <em>OR: Vallisaari Island &mdash; wild nature + military ruins + coastal hike (3km loop, ferry 20 min from Market Square).</em>
-    <span class="alt-option">(or: Kaunissaari outer archipelago island &mdash; daily summer ferry, more remote)</span>
-  </td>
-  <td>
-    <span class="meal">Old Market Hall (Vanha Kauppahalli)</span>
-    <span class="meal-sub">1889. Cloudberry preserves (cannot buy in NYC at any price), smoked reindeer, bear meat. Buy cloudberry jam to take home.</span>
-  </td>
-  <td class="activity-text">
-    Flex time. Sleep in option. <strong>Allas Sea Pool</strong> (Baltic swim, chill). OR last Design District walk.
-  </td>
-  <td>
-    <span class="meal">Savoy</span>
-    <span class="meal-sub">8 PM &middot; Etel&auml;esplanadi 14, 8th floor. Alvar Aalto-designed. Helsinki institution since 1937. Recently renovated by Ilse Crawford. Farewell dinner.</span>
-  </td>
-  <td class="book-col">
-    <a href="https://naturaviva.fi/en_US/natura/guided-tours">Helsinki Kayaking (Natura Viva) &rarr;</a>
-    <a href="https://helsinkicityride.com/Helsinki-by-Kayak-2025-bbaaaabCa.asp">Helsinki Kayaking (City Ride) &rarr;</a>
-    <a href="https://visitfinland.com/en/product/338b9129-8ad4-496b-ba57-62bb87a78ad0/">Private Boat Cruise &rarr;</a>
-    <a href="https://allassealpool.fi">Allas Sea Pool &rarr;</a>
-  </td>
-</tr>
+  <!-- ─── HELSINKI ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#457B9D;"></div>
+    <div class="city-section-label">Helsinki &mdash; 2 nights</div>
+  </div>
 
-<!-- ─── DEPARTURE ─── -->
-<tr class="section-row"><td colspan="10">DEPARTURE</td></tr>
+  <!-- DAY 11 -->
+  <div class="day-card border-hel">
+    <div class="day-card-header">
+      <div class="day-label">Day 11 &middot; Tue Jul 7</div>
+      <div class="day-title">Haasi &rarr; Helsinki</div>
+      <div class="day-hotel">Hotel St. George <span class="rating">8.8</span></div>
+      <div class="day-summary">Breakfast at the lake. Drive to Helsinki. Nuuksio National Park foraging. L&ouml;yly sauna. Finnj&auml;vel dinner.</div>
+      <span class="day-transit-badge">&#128663; Haasi &rarr; Helsinki (~1.5 hrs)</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast</div>
+          <div class="detail-content">Delivered to mirror house suite. Lake views.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning</div>
+          <div class="detail-content">Check out Haasi. Drive to Helsinki (~1.5 hrs). Drop rental car. Check into St. George ~1 PM.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon &middot; 2 PM</div>
+          <div class="detail-content"><strong>Nuuksio National Park &mdash; Guided Foraging</strong>. Finnish forest, lakes, campfire lunch. <span class="nyc-badge">Not in NYC</span><br/><span class="alt-note">OR: Helsinki Archipelago Kayaking (2-3 hrs).</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Late afternoon &middot; 5 PM</div>
+          <div class="detail-content"><strong>L&ouml;yly Sauna</strong> (&euro;27/2hr). Smoke sauna + Baltic plunge. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 8 PM</div>
+          <div class="detail-content"><span class="meal-name">Finnj&auml;vel Salonki</span> &mdash; &ldquo;Damn Finn&rdquo; modern Finnish fine dining.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">Nuuksio Foraging &rarr;</a>
+            <a href="https://www.loylyhelsinki.fi/en/public-sauna">L&ouml;yly Sauna &rarr;</a>
+            <a href="https://naturaviva.fi/en_US/natura/guided-tours">Helsinki Kayaking &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-<tr class="depart-row">
-  <td class="day-cell">Day 13</td>
-  <td class="day-cell"><span class="date-sub">Thu</span>Jul 9</td>
-  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki &rarr; JFK</td>
-  <td>&mdash;</td>
-  <td>
-    <span class="meal" style="color:#999;">Hakaniemi Market Hall</span>
-    <span class="meal-sub">6:30 AM &middot; H&auml;meentie 1. Quick smoked fish, Karelian pies. Last Finnish breakfast.</span>
-  </td>
-  <td class="note">Depart Helsinki-Vantaa airport (Ring Rail train, 30 min from Central Station). Allow 2.5 hrs before flight.</td>
-  <td>&mdash;</td>
-  <td class="note">SAS SK 705 Helsinki &rarr; Copenhagen, SK 903 Copenhagen &rarr; JFK.</td>
-  <td>&mdash;</td>
-  <td class="book-col">&mdash;</td>
-</tr>
+  <!-- DAY 12 -->
+  <div class="day-card border-hel">
+    <div class="day-card-header">
+      <div class="day-label">Day 12 &middot; Wed Jul 8</div>
+      <div class="day-title">Helsinki</div>
+      <div class="day-hotel">Hotel St. George</div>
+      <div class="day-summary">Caf&eacute; Regatta. Suomenlinna UNESCO fortress. Old Market Hall. Savoy farewell dinner.</div>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 7 AM</div>
+          <div class="detail-content"><span class="meal-name">Caf&eacute; Regatta</span> (Merikannontie 8). Red cottage by the sea. Cinnamon buns. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Morning &middot; 9 AM</div>
+          <div class="detail-content"><strong>Suomenlinna Sea Fortress</strong> (UNESCO). Ferry 15 min. Walk 1748 ramparts. Submarine museum. <span class="nyc-badge">Not in NYC</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Lunch</div>
+          <div class="detail-content"><span class="meal-name">Old Market Hall</span> (Vanha Kauppahalli, 1889). Cloudberry jam, smoked reindeer. Buy cloudberry jam to take home.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Afternoon</div>
+          <div class="detail-content">Flex. <strong>Allas Sea Pool</strong> (Baltic swim). Design District. Or sleep in.<br/><span class="alt-note">Alt: Vallisaari island hike (3km, wild nature + ruins) or Kaunissaari outer archipelago.</span></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Dinner &middot; 8 PM</div>
+          <div class="detail-content"><span class="meal-name">Savoy</span> (8th floor). Alvar Aalto-designed. Farewell dinner.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Bookable</div>
+          <div class="bookable-links">
+            <a href="https://www.suomenlinna.fi/en/">Suomenlinna &rarr;</a>
+            <a href="https://allassealpool.fi">Allas Sea Pool &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
 
-</tbody>
-</table>
-</div>
+  <!-- ─── DEPARTURE ─── -->
+  <div class="city-section">
+    <div class="city-section-dot" style="background:#bbb;"></div>
+    <div class="city-section-label">Departure</div>
+  </div>
+
+  <!-- DAY 13 -->
+  <div class="day-card border-depart">
+    <div class="day-card-header">
+      <div class="day-label">Day 13 &middot; Thu Jul 9</div>
+      <div class="day-title">Helsinki &rarr; JFK</div>
+      <div class="day-hotel">&mdash;</div>
+      <div class="day-summary">Hakaniemi Market breakfast. Depart Helsinki.</div>
+      <span class="day-transit-badge">&#9992; SK 705 Helsinki &rarr; Copenhagen, SK 903 Copenhagen &rarr; JFK</span>
+    </div>
+    <details>
+      <summary>View full day</summary>
+      <div class="day-details">
+        <div class="detail-row">
+          <div class="detail-label">Breakfast &middot; 6:30 AM</div>
+          <div class="detail-content"><span class="meal-name">Hakaniemi Market Hall</span> (H&auml;meentie 1). Smoked fish, Karelian pies.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Depart</div>
+          <div class="detail-content">Ring Rail train to Helsinki-Vantaa (30 min). Allow 2.5 hrs.</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Flight</div>
+          <div class="detail-content">SAS SK 705 Helsinki &rarr; Copenhagen, SK 903 Copenhagen &rarr; JFK.</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+</div><!-- /container -->
+
 
 <!-- ═══════════════════════════════════════════════ -->
 <!-- ALL BOOKABLE EXPERIENCES                       -->
@@ -815,226 +1133,208 @@
   <div class="section-divider"></div>
 
   <!-- OSLO -->
-  <div class="exp-city-label"><span class="city-dot dot-oslo"></span> Oslo</div>
-  <div class="exp-grid">
-    <div class="exp-row">
-      <div class="exp-name">KOK Sauna Cruise <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">2-3 hours</div>
-      <div class="exp-price">~NOK 600/pp</div>
-      <div class="exp-link"><a href="https://koknorge.no/en/sauna-cruise/">koknorge.no &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Ekebergparken Sculpture Park</div>
-      <div class="exp-dur">1.5 hours</div>
-      <div class="exp-price">Free</div>
-      <div class="exp-link"><a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">book.visitoslo.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Vettakollen Hike <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">2-3 hours RT</div>
-      <div class="exp-price">Free</div>
-      <div class="exp-link"><span class="note">Self-guided from Vettakollen T-bane</span></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Vigeland Sculpture Park</div>
-      <div class="exp-dur">1.5 hours</div>
-      <div class="exp-price">Free</div>
-      <div class="exp-link"><span class="note">Walk-in, open 24/7</span></div>
-    </div>
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#2D6A4F;"></span> Oslo</div>
+  <div class="exp-item">
+    <div class="exp-name">KOK Sauna Cruise <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">2-3 hrs &middot; ~NOK 600/pp</div>
+    <div class="exp-link"><a href="https://koknorge.no/en/sauna-cruise/">koknorge.no &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Ekebergparken Sculpture Park</div>
+    <div class="exp-meta">1.5 hrs &middot; Free</div>
+    <div class="exp-link"><a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">visitoslo.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Vettakollen Hike <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">2-3 hrs RT &middot; Free</div>
+    <div class="exp-link"><span class="note">Self-guided from Vettakollen T-bane</span></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Vigeland Sculpture Park</div>
+    <div class="exp-meta">1.5 hrs &middot; Free</div>
+    <div class="exp-link"><span class="note">Walk-in, open 24/7</span></div>
   </div>
 
   <!-- BERGEN -->
-  <div class="exp-city-label"><span class="city-dot dot-bergen"></span> Bergen</div>
-  <div class="exp-grid">
-    <div class="exp-row">
-      <div class="exp-name">Bergen Railway (Bergensbanen) <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">6.5 hours</div>
-      <div class="exp-price">~NOK 500-900</div>
-      <div class="exp-link"><a href="https://www.vy.no/en">vy.no &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Fjord Kayaking at Dawn <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">3-4 hours</div>
-      <div class="exp-price">~NOK 900/pp</div>
-      <div class="exp-link"><a href="https://www.nordicventures.com/">nordicventures.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Norway in a Nutshell (Fl&aring;msbana + N&aelig;r&oslash;yfjord) <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Full day</div>
-      <div class="exp-price">~NOK 1,900/pp</div>
-      <div class="exp-link"><a href="https://www.norwaynutshell.com/">norwaynutshell.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Heit Bergen Floating Sauna <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">1h50 session</div>
-      <div class="exp-price">~NOK 500/pp</div>
-      <div class="exp-link"><a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">visitbergen.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Cornelius (Private Island Dinner) <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Evening</div>
-      <div class="exp-price">~NOK 1,200/pp</div>
-      <div class="exp-link"><a href="https://www.cornelius.no/">cornelius.no &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Lysverket &#11088; (1 Michelin star)</div>
-      <div class="exp-dur">Dinner</div>
-      <div class="exp-price">Tasting menu</div>
-      <div class="exp-link"><a href="https://lysverket.no/">lysverket.no &rarr;</a></div>
-    </div>
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#1B4F72;"></span> Bergen</div>
+  <div class="exp-item">
+    <div class="exp-name">Bergen Railway (Bergensbanen) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">6.5 hrs &middot; ~NOK 500-900</div>
+    <div class="exp-link"><a href="https://www.vy.no/en">vy.no &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Fjord Kayaking at Dawn <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">3-4 hrs &middot; ~NOK 900/pp</div>
+    <div class="exp-link"><a href="https://www.nordicventures.com/">nordicventures.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Norway in a Nutshell (Fl&aring;msbana + N&aelig;r&oslash;yfjord) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Full day &middot; ~NOK 1,900/pp</div>
+    <div class="exp-link"><a href="https://www.norwaynutshell.com/">norwaynutshell.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Heit Bergen Floating Sauna <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">1h50 &middot; ~NOK 500/pp</div>
+    <div class="exp-link"><a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">visitbergen.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Cornelius (Private Island Dinner) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Evening &middot; ~NOK 1,200/pp</div>
+    <div class="exp-link"><a href="https://www.cornelius.no/">cornelius.no &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Lysverket &#11088; (1 Michelin star)</div>
+    <div class="exp-meta">Dinner &middot; Tasting menu</div>
+    <div class="exp-link"><a href="https://lysverket.no/">lysverket.no &rarr;</a></div>
   </div>
 
   <!-- STOCKHOLM -->
-  <div class="exp-city-label"><span class="city-dot dot-sthlm"></span> Stockholm</div>
-  <div class="exp-grid">
-    <div class="exp-row">
-      <div class="exp-name">Vasa Museum <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">2 hours</div>
-      <div class="exp-price">SEK 190/pp</div>
-      <div class="exp-link"><a href="https://www.vasamuseet.se/en">vasamuseet.se &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Ekstedt &#11088; (1 Michelin star) <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Dinner</div>
-      <div class="exp-price">Tasting ~SEK 1,800/pp</div>
-      <div class="exp-link"><a href="https://ekstedt.nu/">ekstedt.nu &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Moose &amp; Wildlife Safari <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">5 hours (evening)</div>
-      <div class="exp-price">~SEK 1,200/pp</div>
-      <div class="exp-link"><a href="https://www.truenaturesweden.com/wildlife-safari">truenaturesweden.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Moose &amp; Wildlife Safari (alt booking)</div>
-      <div class="exp-dur">5 hours (evening)</div>
-      <div class="exp-price">~SEK 1,200/pp</div>
-      <div class="exp-link"><a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">thegreentrails.rezdy.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Tyresta NP Sunset Hike + Dinner <span class="nyc-badge">Not in NYC</span> <span class="new-badge">NEW v6</span></div>
-      <div class="exp-dur">4.5 hours</div>
-      <div class="exp-price">SEK 1,250/pp</div>
-      <div class="exp-link"><a href="https://stockholmnature.com/fr/activite/randonnee-dans-le-parc-national-de-tyresta/">stockholmnature.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Archipelago Sunset Kayak <span class="nyc-badge">Not in NYC</span> <span class="new-badge">NEW v6</span></div>
-      <div class="exp-dur">5 hours</div>
-      <div class="exp-price">SEK 1,850/pp</div>
-      <div class="exp-link"><a href="https://stockholmnature.com/">stockholmnature.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Rosendals Tr&auml;dg&aring;rd <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Breakfast / 1.5 hours</div>
-      <div class="exp-price">Walk-in</div>
-      <div class="exp-link"><span class="note">Walk-in, Djurg&aring;rden</span></div>
-    </div>
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#C77D38;"></span> Stockholm</div>
+  <div class="exp-item">
+    <div class="exp-name">Vasa Museum <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">2 hrs &middot; SEK 190/pp</div>
+    <div class="exp-link"><a href="https://www.vasamuseet.se/en">vasamuseet.se &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Ekstedt &#11088; (1 Michelin star) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Dinner &middot; ~SEK 1,800/pp</div>
+    <div class="exp-link"><a href="https://ekstedt.nu/">ekstedt.nu &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Moose &amp; Wildlife Safari <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">5 hrs (evening) &middot; ~SEK 1,200/pp</div>
+    <div class="exp-link"><a href="https://www.truenaturesweden.com/wildlife-safari">truenaturesweden.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Moose &amp; Wildlife Safari (alt booking)</div>
+    <div class="exp-meta">5 hrs (evening) &middot; ~SEK 1,200/pp</div>
+    <div class="exp-link"><a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">thegreentrails.rezdy.com &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Rosendals Tr&auml;dg&aring;rd <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Breakfast / 1.5 hrs &middot; Walk-in</div>
+    <div class="exp-link"><span class="note">Walk-in, Djurg&aring;rden</span></div>
+  </div>
+
+  <!-- LANDET -->
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#8B6914;"></span> Landet Stay</div>
+  <div class="exp-item">
+    <div class="exp-name">Landet Stay &mdash; Architect Cabin <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">1 night &middot; 400-hectare nature reserve</div>
+    <div class="exp-link"><a href="https://landetstay.com/">landetstay.com &rarr;</a></div>
   </div>
 
   <!-- FERRY -->
-  <div class="exp-city-label"><span class="city-dot dot-ferry"></span> Overnight Ferry</div>
-  <div class="exp-grid">
-    <div class="exp-row">
-      <div class="exp-name">Tallink Silja &mdash; Commodore Class <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Overnight (Stockholm &rarr; Helsinki)</div>
-      <div class="exp-price">~&euro;200-400/cabin</div>
-      <div class="exp-link"><a href="https://www.tallinksilja.com/en/">tallinksilja.com &rarr;</a></div>
-    </div>
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#7766aa;"></span> Overnight Ferry</div>
+  <div class="exp-item">
+    <div class="exp-name">Tallink Silja &mdash; Commodore Class <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Overnight &middot; ~&euro;200-400/cabin</div>
+    <div class="exp-link"><a href="https://www.tallinksilja.com/en/">tallinksilja.com &rarr;</a></div>
+  </div>
+
+  <!-- HAASI -->
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#00897B;"></span> Haasi Mirror Houses</div>
+  <div class="exp-item">
+    <div class="exp-name">Haasi Mirror Houses (Lehmonk&auml;rki) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">1 night &middot; Mirror house on a Finnish lake</div>
+    <div class="exp-link"><a href="https://lehmonkarkiresort.fi/en/haasi-mirror-houses/">lehmonkarkiresort.fi &rarr;</a></div>
   </div>
 
   <!-- HELSINKI -->
-  <div class="exp-city-label"><span class="city-dot dot-hel"></span> Helsinki</div>
-  <div class="exp-grid">
-    <div class="exp-row">
-      <div class="exp-name">Suomenlinna Sea Fortress (UNESCO) <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">3-4 hours</div>
-      <div class="exp-price">Ferry ~&euro;5 RT</div>
-      <div class="exp-link"><a href="https://www.suomenlinna.fi/en/">suomenlinna.fi &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Nuuksio National Park &mdash; Foraging &amp; Nature Walk <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">4-5 hours</div>
-      <div class="exp-price">~&euro;90/pp</div>
-      <div class="exp-link"><a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">feelthenature.fi &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">L&ouml;yly Sauna <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">2 hours</div>
-      <div class="exp-price">&euro;27/pp</div>
-      <div class="exp-link"><a href="https://www.loylyhelsinki.fi/en/public-sauna">loylyhelsinki.fi &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Helsinki Archipelago Kayaking <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">2-3 hours</div>
-      <div class="exp-price">~&euro;60-90/pp</div>
-      <div class="exp-link"><a href="https://naturaviva.fi/en_US/natura/guided-tours">naturaviva.fi &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Private Archipelago Boat Cruise <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">3 hours</div>
-      <div class="exp-price">from &euro;520</div>
-      <div class="exp-link"><a href="https://visitfinland.com/en/product/338b9129-8ad4-496b-ba57-62bb87a78ad0/">visitfinland.com &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Allas Sea Pool</div>
-      <div class="exp-dur">1-2 hours</div>
-      <div class="exp-price">~&euro;15/pp</div>
-      <div class="exp-link"><a href="https://allassealpool.fi">allassealpool.fi &rarr;</a></div>
-    </div>
-    <div class="exp-row">
-      <div class="exp-name">Caf&eacute; Regatta <span class="nyc-badge">Not in NYC</span></div>
-      <div class="exp-dur">Breakfast / 1 hour</div>
-      <div class="exp-price">Walk-in</div>
-      <div class="exp-link"><span class="note">Walk-in, arrive by 7 AM</span></div>
-    </div>
+  <div class="exp-city-label"><span class="exp-city-dot" style="background:#457B9D;"></span> Helsinki</div>
+  <div class="exp-item">
+    <div class="exp-name">Suomenlinna Sea Fortress (UNESCO) <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">3-4 hrs &middot; Ferry ~&euro;5 RT</div>
+    <div class="exp-link"><a href="https://www.suomenlinna.fi/en/">suomenlinna.fi &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Nuuksio National Park &mdash; Foraging &amp; Nature Walk <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">4-5 hrs &middot; ~&euro;90/pp</div>
+    <div class="exp-link"><a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">feelthenature.fi &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">L&ouml;yly Sauna <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">2 hrs &middot; &euro;27/pp</div>
+    <div class="exp-link"><a href="https://www.loylyhelsinki.fi/en/public-sauna">loylyhelsinki.fi &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Helsinki Archipelago Kayaking <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">2-3 hrs &middot; ~&euro;60-90/pp</div>
+    <div class="exp-link"><a href="https://naturaviva.fi/en_US/natura/guided-tours">naturaviva.fi &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Allas Sea Pool</div>
+    <div class="exp-meta">1-2 hrs &middot; ~&euro;15/pp</div>
+    <div class="exp-link"><a href="https://allassealpool.fi">allassealpool.fi &rarr;</a></div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-name">Caf&eacute; Regatta <span class="nyc-badge">Not in NYC</span></div>
+    <div class="exp-meta">Breakfast / 1 hr &middot; Walk-in</div>
+    <div class="exp-link"><span class="note">Walk-in, arrive by 7 AM</span></div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════ -->
-<!-- HOTELS                                         -->
+<!-- WHERE YOU'RE SLEEPING                          -->
 <!-- ═══════════════════════════════════════════════ -->
 <div class="bottom-section">
-  <h2 class="section-title">Hotels</h2>
+  <h2 class="section-title">Where You're Sleeping</h2>
   <div class="section-divider"></div>
   <div class="hotel-grid">
 
     <div class="hotel-card">
-      <h4>The Thief &#11088;</h4>
-      <div class="h-city" style="color:#2D6A4F;"><span class="city-dot dot-oslo"></span>Oslo &middot; 2 nights</div>
+      <h4>The Thief</h4>
+      <div class="h-city" style="color:#2D6A4F;"><span class="h-dot" style="background:#2D6A4F;"></span> Oslo &middot; 2 nights</div>
       <div class="h-meta">Booking.com 8.8/10 &middot; ~114 rooms &middot; Art hotel on Tj&uuml;vholmen</div>
-      <div class="h-why">Art hotel built around the Astrup Fearnley Museum. Every room has original contemporary art. Waterfront location on Tj&uuml;vholmen peninsula. Rooftop bar with fjord views.</div>
+      <div class="h-why">Art hotel built around the Astrup Fearnley Museum. Every room has original contemporary art. Waterfront location. Rooftop bar with fjord views.</div>
       <div class="h-link"><a href="https://www.thethief.com/">thethief.com &rarr;</a></div>
     </div>
 
     <div class="hotel-card">
-      <h4>Opus XVI &#11088;</h4>
-      <div class="h-city" style="color:#1B4F72;"><span class="city-dot dot-bergen"></span>Bergen &middot; 3 nights</div>
+      <h4>Opus XVI</h4>
+      <div class="h-city" style="color:#1B4F72;"><span class="h-dot" style="background:#1B4F72;"></span> Bergen &middot; 3 nights</div>
       <div class="h-meta">Booking.com 9.1/10 &middot; 65 rooms &middot; Michelin Key &middot; 1876 heritage bank</div>
-      <div class="h-why">Converted from the 1876 Bergen Credit Bank into a Michelin Key hotel. Named after Edvard Grieg's Opus 16 (the Grieg family connection). Palatial lobby. Steps from Bryggen and the Fish Market.</div>
+      <div class="h-why">Converted from the 1876 Bergen Credit Bank. Named after Edvard Grieg's Opus 16. Palatial lobby. Steps from Bryggen and Fish Market.</div>
       <div class="h-link"><a href="https://www.opus16.no/en/">opus16.no &rarr;</a></div>
     </div>
 
     <div class="hotel-card">
-      <h4>Ett Hem &#11088;&#11088;</h4>
-      <div class="h-city" style="color:#C77D38;"><span class="city-dot dot-sthlm"></span>Stockholm &middot; 3 nights</div>
+      <h4>Ett Hem</h4>
+      <div class="h-city" style="color:#C77D38;"><span class="h-dot" style="background:#C77D38;"></span> Stockholm &middot; 2 nights</div>
       <div class="h-meta">Booking.com 9.7/10 &middot; 22 rooms &middot; 1912 arts &amp; crafts townhouse</div>
-      <div class="h-why">Feels like staying in a wealthy Swedish friend's home. Ilse Crawford-designed. Garden, library, greenhouse. Kitchen always open. Consistently one of the highest-rated hotels in Europe.</div>
+      <div class="h-why">Like staying in a wealthy Swedish friend's home. Ilse Crawford-designed. Garden, library, greenhouse. Kitchen always open. One of Europe's highest-rated hotels.</div>
       <div class="h-link"><a href="https://etthem.se/en/">etthem.se &rarr;</a></div>
     </div>
 
     <div class="hotel-card">
-      <h4>Tallink Silja &mdash; Commodore Class</h4>
-      <div class="h-city" style="color:#7766aa;"><span class="city-dot dot-ferry"></span>Overnight Ferry &middot; 1 night</div>
-      <div class="h-meta">Commodore cabin &middot; Marimekko design &middot; Daily departures</div>
-      <div class="h-why">Sail through the Stockholm Archipelago (30,000 islands) at midnight in full daylight. Commodore Class: exclusive lounge, priority boarding, upgraded cabin. Sauna deck. 100+ dish sm&ouml;rg&aring;sbord.</div>
+      <h4>Landet Stay</h4>
+      <div class="h-city" style="color:#8B6914;"><span class="h-dot" style="background:#8B6914;"></span> S&ouml;rmland &middot; 1 night</div>
+      <div class="h-meta">Architect cabin &middot; 400-hectare nature reserve &middot; ~1 hr south of Stockholm</div>
+      <div class="h-why">Architect-designed cabin in a private nature reserve. Forest, meadows, sea views. Fireplace. King bed. Heated floors. Starlink wifi. Total silence.</div>
+      <div class="h-link"><a href="https://landetstay.com/">landetstay.com &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Tallink Silja</h4>
+      <div class="h-city" style="color:#7766aa;"><span class="h-dot" style="background:#7766aa;"></span> Ferry &middot; 1 night</div>
+      <div class="h-meta">Commodore Class &middot; Marimekko cabin &middot; Daily departures</div>
+      <div class="h-why">Sail through 30,000 islands at midnight in full daylight. Commodore Class: exclusive lounge, priority boarding. Sauna deck. 100+ dish sm&ouml;rg&aring;sbord.</div>
       <div class="h-link"><a href="https://www.tallinksilja.com/en/">tallinksilja.com &rarr;</a></div>
     </div>
 
     <div class="hotel-card">
-      <h4>Hotel St. George &#11088;</h4>
-      <div class="h-city" style="color:#457B9D;"><span class="city-dot dot-hel"></span>Helsinki &middot; 3 nights</div>
+      <h4>Haasi Mirror Houses</h4>
+      <div class="h-city" style="color:#00897B;"><span class="h-dot" style="background:#00897B;"></span> Lehmonk&auml;rki &middot; 1 night</div>
+      <div class="h-meta">Mirror house on a lake &middot; Adults-only &middot; Private hot tub &amp; sauna</div>
+      <div class="h-why">Glass-walled mirror house on a Finnish lake. Private hot tub. Sparkling wine on arrival. Sunset from your bed. Forest walks. Complete peace.</div>
+      <div class="h-link"><a href="https://lehmonkarkiresort.fi/en/haasi-mirror-houses/">lehmonkarkiresort.fi &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Hotel St. George</h4>
+      <div class="h-city" style="color:#457B9D;"><span class="h-dot" style="background:#457B9D;"></span> Helsinki &middot; 2 nights</div>
       <div class="h-meta">Booking.com 8.8/10 &middot; 148 rooms &middot; Design Hotels member</div>
-      <div class="h-why">Design Hotels property with an Ai Weiwei sculpture in the lobby. Wintergarden restaurant. Full spa with pool and sauna. Central location near Esplanadi park. Nordic design throughout.</div>
+      <div class="h-why">Design Hotels property with Ai Weiwei sculpture in the lobby. Wintergarden restaurant. Full spa with pool and sauna. Central, near Esplanadi park.</div>
       <div class="h-link"><a href="https://www.hotelstgeorge.fi/en/">hotelstgeorge.fi &rarr;</a></div>
     </div>
 
@@ -1045,7 +1345,7 @@
 <!-- FOOTER                                         -->
 <!-- ═══════════════════════════════════════════════ -->
 <div class="footer">
-  Nordic Arc &mdash; Summer 2026 &middot; Working Plan v6 &middot; Final routing &middot; Ready to book
+  Nordic Arc &mdash; Summer 2026 &middot; Working Plan v7 &middot; Mobile-friendly &middot; 7 unique stays &middot; Ready to book
 </div>
 
 </body>
