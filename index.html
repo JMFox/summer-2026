@@ -3,975 +3,1050 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nordic Arc — Oslo → Bergen → Stockholm → Helsinki | Summer 2026</title>
+<title>Nordic Arc — Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  :root {
-    --oslo: #2D6A4F;
-    --bergen: #1B4F72;
-    --sthlm: #F4A261;
-    --sthlm-dark: #C77D38;
-    --hel: #457B9D;
-    --bg: #08090a;
-    --card-bg: #111214;
-    --text: #f0f0f0;
-    --text-dim: #777;
-    --text-mid: #aaa;
-    --border: rgba(255,255,255,0.06);
-    --gold: #ffc312;
-  }
-
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ═══ AURORA / PARTICLES ═══ */
-  .aurora {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-  .aurora-band {
-    position: absolute;
-    width: 200%;
-    height: 60%;
-    top: -20%;
-    left: -50%;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.04;
-    animation: auroraShift 20s ease-in-out infinite alternate;
-  }
-  .aurora-band:nth-child(1) { background: var(--bergen); animation-delay: 0s; }
-  .aurora-band:nth-child(2) { background: var(--oslo); top: 30%; animation-delay: -7s; animation-duration: 25s; }
-  .aurora-band:nth-child(3) { background: var(--hel); top: 60%; animation-delay: -14s; animation-duration: 30s; }
-
-  @keyframes auroraShift {
-    0% { transform: translateX(-10%) rotate(-2deg); }
-    100% { transform: translateX(10%) rotate(2deg); }
-  }
-
-  /* ═══ HERO ═══ */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* ─── HEADER ─── */
+  .header {
     text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 2rem;
+    padding: 3.5rem 2rem 2rem;
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: #111;
+  }
+  .header .subtitle {
+    font-size: 0.82rem;
+    color: #666;
+    max-width: 720px;
+    margin: 0 auto 0.3rem;
+    line-height: 1.6;
+  }
+  .header .flights {
+    font-size: 0.72rem;
+    color: #999;
+    font-style: italic;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: url('https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=1920&q=80') center/cover no-repeat;
-    filter: brightness(0.12) saturate(0.6);
-    transform: scale(1.05);
-    animation: heroZoom 40s ease-in-out infinite alternate;
+  /* ─── ROUTE PILLS ─── */
+  .route-bar {
+    background: #fff;
+    padding: 1.5rem 2rem 1.2rem;
+    border-bottom: 1px solid #e8e8e8;
   }
-
-  @keyframes heroZoom {
-    from { transform: scale(1.05); }
-    to { transform: scale(1.18); }
+  .route-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
   }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom,
-      rgba(8,9,10,0.3) 0%,
-      transparent 30%,
-      transparent 60%,
-      var(--bg) 100%
-    );
-  }
-
-  /* Animated scan line for cinematic effect */
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(244,162,97,0.3), transparent);
-    animation: scanLine 8s linear infinite;
-    z-index: 1;
-  }
-
-  @keyframes scanLine {
-    0% { top: 0; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 960px; }
-
-  .hero-eyebrow {
+  .pill {
+    padding: 0.4rem 1rem;
+    border-radius: 24px;
     font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    margin-bottom: 1.6rem;
-    animation: fadeIn 1s ease 0.2s forwards;
-    opacity: 0;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(4rem, 10vw, 9rem);
-    font-weight: 900;
-    line-height: 0.95;
-    margin-bottom: 0.8rem;
-    background: linear-gradient(135deg, #fff 0%, #bbb 40%, #fff 60%, #ddd 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 6s ease-in-out infinite, fadeIn 1.2s ease 0.4s forwards;
-    opacity: 0;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .hero .tagline {
-    font-size: clamp(0.85rem, 2vw, 1.15rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-    animation: fadeIn 1s ease 0.6s forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* Route pills with glow */
-  .route-visual {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 0 3rem;
-  }
-
-  .route-city {
-    padding: 0.65rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    animation: pillPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    opacity: 0;
-    transform: scale(0.5);
-    position: relative;
-    overflow: hidden;
     color: #fff;
-    cursor: default;
-  }
-
-  .route-city::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 52px;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-  }
-
-  .route-city::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-    border-radius: 50px;
-  }
-
-  .route-city.oslo { background: var(--oslo); box-shadow: 0 4px 25px rgba(45,106,79,0.35); animation-delay: 0.8s; }
-  .route-city.bergen { background: var(--bergen); box-shadow: 0 4px 25px rgba(27,79,114,0.35); animation-delay: 1.1s; }
-  .route-city.sthlm { background: var(--sthlm-dark); box-shadow: 0 4px 25px rgba(244,162,97,0.3); animation-delay: 1.4s; }
-  .route-city.hel { background: var(--hel); box-shadow: 0 4px 25px rgba(69,123,157,0.35); animation-delay: 1.7s; }
-
-  .route-nights {
-    display: block;
-    font-size: 0.58rem;
-    font-weight: 500;
-    opacity: 0.75;
-    margin-top: 3px;
-    letter-spacing: 0.04em;
-  }
-
-  @keyframes pillPop {
-    from { opacity: 0; transform: scale(0.5) translateY(15px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  .route-arrow {
-    font-size: 1.3rem;
-    color: rgba(255,255,255,0.15);
-    animation: fadeIn 0.5s ease forwards;
-    opacity: 0;
-  }
-  .route-arrow:nth-of-type(1) { animation-delay: 0.95s; }
-  .route-arrow:nth-of-type(2) { animation-delay: 1.25s; }
-  .route-arrow:nth-of-type(3) { animation-delay: 1.55s; }
-
-  .hero-dates {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 0.35rem;
-    animation: fadeIn 1s ease 2s forwards;
-    opacity: 0;
-  }
-
-  .hero-flights {
-    font-size: 0.76rem;
-    color: rgba(255,255,255,0.25);
-    font-style: italic;
-    animation: fadeIn 1s ease 2.2s forwards;
-    opacity: 0;
-  }
-
-  .scroll-cue {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    animation: fadeIn 1s ease 3s forwards;
-    opacity: 0;
-  }
-
-  .scroll-cue span {
-    font-size: 0.6rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-  }
-
-  .scroll-cue .arrow {
-    width: 14px;
-    height: 14px;
-    border-right: 1.5px solid rgba(255,255,255,0.2);
-    border-bottom: 1.5px solid rgba(255,255,255,0.2);
-    transform: rotate(45deg);
-    animation: scrollBounce 2.5s infinite;
-  }
-
-  @keyframes scrollBounce {
-    0%, 100% { transform: rotate(45deg) translate(0,0); opacity: 0.15; }
-    50% { transform: rotate(45deg) translate(5px,5px); opacity: 0.5; }
-  }
-
-  /* ═══ CONTENT ═══ */
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 2rem 6rem; position: relative; z-index: 1; }
-
-  /* ═══ STATS BAR — Animated counters ═══ */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
-    margin: 4rem 0 5rem;
-  }
-
-  .stat-card {
+    letter-spacing: 0.03em;
     text-align: center;
-    padding: 1.8rem 0.8rem;
-    background: var(--card-bg);
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
+    line-height: 1.3;
   }
-
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-color, var(--oslo)), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255,255,255,0.1);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  }
-
-  .stat-card:hover::before { opacity: 1; }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .stat-card:nth-child(1) .stat-num { color: var(--oslo); }
-  .stat-card:nth-child(1) { --accent-color: var(--oslo); }
-  .stat-card:nth-child(2) .stat-num { color: var(--bergen); }
-  .stat-card:nth-child(2) { --accent-color: var(--bergen); }
-  .stat-card:nth-child(3) .stat-num { color: var(--sthlm); }
-  .stat-card:nth-child(3) { --accent-color: var(--sthlm); }
-  .stat-card:nth-child(4) .stat-num { color: var(--hel); }
-  .stat-card:nth-child(4) { --accent-color: var(--hel); }
-  .stat-card:nth-child(5) .stat-num { color: var(--oslo); }
-  .stat-card:nth-child(5) { --accent-color: var(--oslo); }
-  .stat-card:nth-child(6) .stat-num { color: var(--gold); }
-  .stat-card:nth-child(6) { --accent-color: var(--gold); }
-
-  .stat-label {
-    font-size: 0.62rem;
-    color: var(--text-dim);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-  }
-
-  /* ═══ SECTION HEADER ═══ */
-  .section-header {
+  .pill-oslo     { background: #2D6A4F; }
+  .pill-bergen   { background: #1B4F72; }
+  .pill-sthlm    { background: #C77D38; }
+  .pill-ferry    { background: #7766aa; }
+  .pill-hel      { background: #457B9D; }
+  .pill .nights  { display: block; font-size: 0.55rem; font-weight: 500; opacity: 0.85; }
+  .route-arrow   { color: #ccc; font-size: 1rem; line-height: 1; }
+  .route-stats {
     text-align: center;
-    margin-bottom: 2.5rem;
-  }
-
-  .section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-  }
-
-  .section-header p {
-    color: var(--text-dim);
-    font-size: 0.88rem;
-  }
-
-  /* ═══ MIDNIGHT SUN BANNER ═══ */
-  .highlight-banner {
-    background: linear-gradient(135deg, rgba(27,79,114,0.25) 0%, rgba(45,106,79,0.15) 50%, rgba(244,162,97,0.1) 100%);
-    border: 1px solid rgba(27,79,114,0.3);
-    border-radius: 24px;
-    padding: 3rem;
-    text-align: center;
-    margin: 2rem 0 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .highlight-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 40%, rgba(244,162,97,0.06) 0%, transparent 50%);
-    animation: bannerGlow 10s ease-in-out infinite alternate;
-  }
-
-  @keyframes bannerGlow {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(5%, 5%); }
-  }
-
-  .highlight-banner h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 0.7rem;
-    position: relative;
-  }
-
-  .highlight-banner p {
-    color: var(--text-mid);
-    font-size: 0.9rem;
-    line-height: 1.75;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .sun-times {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-    position: relative;
-  }
-
-  .sun-time { text-align: center; }
-
-  .sun-time .city-name {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.2rem;
-  }
-
-  .sun-time .times {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--sthlm);
-  }
-
-  /* ═══ PAGE CARDS GRID ═══ */
-  .pages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 5rem;
-  }
-
-  .page-card {
-    position: relative;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    text-decoration: none;
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .page-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    border-color: rgba(255,255,255,0.15);
-    box-shadow: 0 30px 70px rgba(0,0,0,0.4), 0 0 40px rgba(244,162,97,0.05);
-  }
-
-  .page-card-img {
-    height: 210px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .page-card-img-inner {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transition: transform 10s ease;
-  }
-
-  .page-card:hover .page-card-img-inner {
-    transform: scale(1.08);
-  }
-
-  .page-card-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.05) 100%);
-    z-index: 1;
-  }
-
-  .page-card-icon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 2.2rem;
-    z-index: 2;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-    transition: transform 0.4s;
-  }
-
-  .page-card:hover .page-card-icon { transform: scale(1.15) rotate(-5deg); }
-
-  .page-card-label {
-    position: absolute;
-    bottom: 1rem;
-    left: 1.3rem;
-    z-index: 2;
-  }
-
-  .page-card-label h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.55rem;
-    font-weight: 800;
-    line-height: 1.2;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  }
-
-  .page-card-label .subtitle {
+    margin-top: 0.8rem;
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.55);
-    letter-spacing: 0.12em;
+    color: #aaa;
+  }
+  .route-stats span { margin: 0 0.6rem; }
+  .route-stats strong { color: #666; font-weight: 600; }
+
+  /* ─── TABLE ─── */
+  .table-wrap {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.74rem;
+    min-width: 1200px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+  thead th {
+    text-align: left;
+    padding: 0.65rem 0.6rem;
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    color: #fff;
+    background: #222;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  td {
+    padding: 0.6rem 0.6rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+    color: #555;
+    line-height: 1.55;
+  }
+  tr:hover td { background: #fafcff; }
+
+  .day-cell {
+    font-weight: 700;
+    color: #1a1a1a;
+    white-space: nowrap;
+    font-size: 0.72rem;
+    min-width: 72px;
+  }
+  .date-sub { display: block; font-weight: 500; font-size: 0.62rem; color: #999; }
+  .city-cell { white-space: nowrap; font-weight: 600; color: #333; }
+  .hotel-cell { font-weight: 600; color: #1a1a1a; font-size: 0.73rem; }
+  .hotel-cell .rating {
+    font-size: 0.54rem;
+    background: #f0f0f0;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    color: #888;
+    margin-left: 3px;
+    font-weight: 600;
+  }
+  .meal { font-weight: 600; color: #333; }
+  .meal-sub { display: block; font-size: 0.66rem; color: #999; font-weight: 400; }
+  .note { color: #999; font-size: 0.67rem; }
+  .activity-text { color: #444; }
+
+  .city-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  .dot-oslo    { background: #2D6A4F; }
+  .dot-bergen  { background: #1B4F72; }
+  .dot-sthlm   { background: #C77D38; }
+  .dot-ferry   { background: #7766aa; }
+  .dot-hel     { background: #457B9D; }
+
+  /* Badges */
+  .nyc-badge {
+    display: inline-block;
+    font-size: 0.5rem;
+    font-weight: 800;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    background: #fff8e1;
+    color: #e6a800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 3px;
+    border: 1px solid #ffeeba;
+  }
+  .new-badge {
+    display: inline-block;
+    font-size: 0.5rem;
+    font-weight: 800;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    background: #ede7f6;
+    color: #7e57c2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 4px;
+  }
+
+  /* Section rows */
+  .section-row td {
+    padding: 0.55rem 0.6rem;
+    font-weight: 700;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    background: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  /* Links */
+  a { color: #d35400; text-decoration: none; font-weight: 500; }
+  a:hover { text-decoration: underline; }
+  .book-link {
+    display: inline-block;
+    font-size: 0.62rem;
+    color: #d35400;
+    margin-top: 0.15rem;
+    font-weight: 600;
+  }
+  .book-col a {
+    display: block;
+    font-size: 0.62rem;
+    color: #d35400;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+
+  /* Departure row */
+  .depart-row td { color: #bbb; }
+  .depart-row .day-cell { color: #999; }
+
+  /* Alt option */
+  .alt-option {
+    display: block;
+    font-size: 0.62rem;
+    color: #9575cd;
+    font-style: italic;
     margin-top: 0.3rem;
   }
 
-  .page-card-body {
-    padding: 1.5rem 1.5rem 1.7rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .page-card-body p {
-    font-size: 0.84rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    flex: 1;
-  }
-
-  .page-card-tags {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
-
-  .page-tag {
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .page-tag-oslo { background: rgba(45,106,79,0.18); color: #6abf8e; }
-  .page-tag-bergen { background: rgba(27,79,114,0.18); color: #5590b8; }
-  .page-tag-sthlm { background: rgba(244,162,97,0.18); color: #F4A261; }
-  .page-tag-hel { background: rgba(69,123,157,0.18); color: #7aafc4; }
-  .page-tag-all { background: rgba(255,195,18,0.12); color: var(--gold); }
-
-  .page-card-cta {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-top: 1rem;
-    color: var(--sthlm);
-    transition: gap 0.3s, letter-spacing 0.3s;
-  }
-
-  .page-card:hover .page-card-cta { gap: 0.8rem; letter-spacing: 0.08em; }
-
-  /* ═══ HOTELS STRIP ═══ */
-  .hotels-strip {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    margin-bottom: 5rem;
-  }
-
-  .hotel-mini {
-    text-align: center;
-    padding: 1.4rem 0.7rem;
-    background: var(--card-bg);
-    border-radius: 18px;
-    border: 1px solid var(--border);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hotel-mini:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.1);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-  }
-
-  .hotel-mini .emoji { font-size: 1.8rem; margin-bottom: 0.6rem; }
-
-  .hotel-mini h4 {
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .hotel-mini .hotel-meta {
-    font-size: 0.63rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  /* ═══ CLOSING QUOTE ═══ */
-  .closing-quote {
-    text-align: center;
-    padding: 4rem 2rem;
-    max-width: 700px;
+  /* ─── BOTTOM SECTIONS ─── */
+  .bottom-section {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1.5rem;
   }
-
-  .closing-quote blockquote {
+  .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
-    font-weight: 700;
-    font-style: italic;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.7);
-    position: relative;
-    padding: 0 2rem;
-  }
-
-  .closing-quote blockquote::before {
-    content: '"';
-    font-size: 5rem;
-    color: var(--sthlm);
-    opacity: 0.3;
-    position: absolute;
-    top: -1.5rem;
-    left: -0.5rem;
-    font-family: 'Playfair Display', serif;
-  }
-
-  .closing-quote .attribution {
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-  }
-
-  /* ═══ FOOTER ═══ */
-  .site-footer {
-    text-align: center;
-    padding: 4rem 2rem;
-    border-top: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.78rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .site-footer .footer-route {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--text);
-    margin-bottom: 0.6rem;
-    letter-spacing: 0.03em;
+    text-align: center;
+    margin: 3rem 0 1.5rem;
+    color: #111;
+  }
+  .section-divider {
+    width: 50px;
+    height: 3px;
+    background: #ddd;
+    margin: 0 auto 2rem;
+    border-radius: 2px;
   }
 
-  .site-footer a {
-    color: var(--sthlm);
-    text-decoration: none;
-    transition: color 0.2s;
+  /* Experiences grid */
+  .exp-city-label {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #333;
+    padding: 0.8rem 0 0.3rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .exp-city-label:first-child { margin-top: 0; }
+  .exp-city-label .city-dot { width: 10px; height: 10px; }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 0.5rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid #f3f3f3;
+    font-size: 0.74rem;
+    align-items: center;
+  }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-name { font-weight: 600; color: #222; }
+  .exp-dur { color: #999; font-size: 0.68rem; }
+  .exp-price { color: #666; font-size: 0.68rem; font-weight: 500; }
+  .exp-link a { font-size: 0.66rem; color: #d35400; font-weight: 600; }
+
+  /* Hotels grid */
+  .hotel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hotel-card {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 1.3rem;
+    transition: box-shadow 0.2s;
+  }
+  .hotel-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
+  .hotel-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.15rem;
+    color: #111;
+  }
+  .hotel-card .h-city {
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .hotel-card .h-meta {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 0.4rem;
+  }
+  .hotel-card .h-why {
+    font-size: 0.72rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .hotel-card .h-link a {
+    font-size: 0.68rem;
+    color: #d35400;
+    font-weight: 600;
   }
 
-  .site-footer a:hover { color: #fff; }
-
-  /* ═══ RESPONSIVE ═══ */
-  @media (max-width: 900px) {
-    .hotels-strip { grid-template-columns: repeat(3, 1fr); }
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid #e8e8e8;
+    color: #bbb;
+    font-size: 0.72rem;
+    margin-top: 2rem;
+    background: #fff;
   }
 
-  @media (max-width: 600px) {
-    .pages-grid { grid-template-columns: 1fr; }
-    .hotels-strip { grid-template-columns: repeat(2, 1fr); }
-    .stats-grid { grid-template-columns: repeat(3, 1fr); }
-    .route-visual { gap: 0.3rem; }
-    .route-city { padding: 0.45rem 0.9rem; font-size: 0.72rem; }
-    .sun-times { flex-direction: column; gap: 0.8rem; }
-    .highlight-banner { padding: 2rem 1.5rem; }
-    .closing-quote blockquote { font-size: 1.2rem; }
-    .hero h1 { font-size: clamp(3rem, 12vw, 6rem); }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 2rem; }
+    .route-pills { gap: 0.2rem; }
+    .pill { font-size: 0.62rem; padding: 0.3rem 0.7rem; }
+    .exp-row { grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+    .hotel-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.3rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ AURORA BACKGROUND ═══ -->
-<div class="aurora">
-  <div class="aurora-band"></div>
-  <div class="aurora-band"></div>
-  <div class="aurora-band"></div>
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HEADER                                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="header">
+  <h1>Nordic Arc &mdash; Summer 2026</h1>
+  <div class="subtitle">Jun 26 depart JFK (SK 908) &rarr; Jun 27 arrive Oslo &rarr; Jul 9 depart Helsinki (SK 705 &rarr; SK 903 via CPH) &middot; 12 nights &middot; 5 stops &middot; 3 countries</div>
+  <div class="flights">Norway &rarr; Sweden &rarr; Finland &middot; Every day an experience impossible to replicate in New York City</div>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Summer 2026 &nbsp;·&nbsp; The Trip</p>
-    <h1>Nordic Arc</h1>
-    <p class="tagline">Norway &nbsp;·&nbsp; Sweden &nbsp;·&nbsp; Finland</p>
-
-    <div class="route-visual">
-      <span class="route-city oslo">Oslo<span class="route-nights">1 night</span></span>
-      <span class="route-arrow">→</span>
-      <span class="route-city bergen">Bergen & Fjords<span class="route-nights">3 nights</span></span>
-      <span class="route-arrow">→</span>
-      <span class="route-city sthlm">Stockholm<span class="route-nights">3 nights</span></span>
-      <span class="route-arrow">→</span>
-      <span class="route-city hel">Helsinki<span class="route-nights">2 nights</span></span>
-    </div>
-
-    <p class="hero-dates">June 27 – July 8, 2026 &nbsp;·&nbsp; 12 Nights &nbsp;·&nbsp; 3 Countries</p>
-    <p class="hero-flights">SAS nonstop JFK→Oslo &nbsp;·&nbsp; Bergen Railway &nbsp;·&nbsp; Tallink Silja overnight ferry &nbsp;·&nbsp; Finnair nonstop HEL→JFK</p>
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ROUTE PILL BAR                                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="route-bar">
+  <div class="route-pills">
+    <span class="pill pill-oslo">Oslo<span class="nights">2 nights</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-bergen">Bergen + Fjords<span class="nights">3 nights</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-sthlm">Stockholm<span class="nights">3 nights</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-ferry">Overnight Ferry<span class="nights">1 night</span></span>
+    <span class="route-arrow">&rarr;</span>
+    <span class="pill pill-hel">Helsinki<span class="nights">3 nights</span></span>
   </div>
-  <div class="scroll-cue">
-    <span>Explore</span>
-    <div class="arrow"></div>
+  <div class="route-stats">
+    <span><strong>12</strong> nights</span>
+    <span><strong>5</strong> hotels</span>
+    <span><strong>3</strong> countries</span>
+    <span><strong>5</strong> saunas</span>
+    <span><strong>2</strong> Michelin stars</span>
+    <span><strong>15</strong> bookable experiences</span>
   </div>
-</section>
-
-<div class="content">
-
-  <!-- ═══ STATS ═══ -->
-  <div class="stats-grid">
-    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">Nights</div></div>
-    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Countries</div></div>
-    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Unique Stays</div></div>
-    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Michelin Stars</div></div>
-    <div class="stat-card"><div class="stat-num">20h</div><div class="stat-label">Daylight / Day</div></div>
-    <div class="stat-card"><div class="stat-num">0</div><div class="stat-label">NYC Repeats</div></div>
+  <div class="route-stats" style="margin-top: 0.6rem; font-size: 0.65rem; color: #bbb;">
+    <strong style="color:#888;">Transit legs:</strong>
+    <span>Day 1: SK 908 &rarr; Oslo ~8 AM</span>
+    <span>Day 3: Bergen Railway 8:25 AM &rarr; 2:30 PM</span>
+    <span>Day 6: Fly Bergen &rarr; Stockholm ~8 AM, arrive ~9:30 AM</span>
+    <span>Day 9: Board Silja ferry 4:30 PM</span>
+    <span>Day 10: Ferry arrives Helsinki ~10 AM</span>
+    <span>Day 13: SK 705 &rarr; SK 903 HEL &rarr; CPH &rarr; JFK</span>
   </div>
-
-  <!-- ═══ MIDNIGHT SUN BANNER ═══ -->
-  <div class="highlight-banner">
-    <h3>The Midnight Sun Effect</h3>
-    <p>You're traveling during the longest days of the Nordic year. The sun sets after 11 PM and rises before 4 AM. There is no true darkness. Hike at midnight, eat dinner outside at 10 PM, watch golden light paint fjord walls at 2 AM. This is not a gimmick — it is a completely different relationship with time.</p>
-    <div class="sun-times">
-      <div class="sun-time">
-        <div class="city-name">Bergen (60.4°N)</div>
-        <div class="times">4:00 AM – 11:30 PM</div>
-      </div>
-      <div class="sun-time">
-        <div class="city-name">Stockholm (59.3°N)</div>
-        <div class="times">3:30 AM – 10:00 PM</div>
-      </div>
-      <div class="sun-time">
-        <div class="city-name">Helsinki (60.2°N)</div>
-        <div class="times">3:50 AM – 10:50 PM</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ EXPLORE THE TRIP ═══ -->
-  <div class="section-header">
-    <h2>Explore the Trip</h2>
-    <p>Seven guides, one arc — tap into any section</p>
-  </div>
-
-  <div class="pages-grid">
-
-    <a href="itinerary/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?w=800&q=80');"></div>
-        <span class="page-card-icon">🗓</span>
-        <div class="page-card-label">
-          <h3>Day-by-Day Itinerary</h3>
-          <div class="subtitle">12 days, every hour planned</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>The full route: Bergen Railway across mountain plateaus, UNESCO fjords, three Michelin-starred cities, overnight Baltic ferry, Finnish sauna finale. Named breakfast every single day.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-oslo">Oslo</span>
-          <span class="page-tag page-tag-bergen">Bergen</span>
-          <span class="page-tag page-tag-sthlm">Stockholm</span>
-          <span class="page-tag page-tag-hel">Helsinki</span>
-        </div>
-        <div class="page-card-cta">Explore itinerary <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="restaurants/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80');"></div>
-        <span class="page-card-icon">🍽</span>
-        <div class="page-card-label">
-          <h3>Nordic Dining Guide</h3>
-          <div class="subtitle">Michelin · Street food · Fika · Markets</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>Bergen's three new Michelin stars, Ekstedt's birch-fire kitchen, Swedish fika at century-old cafés, Finnish market halls, and a 12-day breakfast route. Every meal planned, every reservation prioritized.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-all">40+ restaurants</span>
-          <span class="page-tag page-tag-bergen">7 Michelin stars total</span>
-        </div>
-        <div class="page-card-cta">Explore restaurants <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="hotels/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1624237578438-b23c91989182?w=800&q=80');"></div>
-        <span class="page-card-icon">🏨</span>
-        <div class="page-card-label">
-          <h3>Where We're Staying</h3>
-          <div class="subtitle">5 stays · No cookie-cutter chains</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>An art museum hotel, a heritage bank with Grieg family roots, a 22-room residential townhouse, an overnight Baltic ferry, and a Design Hotels property with Ai Weiwei in the lobby. Every stay is the trip.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-sthlm">Ett Hem: 22 rooms</span>
-          <span class="page-tag page-tag-bergen">Opus XVI: Michelin Key</span>
-        </div>
-        <div class="page-card-cta">Explore hotels <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="experiences/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80');"></div>
-        <span class="page-card-icon">✨</span>
-        <div class="page-card-label">
-          <h3>Bookable Experiences</h3>
-          <div class="subtitle">Top 5 ranked · Booking links</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>Ranked by "could you do this in New York?" factor. Fjord kayaking at dawn, archipelago island hopping, fire-cooked Michelin dinner, midnight fortress walks, and the 2,000-year sauna ritual.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-all">All impossible in NYC</span>
-        </div>
-        <div class="page-card-cta">Explore experiences <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="fjords/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80');"></div>
-        <span class="page-card-icon">🏔</span>
-        <div class="page-card-label">
-          <h3>Norwegian Fjords</h3>
-          <div class="subtitle">Nærøyfjord · Hardangerfjord · Flåmsbana</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>The fjord landscape decoded: UNESCO Nærøyfjord (250m at its narrowest), the world's steepest railway with a mythological dancer, Hardangerfjord kayaking at dawn, and photography in 20 hours of light.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-bergen">UNESCO World Heritage</span>
-          <span class="page-tag page-tag-oslo">Flåmsbana Railway</span>
-        </div>
-        <div class="page-card-cta">Explore fjords <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="sauna/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80');"></div>
-        <span class="page-card-icon">🧖</span>
-        <div class="page-card-label">
-          <h3>Finnish Sauna Culture</h3>
-          <div class="subtitle">2,000-year ritual · UNESCO heritage</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>The single most culturally irreplaceable experience on this trip. 3.3 million saunas for 5.5 million people. The ritual, the etiquette, smoke sauna vs. regular, and Helsinki's five best saunas from 1928 originals to modern masterpieces.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-hel">Löyly · Kotiharjun · Allas</span>
-        </div>
-        <div class="page-card-cta">Explore sauna guide <span>→</span></div>
-      </div>
-    </a>
-
-    <a href="practical/" class="page-card">
-      <div class="page-card-img">
-        <div class="page-card-img-inner" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80');"></div>
-        <span class="page-card-icon">🧳</span>
-        <div class="page-card-label">
-          <h3>Practical Guide</h3>
-          <div class="subtitle">Packing · Currency · Transport · Booking</div>
-        </div>
-      </div>
-      <div class="page-card-body">
-        <p>Three currencies, Bergen Railway booking, Tallink Silja cabin selection, packing for fjord weather and Michelin dinners, booking checklist with urgency levels, and the 20-hour daylight sleep mask situation.</p>
-        <div class="page-card-tags">
-          <span class="page-tag page-tag-all">NOK · SEK · EUR</span>
-        </div>
-        <div class="page-card-cta">Explore practical guide <span>→</span></div>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- ═══ HOTELS STRIP ═══ -->
-  <div class="section-header">
-    <h2>Five Nights, Five Stories</h2>
-    <p>Every stay is the trip — not just a place to sleep</p>
-  </div>
-
-  <div class="hotels-strip">
-    <div class="hotel-mini">
-      <div class="emoji">🎨</div>
-      <h4 style="color: #6abf8e;">The Thief</h4>
-      <div class="hotel-meta">Oslo · Art hotel<br/>Astrup Fearnley Museum</div>
-    </div>
-    <div class="hotel-mini">
-      <div class="emoji">🏛</div>
-      <h4 style="color: #5590b8;">Opus XVI</h4>
-      <div class="hotel-meta">Bergen · 65 rooms<br/>1876 heritage bank</div>
-    </div>
-    <div class="hotel-mini">
-      <div class="emoji">🏡</div>
-      <h4 style="color: var(--sthlm);">Ett Hem</h4>
-      <div class="hotel-meta">Stockholm · 22 rooms<br/>1912 townhouse</div>
-    </div>
-    <div class="hotel-mini">
-      <div class="emoji">⛴</div>
-      <h4 style="color: #9999cc;">Tallink Silja</h4>
-      <div class="hotel-meta">Baltic Sea · 1 night<br/>Commodore Class</div>
-    </div>
-    <div class="hotel-mini">
-      <div class="emoji">🇫🇮</div>
-      <h4 style="color: #7aafc4;">Hotel St. George</h4>
-      <div class="hotel-meta">Helsinki · Design Hotels<br/>Ai Weiwei in the lobby</div>
-    </div>
-  </div>
-
-  <!-- ═══ CLOSING QUOTE ═══ -->
-  <div class="closing-quote">
-    <blockquote>Every day has at least one experience that is categorically impossible to replicate in New York City. That was the rule. We didn't break it once.</blockquote>
-    <div class="attribution">— The brief for this trip</div>
-  </div>
-
 </div>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="site-footer">
-  <div class="footer-route">Oslo → Bergen → Fjords → Stockholm → Helsinki</div>
-  <p>June 27 – July 8, 2026 &nbsp;·&nbsp; 12 Nights &nbsp;·&nbsp; 3 Countries</p>
-  <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.2);">SAS nonstop JFK→Oslo &nbsp;·&nbsp; Bergen Railway &nbsp;·&nbsp; Tallink Silja overnight ferry &nbsp;·&nbsp; Finnair nonstop HEL→JFK</p>
-</footer>
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAY-BY-DAY TABLE                               -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>Day</th>
+  <th>Date</th>
+  <th>City</th>
+  <th>Hotel</th>
+  <th>Breakfast</th>
+  <th>Morning Activity</th>
+  <th>Lunch</th>
+  <th>Afternoon / Evening Activity</th>
+  <th>Dinner</th>
+  <th>Bookable Links</th>
+</tr>
+</thead>
+<tbody>
+
+<!-- ─── OSLO ─── -->
+<tr class="section-row"><td colspan="10"><span class="city-dot dot-oslo"></span>OSLO &mdash; 2 nights</td></tr>
+
+<tr>
+  <td class="day-cell">Day 1</td>
+  <td class="day-cell"><span class="date-sub">Sat</span>Jun 27</td>
+  <td class="city-cell"><span class="city-dot dot-oslo"></span>Oslo</td>
+  <td class="hotel-cell">The Thief <span class="rating">8.8/10</span></td>
+  <td>
+    <span class="meal">Mathallen Food Hall</span>
+    <span class="meal-sub">8 AM &middot; Maridalsveien 17. Smoked salmon on dark rye, brunost, skyr with lingonberries, cardamom buns.</span>
+  </td>
+  <td class="activity-text">
+    10 AM: <span class="meal">Sm&oslash;rbr&oslash;d at P&aring;fylt</span> (Thorvald Meyers gate 26). Open-faced sandwiches. Walk Gr&uuml;nerl&oslash;kka neighborhood.
+  </td>
+  <td class="note">Grazing from morning</td>
+  <td class="activity-text">
+    12 PM: <strong>Vigeland Sculpture Park</strong> &mdash; 200+ sculptures, free, 1.5 hrs. Walk to Aker Brygge waterfront. Check into The Thief 2:30 PM.<br/>
+    11 PM: <strong>Oslo Opera House</strong> &mdash; walk the white marble rooftop in full midnight sun golden light. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="note">Light dinner near waterfront (jet lag recovery)</span>
+  </td>
+  <td class="book-col">
+    <span class="note">Mathallen (walk-in)</span><br/>
+    <span class="note">Vigeland Park (free)</span>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 2</td>
+  <td class="day-cell"><span class="date-sub">Sun</span>Jun 28</td>
+  <td class="city-cell"><span class="city-dot dot-oslo"></span>Oslo</td>
+  <td class="hotel-cell">The Thief</td>
+  <td>
+    <span class="meal">Hotel breakfast or Fuglen Coffee</span>
+    <span class="meal-sub">7 AM &middot; Universitetsgata 2. Specialty coffee pioneer.</span>
+  </td>
+  <td class="activity-text">
+    8:30 AM: <strong>Vettakollen Hike</strong> &mdash; 2-3 hr round trip from Vettakollen T-bane station. Panoramic views over Oslofjord, city, Holmenkollen. THE best viewpoint hike near Oslo. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="meal">Ekebergparken Sculpture Park</span>
+    <span class="meal-sub">12 PM &middot; Hilltop park overlooking city/fjord. Sculptures in nature. Restaurant on site.</span>
+  </td>
+  <td class="activity-text">
+    3 PM: <strong>KOK Sauna Cruise</strong> &mdash; floating sauna boat cruising the Oslofjord. Cold plunge in the fjord from the boat. <span class="nyc-badge">Not in NYC</span><br/><br/>
+    <strong>Munch Museum</strong> (opened 2022, dramatic waterfront building). Then SALT waterfront area for drinks.
+  </td>
+  <td>
+    <span class="meal">Kontrast</span>
+    <span class="meal-sub">2 Michelin stars, Vulkan area. Or light dinner before early Bergen Railway tomorrow.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://koknorge.no/en/sauna-cruise/">KOK Sauna Cruise &rarr;</a>
+    <a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">Ekebergparken &rarr;</a>
+  </td>
+</tr>
+
+<!-- ─── BERGEN ─── -->
+<tr class="section-row"><td colspan="10"><span class="city-dot dot-bergen"></span>BERGEN + FJORDS &mdash; 3 nights</td></tr>
+
+<tr>
+  <td class="day-cell">Day 3</td>
+  <td class="day-cell"><span class="date-sub">Mon</span>Jun 29</td>
+  <td class="city-cell"><span class="city-dot dot-bergen"></span>Oslo &rarr; Bergen</td>
+  <td class="hotel-cell">Opus XVI <span class="rating">9.1/10</span></td>
+  <td>
+    <span class="meal">Oslo Central Station</span>
+    <span class="meal-sub">7:30 AM &middot; Pack sm&oslash;rbr&oslash;d from Deli de Luca for the train.</span>
+  </td>
+  <td class="activity-text">
+    8:25 AM: <strong>Bergen Railway (Bergensbanen)</strong> &mdash; 6.5 hours, world's most scenic train. Crosses Hardangervidda plateau at 1,222m. 300+ bridges. Snow in June. Sit RIGHT side facing west. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td class="note">Train cafe car / packed provisions</td>
+  <td class="activity-text">
+    Arrive Bergen 2:30 PM. Check into Opus XVI. Walk to <strong>Bryggen</strong> &mdash; 14th-century wooden UNESCO merchant houses. Golden light all evening.
+  </td>
+  <td>
+    <span class="meal">Enhjorningen</span>
+    <span class="meal-sub">7 PM &middot; Bryggen 29. Seafood in a 1300s building. Fiskesuppe, poached halibut, klippfisk.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.vy.no/en">Bergen Railway (vy.no) &rarr;</a>
+    <span class="note">Book window seat 4-6 weeks ahead</span>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 4</td>
+  <td class="day-cell"><span class="date-sub">Tue</span>Jun 30</td>
+  <td class="city-cell"><span class="city-dot dot-bergen"></span>Bergen</td>
+  <td class="hotel-cell">Opus XVI</td>
+  <td>
+    <span class="meal">Bergen Fish Market</span>
+    <span class="meal-sub">7 AM &middot; Fisketorget, Torget 5. Outdoor harbor stalls. Fresh shrimp, king crab, fish soup, whale sashimi. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="activity-text">
+    9 AM: Second breakfast <strong>Colonialen Bakery</strong> (Kong Oscars gate 44). Sourdough, skyr, cloudberry. Then: <strong>Mount Fl&oslash;yen</strong> &mdash; funicular up, forest hike down on Trail 6 (1 hr).
+  </td>
+  <td>
+    <span class="meal">KODE Art Museums</span>
+    <span class="meal-sub">1 PM &middot; 4 buildings, KODE 4 has Munch + Norwegian contemporary. 2 hours.</span>
+  </td>
+  <td class="activity-text">
+    3:30 PM: <strong>Heit Bergen Floating Sauna</strong> (Marineholmen). 1h50 session. Floating sauna on Bergen harbor + fjord cold plunge. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="meal">Lysverket &#11088;</span>
+    <span class="meal-sub">7 PM &middot; 1 Michelin star. Rasmus Meyers all&eacute; 9, inside KODE 4. Nordic seafood with Asian inflections.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">Heit Floating Sauna &rarr;</a>
+    <a href="https://lysverket.no/">Lysverket &rarr;</a>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 5</td>
+  <td class="day-cell"><span class="date-sub">Wed</span>Jul 1</td>
+  <td class="city-cell"><span class="city-dot dot-bergen"></span>Bergen Fjords</td>
+  <td class="hotel-cell">Opus XVI</td>
+  <td>
+    <span class="meal">5:30 AM &mdash; EARLY</span>
+    <span class="meal-sub">Pack provisions from hotel. Fjord kayaking at dawn.</span>
+  </td>
+  <td class="activity-text">
+    6 AM: <strong>Fjord Kayaking at Dawn</strong> &mdash; guided paddling in mirror-flat water between cliff walls. Waterfalls. Silence. 3-4 hours. <span class="nyc-badge">Not in NYC</span><br/><br/>
+    Then: <strong>Fl&aring;msbana Railway</strong> &mdash; world's steepest, 55 min. Huldra dancer at Kjosfossen waterfall. Then: <strong>N&aelig;r&oslash;yfjord UNESCO cruise</strong> &mdash; 2 hrs, 250m wide, 1700m cliff walls.
+  </td>
+  <td>
+    <span class="meal">&AElig;gir Bryggeri</span>
+    <span class="meal-sub">12:30 PM &middot; Fl&aring;m harbor. Viking brewpub. Craft ales, lamb stew.</span>
+  </td>
+  <td class="activity-text">
+    Return to Bergen ~7 PM.
+  </td>
+  <td>
+    <span class="meal">Cornelius</span>
+    <span class="meal-sub">8 PM &middot; Seafood on a private island. Restaurant's boat from Bergen harbor (15 min). No menu &mdash; eat what was caught today. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.nordicventures.com/">Fjord Kayaking &rarr;</a>
+    <a href="https://www.norwaynutshell.com/">Norway in a Nutshell &rarr;</a>
+    <a href="https://www.cornelius.no/">Cornelius Island &rarr;</a>
+  </td>
+</tr>
+
+<!-- ─── STOCKHOLM ─── -->
+<tr class="section-row"><td colspan="10"><span class="city-dot dot-sthlm"></span>STOCKHOLM &mdash; 3 nights</td></tr>
+
+<tr>
+  <td class="day-cell">Day 6</td>
+  <td class="day-cell"><span class="date-sub">Thu</span>Jul 2</td>
+  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Bergen &rarr; Stockholm</td>
+  <td class="hotel-cell">Ett Hem <span class="rating">9.7/10</span></td>
+  <td>
+    <span class="note">Bergen airport or plane</span>
+  </td>
+  <td class="activity-text">
+    <strong>~8 AM flight</strong> Bergen &rarr; Stockholm Arlanda (1.5 hrs). <strong>Arlanda Express</strong> to city center (18 min, ~SEK 300). <strong>Arrive Ett Hem ~11:30 AM.</strong><br/><br/>
+    1 PM: <strong>Gamla Stan</strong> &mdash; medieval old town. Stortorget. 13th-century cobblestone alleys.
+    <span class="alt-option">(or: Fotografiska photography museum if arriving late)</span>
+  </td>
+  <td>
+    <span class="meal">Fabrique fika</span>
+    <span class="meal-sub">3 PM &middot; Storgatan 19. Royal Court purveyor. Best kanelbullar in Stockholm.</span>
+  </td>
+  <td class="activity-text">
+    4 PM: <strong>Vasa Museum</strong> (Galv&auml;rvsv&auml;gen 14) &mdash; 1628 warship, 95% intact after 333 years. Genuinely singular worldwide. 2 hours. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="meal">Ekstedt &#11088;</span>
+    <span class="meal-sub">7 PM &middot; Humleg&aring;rdsgatan 17. 1 Michelin star. Zero electricity in the kitchen. Everything over birch fire. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.vasamuseet.se/en">Vasa Museum &rarr;</a>
+    <a href="https://ekstedt.nu/">Ekstedt &rarr;</a>
+    <span class="note">Book Ekstedt 4-6 weeks ahead</span>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 7</td>
+  <td class="day-cell"><span class="date-sub">Fri</span>Jul 3</td>
+  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Stockholm</td>
+  <td class="hotel-cell">Ett Hem</td>
+  <td>
+    <span class="meal">Rosendals Tr&auml;dg&aring;rd</span>
+    <span class="meal-sub">8 AM &middot; Rosendalsterrassen 12, Djurg&aring;rden. Biodynamic garden caf&eacute; under apple trees. Wood-fired oven bread, honey from on-site hives. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="activity-text">
+    10 AM: <strong>Fotografiska</strong> (photography museum, S&ouml;dermalm). Rooftop views.
+  </td>
+  <td>
+    <span class="meal">&Ouml;stermalms Saluhall</span>
+    <span class="meal-sub">12:30 PM &middot; Stockholm's finest food hall. Reindeer, vendace roe, gravlax.</span>
+  </td>
+  <td class="activity-text">
+    Afternoon: Return to Ett Hem. Enjoy the garden, library, greenhouse. This IS the experience.<br/><br/>
+    5 PM: <strong>Moose &amp; Wildlife Safari</strong> &mdash; 5 hr guided evening safari. Moose, deer, wild boar in forest outside Stockholm. Golden 10 PM light. <span class="nyc-badge">Not in NYC</span><br/>
+    Late return (~midnight, still daylight). Snack at Ett Hem kitchen (always open to guests).
+  </td>
+  <td>
+    <span class="note">Late return from safari &mdash; Ett Hem kitchen (always open)</span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.truenaturesweden.com/wildlife-safari">Wildlife Safari (True Nature) &rarr;</a>
+    <a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">Wildlife Safari (Green Trails) &rarr;</a>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 8</td>
+  <td class="day-cell"><span class="date-sub">Sat</span>Jul 4</td>
+  <td class="city-cell"><span class="city-dot dot-sthlm"></span>Stockholm</td>
+  <td class="hotel-cell">Ett Hem</td>
+  <td>
+    <span class="meal">Caf&eacute; Saturnus or Ett Hem</span>
+    <span class="meal-sub">8 AM &middot; Eriksbergsgatan 6. Giant cardamom bun. Or Ett Hem garden breakfast.</span>
+  </td>
+  <td class="activity-text">
+    Slow Ett Hem morning. Enjoy the personal chef, garden, library, greenhouse. This IS the experience &mdash; linger.
+  </td>
+  <td>
+    <span class="meal">&Ouml;stermalms Saluhall</span>
+    <span class="meal-sub">Stockholm's finest food hall.</span>
+  </td>
+  <td class="activity-text">
+    2 PM: <strong>Tyresta National Park Sunset Hike + Dinner</strong> &mdash; 4.5 hrs guided. Old-growth forest, 1999 fire zone with charred skeleton trees regenerating, dark rift-valley lakes. Dinner included. 30 min from city. <span class="nyc-badge">Not in NYC</span><br/>
+    Return ~8:30 PM. Light evening.
+    <span class="alt-option">(or: Archipelago Sunset Kayak &mdash; 5 hrs through skerries, sea eagles &mdash; stockholmnature.com SEK 1,850)</span>
+  </td>
+  <td>
+    <span class="note">Dinner included in Tyresta hike</span>
+  </td>
+  <td class="book-col">
+    <a href="https://stockholmnature.com/fr/activite/randonnee-dans-le-parc-national-de-tyresta/">Tyresta NP Hike + Dinner &rarr;</a>
+    <a href="https://stockholmnature.com/">Archipelago Sunset Kayak (alt) &rarr;</a>
+  </td>
+</tr>
+
+<!-- ─── FERRY ─── -->
+<tr class="section-row"><td colspan="10"><span class="city-dot dot-ferry"></span>OVERNIGHT FERRY &mdash; 1 night</td></tr>
+
+<tr>
+  <td class="day-cell">Day 9</td>
+  <td class="day-cell"><span class="date-sub">Sun</span>Jul 5</td>
+  <td class="city-cell"><span class="city-dot dot-ferry"></span>Stockholm &rarr; Helsinki</td>
+  <td class="hotel-cell">Tallink Silja<br/><span class="note">Commodore Class</span></td>
+  <td>
+    <span class="meal">Ett Hem final breakfast</span>
+    <span class="meal-sub">8 AM &middot; Final breakfast in the garden.</span>
+  </td>
+  <td class="activity-text">
+    Slow morning. Strandv&auml;gen waterfront stroll. Pack.
+  </td>
+  <td class="note">Strandv&auml;gen / waterfront</td>
+  <td class="activity-text">
+    4:30 PM: <strong>Board Tallink Silja</strong> at V&auml;rtahamnen. Sail through 30,000 islands at midnight in full daylight. Sauna deck. Promenade. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="meal">Ferry sm&ouml;rg&aring;sbord</span>
+    <span class="meal-sub">100+ dish buffet at sunset over the archipelago.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.tallinksilja.com/en/">Tallink Silja Commodore &rarr;</a>
+    <span class="note">Book 2-3 months ahead for Commodore cabins</span>
+  </td>
+</tr>
+
+<!-- ─── HELSINKI ─── -->
+<tr class="section-row"><td colspan="10"><span class="city-dot dot-hel"></span>HELSINKI &mdash; 3 nights</td></tr>
+
+<tr>
+  <td class="day-cell">Day 10</td>
+  <td class="day-cell"><span class="date-sub">Mon</span>Jul 6</td>
+  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki arrive</td>
+  <td class="hotel-cell">Hotel St. George <span class="rating">8.8/10</span></td>
+  <td>
+    <span class="meal">Ferry breakfast buffet</span>
+    <span class="meal-sub">Finnish archipelago views arriving into Helsinki.</span>
+  </td>
+  <td class="activity-text">
+    10 AM: Arrive Helsinki. Check into <strong>Hotel St. George</strong>. Spa &mdash; swim, sauna, recover.
+  </td>
+  <td>
+    <span class="meal">Kauppatori Market Square</span>
+    <span class="meal-sub">12:30 PM &middot; Etel&auml;ranta. Karelian pies with egg butter, salmon soup, fried vendace, fresh berries. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="activity-text">
+    2 PM: <strong>Design District walk</strong> (Punavuori, 8 blocks). <strong>Temppeliaukio Rock Church</strong> &mdash; blasted from granite, copper spiral ceiling, free. <span class="nyc-badge">Not in NYC</span><br/><br/>
+    4 PM: <strong>Suomenlinna Sea Fortress</strong> (UNESCO) &mdash; ferry 15 min from Market Square. Walk 1748 ramparts. Submarine museum. <span class="nyc-badge">Not in NYC</span><br/>
+    Return ~7 PM.
+    <span class="alt-option">(or: skip Suomenlinna and do Vallisaari wild island hike instead)</span>
+  </td>
+  <td>
+    <span class="meal">Grotesk</span>
+    <span class="meal-sub">Ludviginkatu 10. Nordic-French wine bar, natural wines, roasted reindeer.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://www.suomenlinna.fi/en/">Suomenlinna &rarr;</a>
+    <span class="note">Public ferry from Market Square</span><br/>
+    <span class="note">Temppeliaukio (free, walk-in)</span>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 11</td>
+  <td class="day-cell"><span class="date-sub">Tue</span>Jul 7</td>
+  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki</td>
+  <td class="hotel-cell">Hotel St. George</td>
+  <td>
+    <span class="meal">Caf&eacute; Regatta</span>
+    <span class="meal-sub">7 AM &middot; Merikannontie 8. Tiny red cottage on the seashore. Cinnamon buns, coffee from tin pot. Arrive by 7 &mdash; crowded by 8. <span class="nyc-badge">Not in NYC</span></span>
+  </td>
+  <td class="activity-text">
+    8:30 AM: <strong>Nuuksio National Park &mdash; Guided Foraging &amp; Nature Walk</strong>. Finnish forest, lakes, boardwalk trails. Wild herb/berry foraging. Campfire lunch in the forest. 45 min from Helsinki. <span class="nyc-badge">Not in NYC</span><br/>
+    Return ~2 PM.
+  </td>
+  <td class="note">Campfire lunch in Nuuksio forest</td>
+  <td class="activity-text">
+    3 PM: <strong>L&ouml;yly Sauna</strong> &mdash; 2 hr session (&euro;27/pp). Architect-designed, smoke sauna + wood-burning + Baltic Sea plunge. THE Helsinki sauna experience. <span class="nyc-badge">Not in NYC</span>
+  </td>
+  <td>
+    <span class="meal">Finnj&auml;vel Salonki</span>
+    <span class="meal-sub">Mannerheimintie 14-20. &ldquo;Damn Finn&rdquo; modern Finnish fine dining. Reindeer from Lapland, vendace roe, forest mushrooms.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">Nuuksio Foraging &rarr;</a>
+    <a href="https://www.loylyhelsinki.fi/en/public-sauna">L&ouml;yly Sauna &rarr;</a>
+    <span class="note">Book L&ouml;yly ahead</span>
+  </td>
+</tr>
+
+<tr>
+  <td class="day-cell">Day 12</td>
+  <td class="day-cell"><span class="date-sub">Wed</span>Jul 8</td>
+  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki</td>
+  <td class="hotel-cell">Hotel St. George</td>
+  <td>
+    <span class="meal">Hakaniemi Market Hall</span>
+    <span class="meal-sub">7 AM &middot; H&auml;meentie 1. Helsinki's local market, 1914. Smoked fish, Karelian pies, lingonberry juice.</span>
+  </td>
+  <td class="activity-text">
+    9 AM: <strong>Helsinki Archipelago Kayaking</strong> &mdash; 2-3 hr guided paddle through Baltic islands and skerries. <span class="nyc-badge">Not in NYC</span><br/>
+    <em>OR: Private archipelago boat cruise with island picnic stop (3 hrs, from &euro;520).</em><br/>
+    <em>OR: Vallisaari Island &mdash; wild nature + military ruins + coastal hike (3km loop, ferry 20 min from Market Square).</em>
+    <span class="alt-option">(or: Kaunissaari outer archipelago island &mdash; daily summer ferry, more remote)</span>
+  </td>
+  <td>
+    <span class="meal">Old Market Hall (Vanha Kauppahalli)</span>
+    <span class="meal-sub">1889. Cloudberry preserves (cannot buy in NYC at any price), smoked reindeer, bear meat. Buy cloudberry jam to take home.</span>
+  </td>
+  <td class="activity-text">
+    Flex time. Sleep in option. <strong>Allas Sea Pool</strong> (Baltic swim, chill). OR last Design District walk.
+  </td>
+  <td>
+    <span class="meal">Savoy</span>
+    <span class="meal-sub">8 PM &middot; Etel&auml;esplanadi 14, 8th floor. Alvar Aalto-designed. Helsinki institution since 1937. Recently renovated by Ilse Crawford. Farewell dinner.</span>
+  </td>
+  <td class="book-col">
+    <a href="https://naturaviva.fi/en_US/natura/guided-tours">Helsinki Kayaking (Natura Viva) &rarr;</a>
+    <a href="https://helsinkicityride.com/Helsinki-by-Kayak-2025-bbaaaabCa.asp">Helsinki Kayaking (City Ride) &rarr;</a>
+    <a href="https://visitfinland.com/en/product/338b9129-8ad4-496b-ba57-62bb87a78ad0/">Private Boat Cruise &rarr;</a>
+    <a href="https://allassealpool.fi">Allas Sea Pool &rarr;</a>
+  </td>
+</tr>
+
+<!-- ─── DEPARTURE ─── -->
+<tr class="section-row"><td colspan="10">DEPARTURE</td></tr>
+
+<tr class="depart-row">
+  <td class="day-cell">Day 13</td>
+  <td class="day-cell"><span class="date-sub">Thu</span>Jul 9</td>
+  <td class="city-cell"><span class="city-dot dot-hel"></span>Helsinki &rarr; JFK</td>
+  <td>&mdash;</td>
+  <td>
+    <span class="meal" style="color:#999;">Hakaniemi Market Hall</span>
+    <span class="meal-sub">6:30 AM &middot; H&auml;meentie 1. Quick smoked fish, Karelian pies. Last Finnish breakfast.</span>
+  </td>
+  <td class="note">Depart Helsinki-Vantaa airport (Ring Rail train, 30 min from Central Station). Allow 2.5 hrs before flight.</td>
+  <td>&mdash;</td>
+  <td class="note">SAS SK 705 Helsinki &rarr; Copenhagen, SK 903 Copenhagen &rarr; JFK.</td>
+  <td>&mdash;</td>
+  <td class="book-col">&mdash;</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ALL BOOKABLE EXPERIENCES                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="bottom-section">
+  <h2 class="section-title">All Bookable Experiences</h2>
+  <div class="section-divider"></div>
+
+  <!-- OSLO -->
+  <div class="exp-city-label"><span class="city-dot dot-oslo"></span> Oslo</div>
+  <div class="exp-grid">
+    <div class="exp-row">
+      <div class="exp-name">KOK Sauna Cruise <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">2-3 hours</div>
+      <div class="exp-price">~NOK 600/pp</div>
+      <div class="exp-link"><a href="https://koknorge.no/en/sauna-cruise/">koknorge.no &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Ekebergparken Sculpture Park</div>
+      <div class="exp-dur">1.5 hours</div>
+      <div class="exp-price">Free</div>
+      <div class="exp-link"><a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park">book.visitoslo.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Vettakollen Hike <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">2-3 hours RT</div>
+      <div class="exp-price">Free</div>
+      <div class="exp-link"><span class="note">Self-guided from Vettakollen T-bane</span></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Vigeland Sculpture Park</div>
+      <div class="exp-dur">1.5 hours</div>
+      <div class="exp-price">Free</div>
+      <div class="exp-link"><span class="note">Walk-in, open 24/7</span></div>
+    </div>
+  </div>
+
+  <!-- BERGEN -->
+  <div class="exp-city-label"><span class="city-dot dot-bergen"></span> Bergen</div>
+  <div class="exp-grid">
+    <div class="exp-row">
+      <div class="exp-name">Bergen Railway (Bergensbanen) <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">6.5 hours</div>
+      <div class="exp-price">~NOK 500-900</div>
+      <div class="exp-link"><a href="https://www.vy.no/en">vy.no &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Fjord Kayaking at Dawn <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">3-4 hours</div>
+      <div class="exp-price">~NOK 900/pp</div>
+      <div class="exp-link"><a href="https://www.nordicventures.com/">nordicventures.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Norway in a Nutshell (Fl&aring;msbana + N&aelig;r&oslash;yfjord) <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Full day</div>
+      <div class="exp-price">~NOK 1,900/pp</div>
+      <div class="exp-link"><a href="https://www.norwaynutshell.com/">norwaynutshell.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Heit Bergen Floating Sauna <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">1h50 session</div>
+      <div class="exp-price">~NOK 500/pp</div>
+      <div class="exp-link"><a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163">visitbergen.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Cornelius (Private Island Dinner) <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Evening</div>
+      <div class="exp-price">~NOK 1,200/pp</div>
+      <div class="exp-link"><a href="https://www.cornelius.no/">cornelius.no &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Lysverket &#11088; (1 Michelin star)</div>
+      <div class="exp-dur">Dinner</div>
+      <div class="exp-price">Tasting menu</div>
+      <div class="exp-link"><a href="https://lysverket.no/">lysverket.no &rarr;</a></div>
+    </div>
+  </div>
+
+  <!-- STOCKHOLM -->
+  <div class="exp-city-label"><span class="city-dot dot-sthlm"></span> Stockholm</div>
+  <div class="exp-grid">
+    <div class="exp-row">
+      <div class="exp-name">Vasa Museum <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">2 hours</div>
+      <div class="exp-price">SEK 190/pp</div>
+      <div class="exp-link"><a href="https://www.vasamuseet.se/en">vasamuseet.se &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Ekstedt &#11088; (1 Michelin star) <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Dinner</div>
+      <div class="exp-price">Tasting ~SEK 1,800/pp</div>
+      <div class="exp-link"><a href="https://ekstedt.nu/">ekstedt.nu &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Moose &amp; Wildlife Safari <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">5 hours (evening)</div>
+      <div class="exp-price">~SEK 1,200/pp</div>
+      <div class="exp-link"><a href="https://www.truenaturesweden.com/wildlife-safari">truenaturesweden.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Moose &amp; Wildlife Safari (alt booking)</div>
+      <div class="exp-dur">5 hours (evening)</div>
+      <div class="exp-price">~SEK 1,200/pp</div>
+      <div class="exp-link"><a href="https://thegreentrails.rezdy.com/707046/moose-and-wildlife-safari-evening-tour">thegreentrails.rezdy.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Tyresta NP Sunset Hike + Dinner <span class="nyc-badge">Not in NYC</span> <span class="new-badge">NEW v6</span></div>
+      <div class="exp-dur">4.5 hours</div>
+      <div class="exp-price">SEK 1,250/pp</div>
+      <div class="exp-link"><a href="https://stockholmnature.com/fr/activite/randonnee-dans-le-parc-national-de-tyresta/">stockholmnature.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Archipelago Sunset Kayak <span class="nyc-badge">Not in NYC</span> <span class="new-badge">NEW v6</span></div>
+      <div class="exp-dur">5 hours</div>
+      <div class="exp-price">SEK 1,850/pp</div>
+      <div class="exp-link"><a href="https://stockholmnature.com/">stockholmnature.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Rosendals Tr&auml;dg&aring;rd <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Breakfast / 1.5 hours</div>
+      <div class="exp-price">Walk-in</div>
+      <div class="exp-link"><span class="note">Walk-in, Djurg&aring;rden</span></div>
+    </div>
+  </div>
+
+  <!-- FERRY -->
+  <div class="exp-city-label"><span class="city-dot dot-ferry"></span> Overnight Ferry</div>
+  <div class="exp-grid">
+    <div class="exp-row">
+      <div class="exp-name">Tallink Silja &mdash; Commodore Class <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Overnight (Stockholm &rarr; Helsinki)</div>
+      <div class="exp-price">~&euro;200-400/cabin</div>
+      <div class="exp-link"><a href="https://www.tallinksilja.com/en/">tallinksilja.com &rarr;</a></div>
+    </div>
+  </div>
+
+  <!-- HELSINKI -->
+  <div class="exp-city-label"><span class="city-dot dot-hel"></span> Helsinki</div>
+  <div class="exp-grid">
+    <div class="exp-row">
+      <div class="exp-name">Suomenlinna Sea Fortress (UNESCO) <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">3-4 hours</div>
+      <div class="exp-price">Ferry ~&euro;5 RT</div>
+      <div class="exp-link"><a href="https://www.suomenlinna.fi/en/">suomenlinna.fi &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Nuuksio National Park &mdash; Foraging &amp; Nature Walk <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">4-5 hours</div>
+      <div class="exp-price">~&euro;90/pp</div>
+      <div class="exp-link"><a href="https://feelthenature.fi/en/berry-picking-and-mushroom-hunting-in-nuuksio-national-park/">feelthenature.fi &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">L&ouml;yly Sauna <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">2 hours</div>
+      <div class="exp-price">&euro;27/pp</div>
+      <div class="exp-link"><a href="https://www.loylyhelsinki.fi/en/public-sauna">loylyhelsinki.fi &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Helsinki Archipelago Kayaking <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">2-3 hours</div>
+      <div class="exp-price">~&euro;60-90/pp</div>
+      <div class="exp-link"><a href="https://naturaviva.fi/en_US/natura/guided-tours">naturaviva.fi &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Private Archipelago Boat Cruise <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">3 hours</div>
+      <div class="exp-price">from &euro;520</div>
+      <div class="exp-link"><a href="https://visitfinland.com/en/product/338b9129-8ad4-496b-ba57-62bb87a78ad0/">visitfinland.com &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Allas Sea Pool</div>
+      <div class="exp-dur">1-2 hours</div>
+      <div class="exp-price">~&euro;15/pp</div>
+      <div class="exp-link"><a href="https://allassealpool.fi">allassealpool.fi &rarr;</a></div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-name">Caf&eacute; Regatta <span class="nyc-badge">Not in NYC</span></div>
+      <div class="exp-dur">Breakfast / 1 hour</div>
+      <div class="exp-price">Walk-in</div>
+      <div class="exp-link"><span class="note">Walk-in, arrive by 7 AM</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HOTELS                                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="bottom-section">
+  <h2 class="section-title">Hotels</h2>
+  <div class="section-divider"></div>
+  <div class="hotel-grid">
+
+    <div class="hotel-card">
+      <h4>The Thief &#11088;</h4>
+      <div class="h-city" style="color:#2D6A4F;"><span class="city-dot dot-oslo"></span>Oslo &middot; 2 nights</div>
+      <div class="h-meta">Booking.com 8.8/10 &middot; ~114 rooms &middot; Art hotel on Tj&uuml;vholmen</div>
+      <div class="h-why">Art hotel built around the Astrup Fearnley Museum. Every room has original contemporary art. Waterfront location on Tj&uuml;vholmen peninsula. Rooftop bar with fjord views.</div>
+      <div class="h-link"><a href="https://www.thethief.com/">thethief.com &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Opus XVI &#11088;</h4>
+      <div class="h-city" style="color:#1B4F72;"><span class="city-dot dot-bergen"></span>Bergen &middot; 3 nights</div>
+      <div class="h-meta">Booking.com 9.1/10 &middot; 65 rooms &middot; Michelin Key &middot; 1876 heritage bank</div>
+      <div class="h-why">Converted from the 1876 Bergen Credit Bank into a Michelin Key hotel. Named after Edvard Grieg's Opus 16 (the Grieg family connection). Palatial lobby. Steps from Bryggen and the Fish Market.</div>
+      <div class="h-link"><a href="https://www.opus16.no/en/">opus16.no &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Ett Hem &#11088;&#11088;</h4>
+      <div class="h-city" style="color:#C77D38;"><span class="city-dot dot-sthlm"></span>Stockholm &middot; 3 nights</div>
+      <div class="h-meta">Booking.com 9.7/10 &middot; 22 rooms &middot; 1912 arts &amp; crafts townhouse</div>
+      <div class="h-why">Feels like staying in a wealthy Swedish friend's home. Ilse Crawford-designed. Garden, library, greenhouse. Kitchen always open. Consistently one of the highest-rated hotels in Europe.</div>
+      <div class="h-link"><a href="https://etthem.se/en/">etthem.se &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Tallink Silja &mdash; Commodore Class</h4>
+      <div class="h-city" style="color:#7766aa;"><span class="city-dot dot-ferry"></span>Overnight Ferry &middot; 1 night</div>
+      <div class="h-meta">Commodore cabin &middot; Marimekko design &middot; Daily departures</div>
+      <div class="h-why">Sail through the Stockholm Archipelago (30,000 islands) at midnight in full daylight. Commodore Class: exclusive lounge, priority boarding, upgraded cabin. Sauna deck. 100+ dish sm&ouml;rg&aring;sbord.</div>
+      <div class="h-link"><a href="https://www.tallinksilja.com/en/">tallinksilja.com &rarr;</a></div>
+    </div>
+
+    <div class="hotel-card">
+      <h4>Hotel St. George &#11088;</h4>
+      <div class="h-city" style="color:#457B9D;"><span class="city-dot dot-hel"></span>Helsinki &middot; 3 nights</div>
+      <div class="h-meta">Booking.com 8.8/10 &middot; 148 rooms &middot; Design Hotels member</div>
+      <div class="h-why">Design Hotels property with an Ai Weiwei sculpture in the lobby. Wintergarden restaurant. Full spa with pool and sauna. Central location near Esplanadi park. Nordic design throughout.</div>
+      <div class="h-link"><a href="https://www.hotelstgeorge.fi/en/">hotelstgeorge.fi &rarr;</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER                                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="footer">
+  Nordic Arc &mdash; Summer 2026 &middot; Working Plan v6 &middot; Final routing &middot; Ready to book
+</div>
 
 </body>
 </html>
