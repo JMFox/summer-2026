@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helsinki + Haasi Mirror Houses — Nordic Arc | Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --hel: #457B9D;
+    --hel-light: #5a9bc0;
+    --haasi: #00897B;
+    --haasi-light: #26a69a;
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-dim: #666;
+    --text-mid: #444;
+    --border: #e8e8e8;
+    --border-light: #f0f0f0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ─── BACK LINK ─── */
+  .back {
+    display: inline-block;
+    padding: 1rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--hel);
+    text-decoration: none;
+  }
+  .back:hover { text-decoration: underline; }
+
+  /* ─── HEADER ─── */
+  .hero {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .hero h1 span.hel { color: var(--hel); }
+  .hero h1 span.haasi { color: var(--haasi); }
+  .hero .dates {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .hero .tagline {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    font-style: italic;
+  }
+
+  /* ─── SECTIONS ─── */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+  }
+  h2.haasi { border-color: var(--haasi); }
+  h2.hel { border-color: var(--hel); }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--text);
+  }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card.haasi-border { border-left: 3px solid var(--haasi); }
+  .card.hel-border { border-left: 3px solid var(--hel); }
+
+  .card .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .card .card-meta {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .card p, .card li {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+  .card ul { padding-left: 1.1rem; margin-top: 0.3rem; }
+  .card li { margin-bottom: 0.2rem; }
+
+  .card a {
+    color: var(--hel);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .card a:hover { text-decoration: underline; }
+  .card a.haasi-link { color: var(--haasi); }
+
+  .price {
+    display: inline-block;
+    background: #f5f5f5;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text-mid);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .badge-haasi { background: #e0f2f1; color: #00695c; }
+  .badge-hel { background: #e3f0f7; color: #2c5f7c; }
+  .badge-nature { background: #e8f5e9; color: #2e7d32; }
+  .badge-food { background: #fce4ec; color: #c62828; }
+  .badge-book { background: #fff8e1; color: #f57f17; }
+  .badge-sauna { background: #fbe9e7; color: #bf360c; }
+
+  /* ─── DAY HEADERS ─── */
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 2rem 0 0.8rem;
+  }
+  .day-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+  .day-num.haasi { color: var(--haasi); }
+  .day-num.hel { color: var(--hel); }
+  .day-date {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .day-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* ─── TIMELINE ─── */
+  .tl { padding-left: 1.2rem; border-left: 2px solid var(--border); margin: 0.5rem 0 1.5rem; }
+  .tl.haasi-line { border-color: rgba(0,137,123,0.3); }
+  .tl.hel-line { border-color: rgba(69,123,157,0.3); }
+  .tl-item { padding: 0.5rem 0 0.5rem 0.8rem; position: relative; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.45rem;
+    top: 0.85rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .tl.haasi-line .tl-item::before { background: var(--haasi); }
+  .tl.hel-line .tl-item::before { background: var(--hel); }
+  .tl-time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tl-what {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.1rem;
+  }
+  .tl-detail {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin-top: 0.15rem;
+  }
+
+  /* ─── TABLE ─── */
+  .rest-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .rest-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+  }
+  .rest-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+  .rest-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  /* ─── BOOKABLE ─── */
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+  @media (min-width: 520px) { .book-grid { grid-template-columns: 1fr 1fr; } }
+  .book-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+  }
+  .book-item a {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--hel);
+    text-decoration: none;
+  }
+  .book-item a:hover { text-decoration: underline; }
+  .book-item .book-desc {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  /* ─── PRACTICAL ─── */
+  .prac-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+  @media (max-width: 480px) { .prac-grid { grid-template-columns: 1fr; } }
+  .prac-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+  }
+  .prac-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+  }
+  .prac-val {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 0.1rem;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    font-size: 0.75rem;
+    color: #aaa;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <a href="../" class="back">&larr; Back to Working Plan</a>
+
+  <div class="hero">
+    <h1><span class="haasi">Haasi Mirror Houses</span> + <span class="hel">Helsinki</span></h1>
+    <div class="dates">Jul 6 -- 9, 2026 &middot; 1 night lake + 2 nights city + departure</div>
+    <div class="tagline">Glass walls on a Finnish lake, then design-capital Helsinki.</div>
+  </div>
+
+  <!-- ═══════════════════════════════ HOTELS ═══════════════════════════════ -->
+  <h2 class="haasi">Where We Stay</h2>
+
+  <div class="card haasi-border">
+    <div class="card-title">Haasi Mirror Houses at Lehmonk&auml;rki</div>
+    <div class="card-meta">Asikkala &middot; 1 night (Jul 6) &middot; <span class="price">&euro;490--690/night</span></div>
+    <p>Adults-only glass-walled mirror houses on a lake, ~1.5 hrs north of Helsinki. Private hot tub, sauna, sparkling wine on arrival, breakfast delivered to your suite.</p>
+    <ul>
+      <li><strong>Book N&auml;k&ouml;ala</strong> (best panoramic views) or <strong>Liplatus</strong> (private sauna)</li>
+      <li><a href="https://lehmonkarkiresort.fi" class="haasi-link" target="_blank">lehmonkarkiresort.fi</a></li>
+    </ul>
+  </div>
+
+  <div class="card hel-border">
+    <div class="card-title">Hotel St. George</div>
+    <div class="card-meta">Helsinki &middot; 2 nights (Jul 7--8) &middot; 148 rooms &middot; 8.8/10 Booking.com</div>
+    <p>Design Hotels member. Ai Weiwei dragon sculpture in the lobby. Spa with pool. Central location.</p>
+    <ul>
+      <li><a href="https://hotelstgeorge.fi" target="_blank">hotelstgeorge.fi</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════ DAY 10 ═══════════════════════════════ -->
+  <h2 class="haasi">Day by Day</h2>
+
+  <div class="day-header">
+    <span class="day-num haasi">Day 10</span>
+    <span class="day-date">Mon Jul 6</span>
+    <span class="day-title">Ferry &rarr; Mirror House</span>
+  </div>
+
+  <div class="tl haasi-line">
+    <div class="tl-item">
+      <div class="tl-time">~10 AM</div>
+      <div class="tl-what">Ferry arrives Helsinki</div>
+      <div class="tl-detail">Pick up rental car at Olympia Terminal.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">~Noon</div>
+      <div class="tl-what">Arrive Haasi Mirror Houses</div>
+      <div class="tl-detail">1.5 hr drive north to Asikkala. Check in, sparkling wine.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Afternoon</div>
+      <div class="tl-what">Lake &middot; Hot Tub &middot; Sauna &middot; Forest</div>
+      <div class="tl-detail">Private hot tub. Sauna. Swim in the lake. Walk through forest trails. Do nothing beautifully.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Sunset</div>
+      <div class="tl-what">Glass-wall sunset over the lake</div>
+      <div class="tl-detail">11:15 PM sunset in early July. Endless golden hour from the mirror house.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Dinner</div>
+      <div class="tl-what">Pre-order dinner or Lehmonk&auml;rki restaurant</div>
+      <div class="tl-detail">Pre-order option &euro;55/pp. Or walk to the resort restaurant.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ DAY 11 ═══════════════════════════════ -->
+  <div class="day-header">
+    <span class="day-num hel">Day 11</span>
+    <span class="day-date">Tue Jul 7</span>
+    <span class="day-title">Nature + Sauna</span>
+  </div>
+
+  <div class="tl hel-line">
+    <div class="tl-item">
+      <div class="tl-time">Morning</div>
+      <div class="tl-what">Breakfast delivered to the mirror house</div>
+      <div class="tl-detail">Lake views. No rush.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Late AM</div>
+      <div class="tl-what">Check out &rarr; Drive to Helsinki</div>
+      <div class="tl-detail">~1.5 hrs. Drop rental car. Check into Hotel St. George ~1 PM.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">2 PM</div>
+      <div class="tl-what">Nuuksio National Park &mdash; Guided Foraging</div>
+      <div class="tl-detail">
+        <span class="badge badge-nature">Nature</span><span class="badge badge-book">Book ahead</span><br>
+        Finnish forest, lakes, wild berries, campfire lunch. <a href="https://feelthenature.fi" target="_blank">feelthenature.fi</a><br>
+        <em>Alt: Helsinki Archipelago Kayaking</em> &mdash; <a href="https://naturaviva.fi" target="_blank">naturaviva.fi</a>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">5 PM</div>
+      <div class="tl-what">L&ouml;yly Sauna</div>
+      <div class="tl-detail">
+        <span class="badge badge-sauna">Sauna</span><span class="badge badge-book">Book ahead</span><br>
+        Smoke sauna + wood-burning sauna + Baltic Sea plunge. &euro;27/2hr. Swimwear required.<br>
+        Hernesaarenkatu 4. Mon 12--22, Sat 9--23. <a href="https://loylyhelsinki.fi" target="_blank">loylyhelsinki.fi</a>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Dinner</div>
+      <div class="tl-what">Finnj&auml;vel Salonki</div>
+      <div class="tl-detail">
+        <span class="badge badge-food">Fine Dining</span>
+        &ldquo;Damn Finn&rdquo; &mdash; modern Finnish fine dining. The one splurge dinner.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ DAY 12 ═══════════════════════════════ -->
+  <div class="day-header">
+    <span class="day-num hel">Day 12</span>
+    <span class="day-date">Wed Jul 8</span>
+    <span class="day-title">Islands + Farewell</span>
+  </div>
+
+  <div class="tl hel-line">
+    <div class="tl-item">
+      <div class="tl-time">7 AM</div>
+      <div class="tl-what">Breakfast: Caf&eacute; Regatta</div>
+      <div class="tl-detail">
+        <span class="badge badge-food">Breakfast</span>
+        Merikannontie 8. Tiny red cottage by the sea. Cinnamon buns + coffee.
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Morning</div>
+      <div class="tl-what">Suomenlinna Sea Fortress</div>
+      <div class="tl-detail">
+        <span class="badge badge-hel">UNESCO</span>
+        15 min ferry from Market Square. Island fortress, tunnels, sea views.
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Lunch</div>
+      <div class="tl-what">Old Market Hall (Vanha Kauppahalli)</div>
+      <div class="tl-detail">
+        <span class="badge badge-food">Food Hall</span>
+        Since 1889. Cloudberry jam, smoked reindeer, fresh salmon. <strong>Buy cloudberry jam to take home.</strong>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">Afternoon</div>
+      <div class="tl-what">Flex: Allas Sea Pool / Vallisaari island hike / rest</div>
+      <div class="tl-detail">Allas Sea Pool: heated pool + Baltic cold pool, open-air. Or ferry to Vallisaari for a quiet island hike.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">8 PM</div>
+      <div class="tl-what">Farewell Dinner: Savoy</div>
+      <div class="tl-detail">
+        <span class="badge badge-food">Fine Dining</span>
+        8th floor, Etel&auml;esplanadi 14. Aalto-designed interior. The farewell dinner.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ DAY 13 ═══════════════════════════════ -->
+  <div class="day-header">
+    <span class="day-num hel">Day 13</span>
+    <span class="day-date">Thu Jul 9</span>
+    <span class="day-title">Departure</span>
+  </div>
+
+  <div class="tl hel-line">
+    <div class="tl-item">
+      <div class="tl-time">6:30 AM</div>
+      <div class="tl-what">Breakfast: Hakaniemi Market Hall</div>
+      <div class="tl-detail">The local market. Pastries, coffee, Finnish rye bread. Last Helsinki morning.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">~9 AM</div>
+      <div class="tl-what">Ring Rail to Helsinki-Vantaa Airport</div>
+      <div class="tl-detail">30 min. SAS SK 705 &rarr; SK 903, HEL&rarr;CPH&rarr;JFK.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ RESTAURANTS ═══════════════════════════════ -->
+  <h2 class="hel">Restaurants</h2>
+
+  <div class="rest-grid">
+    <div class="rest-item">
+      <div class="rest-name">Finnj&auml;vel Salonki</div>
+      <div class="rest-desc">Modern Finnish fine dining. &ldquo;Damn Finn.&rdquo; Book ahead.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Savoy</div>
+      <div class="rest-desc">8th floor. Aalto-designed. Farewell dinner.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Grotesk</div>
+      <div class="rest-desc">Helsinki bistro staple. Steak frites, natural wine.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Caf&eacute; Regatta</div>
+      <div class="rest-desc">Red cottage by the sea. Cinnamon buns + coffee.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Old Market Hall</div>
+      <div class="rest-desc">Since 1889. Cloudberry jam, smoked reindeer.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Hakaniemi Market Hall</div>
+      <div class="rest-desc">Local market. Last-morning pastries + rye bread.</div>
+    </div>
+    <div class="rest-item">
+      <div class="rest-name">Kauppatori Market Square</div>
+      <div class="rest-desc">Outdoor stalls. Fried vendace, salmon soup.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ BOOKABLE ═══════════════════════════════ -->
+  <h2 class="hel">Book These</h2>
+
+  <div class="book-grid">
+    <div class="book-item">
+      <a href="https://lehmonkarkiresort.fi" target="_blank">Haasi Mirror Houses</a>
+      <div class="book-desc">Glass lake house + hot tub. &euro;490--690/night.</div>
+    </div>
+    <div class="book-item">
+      <a href="https://feelthenature.fi" target="_blank">Nuuksio Foraging</a>
+      <div class="book-desc">Guided forest foraging + campfire lunch.</div>
+    </div>
+    <div class="book-item">
+      <a href="https://loylyhelsinki.fi" target="_blank">L&ouml;yly Sauna</a>
+      <div class="book-desc">Smoke sauna + Baltic plunge. &euro;27/2hr.</div>
+    </div>
+    <div class="book-item">
+      <a href="https://naturaviva.fi" target="_blank">Archipelago Kayaking</a>
+      <div class="book-desc">Helsinki islands by kayak. Alt to Nuuksio.</div>
+    </div>
+    <div class="book-item">
+      <a href="https://suomenlinna.fi" target="_blank">Suomenlinna Ferry</a>
+      <div class="book-desc">UNESCO sea fortress. 15 min ferry.</div>
+    </div>
+    <div class="book-item">
+      <a href="https://allassealpool.fi" target="_blank">Allas Sea Pool</a>
+      <div class="book-desc">Heated pool + Baltic cold pool, open-air.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ PRACTICAL ═══════════════════════════════ -->
+  <h2 class="hel">Practical</h2>
+
+  <div class="prac-grid">
+    <div class="prac-item">
+      <div class="prac-label">Currency</div>
+      <div class="prac-val">EUR (~&euro;0.92 = $1)</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Tipping</div>
+      <div class="prac-val">Not expected</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Payment</div>
+      <div class="prac-val">Cashless everywhere</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Weather</div>
+      <div class="prac-val">14--22&deg;C (57--72&deg;F)</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Transit</div>
+      <div class="prac-val">HSL day ticket: tram, metro, Suomenlinna ferry</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Airport</div>
+      <div class="prac-val">Ring Rail train, 30 min to HEL</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Sunset</div>
+      <div class="prac-val">~11:15 PM in early July</div>
+    </div>
+    <div class="prac-item">
+      <div class="prac-label">Rental car</div>
+      <div class="prac-val">1 day only: Olympia Terminal &rarr; Helsinki drop-off</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Helsinki + Haasi Mirror Houses &middot; Nordic Arc Summer 2026
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stockholm + Landet — City Guide | Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fafafa;
+    --card: #fff;
+    --text: #1a1a1a;
+    --text-dim: #666;
+    --text-light: #999;
+    --border: #e8e8e8;
+    --sthlm: #C77D38;
+    --sthlm-light: rgba(199,125,56,0.10);
+    --landet: #8B6914;
+    --landet-light: rgba(139,105,20,0.10);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ── BACK NAV ── */
+  .back-nav {
+    padding: 1rem 0 0;
+  }
+  .back-nav a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--sthlm);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .back-nav a:hover { text-decoration: underline; }
+
+  /* ── HEADER ── */
+  .hero {
+    padding: 1.5rem 0 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .hero h1 .sthlm-color { color: var(--sthlm); }
+  .hero h1 .landet-color { color: var(--landet); }
+  .hero .dates {
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .hero .tagline {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 1.5rem 0 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-title .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-sthlm { background: var(--sthlm); }
+  .dot-landet { background: var(--landet); }
+
+  /* ── HOTEL CARD ── */
+  .hotel-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+  .hotel-card.sthlm-border { border-left: 4px solid var(--sthlm); }
+  .hotel-card.landet-border { border-left: 4px solid var(--landet); }
+  .hotel-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .hotel-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+    line-height: 1.5;
+  }
+  .hotel-desc {
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    line-height: 1.55;
+  }
+  .hotel-link {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .hotel-link.sthlm-link { color: var(--sthlm); }
+  .hotel-link.landet-link { color: var(--landet); }
+
+  .rating {
+    display: inline-block;
+    background: #1a7e37;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+  }
+
+  /* ── DAY CARD ── */
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .day-card.sthlm-left { border-left: 4px solid var(--sthlm); }
+  .day-card.landet-left { border-left: 4px solid var(--landet); }
+
+  .day-header {
+    padding: 0.85rem 1.1rem 0.6rem;
+  }
+  .day-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+  }
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin-top: 0.1rem;
+  }
+
+  .day-body {
+    padding: 0 1.1rem 1rem;
+  }
+
+  .stop {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+  .stop-time {
+    flex-shrink: 0;
+    width: 52px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-light);
+    padding-top: 0.1rem;
+  }
+  .stop-content {
+    flex: 1;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .stop-content strong { font-weight: 700; }
+  .stop-addr {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 0.05rem;
+  }
+  .stop-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 0.1rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.25rem;
+  }
+  .tag-food { background: rgba(230,57,70,0.12); color: #c0392b; }
+  .tag-nature { background: rgba(45,106,79,0.12); color: #2D6A4F; }
+  .tag-culture { background: rgba(128,90,213,0.12); color: #6c5ce7; }
+  .tag-star { background: rgba(199,125,56,0.12); color: var(--sthlm); }
+  .tag-book { background: rgba(199,125,56,0.15); color: var(--sthlm); border: 1px solid rgba(199,125,56,0.25); }
+
+  .alt-box {
+    background: #f3f0eb;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+  .alt-box strong { color: var(--text); font-weight: 700; }
+
+  /* ── COMPACT LIST SECTIONS ── */
+  .list-grid {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .list-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+  }
+  .list-item-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .list-item-detail {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.1rem;
+    line-height: 1.45;
+  }
+
+  /* ── FIKA BOX ── */
+  .fika-box {
+    background: linear-gradient(135deg, var(--sthlm-light), rgba(139,105,20,0.06));
+    border: 1px solid rgba(199,125,56,0.18);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+  }
+  .fika-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+  }
+  .fika-box p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+  .fika-list {
+    list-style: none;
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+  .fika-list li::before {
+    content: "☕ ";
+  }
+
+  /* ── PRACTICAL ── */
+  .practical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.5rem;
+  }
+  .practical-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+  }
+  .practical-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+  }
+  .practical-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.1rem;
+  }
+
+  /* ── BOOK LINKS ── */
+  .book-grid {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .book-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .book-link:hover {
+    border-color: var(--sthlm);
+    box-shadow: 0 2px 8px rgba(199,125,56,0.12);
+  }
+  .book-link-name { font-size: 0.82rem; font-weight: 600; }
+  .book-link-url { font-size: 0.68rem; color: var(--sthlm); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 2rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.68rem;
+    color: var(--text-light);
+  }
+
+  /* ── MOBILE TWEAKS ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.7rem; }
+    .section-title { font-size: 1.1rem; }
+    .practical-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Back nav -->
+  <div class="back-nav">
+    <a href="../">&larr; Back to Working Plan</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1><span class="sthlm-color">Stockholm</span> + <span class="landet-color">Landet</span></h1>
+    <div class="dates">Jul 2 &ndash; 4, 2026 &middot; 2 nights city + 1 night cabin retreat</div>
+    <div class="tagline">Birch-fire dining, golden midnight light, a 400-hectare architect cabin in the Swedish countryside.</div>
+  </div>
+
+  <!-- ═══════════ HOTELS ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Where You Sleep</div>
+
+    <div class="hotel-card sthlm-border">
+      <div class="hotel-name">Ett Hem <span class="rating">9.7</span></div>
+      <div class="hotel-meta">Skogsklovervägen 2, Östermalm &middot; 22 rooms &middot; Jul 2 &ndash; 4 (2 nights)</div>
+      <div class="hotel-desc">1912 Arts & Crafts townhouse. Personal chef on call. Garden, library, greenhouse. Feels like a wealthy friend's home, not a hotel.</div>
+      <a href="https://etthem.se" target="_blank" class="hotel-link sthlm-link">etthem.se &rarr;</a>
+    </div>
+
+    <div class="hotel-card landet-border">
+      <div class="hotel-name">Landet Stay</div>
+      <div class="hotel-meta">Sörmland, ~1 hr south of Stockholm &middot; Architect cabins &middot; Jul 4 (1 night)</div>
+      <div class="hotel-desc">Andreas Martin-Löf-designed cabins on a 400-hectare nature reserve. Fireplace, king bed, heated floors, Starlink WiFi. Forest, meadows, sea views. Total silence.</div>
+      <a href="https://landetstay.com" target="_blank" class="hotel-link landet-link">landetstay.com &rarr;</a>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 6 ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Day 6 &mdash; Jul 2: Arrive Stockholm</div>
+
+    <div class="day-card sthlm-left">
+      <div class="day-header">
+        <div class="day-label">Morning &rarr; Evening</div>
+        <div class="day-title">Medieval City + Fire-Cooked Dinner</div>
+      </div>
+      <div class="day-body">
+
+        <div class="stop">
+          <div class="stop-time">~10 AM</div>
+          <div class="stop-content">
+            <strong>Arrive Arlanda</strong> &mdash; Bergen flight ~8 AM (1.5 hrs). Arlanda Express to city center, 18 min, SEK 300.
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">11 AM</div>
+          <div class="stop-content">
+            <strong>Gamla Stan</strong> <span class="tag tag-culture">Culture</span>
+            <div class="stop-addr">Medieval old town &middot; 13th-century cobblestones &middot; Stortorget square</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">12:30</div>
+          <div class="stop-content">
+            <strong>Fabrique fika</strong> <span class="tag tag-food">Food</span>
+            <div class="stop-addr">Storgatan 19 &middot; Kanelbullar (cinnamon bun)</div>
+            <div class="stop-note">Royal Court purveyor. The benchmark Stockholm bakery.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">2 PM</div>
+          <div class="stop-content">
+            <strong>Vasa Museum</strong> <span class="tag tag-culture">Culture</span>
+            <div class="stop-addr">Galärvarvsvägen 14, Djurgården &middot; ~2 hrs</div>
+            <div class="stop-note">1628 warship, 95% original. Sank on maiden voyage. Nothing like this exists anywhere.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">7 PM</div>
+          <div class="stop-content">
+            <strong>Ekstedt</strong> <span class="tag tag-star">Michelin &#9733;</span> <span class="tag tag-book">Book ahead</span>
+            <div class="stop-addr">Humlegårdsgatan 17</div>
+            <div class="stop-note">Zero electricity kitchen. Everything cooked over birch fire, hay, soot. Book 4 &ndash; 6 weeks ahead.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 7 ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Day 7 &mdash; Jul 3: Nature + Wildlife</div>
+
+    <div class="day-card sthlm-left">
+      <div class="day-header">
+        <div class="day-label">Early Morning &rarr; Late Night</div>
+        <div class="day-title">Garden Breakfast, Golden-Hour Moose Safari</div>
+      </div>
+      <div class="day-body">
+
+        <div class="stop">
+          <div class="stop-time">8 AM</div>
+          <div class="stop-content">
+            <strong>Rosendals Trädgård</strong> <span class="tag tag-food">Food</span> <span class="tag tag-nature">Nature</span>
+            <div class="stop-addr">Rosendalsterrassen 12, Djurgården</div>
+            <div class="stop-note">Biodynamic garden cafe. Wood-fired bread, greenhouse setting. Peak Stockholm morning.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">10:30</div>
+          <div class="stop-content">
+            <strong>Fotografiska</strong> <span class="tag tag-culture">Culture</span>
+            <div class="stop-addr">Södermalm &middot; Photography museum &middot; rooftop views</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">1 PM</div>
+          <div class="stop-content">
+            <strong>Östermalms Saluhall</strong> <span class="tag tag-food">Food</span>
+            <div class="stop-addr">Historic food hall &middot; Graze for lunch</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">3 PM</div>
+          <div class="stop-content">
+            <strong>Linger at Ett Hem</strong>
+            <div class="stop-note">Garden, library, greenhouse. Use the personal chef if you want afternoon tea.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">5 PM</div>
+          <div class="stop-content">
+            <strong>Moose &amp; Wildlife Safari</strong> <span class="tag tag-nature">Nature</span> <span class="tag tag-book">Book ahead</span>
+            <div class="stop-addr">5 hrs &middot; Golden 10 PM light &middot; truenaturesweden.com</div>
+            <div class="stop-note">Guided drive into the forest. Moose, deer, wild boar. July = golden hour at 10 PM.</div>
+          </div>
+        </div>
+
+        <div class="alt-box">
+          <strong>Alt:</strong> Tyresta NP sunset hike + dinner. Ancient old-growth forest 30 min from city. SEK 1,250 via stockholmnature.com.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 8 ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-landet"></span> Day 8 &mdash; Jul 4: Landet Stay</div>
+
+    <div class="day-card landet-left">
+      <div class="day-header">
+        <div class="day-label">Morning &rarr; Evening</div>
+        <div class="day-title">Giant Cardamom Bun, Architect Cabin, Forest Silence</div>
+      </div>
+      <div class="day-body">
+
+        <div class="stop">
+          <div class="stop-time">7:30 AM</div>
+          <div class="stop-content">
+            <strong>Café Saturnus</strong> <span class="tag tag-food">Food</span>
+            <div class="stop-addr">Eriksbergsgatan 6</div>
+            <div class="stop-note">Giant cardamom bun. Famous across Stockholm. Go early.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">10 AM</div>
+          <div class="stop-content">
+            <strong>Check out Ett Hem</strong> &mdash; bags with you. Pick up rental car.
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">11 AM</div>
+          <div class="stop-content">
+            <strong>Drive to Landet</strong> &mdash; ~1 hr south through Swedish countryside.
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">PM</div>
+          <div class="stop-content">
+            <strong>400-hectare nature reserve</strong> <span class="tag tag-nature">Nature</span>
+            <div class="stop-note">Forest, meadows, sea views. Wander. No agenda. This is the point.</div>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="stop-time">Eve</div>
+          <div class="stop-content">
+            <strong>Slow cabin evening</strong>
+            <div class="stop-note">Fireplace. Heated floors. Total quiet. Stars.</div>
+          </div>
+        </div>
+
+        <div class="alt-box">
+          <strong>Next morning (Jul 5):</strong> Drive to Värtahamnen ferry terminal (~1 hr). Board Tallink Silja 4:30 PM to Helsinki.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RESTAURANTS ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Restaurants</div>
+    <div class="list-grid">
+      <div class="list-item">
+        <div class="list-item-name">Ekstedt <span class="tag tag-star">&#9733;</span></div>
+        <div class="list-item-detail">Humlegårdsgatan 17 &middot; Birch-fire kitchen, zero electricity. The dinner.</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-name">Rosendals Trädgård</div>
+        <div class="list-item-detail">Rosendalsterrassen 12, Djurgården &middot; Biodynamic garden cafe. The breakfast.</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-name">Fabrique</div>
+        <div class="list-item-detail">Storgatan 19 &middot; Royal Court baker. Kanelbullar benchmark.</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-name">Café Saturnus</div>
+        <div class="list-item-detail">Eriksbergsgatan 6 &middot; Giant cardamom bun, famous citywide.</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-name">Östermalms Saluhall</div>
+        <div class="list-item-detail">Historic food hall &middot; Graze lunch: pickled herring, toast Skagen, open-faced sandwiches.</div>
+      </div>
+      <div class="list-item">
+        <div class="list-item-name">Pelikan</div>
+        <div class="list-item-detail">Blekingegatan 40 &middot; 1904 beer hall. Meatballs, herring, schnapps. Utterly Swedish.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ FIKA ═══════════ -->
+  <div class="section">
+    <div class="fika-box">
+      <h3>The Fika Guide</h3>
+      <p>Fika is a mandatory Swedish ritual: slow coffee, one perfect pastry, actual conversation. Not optional.</p>
+      <ul class="fika-list">
+        <li><strong>Vete-Katten</strong> &mdash; Since 1928. Old-school konditori. Princess cake.</li>
+        <li><strong>Café Saturnus</strong> &mdash; Giant cardamom buns the size of your head.</li>
+        <li><strong>Fabrique</strong> &mdash; Royal Court purveyor. Sourdough kanelbullar.</li>
+        <li><strong>Café Pascal</strong> &mdash; Specialty third-wave coffee. Modern fika.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══════════ PRACTICAL ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Practical</div>
+    <div class="practical-grid">
+      <div class="practical-item">
+        <div class="practical-label">Currency</div>
+        <div class="practical-value">SEK (~10.5 = $1)</div>
+      </div>
+      <div class="practical-item">
+        <div class="practical-label">Payment</div>
+        <div class="practical-value">Cashless everywhere</div>
+      </div>
+      <div class="practical-item">
+        <div class="practical-label">July Temps</div>
+        <div class="practical-value">15 &ndash; 25&deg;C</div>
+      </div>
+      <div class="practical-item">
+        <div class="practical-label">Sunrise / Sunset</div>
+        <div class="practical-value">3:30 AM / 10 PM</div>
+      </div>
+      <div class="practical-item">
+        <div class="practical-label">Arriving</div>
+        <div class="practical-value">Arlanda Express 18 min</div>
+      </div>
+      <div class="practical-item">
+        <div class="practical-label">Departing</div>
+        <div class="practical-value">Rental car &rarr; Landet &rarr; Ferry</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ BOOKABLE ═══════════ -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-sthlm"></span> Book These</div>
+    <div class="book-grid">
+      <a href="https://ekstedt.nu" target="_blank" class="book-link">
+        <span class="book-link-name">Ekstedt dinner</span>
+        <span class="book-link-url">ekstedt.nu</span>
+      </a>
+      <a href="https://truenaturesweden.com/wildlife-safari" target="_blank" class="book-link">
+        <span class="book-link-name">Moose &amp; Wildlife Safari</span>
+        <span class="book-link-url">truenaturesweden.com</span>
+      </a>
+      <a href="https://stockholmnature.com" target="_blank" class="book-link">
+        <span class="book-link-name">Tyresta NP sunset hike (alt)</span>
+        <span class="book-link-url">stockholmnature.com</span>
+      </a>
+      <a href="https://vasamuseet.se" target="_blank" class="book-link">
+        <span class="book-link-name">Vasa Museum tickets</span>
+        <span class="book-link-url">vasamuseet.se</span>
+      </a>
+      <a href="https://landetstay.com" target="_blank" class="book-link">
+        <span class="book-link-name">Landet Stay cabin</span>
+        <span class="book-link-url">landetstay.com</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    Stockholm + Landet &middot; Nordic Arc Summer 2026
+  </div>
+
+</div>
+
+</body>
+</html>

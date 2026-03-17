@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bergen + Fjords — City Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #1B4F72; }
+  a:hover { color: #143d5a; }
+
+  .back { display: block; padding: 1rem 1.25rem; font-size: 0.85rem; color: #666; text-decoration: none; }
+  .back:hover { color: #1B4F72; }
+
+  .hero {
+    background: #1B4F72;
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1.25rem 2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+  .hero .meta {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    font-weight: 300;
+  }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+
+  /* ─── HOTEL CARD ─── */
+  .hotel-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.25rem 1.35rem;
+    margin: 1.5rem 0;
+  }
+  .hotel-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .hotel-card .rating {
+    display: inline-block;
+    background: #1B4F72;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.4rem;
+  }
+  .hotel-card .detail {
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 0.35rem;
+    line-height: 1.55;
+  }
+
+  /* ─── DAY SECTIONS ─── */
+  .day {
+    margin-top: 2rem;
+    border-top: 2px solid #1B4F72;
+    padding-top: 1.25rem;
+  }
+  .day-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1B4F72;
+    margin-bottom: 0.15rem;
+  }
+  .day h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+  .item {
+    margin-bottom: 0.85rem;
+    padding-left: 0.9rem;
+    border-left: 3px solid #e0e0e0;
+  }
+  .item.highlight { border-left-color: #1B4F72; }
+  .item .time {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #1B4F72;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .item .name {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .item .desc {
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+  }
+  .tag-food { background: #fde8e8; color: #c0392b; }
+  .tag-nature { background: #e8f5e9; color: #2e7d32; }
+  .tag-culture { background: #ede7f6; color: #6a1b9a; }
+  .tag-unique { background: #fff9e6; color: #b7950b; }
+
+  /* ─── SECTIONS ─── */
+  .section { margin-top: 2rem; }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.4rem;
+  }
+
+  /* ─── RESTAURANT LIST ─── */
+  .resto {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.88rem;
+  }
+  .resto:last-child { border-bottom: none; }
+  .resto .star { color: #b7950b; font-size: 0.8rem; }
+
+  /* ─── BOOKABLE GRID ─── */
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+  .book-item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+  }
+  .book-item .book-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+  }
+  .book-item .book-link {
+    font-size: 0.78rem;
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .book-item .book-note {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 0.15rem;
+  }
+
+  /* ─── WEATHER BAR ─── */
+  .weather {
+    background: #e8f0f5;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-top: 1.25rem;
+  }
+  .weather strong { color: #1B4F72; }
+
+  @media (min-width: 520px) {
+    .book-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="../" class="back">&larr; Back to Working Plan</a>
+
+<div class="hero">
+  <h1>Bergen + Fjords</h1>
+  <div class="meta">3 nights &middot; Jun 29 &ndash; Jul 1 &middot; Gateway to the Norwegian fjords</div>
+</div>
+
+<div class="container">
+
+  <!-- HOTEL -->
+  <div class="hotel-card">
+    <h3>Opus XVI</h3>
+    <span class="rating">9.1</span> Booking.com &middot; Michelin Key
+    <div class="detail">
+      V&aring;gsallmenningen 16. 65 rooms. 1876 heritage bank conversion. Grieg family history.
+      <br><a href="https://opus16.no" target="_blank">opus16.no</a>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day">
+    <div class="day-label">Day 3 &mdash; Jun 29</div>
+    <h2>Arrive via Bergen Railway</h2>
+
+    <div class="item highlight">
+      <div class="time">8:25 AM &rarr; 2:30 PM</div>
+      <div class="name">Bergen Railway from Oslo <span class="tag tag-unique">Can't-Get-in-NYC</span></div>
+      <div class="desc">6.5 hrs across the Hardangervidda plateau. Book window seat <strong>RIGHT side</strong> at <a href="https://vy.no" target="_blank">vy.no</a>.</div>
+    </div>
+
+    <div class="item">
+      <div class="time">~3 PM</div>
+      <div class="name">Bryggen UNESCO Wharf <span class="tag tag-culture">Culture</span></div>
+      <div class="desc">14th-century wooden merchant houses. Walk the narrow alleyways behind the facades.</div>
+    </div>
+
+    <div class="item">
+      <div class="time">Dinner</div>
+      <div class="name">Enhj&oslash;rningen <span class="tag tag-food">Food</span></div>
+      <div class="desc">Seafood in a 1300s Bryggen building. Bryggen 29.</div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day">
+    <div class="day-label">Day 4 &mdash; Jun 30</div>
+    <h2>Bergen City</h2>
+
+    <div class="item">
+      <div class="time">7 AM</div>
+      <div class="name">Fish Market (Fisketorget) <span class="tag tag-food">Food</span></div>
+      <div class="desc">Torget 5. Shrimp, king crab, fish soup &mdash; straight off the boats.</div>
+    </div>
+
+    <div class="item">
+      <div class="time">Second breakfast</div>
+      <div class="name">Colonialen Bakery</div>
+      <div class="desc">Kong Oscars gate 44. Sourdough, skyr, cloudberry.</div>
+    </div>
+
+    <div class="item highlight">
+      <div class="time">Morning</div>
+      <div class="name">Mount Fl&oslash;yen <span class="tag tag-nature">Nature</span></div>
+      <div class="desc">Funicular up, hike down via Trail 6 (~1 hr). City + fjord panorama.</div>
+    </div>
+
+    <div class="item">
+      <div class="time">Afternoon</div>
+      <div class="name">KODE Art Museums <span class="tag tag-culture">Culture</span></div>
+      <div class="desc">~2 hrs. Munch, Harriet Backer, Nordic craft. Four buildings along the lake.</div>
+    </div>
+
+    <div class="item highlight">
+      <div class="time">3:30 PM</div>
+      <div class="name">Heit Bergen Floating Sauna <span class="tag tag-unique">Can't-Get-in-NYC</span></div>
+      <div class="desc">1h50 session. Sauna on the harbor, plunge into the fjord. <a href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163" target="_blank">Book at visitbergen.com</a></div>
+    </div>
+
+    <div class="item">
+      <div class="time">Dinner</div>
+      <div class="name">Lysverket &#11088; <span class="tag tag-food">Food</span></div>
+      <div class="desc">1 Michelin star. Inside KODE 4 museum. <a href="https://lysverket.no" target="_blank">lysverket.no</a></div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day">
+    <div class="day-label">Day 5 &mdash; Jul 1</div>
+    <h2>Fjords Full Day</h2>
+
+    <div class="item highlight">
+      <div class="time">6 AM</div>
+      <div class="name">Fjord Kayaking at Dawn <span class="tag tag-nature">Nature</span> <span class="tag tag-unique">Can't-Get-in-NYC</span></div>
+      <div class="desc">Paddle emerald fjord water in the early light. ~NOK 895. <a href="https://nordicventures.com" target="_blank">nordicventures.com</a></div>
+    </div>
+
+    <div class="item highlight">
+      <div class="time">Mid-morning &rarr; Afternoon</div>
+      <div class="name">Fl&aring;msbana Railway + N&aelig;r&oslash;yfjord Cruise <span class="tag tag-nature">Nature</span></div>
+      <div class="desc">Norway in a Nutshell combo. UNESCO fjord. One of the steepest rail lines on earth. <a href="https://norwaynutshell.com" target="_blank">norwaynutshell.com</a></div>
+    </div>
+
+    <div class="item">
+      <div class="time">Lunch</div>
+      <div class="name">&AElig;gir Bryggeri <span class="tag tag-food">Food</span></div>
+      <div class="desc">Viking brewpub in Fl&aring;m harbor. Stave-church interior.</div>
+    </div>
+
+    <div class="item highlight">
+      <div class="time">Dinner</div>
+      <div class="name">Cornelius <span class="tag tag-unique">Can't-Get-in-NYC</span> <span class="tag tag-food">Food</span></div>
+      <div class="desc">Private island seafood restaurant. Boat from Bergen harbor. <a href="https://cornelius.no" target="_blank">cornelius.no</a></div>
+    </div>
+  </div>
+
+  <!-- RESTAURANTS -->
+  <div class="section">
+    <h2>Restaurants</h2>
+    <div class="resto"><span>Enhj&oslash;rningen &mdash; 1300s seafood, Bryggen</span></div>
+    <div class="resto"><span>Lysverket <span class="star">&#9733;</span> &mdash; 1 Michelin star, KODE 4</span></div>
+    <div class="resto"><span>Cornelius &mdash; private island, boat access</span></div>
+    <div class="resto"><span>Fish Market (Fisketorget) &mdash; shrimp, crab, soup</span></div>
+    <div class="resto"><span>Colonialen Bakery &mdash; sourdough, skyr, cloudberry</span></div>
+    <div class="resto"><span>&AElig;gir Bryggeri &mdash; Viking brewpub, Fl&aring;m</span></div>
+  </div>
+
+  <!-- BOOK NOW -->
+  <div class="section">
+    <h2>Book Now</h2>
+    <div class="book-grid">
+      <div class="book-item">
+        <div class="book-name">Bergen Railway</div>
+        <a class="book-link" href="https://vy.no" target="_blank">vy.no</a>
+        <div class="book-note">Right-side window seat</div>
+      </div>
+      <div class="book-item">
+        <div class="book-name">Heit Floating Sauna</div>
+        <a class="book-link" href="https://en.visitbergen.com/things-to-do/heit-bergen-sauna-at-marineholmen-p5900163" target="_blank">visitbergen.com</a>
+        <div class="book-note">1h50 session, Jun 30</div>
+      </div>
+      <div class="book-item">
+        <div class="book-name">Fjord Kayaking at Dawn</div>
+        <a class="book-link" href="https://nordicventures.com" target="_blank">nordicventures.com</a>
+        <div class="book-note">~NOK 895/person</div>
+      </div>
+      <div class="book-item">
+        <div class="book-name">Norway in a Nutshell</div>
+        <a class="book-link" href="https://norwaynutshell.com" target="_blank">norwaynutshell.com</a>
+        <div class="book-note">Fl&aring;msbana + N&aelig;r&oslash;yfjord combo</div>
+      </div>
+      <div class="book-item">
+        <div class="book-name">Cornelius</div>
+        <a class="book-link" href="https://cornelius.no" target="_blank">cornelius.no</a>
+        <div class="book-note">Boat pickup from harbor</div>
+      </div>
+      <div class="book-item">
+        <div class="book-name">Lysverket</div>
+        <a class="book-link" href="https://lysverket.no" target="_blank">lysverket.no</a>
+        <div class="book-note">Reserve dinner, Jun 30</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEATHER -->
+  <div class="weather">
+    <strong>Bergen Weather &mdash; Late June/Early July</strong><br>
+    Expect rain. 231 rain days/year &mdash; pack a waterproof shell.<br>
+    12&ndash;18&deg;C. Sunrise ~4:00 AM, sunset ~11:30 PM. Near-endless daylight.
+  </div>
+
+</div>
+</body>
+</html>

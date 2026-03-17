@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oslo City Guide — Nordic Arc 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ─── BACK LINK ─── */
+  .back { display: block; padding: 1rem 1.25rem 0; max-width: 800px; margin: 0 auto; }
+  .back a {
+    font-size: 0.78rem; font-weight: 600; color: #2D6A4F;
+    text-decoration: none; letter-spacing: 0.01em;
+  }
+  .back a:hover { text-decoration: underline; }
+
+  /* ─── HEADER ─── */
+  .header {
+    text-align: center;
+    padding: 2rem 1.25rem 1.5rem;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    letter-spacing: -0.02em; color: #111;
+    margin-bottom: 0.3rem;
+  }
+  .header .dates {
+    font-size: 0.82rem; color: #2D6A4F; font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .header .subtitle {
+    font-size: 0.78rem; color: #666; max-width: 600px;
+    margin: 0 auto; line-height: 1.6;
+  }
+  .divider {
+    width: 40px; height: 3px; background: #2D6A4F;
+    border-radius: 2px; margin: 1.5rem auto;
+  }
+
+  /* ─── HOTEL CARD ─── */
+  .hotel-card {
+    background: #fff; border: 1px solid #e8e8e8;
+    border-left: 4px solid #2D6A4F; border-radius: 8px;
+    padding: 1rem 1.2rem; margin-bottom: 1.5rem;
+  }
+  .hotel-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 800; color: #111;
+    margin-bottom: 0.15rem;
+  }
+  .hotel-card .h-meta {
+    font-size: 0.72rem; color: #888; margin-bottom: 0.4rem;
+  }
+  .hotel-card .h-meta .rating {
+    background: #2D6A4F; color: #fff; font-weight: 700;
+    padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.65rem;
+    margin-right: 0.3rem;
+  }
+  .hotel-card .h-desc {
+    font-size: 0.78rem; color: #444; line-height: 1.55;
+  }
+  .hotel-card .h-link {
+    margin-top: 0.4rem;
+  }
+  .hotel-card .h-link a {
+    font-size: 0.72rem; color: #2D6A4F; font-weight: 600; text-decoration: none;
+  }
+  .hotel-card .h-link a:hover { text-decoration: underline; }
+
+  /* ─── DAY SECTION ─── */
+  .day-header {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 0; margin-top: 1.5rem;
+    border-bottom: 2px solid #2D6A4F;
+  }
+  .day-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #2D6A4F; flex-shrink: 0;
+  }
+  .day-header-text {
+    font-weight: 700; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #2D6A4F;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin-top: 0.75rem; }
+  .t-item {
+    display: flex; gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .t-item:last-child { border-bottom: none; }
+  .t-time {
+    flex-shrink: 0; width: 52px; text-align: right;
+    font-size: 0.68rem; font-weight: 700; color: #2D6A4F;
+    padding-top: 0.05rem;
+  }
+  .t-body { flex: 1; }
+  .t-title {
+    font-size: 0.82rem; font-weight: 600; color: #111;
+    margin-bottom: 0.1rem;
+  }
+  .t-desc {
+    font-size: 0.75rem; color: #555; line-height: 1.55;
+  }
+  .t-addr {
+    font-size: 0.68rem; color: #999; margin-top: 0.1rem;
+  }
+  .nyc-badge {
+    display: inline-block; font-size: 0.5rem; font-weight: 800;
+    padding: 0.08rem 0.3rem; border-radius: 3px;
+    background: #fff8e1; color: #e6a800;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    vertical-align: middle; margin-left: 4px; border: 1px solid #ffeeba;
+  }
+
+  /* ─── SECTION TITLES ─── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 800; color: #111;
+    margin-top: 2rem; margin-bottom: 0.5rem;
+  }
+
+  /* ─── RESTAURANT LIST ─── */
+  .resto-list { list-style: none; }
+  .resto-list li {
+    padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0;
+    font-size: 0.78rem; color: #444;
+  }
+  .resto-list li:last-child { border-bottom: none; }
+  .resto-list .name { font-weight: 600; color: #111; }
+  .resto-list .note { font-size: 0.7rem; color: #999; }
+
+  /* ─── PRACTICAL BOX ─── */
+  .practical-box {
+    background: #fff; border: 1px solid #e8e8e8; border-radius: 8px;
+    padding: 1rem 1.2rem; margin-top: 0.75rem;
+  }
+  .practical-box ul {
+    list-style: none; margin: 0; padding: 0;
+  }
+  .practical-box li {
+    padding: 0.35rem 0; border-bottom: 1px solid #f5f5f5;
+    font-size: 0.78rem; color: #444; line-height: 1.55;
+  }
+  .practical-box li:last-child { border-bottom: none; }
+  .practical-box li strong { color: #222; font-weight: 600; }
+
+  /* ─── BOOKABLE LINKS ─── */
+  .book-links { margin-top: 0.75rem; }
+  .book-links a {
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+    color: #fff; background: #2D6A4F; padding: 0.5rem 1rem;
+    border-radius: 6px; text-decoration: none;
+    margin-right: 0.5rem; margin-bottom: 0.5rem;
+    transition: background 0.2s;
+  }
+  .book-links a:hover { background: #235c41; text-decoration: none; }
+  .book-links .secondary {
+    background: transparent; color: #2D6A4F;
+    border: 1px solid #2D6A4F;
+  }
+  .book-links .secondary:hover { background: #f0f7f4; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 2rem 1.25rem;
+    border-top: 1px solid #e8e8e8; color: #bbb;
+    font-size: 0.72rem; margin-top: 2rem;
+  }
+
+  @media (min-width: 600px) {
+    .header h1 { font-size: 2.6rem; }
+    .t-time { width: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="back"><a href="../">&larr; Back to Working Plan</a></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HEADER                                 -->
+<!-- ═══════════════════════════════════════ -->
+<div class="header">
+  <h1>Oslo</h1>
+  <div class="dates">Jun 27&ndash;28 &middot; 2 Nights &middot; Gateway to the Nordic Arc</div>
+  <div class="subtitle">Midnight sun on the Opera House rooftop. Floating sauna on the Oslofjord. Panoramic hike above the city. Two days before the Bergen Railway carries you west.</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HOTEL                                  -->
+<!-- ═══════════════════════════════════════ -->
+<div class="wrap">
+
+  <div class="hotel-card">
+    <h3>The Thief</h3>
+    <div class="h-meta"><span class="rating">8.8</span> Landgangen 1, Tjuvholmen &middot; ~114 rooms</div>
+    <div class="h-desc">Art hotel built around the Astrup Fearnley Museum on the Tjuvholmen waterfront. Every room has original contemporary art. Rooftop bar with fjord views.</div>
+    <div class="h-link"><a href="https://www.thethief.com/">thethief.com &rarr;</a></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DAY 1                                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="day-header">
+    <div class="day-dot"></div>
+    <div class="day-header-text">Day 1 &mdash; Sat Jun 27 &mdash; Arrival</div>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">~8 AM</div>
+      <div class="t-body">
+        <div class="t-title">Arrive Oslo (SAS SK 908)</div>
+        <div class="t-desc">Flytoget airport express, 19 min to Oslo S. Drop bags at hotel.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10 AM</div>
+      <div class="t-body">
+        <div class="t-title">Breakfast: Mathallen Food Hall</div>
+        <div class="t-desc">Smoked salmon, brunost, cardamom buns. Oslo's answer to a food hall &mdash; smaller and more curated than you'd expect.</div>
+        <div class="t-addr">Maridalsveien 17, Vulkan &middot; Opens 10 AM Sat</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">11:30</div>
+      <div class="t-body">
+        <div class="t-title">Sm&oslash;rbr&oslash;d at P&aring;fylt</div>
+        <div class="t-desc">Open-faced sandwiches in Gr&uuml;nerl&oslash;kka, Oslo's Williamsburg. Walk the neighborhood after.</div>
+        <div class="t-addr">Thorvald Meyers gate 26</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">1 PM</div>
+      <div class="t-body">
+        <div class="t-title">Vigeland Sculpture Park</div>
+        <div class="t-desc">200+ sculptures by Gustav Vigeland. Free, open 24/7. ~1.5 hrs. Then check into The Thief.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">11 PM</div>
+      <div class="t-body">
+        <div class="t-title">Opera House Rooftop <span class="nyc-badge">Not in NYC</span></div>
+        <div class="t-desc">Walk the sloping marble rooftop in full midnight sun. The sky doesn't go dark &mdash; golden light over the Oslofjord at 11 PM. Light dinner near the waterfront beforehand (jet lag recovery night).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DAY 2                                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="day-header">
+    <div class="day-dot"></div>
+    <div class="day-header-text">Day 2 &mdash; Sun Jun 28 &mdash; Nature + Sauna</div>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">7 AM</div>
+      <div class="t-body">
+        <div class="t-title">Breakfast: Fuglen Coffee</div>
+        <div class="t-desc">Specialty coffee pioneer in a 1963 vintage furniture shop. Or hotel breakfast.</div>
+        <div class="t-addr">Universitetsgata 2</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">8:30</div>
+      <div class="t-body">
+        <div class="t-title">Vettakollen Hike <span class="nyc-badge">Not in NYC</span></div>
+        <div class="t-desc">2&ndash;3 hr round trip from Vettakollen T-bane station. Panoramic views of the entire Oslofjord. Free. Forested trail, not strenuous.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12 PM</div>
+      <div class="t-body">
+        <div class="t-title">Ekebergparken Sculpture Park</div>
+        <div class="t-desc">Hilltop sculpture park with sweeping city and fjord views. Restaurant on site for lunch.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">3 PM</div>
+      <div class="t-body">
+        <div class="t-title">KOK Sauna Cruise <span class="nyc-badge">Not in NYC</span></div>
+        <div class="t-desc">Floating sauna cruising the Oslofjord. Heat up, then cold plunge directly into the fjord. ~2&ndash;3 hrs.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">6 PM</div>
+      <div class="t-body">
+        <div class="t-title">Munch Museum + SALT Waterfront</div>
+        <div class="t-desc">Opened 2022. The Scream and 26,000 other works. SALT is the waterfront nomadic art project next door.</div>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">8 PM</div>
+      <div class="t-body">
+        <div class="t-title">Dinner: Kontrast (optional)</div>
+        <div class="t-desc">2 Michelin stars. Nordic tasting menu, hyper-local. Or keep it light &mdash; this is a travel day tomorrow.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- RESTAURANTS                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <h3 class="section-title">Restaurants</h3>
+  <ul class="resto-list">
+    <li><span class="name">Mathallen Food Hall</span> &mdash; Smoked salmon, brunost, cardamom buns <span class="note">&middot; Vulkan</span></li>
+    <li><span class="name">P&aring;fylt</span> &mdash; Open-faced sm&oslash;rbr&oslash;d <span class="note">&middot; Gr&uuml;nerl&oslash;kka</span></li>
+    <li><span class="name">Kontrast</span> &mdash; 2 Michelin stars, Nordic tasting menu <span class="note">&middot; Mathallen area</span></li>
+    <li><span class="name">Fuglen Coffee</span> &mdash; Specialty coffee pioneer <span class="note">&middot; Universitetsgata 2</span></li>
+  </ul>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PRACTICAL                              -->
+  <!-- ═══════════════════════════════════════ -->
+  <h3 class="section-title">Practical</h3>
+  <div class="practical-box">
+    <ul>
+      <li><strong>Airport &rarr; City:</strong> Flytoget airport express, 19 min, runs every 10 min. ~NOK 220/pp.</li>
+      <li><strong>Hotel &rarr; Oslo S:</strong> Taxi ~15 min, or tram. For Bergen Railway departure Day 3.</li>
+      <li><strong>Bergen Railway:</strong> Departs Oslo S at 8:25 AM Jun 29. Arrives Bergen 2:30 PM. Book window seat, sit RIGHT side.</li>
+      <li><strong>Getting around:</strong> T-bane (metro) + tram covers everything. Ruter app for tickets.</li>
+      <li><strong>Currency:</strong> NOK. Cards accepted everywhere, no cash needed.</li>
+      <li><strong>Sunset Jun 27:</strong> 11:30 PM. Twilight never ends &mdash; it stays light all night.</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BOOKABLE LINKS                         -->
+  <!-- ═══════════════════════════════════════ -->
+  <h3 class="section-title">Book These</h3>
+  <div class="book-links">
+    <a href="https://koknorge.no/en/sauna-cruise/">KOK Sauna Cruise</a>
+    <a href="https://www.vy.no/en" class="secondary">Bergen Railway (vy.no)</a>
+    <a href="https://book.visitoslo.com/en/activity/89-ekebergparken-sculpture-park" class="secondary">Ekebergparken</a>
+  </div>
+
+</div><!-- /wrap -->
+
+<div class="footer">
+  Oslo City Guide &middot; Nordic Arc &mdash; Summer 2026 &middot; 2 nights, Jun 27&ndash;28
+</div>
+
+</body>
+</html>
